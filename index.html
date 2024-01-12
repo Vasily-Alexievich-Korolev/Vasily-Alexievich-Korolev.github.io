@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 7.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Break the barrier of knowledge">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vasily&#39;s Bolg">
+<meta property="og:title" content="Vasily&#39;s Blog">
 <meta property="og:url" content="https://vasily-alexievich-korolev.github.io/index.html">
-<meta property="og:site_name" content="Vasily&#39;s Bolg">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
 <meta property="og:description" content="Break the barrier of knowledge">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Vasily Alexievich Korolev">
@@ -44,7 +44,7 @@
   };
 </script>
 
-  <title>Vasily's Bolg</title>
+  <title>Vasily's Blog</title>
   
 
 
@@ -95,10 +95,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Vasily's Bolg</h1>
+      <h1 class="site-title">Vasily's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">只争朝夕</p>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
   </div>
 
   <div class="site-nav-right">
@@ -173,12 +173,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vasily's Bolg">
+      <meta itemprop="name" content="Vasily's Blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/edb6a73/" class="post-title-link" itemprop="url">2024-01-12-Linear_Algebra</a>
+            <a href="/posts/edb6a73/" class="post-title-link" itemprop="url">线性代数笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -189,7 +189,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-01-12 03:20:16 / 修改时间：04:27:11" itemprop="dateCreated datePublished" datetime="2024-01-12T03:20:16+08:00">2024-01-12</time>
+              <time title="创建时间：2024-01-12 03:20:16 / 修改时间：14:13:46" itemprop="dateCreated datePublished" datetime="2024-01-12T03:20:16+08:00">2024-01-12</time>
             </span>
 
           <br>
@@ -217,7 +217,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="求解线性方程组">求解线性方程组</h1>
+          <h1 id="第一版前言">第一版前言</h1>
+<p>这篇文档为本人于2024年阅读Gilbert教授所著<em>Introduction to Linear
+Algebra</em>的笔记。这是本人第一次阅读纯英文线性代数教科书，并且没有进行仔细地校订，因此存在一些疏漏和小错误。敬请读者批评指正。</p>
+<p>值得一提的是，原文全篇是由<span
+class="math inline">\(\LaTeX\)</span>排版。感谢所有对<span
+class="math inline">\(\LaTeX\)</span>有贡献的开发者，是你们的努力使得个人排版成为了可能。本文为原文的Markdown转写，如需PDF格式文档请通过邮件联系本人</p>
+<p>第一版参考文献：</p>
+<p>[1] [美]Gilbert Strang.线性代数（Introduction to Linear
+Algebra）[M].第五版.北京:清华大学出版社,2019.</p>
+<p>[2] [美]David C. Lay, Steven R.Lay, Judi
+J.McDonald.线性代数及其应用（Linear Algebra and Its
+Applications）[M].刘深泉, 张万芹, 包乐娥,
+陆博译.第五版.北京:机械工业出版社,2018.</p>
+<h1 id="求解线性方程组">求解线性方程组</h1>
 <h2 id="使用矩阵消元">使用矩阵消元</h2>
 <h3 id="摘要">摘要</h3>
 <ol type="1">
@@ -705,12 +718,15 @@ class="math inline">\(d\)</span>个向量线性无关，那么其可以张成<sp
 class="math inline">\(\boldsymbol{S}\)</span></p></li>
 </ol>
 <h3 id="引入-1">引入</h3>
-<p>下面说明零空间与行空间之间的关系 &gt;定理： &gt; &gt;对于<span
-class="math inline">\(m\times n\)</span>矩阵<span
+<p>下面说明零空间与行空间之间的关系</p>
+<blockquote>
+<p>定理：</p>
+<p>对于<span class="math inline">\(m\times n\)</span>矩阵<span
 class="math inline">\(A\)</span>，<span
 class="math inline">\(\boldsymbol{N}(A)\)</span>和<span
 class="math inline">\(\boldsymbol{C}(A^{\mathrm{T}})\)</span>均为<span
 class="math inline">\(\boldsymbol{R}^{n}\)</span>的子空间，且二者正交</p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <p>对<span class="math inline">\(\forall\boldsymbol{x}\in
@@ -888,10 +904,13 @@ A)^{-1}A^{\mathrm{T}}\boldsymbol{b} P = A(A^{\mathrm{T}}
 A)^{-1}A^{\mathrm{T}}
 \]</span></p>
 <p>对于矩阵<span class="math inline">\(A^{\mathrm{T}}
-A\)</span>，有一个很重要的定理 &gt;定理： &gt; &gt;对于矩阵<span
-class="math inline">\(A\)</span>，<span
+A\)</span>，有一个很重要的定理</p>
+<blockquote>
+<p>定理：</p>
+<p>对于矩阵<span class="math inline">\(A\)</span>，<span
 class="math inline">\(\boldsymbol{N}(A^{\mathrm{T}} A) =
 \boldsymbol{N}(A)\)</span></p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <ol type="1">
@@ -1405,8 +1424,11 @@ class="math inline">\(C\)</span>不一定是对角矩阵。而用<span
 class="math inline">\(B\)</span>代替<span
 class="math inline">\(X\)</span>是因为<span
 class="math inline">\(B\)</span>的列不一定是特征向量，同时只要<span
-class="math inline">\(B\)</span>满足可逆即可。对于相似的矩阵有下面的命题成立：
-&gt;定理： &gt; &gt;两个相似的矩阵的特征值相同。</p>
+class="math inline">\(B\)</span>满足可逆即可。对于相似的矩阵有下面的命题成立：</p>
+<blockquote>
+<p>定理：</p>
+<p>两个相似的矩阵的特征值相同。</p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <p>假设<span class="math inline">\(C\boldsymbol{x} = \lambda
@@ -1457,14 +1479,17 @@ class="math inline">\(\lambda\)</span>对应的特征向量中，线性无关的
 class="math inline">\(\lambda\)</span>对应几个特征向量（或者说<span
 class="math inline">\(\lambda\)</span>的重复次数）</p></li>
 </ol>
-<p>此时，我们将对角化条件表述如下： &gt;定理： &gt;
-&gt;当几何多重度小于代数多重度时，矩阵<span
+<p>此时，我们将对角化条件表述如下：</p>
+<blockquote>
+<p>定理：</p>
+<p>当几何多重度小于代数多重度时，矩阵<span
 class="math inline">\(A\)</span>不可对角化。 ## 对称矩阵 ### 摘要 1.
 假设矩阵<span class="math inline">\(S\)</span>为对称矩阵，那么其有<span
 class="math inline">\(n\)</span>个实特征值<span
 class="math inline">\(\lambda_{i}\)</span>，并且有<span
 class="math inline">\(n\)</span>个正交的特征向量<span
 class="math inline">\(q_{i}\)</span></p>
+</blockquote>
 <ol start="2" type="1">
 <li><p>每个实对称矩阵都可以对角化，即<span class="math inline">\(S =
 Q\Lambda Q^{-1} = Q\Lambda Q^{\mathrm{T}}\)</span>（此时<span
@@ -1490,8 +1515,11 @@ X\Lambda X^{-1} = (X^{-1})^{\mathrm{T}}\Lambda X^{\mathrm{T}}
 class="math inline">\(X\)</span>中的向量变为单位向量，我们可以将<span
 class="math inline">\(X\)</span>变为正交矩阵<span
 class="math inline">\(Q\)</span>。</p>
-<p>下面我们证明一个定理： &gt;定理： &gt;
-&gt;实对称矩阵的每个特征值都是实数</p>
+<p>下面我们证明一个定理：</p>
+<blockquote>
+<p>定理：</p>
+<p>实对称矩阵的每个特征值都是实数</p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <p>假设<span class="math inline">\(S\boldsymbol{x} =
@@ -1677,10 +1705,13 @@ class="math inline">\(A = \sum\limits_{i =
 class="math inline">\(A\)</span>为正定矩阵（或半正定矩阵）时，奇异值分解与对角化相同（<span
 class="math inline">\(U = V = X\)</span>）</p>
 <h3 id="svd的证明">SVD的证明</h3>
-<p>下面说明几个定理 &gt;定理： &gt; &gt;<span
-class="math inline">\(\boldsymbol{v}_{i}\)</span>为<span
+<p>下面说明几个定理</p>
+<blockquote>
+<p>定理：</p>
+<p><span class="math inline">\(\boldsymbol{v}_{i}\)</span>为<span
 class="math inline">\(A^{\mathrm{T}} A\)</span>的正交特征向量，<span
 class="math inline">\(\Sigma^{\mathrm{T}}\Sigma\)</span>为特征值矩阵。</p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <p><span class="math display">\[
@@ -2083,27 +2114,30 @@ class="math inline">\(T(\boldsymbol{v}_{i})\)</span>在基<span
 class="math inline">\(\boldsymbol{w}_{i}\)</span>下的坐标。</p>
 <h3 id="特征向量与线性变换">特征向量与线性变换</h3>
 <p>如果线性变换<span class="math inline">\(T\)</span>对应的矩阵<span
-class="math inline">\(A\)</span>可对角化，那么有以下定理存在 &gt;定理：
-&gt; &gt;如果矩阵<span
-class="math inline">\(A\)</span>可以对角化，也就是<span
+class="math inline">\(A\)</span>可对角化，那么有以下定理存在</p>
+<blockquote>
+<p>定理：</p>
+<p>如果矩阵<span class="math inline">\(A\)</span>可以对角化，也就是<span
 class="math inline">\(A = X\Lambda X^{-1}\)</span>，并且<span
 class="math inline">\(X\)</span>的列向量为<span
 class="math inline">\(\boldsymbol{R}^{n}\)</span>的基，那么对于线性变换<span
 class="math inline">\(T:\ \boldsymbol{R}^{n} \longrightarrow
 \boldsymbol{R}^{n}, \boldsymbol{u} \longmapsto
 A\boldsymbol{u}\)</span>，<span
-class="math inline">\(\Lambda\)</span>为坐标转换矩阵。 &gt;由于<span
+class="math inline">\(\Lambda\)</span>为坐标转换矩阵。 由于<span
 class="math inline">\(X\boldsymbol{c} = \boldsymbol{u}\)</span>，因此
-&gt;<span class="math display">\[
-&gt;X\boldsymbol{d} = A\boldsymbol{u} = AX\boldsymbol{c} = X\Lambda
-X^{-1} X \boldsymbol{c} = X\Lambda \boldsymbol{c}
-&gt;\]</span> &gt;由此不难看出，<span class="math inline">\(\Lambda
+<span class="math display">\[
+X\boldsymbol{d} = A\boldsymbol{u} = AX\boldsymbol{c} = X\Lambda X^{-1} X
+\boldsymbol{c} = X\Lambda \boldsymbol{c}
+\]</span> 由此不难看出，<span class="math inline">\(\Lambda
 \boldsymbol{c} = \boldsymbol{d}\)</span>，也就是说<span
 class="math inline">\(\Lambda\)</span>在此时起到了坐标转换矩阵的效果。</p>
+</blockquote>
 <p>不难看出，上式的证明并没有用到<span
-class="math inline">\(\Lambda\)</span>为对角矩阵的条件，因此我们可以给出一个更强的定理
-&gt;定理： &gt; &gt;如果矩阵<span
-class="math inline">\(A\)</span>与矩阵<span
+class="math inline">\(\Lambda\)</span>为对角矩阵的条件，因此我们可以给出一个更强的定理</p>
+<blockquote>
+<p>定理：</p>
+<p>如果矩阵<span class="math inline">\(A\)</span>与矩阵<span
 class="math inline">\(C\)</span>相似，也就是<span
 class="math inline">\(A = PCP^{-1}\)</span>，并且<span
 class="math inline">\(P\)</span>的列向量为<span
@@ -2115,14 +2149,18 @@ class="math inline">\(C\)</span>为坐标转换矩阵。 ###
 奇异值分解与线性变换 由于<span class="math inline">\(U\)</span>和<span
 class="math inline">\(V\)</span>的列向量分别为<span
 class="math inline">\(\boldsymbol{R}^{m}\)</span>和<span
-class="math inline">\(\boldsymbol{R}^{n}\)</span>的基向量，因此有以下定理成立
-&gt;定理： &gt; &gt;如果矩阵<span
+class="math inline">\(\boldsymbol{R}^{n}\)</span>的基向量，因此有以下定理成立</p>
+</blockquote>
+<blockquote>
+<p>定理：</p>
+<p>如果矩阵<span
 class="math inline">\(A\)</span>可以进行奇异值分解，也就是<span
 class="math inline">\(A = U\Sigma
 V^{\mathrm{T}}\)</span>，那么对于线性变换<span class="math inline">\(T:\
 \boldsymbol{R}^{n} \longrightarrow \boldsymbol{R}^{m}, \boldsymbol{u}
 \longmapsto A\boldsymbol{u}\)</span>，<span
 class="math inline">\(\Sigma\)</span>为坐标转换矩阵。</p>
+</blockquote>
 <blockquote>
 <p>证明：</p>
 <p>由于<span class="math inline">\(\boldsymbol{u} =
@@ -2256,7 +2294,7 @@ class="math inline">\(\boldsymbol{z}^{\mathrm{H}}S\boldsymbol{z}\)</span>为实�
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vasily's Bolg">
+      <meta itemprop="name" content="Vasily's Blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -2410,6 +2448,14 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/vasily_alex_koro@outlook.com" title="E-Mail → vasily_alex_koro@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -2448,7 +2494,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">47 分钟</span>
+    <span title="站点阅读时长">48 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

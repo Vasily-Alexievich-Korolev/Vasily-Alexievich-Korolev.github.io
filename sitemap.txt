@@ -1,3 +1,4 @@
+https://vasily-alexievich-korolev.github.io/posts/ad7882da/
 https://vasily-alexievich-korolev.github.io/posts/4a17b156/
 https://vasily-alexievich-korolev.github.io/about/index.html
 https://vasily-alexievich-korolev.github.io/posts/edb6a73/
@@ -5,8 +6,10 @@ https://vasily-alexievich-korolev.github.io/categories/index.html
 https://vasily-alexievich-korolev.github.io/tags/index.html
 https://vasily-alexievich-korolev.github.io/404.html
 https://vasily-alexievich-korolev.github.io/
-https://vasily-alexievich-korolev.github.io/tags/Test/
-https://vasily-alexievich-korolev.github.io/tags/Linear-Algebra/
+https://vasily-alexievich-korolev.github.io/tags/Ordinary-Diffenertial-Equation/
 https://vasily-alexievich-korolev.github.io/tags/Note/
+https://vasily-alexievich-korolev.github.io/tags/Linear-Algebra/
+https://vasily-alexievich-korolev.github.io/tags/Test/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
+https://vasily-alexievich-korolev.github.io/categories/Mathematics/Ordinary-Differential-Equation/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Linear-Algebra/

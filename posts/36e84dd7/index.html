@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。">
+  <meta name="description" content="本文是Stein所著&quot;Real Analysis&quot;第一章的&quot;Exercise&quot;部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简述进制转换原理">
-<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/index.html">
+<meta property="og:title" content="Stein实分析第一章练习">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/36e84dd7/index.html">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
-<meta property="og:description" content="本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。">
+<meta property="og:description" content="本文是Stein所著&quot;Real Analysis&quot;第一章的&quot;Exercise&quot;部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-08T09:56:20.059Z">
-<meta property="article:modified_time" content="2024-03-08T10:00:57.573Z">
+<meta property="article:published_time" content="2024-03-17T12:22:07.884Z">
+<meta property="article:modified_time" content="2024-03-17T16:46:55.806Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
-<meta property="article:tag" content="Computer Science">
-<meta property="article:tag" content="Others">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Real Analysis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/">
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/36e84dd7/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>简述进制转换原理 | Vasily's Blog</title>
+  <title>Stein实分析第一章练习 | Vasily's Blog</title>
   
 
 
@@ -168,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/36e84dd7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          简述进制转换原理
+          Stein实分析第一章练习
         </h1>
 
         <div class="post-meta">
@@ -190,21 +190,27 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-03-08 17:56:20 / 修改时间：18:00:57" itemprop="dateCreated datePublished" datetime="2024-03-08T17:56:20+08:00">2024-03-08</time>
+              <time title="创建时间：2024-03-17 20:22:07" itemprop="dateCreated datePublished" datetime="2024-03-17T20:22:07+08:00">2024-03-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-18 00:46:55" itemprop="dateModified" datetime="2024-03-18T00:46:55+08:00">2024-03-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Science/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+                  <a href="/categories/Mathematics/Real-Analysis/" itemprop="url" rel="index"><span itemprop="name">Real Analysis</span></a>
                 </span>
             </span>
 
@@ -221,7 +227,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -230,7 +236,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>5 分钟</span>
             </span>
-            <div class="post-description">本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。</div>
+            <div class="post-description">本文是Stein所著"Real Analysis"第一章的"Exercise"部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。</div>
 
         </div>
       </header>
@@ -241,117 +247,202 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="整数的进制转换">整数的进制转换</h1>
-<h2 id="十进制向k进制转换">十进制向<span
-class="math inline">\(k\)</span>进制转换</h2>
-<p>为了考虑<span
-class="math inline">\(k\)</span>进制的本质，我们先来思考这样一个问题：</p>
+        <h1 id="练习">练习</h1>
+<ol type="1">
+<li><p>（1）证明：对于Cantor集<span
+class="math inline">\(C\)</span>中两个点<span class="math inline">\(x,
+y\in C\)</span>，存在<span class="math inline">\(z\notin
+C\)</span>，使得<span class="math inline">\(x &lt; z &lt;
+y\)</span>；</p>
+<p>（2）证明：<span class="math inline">\(C\)</span>为完美集，即<span
+class="math inline">\(C\)</span>中不存在孤立点（孤立点的定义：对于<span
+class="math inline">\(x\in E\)</span>，如果存在<span
+class="math inline">\(r &gt; 0\)</span>，使得<span
+class="math inline">\(B_{r}(x) \bigcap E = \{x\}\)</span>）。</p></li>
+</ol>
 <blockquote>
-<p>当我们有一大堆苹果时，我们如何数出它们的数量？</p>
+<p>（1）我们假设第<span class="math inline">\(I\)</span>次去掉的第<span
+class="math inline">\(k\)</span>个区间为<span
+class="math inline">\(I_{n}^{k}\)</span>，那么此间隔的长度为<span
+class="math inline">\(\dfrac{1}{3^{n}}\)</span>。对于<span
+class="math inline">\(x, y \in C\)</span>，必然存在<span
+class="math inline">\(k\)</span>，使得<span class="math inline">\(|x -
+y|&gt; \dfrac{1}{3^{k}}\)</span>。这样，长度为<span
+class="math inline">\(\dfrac{1}{3^{k}}\)</span>的间隔中的点<span
+class="math inline">\(z\)</span>满足<span class="math inline">\(z \notin
+C\)</span>，且<span class="math inline">\(x &lt; z &lt; y\)</span></p>
+<p>（2）由于在Cantor集构造的过程中，每个满足<span
+class="math inline">\(x \in [0, 1]\)</span>的点都在某个长度为<span
+class="math inline">\(\dfrac{1}{3^{k}}\)</span>的区间中，因此对于任意的<span
+class="math inline">\(x \in C\)</span>，总是存在某个区间的端点<span
+class="math inline">\(y_{k} \in I_{k}\)</span>，使得<span
+class="math inline">\(|x - y_{k}| &lt;
+\dfrac{1}{3^{k}}\)</span>。由于对于<span class="math inline">\(\forall r
+&gt; 0\)</span>，总是存在<span class="math inline">\(k\)</span>使得<span
+class="math inline">\(\dfrac{1}{3^{k}}&lt;r\)</span>成立，因此在<span
+class="math inline">\(C\)</span>中没有孤立点。</p>
 </blockquote>
-<p>我们当然可以一个一个数，每数一个就发明一个数字记下来。这样的话，当我们有几百个苹果的时候，可能相对于数苹果，我们花在发明新的计数符号上的时间更多。为了避免这种情况，我们可以将苹果分组。比如每当数到10个苹果，我们就找一个袋子将其装起来。而当装苹果的袋子攒够10个，我们就找一个箱子将其装起来。</p>
-<p>这样，我们只需要发明0~9这10个计数符号（也就是数字），而每当超过9就向前进1位，并重新计数。这就是进制的本质。</p>
-<p>因此，当我们将一个数从十进制向<span
-class="math inline">\(k\)</span>进制转换时，我们需要打破之前“装苹果的袋子和箱子”，并重新数数，每当数到<span
-class="math inline">\(k\)</span>个就用袋子装起来。这也就是说，在进行进制转换时，我们需要将十进制的数除以<span
-class="math inline">\(k\)</span>。第一次除法得到的是装袋剩下的苹果数和苹果袋数，也就是<span
-class="math inline">\(k\)</span>进制的“个位数”和暂时的“十位数”（这里只是借用了“十位数”的名字，“暂时”指的是真正的“十位数”应当为装箱后剩下的苹果数，也就是再除一次<span
-class="math inline">\(k\)</span>得到的余数）。接着，第二次对“十位数”的除法能得到真正的“十位数”和暂时的百位数。就这样一直做除法，直到商为0。</p>
-<p>下面是一个例子</p>
+<ol start="2" type="1">
+<li><p>Cantor集可以用三进制表示</p>
+<p>（1）对于<span class="math inline">\(\forall x \in C\)</span>，<span
+class="math inline">\(x\)</span>三进制表示为 <span
+class="math display">\[
+(x)_{3} = \sum\limits_{k = 1}^{\infty}a_{k}3^{-k},\quad a_{k} = 0, 1, 2
+\]</span> 证明：<span class="math inline">\(x\)</span>中每个<span
+class="math inline">\(a_{k}\)</span>只能为0或2；</p>
+<p>（2）定义在<span
+class="math inline">\(C\)</span>上的Cantor-Lebesgue函数为 <span
+class="math display">\[
+F(x) = \sum\limits_{k = 1}^{\infty}\dfrac{b_{k}}{2^{k}},\quad x =
+\sum\limits_{k = 1}^{\infty}a_{k}3^{-k},\quad b_{k} = \dfrac{a_{k}}{2}
+\]</span> 其中，<span
+class="math inline">\(a_{k}\)</span>只能是0或2。显然<span
+class="math inline">\(F\)</span>是良定义的，并且在<span
+class="math inline">\(C\)</span>上连续；同时<span
+class="math inline">\(F(0) = 0\)</span>，<span
+class="math inline">\(F(1) = 1\)</span>。</p>
+<p>证明：<span class="math inline">\(F:C\longrightarrow[0,
+1]\)</span>是满射（即对于<span class="math inline">\(\forall y\in [0,
+1]\)</span>，<span class="math inline">\(\exists x \in C\)</span>，<span
+class="math inline">\(F(x) = y\)</span>）</p></li>
+</ol>
 <blockquote>
-<p>例：将123转换为2进制</p>
-<p>解：123/2=61......1（“个位”）</p>
-<p>61/2=30......1（“十位”）</p>
-<p>30/2=15......0（“百位”）</p>
-<p>15/2=7......1</p>
-<p>7/2=3......1</p>
-<p>3/2=1......1</p>
-<p>1/2=0......1</p>
-<p>这样，最下方的余数为最左边的数，而最上面的余数为最右边的数。由此我们可以得到
+<p>（1）假设<span class="math inline">\(I_{n}^{k}\)</span>为第<span
+class="math inline">\(n\)</span>次去掉的第<span
+class="math inline">\(k\)</span>个区间，我们可以由此先写出几个区间：
 <span class="math display">\[
-(123)_{10} = (1111011)_{2}
-\]</span></p>
+I_{1}^{1} = (0.1, 0.2)_{3}\quad I_{2}^{1} = (0.01, 0.02)_{3}\quad
+I_{2}^{2} = (0.21, 0.22)_{3}\quad I_{3}^{1} = (0.001, 0.002)_{3} \quad
+I_{3}^{2}=(0.021, 0.022)_{3} \dots
+\]</span> 不难看出，<span class="math inline">\(I_{n}^{k} =
+(0.a_{1}a_{2}...a_{n-1}1, 0.a_{1}a_{2}...a_{n -
+1}2)_{3}\)</span>，其中<span class="math inline">\(a_{k} = 0, 2\ (k = 1,
+2, ..., n - 1)\)</span>。由于<span class="math inline">\(C = [0, 1] -
+I_{1}^{1} - I_{2}^{1} - I_{2}^{2}...\)</span>，因此在<span
+class="math inline">\(I_{n}^{k}\)</span>中的元素均不在<span
+class="math inline">\(C\)</span>中。由于<span
+class="math inline">\(I_{n}^{k}\)</span>中所有元素均<span
+class="math inline">\(\exists k\)</span>，<span
+class="math inline">\(a_{k} =
+1\)</span>，因此小数位上有1的元素均不在<span
+class="math inline">\(C\)</span>中，即<span
+class="math inline">\(\forall x \in C\)</span>，<span
+class="math inline">\((x)_{3} = \sum\limits_{k =
+1}^{\infty}a_{k}3^{-k}\)</span>，其中<span class="math inline">\(a_{k} =
+0, 2\)</span>。</p>
+<p>（2）由于<span
+class="math inline">\(a_{k}\)</span>只能是0或2，因此<span
+class="math inline">\(b_{k} = 0, 1\)</span>。对于<span
+class="math inline">\(\forall y \in [0, 1]\)</span>，其二进制表示为
+<span class="math display">\[
+y = \sum\limits_{k = 1}^{\infty}c_{k}2^{-k},\quad c_{k} = 0, 1
+\]</span> 不难看出，将其每一个<span
+class="math inline">\(c_{k}\)</span>乘2，即可得到一个属于<span
+class="math inline">\(C\)</span>的三进制数。这样我们就说明了，<span
+class="math inline">\(\forall y \in [0, 1]\)</span>，<span
+class="math inline">\(\exists x \in C\)</span>，<span
+class="math inline">\(F(x) = y\)</span></p>
 </blockquote>
-<h2 id="k进制转换十进制"><span
-class="math inline">\(k\)</span>进制转换十进制</h2>
-<p>类似地，我们也可以用<span
-class="math inline">\(k\)</span>进制的数除以<span
-class="math inline">\(k\)</span>进制的10，从而得到对应的十进制数。比如下面这个例子</p>
+<ol start="3" type="1">
+<li><p>常数分割出的Cantor集。考虑单位区间[0, 1]，假设<span
+class="math inline">\(\xi\in(0,
+1)\)</span>。按照构造Cantor集的方式构造集合，只不过将构造Cantor集时的<span
+class="math inline">\(\dfrac{1}{3}\)</span>换为<span
+class="math inline">\(\xi\)</span>。将最终得到的集合记为<span
+class="math inline">\(C_{\xi}\)</span></p>
+<p>（1）证明：<span class="math inline">\(C_{\xi}\)</span>的补集<span
+class="math inline">\(C_{\xi}^{c}\)</span>为总长度为1的开区间的并集</p>
+<p>（2）证明：<span class="math inline">\(m_{*}(C_{\xi}) =
+0\)</span></p></li>
+</ol>
 <blockquote>
-<p>例：将<span
-class="math inline">\((1111011)_{2}\)</span>转换为十进制</p>
-<p>解：由于<span
-class="math inline">\((10)_{10}=(1010)_{2}\)</span>，因此1111011/1010=1100...11（均为二进制数）</p>
-<p>1100/1010=1...10</p>
-<p>1/1010=0...1</p>
-<p>由此可以得到<span class="math inline">\((1111011)_{2}=(01\ 10\
-11)_{10}\)</span>，将<span
-class="math inline">\((01)_{2}\)</span>、<span
-class="math inline">\((10)_{2}\)</span>、<span
-class="math inline">\((11)_{2}\)</span>分别转换为1、2、3后即为<span
-class="math inline">\((123)_{10}\)</span>。</p>
+<p>（1）仿照第二题的方式，我们可以证明，对<span
+class="math inline">\(\forall x, y \in C_{\xi}\)</span>，<span
+class="math inline">\(\exists k\)</span>，使得<span
+class="math inline">\(|x - y| &gt;
+\dfrac{1}{(1-\xi)^{k}}\)</span>。由于第<span
+class="math inline">\(k\)</span>次去掉的区间长为<span
+class="math inline">\(\dfrac{1}{(1 - \xi)^{k}}\)</span>，因此<span
+class="math inline">\(\exists z\)</span>，使得<span
+class="math inline">\(x &lt; z &lt; y\)</span>。因此<span
+class="math inline">\(C_{\xi}\)</span>中每个元素不与其他元素相连。对于<span
+class="math inline">\(x \in C_{\xi}\)</span>，我们假设<span
+class="math inline">\(E_{x} = \{x\}\)</span>，此时<span
+class="math inline">\(C_{\xi} = \bigcup\limits_{x\in
+C_{\xi}}E_{x}\)</span>。由于<span
+class="math inline">\(E_{x}\)</span>彼此不相交，并且<span
+class="math inline">\(m_{*}(E_{x}) = 0\)</span>，因此<span
+class="math inline">\(m_{*}(C_{\xi}) = 0\)</span>，从而<span
+class="math inline">\(m_{*}(C_{\xi}^{c}) =
+1\)</span>。参照Cantor集的构造方式，不难得出<span
+class="math inline">\(C_{\xi}^{c}\)</span>为开区间的并集。</p>
+<p>（2）见（1）的证明过程</p>
 </blockquote>
-<p>但我们马上会发现一个困难的事情，那就是我们很难进行<span
-class="math inline">\(k\)</span>进制除法。相比于此，我们有一种很简单的方法。由于<span
-class="math inline">\(k\)</span>进制的第<span
-class="math inline">\(n\)</span>位表示<span
-class="math inline">\(k^{n-1}\)</span>的个数（比如十进制的第二位表示10的个数），因此<span
-class="math inline">\(k\)</span>进制数<span
-class="math inline">\((a_{n}...a_{2}a_{1})_{k} = \sum\limits_{i =
-i}^{n}a_{i}k^{i - 1}\)</span></p>
-<h1 id="小数的进制转换">小数的进制转换</h1>
-<h2 id="十进制向k进制转换-1">十进制向<span
-class="math inline">\(k\)</span>进制转换</h2>
-<p>要思考这个问题，首先我们需要明确<span
-class="math inline">\(k\)</span>进制的小数含义。例如，在三进制中，<span
-class="math inline">\((0.1)_{3}\)</span>与十进制中的<span
-class="math inline">\((1/3)_{10}\)</span>相等。</p>
-<p>同时，在十进制中，小数的第一位“十分位”表示这个数是在十分之几之间。比如0.56中的5表示这个数大于<span
-class="math inline">\(\dfrac{5}{10}\)</span>，但小于<span
-class="math inline">\(\dfrac{6}{10}\)</span>。</p>
-<p>因此，如果我们想要把十进制小数转换为<span
-class="math inline">\(k\)</span>进制小数，就需要思考这个十进制小数在<span
-class="math inline">\(k\)</span>进制小数的哪个区间。下面我们以0.25转换为三进制为例，探究转换方法。</p>
+<ol start="4" type="1">
+<li><p>类Cantor集。假设在类似Cantor集的构造过程中，得到的闭集合为<span
+class="math inline">\(\hat{C}\)</span>，第<span
+class="math inline">\(k\)</span>次去掉的是<span
+class="math inline">\(2^{k - 1}\)</span>个长度为<span
+class="math inline">\(l_{k}\)</span>的开区间，并且<span
+class="math display">\[l_{1} + 2l_{2} + 4l_{3} + \dots + 2^{k - 1}l_{k}
+&lt; 1\]</span></p>
+<p>（1）当<span class="math inline">\(l_{k}\)</span>足够小时，<span
+class="math inline">\(\sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k} &lt;
+1\)</span>。在这种情况下，说明<span class="math inline">\(m(\hat{C})
+&gt; 0\)</span></p>
+<p>（2）说明如果<span
+class="math inline">\(x\in\hat{C}\)</span>，那么存在一个数列<span
+class="math inline">\(\{x_{n}\}_{n = 1}^{\infty}\)</span>，其中<span
+class="math inline">\(x_{n}\notin\hat{C}\)</span>，但<span
+class="math inline">\(x_{n}\rightarrow x\)</span>，且<span
+class="math inline">\(x_{n} \in I_{n}\)</span>，其中<span
+class="math inline">\(I_{n}\)</span>为<span
+class="math inline">\(\hat{C}^{c}\)</span>中的子区间，并且<span
+class="math inline">\(|I_{n}|\rightarrow 0\)</span></p>
+<p>（3）证明<span
+class="math inline">\(\hat{C}\)</span>为完美集，并且不包含开区间</p>
+<p>（4）说明<span
+class="math inline">\(\hat{C}\)</span>为不可数集</p></li>
+</ol>
 <blockquote>
-<p>例：将<span
-class="math inline">\((0.25)_{10}\)</span>转换为三进制</p>
-<p>解：首先，<span class="math inline">\(0.25\)</span>小于<span
-class="math inline">\(\dfrac{1}{3}\)</span>，因此可以得到<span
-class="math inline">\((0.25)_{10} = (0.0...)_{3}\)</span></p>
-<p>然后，由于<span class="math inline">\(0.25 \in [\dfrac{2}{9},
-\dfrac{3}{9}]\)</span>，因此<span class="math inline">\((0.25)_{10} =
-(0.02...)_{3}\)</span></p>
-<p>通过这种方法，我们可以得到<span class="math inline">\((0.25)_{10} =
-(0.020202...)_{3}\)</span></p>
-</blockquote>
-<p>实际上，上面的步骤就是在一步步寻找十进制数0.25在<span
-class="math inline">\([0, 1]\)</span>上由<span
-class="math inline">\(k\)</span>等分点、<span
-class="math inline">\(k^{2}\)</span>等分点...<span
-class="math inline">\(k^{n}\)</span>等分点分割成的哪一部分。因此，我们可以考虑一种在此基础上的简便方法。</p>
-<p>在求三进制小数“十分位”时，我们可以选择将十进制数乘三。这实际上就是将原本长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔映射到长度为<span
-class="math inline">\(1\)</span>的间隔。如果<span
-class="math inline">\(0.25\)</span>原本属于<span
-class="math inline">\([0,
-\dfrac{1}{3}]\)</span>这个间隔，那么其在乘3放大后应当属于<span
-class="math inline">\([0,
-1]\)</span>这个间隔。因此，在乘3后，十进制个位数即为三进制的“十分位”。</p>
-<p>对于第一次乘3后得到的小数的小数部分，我们也可以用相似的步骤接着乘3，然后取整数部分作为三进制“十分位”。这是因为要得到三进制“十分位”，需要考察这个十进制数位于九等分点形成的哪个区间。在第一次乘3后，九等分点形成的间隔变为了长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔，因此我们可以接着构造类似的映射，将长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔映射为长为<span
-class="math inline">\(1\)</span>的映射。</p>
-<p>用这个新的方法，我们可以重新求出<span
-class="math inline">\((0.25)_{10}\)</span>对应的三进制数</p>
-<blockquote>
-<p>例：将<span
-class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
-<p>解：0.25*3=0.75</p>
-<p>0.75*3=2.25</p>
-<p>0.25*3=0.75</p>
-<p>0.75*3=2.25</p>
-<p>由此不难看出<span class="math inline">\((0.25)_{10} =
-(0.020202...)_{3}\)</span></p>
+<p>（1）由于<span class="math inline">\(\hat{C}\)</span>与<span
+class="math inline">\(\hat{C}^{c}\)</span>为不相交集，因此<span
+class="math inline">\(m(\hat{C}) + m(\hat{C}^{c}) =
+1\)</span>。又因为<span class="math inline">\(m(\hat{C}^{c}) =
+\sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k} &lt; 1\)</span>，因此<span
+class="math inline">\(m(\hat{C}) &gt; 0\)</span></p>
+<p>（2）我们取<span class="math inline">\(x_{n}\)</span>为离<span
+class="math inline">\(x\)</span>最近的<span
+class="math inline">\(I_{n}\)</span>的中点，即<span
+class="math inline">\(|x - x_{n}| &lt; l_{n - 1}\)</span>，<span
+class="math inline">\(n\geq2\)</span>。这样，对于<span
+class="math inline">\(\forall \epsilon &gt; 0\)</span>，总是<span
+class="math inline">\(\exists N\in N^{*}\)</span>，当<span
+class="math inline">\(n &gt; N\)</span>时，有<span
+class="math inline">\(|x - x_{n}|&lt; l_{n - 1} &lt;
+\epsilon\)</span>，即<span
+class="math inline">\(\lim\limits_{n\to\infty}x_{n} =x\)</span></p>
+<p>（3）仿照第一题可得，<span
+class="math inline">\(\hat{C}\)</span>中每个区间的长度为<span
+class="math inline">\(\dfrac{1 - \sum\limits_{k = 1}^{\infty}2^{k -
+1}l_{k}}{2^{k}}\)</span>，因此对于<span class="math inline">\(x \in
+\hat{C}\)</span>，对于<span class="math inline">\(\forall r &gt;
+0\)</span>，<span class="math inline">\(\exists
+y_{k}\)</span>作为区间端点，使得<span class="math inline">\(|x - y_{k}|
+&lt; \dfrac{1 - \sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k}}{2^{k}} &lt;
+r\)</span>。由此可得<span
+class="math inline">\(\hat{C}\)</span>为完美集。按照前文出现的方式，我们也可以证明<span
+class="math inline">\(\hat{C}\)</span>中每个点都是不相连的，因此<span
+class="math inline">\(\hat{C}\)</span>中没有开区间</p>
+<p>（4）类似Cantor-Lebesgue函数，我们也许可以找到一个映射<span
+class="math inline">\(f:\hat{C}\to[0,
+1]\)</span>（不过我目前还没有找到），并且这一映射为满射。这样，<span
+class="math inline">\(\mathrm{card}(\hat{C}) \geq\mathrm{card}([0,
+1])\)</span>。又因为我们可以构造映射<span class="math inline">\(g:[0,
+1]\to\mathbb{N}\)</span>，并且使得该映射为满射，因此<span
+class="math inline">\(\mathrm{card}(\hat{C})\geq\mathrm{[0,
+1]}\geq\mathrm{card}(\mathbb{N})\)</span>。所以<span
+class="math inline">\(\hat{C}\)</span>不可数。</p>
 </blockquote>
 
     </div>
@@ -368,7 +459,7 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/" title="简述进制转换原理">https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/36e84dd7/" title="Stein实分析第一章练习">https://vasily-alexievich-korolev.github.io/posts/36e84dd7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -379,8 +470,8 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Computer-Science/" rel="tag"># Computer Science</a>
-              <a href="/tags/Others/" rel="tag"># Others</a>
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Real-Analysis/" rel="tag"># Real Analysis</a>
           </div>
 
         
@@ -389,13 +480,10 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/ad7882da/" rel="prev" title="常微分方程第一章">
-      <i class="fa fa-chevron-left"></i> 常微分方程第一章
+    <a href="/posts/a50f3fa0/" rel="prev" title="简述进制转换原理">
+      <i class="fa fa-chevron-left"></i> 简述进制转换原理
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/36e84dd7/" rel="next" title="Stein实分析第一章练习">
-      Stein实分析第一章练习 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -454,7 +542,7 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">整数的进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E5%90%91k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">十进制向\(k\)进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">\(k\)进制转换十进制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">小数的进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E5%90%91k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2-1"><span class="nav-number">2.1.</span> <span class="nav-text">十进制向\(k\)进制转换</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">练习</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

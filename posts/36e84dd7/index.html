@@ -28,7 +28,7 @@
 <meta property="og:description" content="本文是Stein所著&quot;Real Analysis&quot;第一章的&quot;Exercise&quot;部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-17T12:22:07.884Z">
-<meta property="article:modified_time" content="2024-03-18T15:56:59.394Z">
+<meta property="article:modified_time" content="2024-03-18T16:50:05.378Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Real Analysis">
@@ -198,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-18 23:56:59" itemprop="dateModified" datetime="2024-03-18T23:56:59+08:00">2024-03-18</time>
+                <time title="修改时间：2024-03-19 00:50:05" itemprop="dateModified" datetime="2024-03-19T00:50:05+08:00">2024-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,14 +227,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
             <div class="post-description">本文是Stein所著"Real Analysis"第一章的"Exercise"部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。</div>
 
@@ -345,8 +345,8 @@ class="math inline">\(\exists x \in C\)</span>，<span
 class="math inline">\(F(x) = y\)</span></p>
 </blockquote>
 <ol start="3" type="1">
-<li><p>常数分割出的Cantor集。考虑单位区间[0, 1]，假设<span
-class="math inline">\(\xi\in(0,
+<li><p><strong>常数分割出的Cantor集</strong>。考虑单位区间[0,
+1]，假设<span class="math inline">\(\xi\in(0,
 1)\)</span>。按照构造Cantor集的方式构造集合，只不过将构造Cantor集时的<span
 class="math inline">\(\dfrac{1}{3}\)</span>换为<span
 class="math inline">\(\xi\)</span>。将最终得到的集合记为<span
@@ -380,7 +380,7 @@ class="math inline">\(C_{\xi}^{c}\)</span>为开区间的并集。</p>
 <p>（2）见（1）的证明过程</p>
 </blockquote>
 <ol start="4" type="1">
-<li><p>类Cantor集。假设在类似Cantor集的构造过程中，得到的闭集合为<span
+<li><p><strong>类Cantor集</strong>。假设在类似Cantor集的构造过程中，得到的闭集合为<span
 class="math inline">\(\hat{C}\)</span>，第<span
 class="math inline">\(k\)</span>次去掉的是<span
 class="math inline">\(2^{k - 1}\)</span>个长度为<span
@@ -423,27 +423,36 @@ class="math inline">\(n &gt; N\)</span>时，有<span
 class="math inline">\(|x - x_{n}|&lt; l_{n - 1} &lt;
 \epsilon\)</span>，即<span
 class="math inline">\(\lim\limits_{n\to\infty}x_{n} =x\)</span></p>
-<p>（3）仿照第一题可得，<span
+<p>（3）仿照第一题可得，进行<span
+class="math inline">\(N\)</span>次去除后，<span
 class="math inline">\(\hat{C}\)</span>中每个区间的长度为<span
-class="math inline">\(\dfrac{1 - \sum\limits_{k = 1}^{\infty}2^{k -
+class="math inline">\(\dfrac{1 - \sum\limits_{k = 1}^{N}2^{k -
 1}l_{k}}{2^{k}}\)</span>，因此对于<span class="math inline">\(x \in
 \hat{C}\)</span>，对于<span class="math inline">\(\forall r &gt;
 0\)</span>，<span class="math inline">\(\exists
 y_{k}\)</span>作为区间端点，使得<span class="math inline">\(|x - y_{k}|
-&lt; \dfrac{1 - \sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k}}{2^{k}} &lt;
+&lt; \dfrac{1 - \sum\limits_{k = 1}^{N}2^{k - 1}l_{k}}{2^{k}} &lt;
 r\)</span>。由此可得<span
 class="math inline">\(\hat{C}\)</span>为完美集。按照前文出现的方式，我们也可以证明<span
 class="math inline">\(\hat{C}\)</span>中每个点都是不相连的，因此<span
 class="math inline">\(\hat{C}\)</span>中没有开区间</p>
-<p>（4）类似Cantor-Lebesgue函数，我们也许可以找到一个映射<span
-class="math inline">\(f:\hat{C}\to[0,
-1]\)</span>（不过我目前还没有找到），并且这一映射为满射。这样，<span
-class="math inline">\(\mathrm{card}(\hat{C}) \geq\mathrm{card}([0,
-1])\)</span>。又因为我们可以构造映射<span class="math inline">\(g:[0,
-1]\to\mathbb{N}\)</span>，并且使得该映射为满射，因此<span
-class="math inline">\(\mathrm{card}(\hat{C})\geq\mathrm{[0,
-1]}\geq\mathrm{card}(\mathbb{N})\)</span>。所以<span
-class="math inline">\(\hat{C}\)</span>不可数。</p>
+<p>（4）由于Cantor-Lebesgue函数的存在，我们会发现该函数是满足<span
+class="math inline">\(f:C\to[0,
+1]\)</span>的映射，并且这一映射为满射。这样，<span
+class="math inline">\(\mathrm{card}(C) \geq\mathrm{card}([0,
+1])\)</span>。因此，我们只需要构造映射<span
+class="math inline">\(g:\hat{C}\to
+C\)</span>，并且使得该映射为双射，这样<span
+class="math inline">\(\mathrm{card}(\hat{C})=\mathrm{card}(C)\geq\mathrm{card}(\mathbb{N})\)</span>。</p>
+<p>不难看出，由于进行<span
+class="math inline">\(N\)</span>次去除后，<span
+class="math inline">\(\hat{C}\)</span>中每个区间的长度为<span
+class="math inline">\(\dfrac{1 - \sum\limits_{k = 1}^{N}2^{k -
+1}l_{k}}{2^{k}}\)</span>，而<span class="math inline">\(l_{k} =
+\dfrac{1}{3^{k}}\)</span>时即可得到Cantor集。因此我们会发现<span
+class="math inline">\(\hat{C}\)</span>与<span
+class="math inline">\(C\)</span>当中的点是一一对应的。由此<span
+class="math inline">\(\hat{C}\)</span>是不可数集。</p>
 </blockquote>
 <h2 id="其他练习">其他练习</h2>
 <ol type="1">
@@ -465,15 +474,39 @@ class="math inline">\(E\)</span>为紧集，因此<span
 class="math inline">\(E\)</span>显然可测。同时，每个<span
 class="math inline">\(\mathbb{R}^{d}\)</span>中的开集都可测，因此<span
 class="math inline">\(O_{n}\)</span>可测</p>
-<p>其次，我们可以将<span class="math inline">\(O_{n}\)</span>写为<span
-class="math inline">\(O_{n} = E\bigcup (O_{n} -
-E)\)</span>。不难看出，<span class="math inline">\(E\)</span>与<span
-class="math inline">\((O_{n} - E)\)</span>不相交，因此<span
-class="math inline">\(m(O_{n}) - m(E) = m(O_{n} -
-E)\)</span>。接下来想一个办法说明<span
-class="math inline">\(\lim\limits_{n\to\infty}m(O_{n} - E) =
-0\)</span>即可</p>
-<p>（2）？</p>
+<p>在证明前，我们先说明一个结论：对于闭集<span
+class="math inline">\(E\)</span>，假如<span
+class="math inline">\(x\notin E\)</span>，那么<span
+class="math inline">\(\exists y \in E\)</span>，使得<span
+class="math inline">\(d(x, E) = d(x, y)\)</span></p>
+<p>我们可以将<span class="math inline">\(E\)</span>写为<span
+class="math inline">\(E = \bigcap\limits_{n =
+1}^{\infty}O_{n}\)</span>。对于<span class="math inline">\(\forall x \in
+\bigcap\limits_{n = 1}^{\infty}O_{n}\)</span>，假如<span
+class="math inline">\(x \notin E\)</span>，那么<span
+class="math inline">\(d(x, E) &gt; 0\)</span>。此时<span
+class="math inline">\(\exists n\)</span>，满足<span
+class="math inline">\(d(x, E) &gt; \dfrac{1}{n}\)</span>。这与<span
+class="math inline">\(x \in \bigcap\limits_{n =
+1}^{\infty}O_{n}\)</span>的假设相矛盾。因此<span
+class="math inline">\(\forall x \in \bigcap\limits_{n =
+1}^{\infty}O_{n}\)</span>，都满足<span class="math inline">\(x \in
+E\)</span>。由<span
+class="math inline">\(O_{n}\)</span>的定义，我们不难得到<span
+class="math inline">\(O_{n}\searrow E\)</span>。同时由于<span
+class="math inline">\(E\)</span>为紧集，因此<span
+class="math inline">\(m(E) &lt;
+\infty\)</span>，从而由推论3.3可以得到<span class="math inline">\(m(E) =
+\lim\limits_{n\to\infty}m(O_{n})\)</span></p>
+<p>（推论3.3：假设<span
+class="math inline">\(E_{k}\subset\mathbb{R}^{d}\)</span>（<span
+class="math inline">\(k = 1, 2,\dots\)</span>），如果<span
+class="math inline">\(E_{k}\searrow E\)</span>，并且<span
+class="math inline">\(\exists k\)</span>使得<span
+class="math inline">\(m(E_{k}) &lt; \infty\)</span>，那么<span
+class="math inline">\(m(E) = \lim\limits_{n \to
+\infty}m(E_{k})\)</span>）</p>
+<p>（2）待证明</p>
 </blockquote>
 <ol start="2" type="1">
 <li>假设<span class="math inline">\(\delta = (\delta_{1}, \dots,
@@ -682,7 +715,7 @@ class="math inline">\(m(\delta E) = \prod\limits_{i =
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:09</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

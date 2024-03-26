@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vasily-alexievich-korolev.github.io/sitemap.xml

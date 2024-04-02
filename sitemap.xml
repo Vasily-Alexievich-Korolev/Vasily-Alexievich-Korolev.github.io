@@ -133,6 +133,13 @@
   </url>
   
   <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Ordinary-Diffenertial-Equation/</loc>
+    <lastmod>2024-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Computer-Science/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -141,13 +148,6 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Others/</loc>
-    <lastmod>2024-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Ordinary-Diffenertial-Equation/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -168,13 +168,6 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Test/</loc>
-    <lastmod>2024-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Quantum-Chemistry/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -183,6 +176,13 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Summary/</loc>
+    <lastmod>2024-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Test/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -226,13 +226,6 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Computer-Science/Others/</loc>
-    <lastmod>2024-04-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Chemistry/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -241,6 +234,13 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Ordinary-Differential-Equation/</loc>
+    <lastmod>2024-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Computer-Science/Others/</loc>
     <lastmod>2024-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

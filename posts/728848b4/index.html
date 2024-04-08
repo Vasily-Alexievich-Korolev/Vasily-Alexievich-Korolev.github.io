@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文通过Hartree-Fock自洽场方法求出了He原子的基态能量。阅读本文需要读者对于Hartree-Fock自洽场方法有最基本的了解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SCF计算He原子基态能量">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/728848b4/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文通过Hartree-Fock自洽场方法求出了He原子的基态能量。阅读本文需要读者对于Hartree-Fock自洽场方法有最基本的了解。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/posts/728848b4/%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="article:published_time" content="2024-04-08T10:32:04.614Z">
+<meta property="article:modified_time" content="2024-04-08T10:35:01.611Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Quantum Chemistry">
+<meta property="article:tag" content="Example">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vasily-alexievich-korolev.github.io/posts/728848b4/%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/728848b4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用SCF计算He原子基态能量 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/728848b4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用SCF计算He原子基态能量
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-08 18:32:04 / 修改时间：18:35:01" itemprop="dateCreated datePublished" datetime="2024-04-08T18:32:04+08:00">2024-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chemistry/" itemprop="url" rel="index"><span itemprop="name">Chemistry</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Chemistry/Quantum-Chemistry/" itemprop="url" rel="index"><span itemprop="name">Quantum Chemistry</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>24 分钟</span>
+            </span>
+            <div class="post-description">本文通过Hartree-Fock自洽场方法求出了He原子的基态能量。阅读本文需要读者对于Hartree-Fock自洽场方法有最基本的了解。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文通过Hartree-Fock自洽场方法求出了He原子的基态能量。阅读本文需要读者对于Hartree-Fock自洽场方法有最基本的了解。在进行正式计算之前，我们首先明确在特定分子构型下，使用自洽场计算的过程。</p>
+<p>如果读者觉得其中的某些积分计算过于困难，不妨使用Mathematica辅助积分。</p>
+<h1
+id="一定分子构型下的自洽场计算过程">一定分子构型下的自洽场计算过程</h1>
+<p>在分子结构一定时，自洽场分子轨道的计算过程如下：</p>
+<ol type="1">
+<li><p>选择一组基函数<span
+class="math inline">\(\chi_{s}\)</span></p></li>
+<li><p>预估<span
+class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(S_{rs}\)</span>和双电子积分<span
+class="math inline">\((rs|tu)\)</span></p></li>
+<li><p>使用重叠积分<span
+class="math inline">\(S_{rs}\)</span>和正交化计算矩阵<span
+class="math inline">\(A\)</span>的元素，得到正交基函数</p></li>
+<li><p>初猜<span class="math inline">\(\phi =
+\sum\limits_{s}c_{si}\chi_{s}\)</span>中<span
+class="math inline">\(c_{ci}\)</span>，并计算密度矩阵<span
+class="math inline">\(P\)</span></p></li>
+<li><p>使用<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
+\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
+\dfrac{1}{2}(ru|ts)]\)</span>，并结合之前得到的密度矩阵<span
+class="math inline">\(P\)</span>，计算<span
+class="math inline">\(F_{rs}\)</span>、<span
+class="math inline">\((rs|tu)\)</span>和<span
+class="math inline">\(H_{rs}^{\mathrm{core}}\)</span></p></li>
+<li><p>计算<span class="math inline">\(F&#39; =
+A^{\dagger}FA\)</span></p></li>
+<li><p>利用对角化计算<span
+class="math inline">\(F&#39;\)</span>对应的<span
+class="math inline">\(C&#39;\)</span>和<span
+class="math inline">\(\varepsilon\)</span></p></li>
+<li><p>计算<span class="math inline">\(C = AC&#39;\)</span></p></li>
+<li><p>计算新的密度矩阵<span class="math inline">\(P^{*} =
+2CC^{\dagger}\)</span></p></li>
+<li><p>检查新的密度矩阵<span
+class="math inline">\(P^{*}\)</span>与原先的密度矩阵<span
+class="math inline">\(P\)</span>的差别。如果二者较为接近，那么停止计算；如果二者相差较大，那么返回第5步，使用<span
+class="math inline">\(P^{*}\)</span>重新计算，直至计算完成。</p></li>
+</ol>
+<h1 id="使用scf计算he原子能量">使用SCF计算He原子能量</h1>
+<h2 id="初始化波函数">初始化波函数</h2>
+<p>有关基函数与基组的知识在这里暂且不再赘述。我们对每个原子轨道使用2个Slater型轨道（Slater
+Type Orbital,
+STO）进行模拟。对于He原子而言，我们暂且只计算基态。STO的通式为 <span
+class="math display">\[
+\dfrac{1}{\sqrt{2n!}}\left(
+\dfrac{2\zeta}{a_{0}}\right)^{\frac{2n+1}{2}}r^{n-1}\mathrm{e}^{-\frac{\zeta
+r}{a_{0}}}Y_{l}^{m}(\phi, \theta)
+\]</span> 对于基态而言，<span class="math inline">\(n =
+1\)</span>，<span class="math inline">\(l = m =
+0\)</span>。将其代入，并使用原子单位可得 <span class="math display">\[
+\dfrac{1}{\sqrt{2}}(2\zeta)^{\frac{3}{2}}\mathrm{e}^{-\zeta r}Y_{0}^{0}
+\]</span> 将<span class="math inline">\(Y_{0}^{0} =
+\dfrac{1}{\sqrt{4\pi}}\)</span>代入可得 <span class="math display">\[
+\sqrt{\dfrac{\zeta^{3}}{\pi}}\mathrm{e}^{-\zeta r}
+\]</span> 由此我们可以得到两个STO <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \chi_{1} = \sqrt{\dfrac{\zeta_{1}^{3}}{\pi}}\mathrm{e}^{-\zeta_{1}
+r} \\
+&amp; \chi_{2} = \sqrt{\dfrac{\zeta_{2}^{3}}{\pi}}\mathrm{e}^{-\zeta_{2}
+r} \\
+\end{aligned}
+\right.
+\]</span> 此时假设<span class="math inline">\(\zeta_{1} =
+1.45\)</span>，<span class="math inline">\(\zeta_{2} = 2.91\)</span>。
+## 计算<span
+class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(S_{rs}\)</span>以及<span
+class="math inline">\((rs|tu)\)</span> 接下来计算<span
+class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(S_{rs}\)</span>以及双电子积分<span
+class="math inline">\((rs|tu)\)</span>。首先计算重叠积分<span
+class="math inline">\(S_{rs}\)</span>。我们此时有3个需要计算的积分：<span
+class="math inline">\(S_{11}\)</span>、<span
+class="math inline">\(S_{12}\)</span>、<span
+class="math inline">\(S_{22}\)</span>。<span
+class="math inline">\(S_{11}\)</span>与<span
+class="math inline">\(S_{22}\)</span>本质上相同，我们以<span
+class="math inline">\(S_{11}\)</span>为例计算： <span
+class="math display">\[
+\begin{aligned}
+S_{11} = \langle \chi_{1} | \chi_{1} \rangle &amp; =
+\dfrac{\zeta_{1}^{3}}{\pi}\iiint \mathrm{e}^{-2\zeta_{1} r}
+r^{2}\sin\phi\mathrm{d} r\mathrm{d} \phi \mathrm{d} \theta\\
+&amp; = \dfrac{\zeta_{1}^{3}}{\pi}\int_{0}^{2\pi} \mathrm{d} \theta
+\int_{0}^{\pi} \sin\phi \mathrm{d} \phi \int_{0}^{\infty}
+r^{2}\mathrm{e}^{-2\zeta_{1} r}\mathrm{d} r \\
+&amp; = 1
+\end{aligned}
+\]</span></p>
+<p>而<span class="math inline">\(S_{12}\)</span>等于 <span
+class="math display">\[
+\begin{aligned}
+S_{12} = \langle \chi_{1}|\chi_{2}\rangle &amp; =
+\dfrac{\zeta^{\frac{3}{2}}_{1}\zeta_{2}^{\frac{3}{2}}}{\pi}\iiint
+\mathrm{e}^{-(\zeta_{1}+\zeta_{2}) r} r^{2}\sin\phi\mathrm{d}
+r\mathrm{d} \phi \mathrm{d} \theta\\
+&amp; = \dfrac{\zeta_{1}^{3}}{\pi}\int_{0}^{2\pi} \mathrm{d} \theta
+\int_{0}^{\pi} \sin\phi \mathrm{d} \phi \int_{0}^{\infty}
+r^{2}\mathrm{e}^{-(\zeta_{1}+\zeta_{2}) r}\mathrm{d} r \\
+&amp; =
+\dfrac{8\zeta_{1}^{\frac{3}{2}}\zeta_{2}^{\frac{3}{2}}}{(\zeta_{1} +
+\zeta_{2})^{3}} = 0.8366
+\end{aligned}
+\]</span></p>
+<p>然后计算<span
+class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>。我们有4个需要计算的积分：<span
+class="math inline">\(H_{11}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(H_{12}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(H_{21}^{\mathrm{core}}\)</span>、<span
+class="math inline">\(H_{22}^{\mathrm{core}}\)</span>。首先计算<span
+class="math inline">\(H_{11}^{\mathrm{core}}\)</span> <span
+class="math display">\[
+\begin{aligned}
+H_{11}^{\mathrm{core}} = \langle \chi_{1} | \hat{H}^{\mathrm{core}} |
+\chi_{1}\rangle &amp; = \dfrac{\zeta_{1}^{3}}{\pi}\iiint
+\mathrm{e}^{-\zeta_{1} r} \left( \dfrac{1}{2}\nabla^{2} -
+\dfrac{2}{r}\right) \mathrm{e}^{-\zeta_{1} r}r^{2}\sin\phi\mathrm{d}
+r\mathrm{d} \phi \mathrm{d} \theta \\
+&amp; = \dfrac{\zeta_{1}^{3}}{\pi}\iiint \mathrm{e}^{-\zeta_{1} r}
+\int_{0}^{2\pi} \mathrm{d} \theta \int_{0}^{\pi} \sin\phi \mathrm{d}
+\phi\int_{0}^{\infty}-\dfrac{r}{2}\mathrm{e}^{-2\zeta_{1}r}(4 -
+2\zeta_{1} + r\zeta_{1}^{2}) \\
+&amp; = \dfrac{1}{2}\zeta_{1}^{2} - 2\zeta_{1} = -1.8488
+\end{aligned}
+\]</span> 同理，<span class="math inline">\(H_{22}^{\mathrm{core}} =
+\dfrac{1}{2}\zeta_{2}^{2} - 2\zeta_{2} = -1.5860\)</span>。而对于<span
+class="math inline">\(H_{12}^{\mathrm{core}}\)</span>和<span
+class="math inline">\(H_{21}^{\mathrm{core}}\)</span>，由于二者满足<span
+class="math inline">\(H_{12}^{\mathrm{core}} =
+H_{21}^{\mathrm{core}*}\)</span>，且二者均为实数，因此<span
+class="math inline">\(H_{12}^{\mathrm{core}} =
+H_{21}^{\mathrm{core}}\)</span>。我们以<span
+class="math inline">\(H_{12}^{\mathrm{core}}\)</span>为例进行计算 <span
+class="math display">\[
+\begin{aligned}
+H_{12}^{\mathrm{core}} = \langle \chi_{1}|\hat{H}|\chi_{2}\rangle &amp;
+= \dfrac{\zeta^{\frac{3}{2}}_{1}\zeta_{2}^{\frac{3}{2}}}{\pi}\iiint
+\mathrm{e}^{-\zeta_{1} r} \left( \dfrac{1}{2}\nabla^{2} -
+\dfrac{2}{r}\right) \mathrm{e}^{-\zeta_{2} r}r^{2}\sin\phi\mathrm{d}
+r\mathrm{d} \phi \mathrm{d} \theta \\
+&amp; =
+\dfrac{\zeta^{\frac{3}{2}}_{1}\zeta_{2}^{\frac{3}{2}}}{\pi}\int_{0}^{2\pi}
+\mathrm{d} \theta \int_{0}^{\pi} \sin\phi \mathrm{d}
+\phi\int_{0}^{\infty}-\dfrac{r}{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r}(4 - 2\zeta_{2} + r\zeta_{2}^{2})\mathrm{d} r \\
+&amp; =
+\dfrac{\zeta^{\frac{3}{2}}_{1}\zeta_{2}^{\frac{3}{2}}(4\zeta_{1}\zeta_{2}
+- 8\zeta_{1} - 8\zeta_{2})}{(\zeta_{1} + \zeta_{2})^{3}} = -1.8826
+\end{aligned}
+\]</span></p>
+<p>最后计算双电子积分，回忆一下，双电子积分的定义如下 <span
+class="math display">\[
+(rs|tu) =
+\iint\dfrac{\chi_{r}^{*}(1)\chi_{s}(1)\chi_{t}^{*}(2)\chi_{u}^{*}(2)}{r_{12}}
+\mathrm{d} v_{1}\mathrm{d} v_{2}
+\]</span>
+由此，双电子积分的组合如下（下面只是一种表示方式，并不是矩阵的意思）
+<span class="math display">\[
+\begin{bmatrix}
+(11|11) &amp; (11|12) &amp; (11|21) &amp; (11|22) \\
+(12|11) &amp; (12|12) &amp; (12|21) &amp; (12|22) \\
+(21|11) &amp; (21|12) &amp; (21|21) &amp; (21|22) \\
+(22|11) &amp; (22|12) &amp; (22|21) &amp; (22|22) \\
+\end{bmatrix}
+\]</span> 由于我们此时使用的是实函数，因此 <span class="math display">\[
+\begin{aligned}
+&amp; (11|12) = (11|21) = (12|11) = (21|11)\\
+&amp; (12|12) = (12|21) = (21|12) = (21|21)\\
+&amp; (12|22) = (21|22) = (22|12) = (22|21)\\
+&amp; (11|22) = (22|11)\\
+\end{aligned}
+\]</span> 我们来一个个进行计算。首先计算<span
+class="math inline">\((11|11)\)</span> <span class="math display">\[
+\begin{aligned}
+(11|11) &amp; = \dfrac{\zeta_{1}^{6}}{\pi^{2}}\iint
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{12}}\mathrm{d}
+v_{1}\mathrm{d} v_{2}\\
+&amp; = \dfrac{\zeta_{1}^{6}}{\pi^{2}}\int_{0}^{2\pi}\mathrm{d}
+\theta_{1} \int_{0}^{2\pi} \mathrm{d} \theta_{2} \int_{0}^{\pi}
+\sin\phi_{1} \mathrm{d} \phi_{1}\int_{0}^{\pi}\sin \phi_{2}\mathrm{d}
+\phi_{2}\int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{12}}r_{1}^{2}r_{2}^{2}\mathrm{d}
+r_{1}\mathrm{d} r_{2} \\
+&amp; = 16\zeta_{1}^{6} \int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{12}}r_{1}^{2}r_{2}^{2}\mathrm{d}
+r_{1}\mathrm{d} r_{2} \\
+\end{aligned}
+\]</span> 下面计算<span
+class="math inline">\(\displaystyle\int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{12}}r_{1}^{2}r_{2}^{2}\mathrm{d}
+r_{1}\mathrm{d} r_{2}\)</span>，不难看出，重点是如何将<span
+class="math inline">\(r_{12}\)</span>用<span
+class="math inline">\(r_{1}\)</span>和<span
+class="math inline">\(r_{2}\)</span>表示。我们在此直接给出结论，<span
+class="math inline">\(r_{12}\)</span>可以表示为 <span
+class="math display">\[
+\dfrac{1}{r_{12}} = \sum\limits_{l = 0}^{\infty}\sum\limits_{m =
+-l}^{l}\dfrac{4\pi}{2l +
+1}\dfrac{r_{\mathrm{min}}^{l}}{r_{\mathrm{max}}^{l +
+1}}[Y_{l}^{m}(\phi_{1}, \theta_{1})]^{*}Y_{l}^{m}(\phi_{2}, \theta_{2})
+\]</span> 我们先不解释<span
+class="math inline">\(r_{\mathrm{max}}\)</span>和<span
+class="math inline">\(r_{\mathrm{min}}\)</span>的含义。将<span
+class="math inline">\(l = m = 0\)</span>代入可得 <span
+class="math display">\[
+\dfrac{1}{r_{12}} = \dfrac{1}{r_{\mathrm{max}}}
+\]</span> 由此 <span class="math display">\[
+\int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{\mathrm{max}}}r_{1}^{2}r_{2}^{2}\mathrm{d}
+r_{1}\mathrm{d} r_{2}
+\]</span> 我们可以将<span
+class="math inline">\(r_{1}\)</span>的积分区间分为两部分：<span
+class="math inline">\([0, r_{2}]\)</span>和<span
+class="math inline">\([r_{2}, \infty)\)</span>。此时<span
+class="math inline">\(r_{\mathrm{max}}\)</span>的含义为 <span
+class="math display">\[
+r_{\mathrm{max}} = \left \{
+\begin{aligned}
+&amp; r_{2},\quad r_{1} \in [0, r_{2}] \\
+&amp; r_{1},\quad r_{1} \in [r_{1}, \infty) \\
+\end{aligned}
+\right.
+\]</span> 由此 <span class="math display">\[
+\begin{aligned}
+&amp; \int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-2\zeta_{1}r_{2}}\mathrm{d}
+r_{2} \left(
+\int_{0}^{r_{2}}\dfrac{r_{1}^{2}\mathrm{e}^{-2\zeta_{1}r_{1}}}{r_{2}}\mathrm{d}
+r_{1} + \int_{r_{2}}^{\infty}r_{1}\mathrm{e}^{-2\zeta_{1}r_{1}}
+\mathrm{d} r_{1}\right) \\
+&amp; =
+\int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-2\zeta_{1}r_{2}}\mathrm{d} r_{2}
+\left(
+\int_{0}^{r_{2}}\dfrac{r_{1}^{2}\mathrm{e}^{-2\zeta_{1}r_{1}}}{r_{2}}\mathrm{d}
+r_{1} + \int_{r_{2}}^{\infty}r_{1}\mathrm{e}^{-2\zeta_{1}r_{1}}
+\mathrm{d} r_{1}\right) \text{（用分部积分法）} \\
+&amp; =
+\int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-2\zeta_{1}r_{2}}\mathrm{d} r_{2}
+\left[ \dfrac{1 - \mathrm{e}^{-2\zeta_{1}r_{2}}(1 + 2\zeta_{1}r_{2} +
+2\zeta_{1}^{2}r_{2}^{2})}{4\zeta_{1}^{3}r_{2}} +
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{2}}(1 +
+2\zeta_{1}r_{2})}{4\zeta_{1}^{2}} \right] \\
+&amp; =
+\int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-2\zeta_{1}r_{2}}}{4\zeta_{1}^{3}}\mathrm{d}
+r_{2} - \int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-4\zeta_{1}r_{2}}(1 +
+2\zeta_{1}r_{2} + 2\zeta_{1}r_{2}^{2})}{4\zeta_{1}^{3}} \mathrm{d} r_{2}
++ \int_{0}^{\infty}\dfrac{r_{2}^{2}\mathrm{e}^{-4\zeta_{1}r_{2}}(1 +
+2\zeta_{1}r_{2})}{4\zeta_{1}^{2}} \mathrm{d} r_{2} \\
+&amp; = \dfrac{5}{128\zeta_{1}^{5}} \\
+\end{aligned}
+\]</span> 由此可得 <span class="math display">\[
+\begin{aligned}
+(11|11) &amp; = 16\zeta_{1}^{6} \cdot \dfrac{5}{128\zeta_{1}^{5}} \\
+&amp; = \dfrac{5\zeta_{1}}{8} = 0.9062\\
+\end{aligned}
+\]</span> 同理，<span class="math inline">\((22|22) =
+\dfrac{5\zeta_{2}}{8} = 1.8188\)</span></p>
+<p>下面计算<span class="math inline">\((11|22)\)</span> <span
+class="math display">\[
+\begin{aligned}
+(11|22) &amp; = \dfrac{\zeta_{1}^{3}\zeta_{2}^{3}}{\pi^{2}}\iint
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{2}r_{2}}}{r_{12}}\mathrm{d}
+v_{1}\mathrm{d} v_{2}\\
+&amp; =
+16\zeta_{1}^{3}\zeta_{2}^{3}\int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{2}r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1}\mathrm{d} r_{2}
+\end{aligned}
+\]</span> 针对<span
+class="math inline">\(\displaystyle\int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{2}r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1}\mathrm{d} r_{2}\)</span>，我们有
+<span class="math display">\[
+\begin{aligned}
+&amp;
+\int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{2}r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1}\mathrm{d} r_{2} \\
+&amp; =
+\int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-2\zeta_{2}r_{2}}}{4\zeta_{1}^{3}}\mathrm{d}
+r_{2} - \int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-2(\zeta_{1} +
+\zeta_{2})r_{2}}(1 + 2\zeta_{1}r_{2} +
+2\zeta_{1}r_{2}^{2})}{4\zeta_{1}^{3}} \mathrm{d} r_{2} +
+\int_{0}^{\infty}\dfrac{r_{2}^{2}\mathrm{e}^{-2(\zeta_{1} +
+\zeta_{2})r_{2}}(1 + 2\zeta_{1}r_{2})}{4\zeta_{1}^{2}} \mathrm{d} r_{2}
+\\
+&amp; = \dfrac{1}{16\zeta_{1}^{3}\zeta_{2}^{2}} - \dfrac{6\zeta_{1}^{2}
++ 4\zeta_{1}\zeta_{2} + \zeta_{2}^{2}}{16\zeta_{1}^{3}(\zeta_{1} +
+\zeta_{3})^{4}} + \dfrac{4\zeta_{1} +
+\zeta_{2}}{16\zeta_{1}^{2}(\zeta_{1} + \zeta_{2})^{4}} \\
+&amp; = \dfrac{\zeta_{1}^{4}\zeta_{2} + 4\zeta_{1}^{3}\zeta_{2}^{2} +
+4\zeta_{1}^{2}\zeta_{2}^{3} +
+\zeta_{1}\zeta_{2}^{4}}{16\zeta_{1}^{3}\zeta_{2}^{3}(\zeta_{1} +
+\zeta_{2})^{4}} \\
+\end{aligned}
+\]</span> 由此 <span class="math display">\[
+\begin{aligned}
+(11|22) &amp; = 16\zeta_{1}^{3}\zeta_{2}^{3} \cdot
+\dfrac{\zeta_{1}^{4}\zeta_{2} + 4\zeta_{1}^{3}\zeta_{2}^{2} +
+4\zeta_{1}^{2}\zeta_{2}^{3} +
+\zeta_{1}\zeta_{2}^{4}}{16\zeta_{1}^{3}\zeta_{2}^{3}(\zeta_{1} +
+\zeta_{2})^{4}} \\
+&amp; = \dfrac{\zeta_{1}^{4}\zeta_{2} + 4\zeta_{1}^{3}\zeta_{2}^{2} +
+4\zeta_{1}^{2}\zeta_{2}^{3} + \zeta_{1}\zeta_{2}^{4}}{(\zeta_{1} +
+\zeta_{2})^{4}} = 1.1826 \\
+\end{aligned}
+\]</span></p>
+<p>下面计算<span class="math inline">\((11|12)\)</span> <span
+class="math display">\[
+\begin{aligned}
+(11|12) &amp; =
+\dfrac{\zeta_{1}^{\frac{9}{2}}\zeta_{2}^{\frac{3}{2}}}{\pi^{2}}\iint
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{r_{12}}\mathrm{d} v_{1}\mathrm{d} v_{2}\\
+&amp; = 16\zeta_{1}^{\frac{9}{2}}\zeta_{2}^{\frac{3}{2}}
+\int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{r_{12}} r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1} \mathrm{d}
+r_{2} \\
+\end{aligned}
+\]</span> 针对<span class="math inline">\(\displaystyle
+\int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{r_{12}} r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1} \mathrm{d}
+r_{2}\)</span>，我们有 <span class="math display">\[
+\begin{aligned}
+&amp; \int_{0}^{\infty}\int_{0}^{\infty}
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{r_{12}} r_{1}^{2}r_{2}^{2} \mathrm{d} r_{1} \mathrm{d}
+r_{2} \\
+&amp; = \int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}\mathrm{d} r_{2} \left(
+\int_{0}^{r_{2}}\dfrac{r_{1}^{2}\mathrm{e}^{-2\zeta_{1}r_{1}}}{r_{2}}\mathrm{d}
+r_{1} + \int_{r_{2}}^{\infty}r_{1}\mathrm{e}^{-2\zeta_{1}r_{1}}
+\mathrm{d} r_{1}\right) \\
+&amp; = \int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}\mathrm{d} r_{2} \left[ \dfrac{1 -
+\mathrm{e}^{-2\zeta_{1}r_{2}}(1 + 2\zeta_{1}r_{2} +
+2\zeta_{1}^{2}r_{2}^{2})}{4\zeta_{1}^{3}r_{2}} +
+\dfrac{\mathrm{e}^{-2\zeta_{1}r_{2}}(1 +
+2\zeta_{1}r_{2})}{4\zeta_{1}^{2}} \right] \\
+&amp; = \int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{4\zeta_{1}^{3}}\mathrm{d} r_{2} -
+\int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-(3\zeta_{1}+
+\zeta_{2})r_{2}}(1 + 2\zeta_{1}r_{2} +
+2\zeta_{1}^{2}r_{2}^{2})}{4\zeta_{1}^{3}} \mathrm{d} r_{2} +
+\int_{0}^{\infty}\dfrac{r_{2}^{2}\mathrm{e}^{-(3\zeta_{1} +
+\zeta_{2})r_{2}}(1 + 2\zeta_{1}r_{2})}{4\zeta_{1}^{2}} \mathrm{d} r_{2}
+\\
+&amp; = \dfrac{1}{4\zeta_{1}^{3}(\zeta_{1} + \zeta_{2})^{2}} -
+\dfrac{33\zeta_{1}^{2} + 10\zeta_{1}\zeta_{2} +
+\zeta_{2}^{2}}{4\zeta_{1}^{3}(3\zeta_{1} + \zeta_{2})^{4}} +
+\dfrac{9\zeta_{1} + \zeta_{2}}{2\zeta_{1}^{2}(3\zeta_{1} +
+\zeta_{2})^{4}}\\
+&amp; = \dfrac{1}{(3\zeta_{1} + \zeta_{2})^{4}}\left[ \dfrac{12\zeta_{1}
++ 8\zeta_{2}}{(\zeta_{1} + \zeta_{2})^{2}} + \dfrac{9\zeta_{1} +
+\zeta_{2}}{2\zeta_{1}^{2}} \right]\\
+\end{aligned}
+\]</span> 由此可得 <span class="math display">\[
+\begin{aligned}
+(11|12) &amp; = 16\zeta_{1}^{\frac{9}{2}}\zeta_{2}^{\frac{3}{2}} \cdot
+\dfrac{1}{(3\zeta_{1} + \zeta_{2})^{4}}\left[ \dfrac{12\zeta_{1} +
+8\zeta_{2}}{(\zeta_{1} + \zeta_{2})^{2}} + \dfrac{9\zeta_{1} +
+\zeta_{2}}{2\zeta_{1}^{2}} \right] \\
+&amp; =
+\dfrac{16\zeta_{1}^{\frac{9}{2}}\zeta_{2}^{\frac{3}{2}}}{(3\zeta_{1} +
+\zeta_{2})^{4}}\left[ \dfrac{12\zeta_{1} + 8\zeta_{2}}{(\zeta_{1} +
+\zeta_{2})^{2}} + \dfrac{9\zeta_{1} + \zeta_{2}}{2\zeta_{1}^{2}} \right]
+= 0.9033 \\
+\end{aligned}
+\]</span> 由此不难得到<span class="math inline">\((22|21)\)</span>为
+<span class="math display">\[
+(22|21) =
+\dfrac{\zeta_{2}^{\frac{9}{2}}\zeta_{1}^{\frac{3}{2}}}{(3\zeta_{2} +
+\zeta_{1})^{4}}\left[ \dfrac{12\zeta_{2} + 8\zeta_{1}}{(\zeta_{2} +
+\zeta_{1})^{2}} + \dfrac{9\zeta_{2} + \zeta_{1}}{2\zeta_{2}^{2}} \right]
+= 1.2980
+\]</span></p>
+<p>下面计算<span class="math inline">\((12|12)\)</span> <span
+class="math display">\[
+\begin{aligned}
+(12|12) &amp; = \dfrac{\zeta_{1}^{3}\zeta^{3}}{\pi^{2}} \iint
+\dfrac{\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{1}}\mathrm{e}^{-(\zeta_{1}
++ \zeta_{2})r_{2}}}{r_{12}}\mathrm{d} v_{1}\mathrm{d} v_{2}\\
+&amp; =
+16\zeta_{1}^{3}\zeta^{3}\int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-(\zeta_{1}
++ \zeta_{2})r_{1}}\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2}\mathrm{d} r_{1}\mathrm{d} r_{2}
+\end{aligned}
+\]</span> 针对<span
+class="math inline">\(\displaystyle\int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-(\zeta_{1}
++ \zeta_{2})r_{1}}\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2}\mathrm{d} r_{1}\mathrm{d} r_{2}\)</span>，我们有
+<span class="math display">\[
+\begin{aligned}
+&amp; \int_{0}^{\infty}\int_{0}^{\infty}\dfrac{\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{1}}\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{2}}}{r_{12}}
+r_{1}^{2}r_{2}^{2}\mathrm{d} r_{1}\mathrm{d} r_{2} \\
+&amp; = \int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}\mathrm{d} r_{2} \left(
+\int_{0}^{r_{2}}\dfrac{r_{1}^{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{1}}}{r_{2}}\mathrm{d} r_{1} +
+\int_{r_{2}}^{\infty}r_{1}\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{1}}
+\mathrm{d} r_{1}\right) \\
+&amp; = \int_{0}^{\infty}r_{2}^{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}\mathrm{d} r_{2} \left[ \dfrac{2 -
+\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{2}}(2+2r_{2}(\zeta_{1} +
+\zeta_{2})+r_{2}^{2}(\zeta_{1} + \zeta_{2})^{2})}{r_{2}(\zeta_{1} +
+\zeta_{2})^{3}} + \dfrac{\mathrm{e}^{-(\zeta_{1} + \zeta_{2})r_{2}}(1 +
+r_{2}(\zeta_{1} + \zeta_{2}))}{(\zeta_{1} + \zeta_{2})^{2}} \right] \\
+&amp; = \int_{0}^{\infty}\dfrac{2r_{2}\mathrm{e}^{-(\zeta_{1} +
+\zeta_{2})r_{2}}}{(\zeta_{1} + \zeta_{2})^{3}}\mathrm{d} r_{2} -
+\int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-2(\zeta_{1}+
+\zeta_{2})r_{2}}(2+2r_{2}(\zeta_{1} + \zeta_{2})+r_{2}^{2}(\zeta_{1} +
+\zeta_{2})^{2})}{(\zeta_{1} + \zeta_{2})^{3}} \mathrm{d} r_{2} \\
+&amp;
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
++ \int_{0}^{\infty}\dfrac{r_{2}^{2}\mathrm{e}^{-2(\zeta_{1} +
+\zeta_{2})r_{2}}(1 + r_{2}(\zeta_{1} + \zeta_{2}))}{(\zeta_{1} +
+\zeta_{2})^{2}} \mathrm{d} r_{2} \\
+&amp; = \dfrac{2}{(\zeta_{1} + \zeta_{2})^{5}} - \dfrac{11}{8(\zeta_{1}
++ \zeta_{2})^{5}} + \dfrac{5}{8(\zeta_{1} + \zeta_{2})^{5}}\\
+&amp; = \dfrac{5}{4(\zeta_{1} + \zeta_{2})^{5}}\\
+\end{aligned}
+\]</span> 由此可得 <span class="math display">\[
+\begin{aligned}
+(12|12) &amp; = 16\zeta_{1}^{3}\zeta_{2}^{3} \cdot \dfrac{5}{4(\zeta_{1}
++ \zeta_{2})^{5}} \\
+&amp; = \dfrac{20\zeta_{1}^{3}\zeta_{2}^{3}}{(\zeta_{1} +
+\zeta_{2})^{5}} = 0.9536 \\
+\end{aligned}
+\]</span></p>
+<p>总结一下，我们现在已经得到了如下的积分结果：</p>
+<ol type="1">
+<li><p><span class="math inline">\(S_{rs}\)</span> <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; S_{11} = S_{22} = 1 \\
+&amp; S_{12} = S_{21} = 0.8366 \\
+\end{aligned}
+\right.
+\]</span></p></li>
+<li><p><span class="math inline">\(H_{rs}^{\mathrm{core}}\)</span> <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; H_{11}^{\mathrm{core}} = -1.8488 \\
+&amp; H_{12}^{\mathrm{core}} = H_{21}^{\mathrm{core}} = -1.8826 \\
+&amp; H_{22}^{\mathrm{core}} = -1.5860\\
+\end{aligned}
+\right.
+\]</span></p></li>
+<li><p><span class="math inline">\((rs|tu)\)</span> <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; (11|11) = 0.9062 \\
+&amp; (22|22) = 1.8188 \\
+&amp; (11|22) = (22|11) = 1.1826 \\
+&amp; (11|12) = (11|21) = (12|11) = (21|11) = 0.9033\\
+&amp; (12|22) = (21|22) = (22|12) = (22|21) = 1.2980\\
+&amp; (12|12) = (12|21) = (21|12) = (21|21) = 0.9536 \\
+\end{aligned}
+\right.
+\]</span></p></li>
+</ol>
+<h2 id="给定初猜波函数">给定初猜波函数</h2>
+<p>由于我们此时有两个基函数，因此初猜波函数应当为此二者的线性组合 <span
+class="math display">\[
+\phi_{1} = c_{11}\chi_{1} + c_{21}\chi_{2}
+\]</span></p>
+<p>接下来我们要对<span class="math inline">\(c_{11}\)</span>和<span
+class="math inline">\(c_{21}\)</span>进行赋值。由于波函数要满足归一化，因此重点不是两个系数的绝对数值大小，而是相对大小。对于Slater型基函数
+<span class="math display">\[
+\chi = \sqrt{\dfrac{\zeta^{3}}{\pi}} \mathrm{e}^{-\zeta r}
+\]</span> 其是从类氢原子体系的波函数演变而来的，因此其中<span
+class="math inline">\(\zeta\)</span>表示类氢原子的有效核电荷数。显然，由于电子之间存在屏蔽效应，因此对于其中一个电子而言，其感受到的有效核电荷小于2。这样，<span
+class="math inline">\(\zeta_{1}\)</span>对应的波函数<span
+class="math inline">\(\chi_{1}\)</span>应当更加接近真实的波函数，从而要求其在线性组合中占有更大的比例。因此<span
+class="math inline">\(c_{11}\)</span>应当比<span
+class="math inline">\(c_{21}\)</span>大。我们暂且假定<span
+class="math inline">\(\dfrac{c_{11}}{c_{21}} = 2\)</span>。由归一化得
+<span class="math display">\[
+\begin{aligned}
+\int |\phi_{1}|^{2} \mathrm{d} \tau &amp; = c_{11}^{2} + c_{21}^{2} +
+2c_{11}c_{21}S_{12} \\
+&amp; = (5 + 4S_{12})c_{21}^{2} = 1\\
+\end{aligned}
+\]</span> 由此可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; c_{11} = 0.6922 \\
+&amp; c_{21} = 0.3461 \\
+\end{aligned}
+\right.
+\]</span> 由此初猜波函数为 <span class="math display">\[
+\phi_{1} = 0.6922\chi_{1} + 0.3461\chi_{2}
+\]</span></p>
+<h2 id="计算密度矩阵">计算密度矩阵</h2>
+<p>密度矩阵<span class="math inline">\(P\)</span>中每个矩阵元的定义为
+<span class="math display">\[
+P_{tu} = 2\sum\limits_{j = 1}^{\frac{n}{2}} c_{tj}^{*}c_{uj}
+\]</span> 由此可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; P_{11} = 2c_{11}^{2} = 0.9583 \\
+&amp; P_{12} = P_{21} = 2c_{11}c_{21} = 0.4791 \\
+&amp; P_{22} = 2c_{21}^{2} = 0.2396\\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="计算fock矩阵元">计算Fock矩阵元</h2>
+<p>根据<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
+\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
+\dfrac{1}{2}(ru|ts)]\)</span>，我们可以得到Fock矩阵的矩阵元 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; F_{11} = H_{11}^{\mathrm{core}} + P_{11}[(11|11) -
+\dfrac{1}{2}(11|11)] + P_{12}[(11|12) - \dfrac{1}{2}(12|11)] \\
+&amp; \quad\quad\quad + P_{21}[(11|21) - \dfrac{1}{2}(11|21)] +
+P_{22}[(11|22) - \dfrac{1}{2}(12|21)] = -0.813\\
+&amp; F_{12} = F_{21} = H_{12}^{\mathrm{core}} + P_{11}[(12|11) -
+\dfrac{1}{2}(11|12)] + P_{12}[(12|12) - \dfrac{1}{2}(12|12)] \\
+&amp; \quad\quad\quad + P_{21}[(12|21) - \dfrac{1}{2}(11|22)] +
+P_{22}[(12|22) - \dfrac{1}{2}(12|22)] = -0.892\\
+&amp; F_{22} = H_{22}^{\mathrm{core}} + P_{11}[(22|11) -
+\dfrac{1}{2}(21|12)] + P_{12}[(22|12) - \dfrac{1}{2}(22|12)] \\
+&amp; \quad\quad\quad + P_{21}[(22|21) - \dfrac{1}{2}(21|22)] +
+P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.070\\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="计算系数矩阵c和轨道能矩阵varepsilon">计算系数矩阵<span
+class="math inline">\(C\)</span>和轨道能矩阵<span
+class="math inline">\(\varepsilon\)</span></h2>
+<p>我们现在得到了给定基函数下的Fock矩阵 <span class="math display">\[
+F = \begin{bmatrix}
+-0.813 &amp; -0.892 \\
+-0.892 &amp; -0.070 \\
+\end{bmatrix}
+\]</span> 由于Fock矩阵与系数矩阵、轨道能矩阵满足 <span
+class="math display">\[
+FC = SC\varepsilon
+\]</span> 其中，<span
+class="math inline">\(S\)</span>为矩阵元为重叠积分的矩阵，即 <span
+class="math display">\[
+S = \begin{bmatrix}
+S_{11} &amp; S_{12} \\
+S_{21} &amp; S_{22} \\
+\end{bmatrix}
+\]</span></p>
+<p>由于我们现在使用的并不是正交基，因此要求出<span
+class="math inline">\(C\)</span>和<span
+class="math inline">\(\varepsilon\)</span>有两种办法。我们先介绍一种较为通用（但此处我们不用）的方法，然后介绍一种对于小体系比较方便的方法。</p>
+<p>由于基函数之间线性无关，因此我们总能用其构造出一组正交基。也就是说，存在一组基函数<span
+class="math inline">\(\{\chi_{i}&#39;\}\)</span>满足<span
+class="math inline">\(\chi_{i}&#39; =
+\sum\limits_{j}a_{ji}\chi_{j}\)</span>，并且此时新的重叠矩阵<span
+class="math inline">\(S&#39;\)</span>满足 <span class="math display">\[
+S_{rs}&#39; = \langle \chi_{r}&#39;|\chi_{s}&#39;\rangle = \delta_{rs}
+\]</span> 此时波函数<span
+class="math inline">\(\phi_{i}\)</span>可以表示为 <span
+class="math display">\[
+\phi_{i} =
+\begin{bmatrix}
+c_{1i}&#39; &amp; c_{2i}&#39; &amp; \dots &amp; c_{ni}&#39;\\
+\end{bmatrix}
+\begin{bmatrix}
+\chi_{1}&#39; \\ \chi_{2}&#39; \\ \vdots \\ \chi_{n}&#39; \\
+\end{bmatrix} =
+\begin{bmatrix}
+c_{1i}&#39; &amp; c_{2i}&#39; &amp; \dots &amp; c_{ni}&#39;\\
+\end{bmatrix}
+\begin{bmatrix}
+a_{11} &amp; a_{21} &amp; \dots &amp; a_{n1} \\
+a_{12} &amp; a_{22} &amp; \dots &amp; a_{n2} \\
+\vdots &amp; \vdots &amp; &amp; \vdots \\
+a_{1n} &amp; a_{2n} &amp; \dots &amp; a_{nn} \\
+\end{bmatrix}
+\begin{bmatrix}
+\chi_{1} \\ \chi_{2} \\ \vdots \\ \chi_{n} \\
+\end{bmatrix}
+\]</span> 我们将波函数由新的基函数线性表出的系数矩阵记为<span
+class="math inline">\(C&#39;\)</span>，将原有基函数用新的基函数线性表出的系数矩阵记为<span
+class="math inline">\(A\)</span>，这样不难看出 <span
+class="math display">\[
+C^{\mathrm{T}} = C&#39;^{\mathrm{T}}A^{\mathrm{T}}
+\]</span> 从而 <span class="math display">\[
+C = AC&#39;
+\]</span></p>
+<p>此时我们将<span class="math inline">\(C&#39; = CA\)</span>代入<span
+class="math inline">\(FC = SC\varepsilon\)</span>可得 <span
+class="math display">\[
+FAC&#39; = SAC&#39;\varepsilon
+\]</span> 此时我们用<span
+class="math inline">\(A^{\dagger}\)</span>来表示<span
+class="math inline">\((A^{*})^{\mathrm{T}}\)</span>。两边同时左乘<span
+class="math inline">\(A^{\dagger}\)</span>可得 <span
+class="math display">\[
+(A^{\dagger}FA)C&#39; = (A^{\dagger}SA)C&#39;\varepsilon
+\]</span> 之所以前面那么别扭地假设<span
+class="math inline">\(\chi_{i}&#39; =
+\sum\limits_{j}a_{ji}\chi_{j}\)</span>，而不是假设<span
+class="math inline">\(\chi_{i} =
+\sum\limits_{j}a_{ij}\chi_{j}&#39;\)</span>或者<span
+class="math inline">\(\chi_{i}&#39; =
+\sum\limits_{j}a_{ij}\chi_{j}\)</span>，纯粹就是为了这里推导方便。如果矩阵<span
+class="math inline">\(A\)</span>在矩阵<span
+class="math inline">\(C&#39;\)</span>或者<span
+class="math inline">\(C\)</span>右侧，那么会得到类似 <span
+class="math inline">\(FC&#39;A^{-1} =
+SC&#39;A^{-1}\varepsilon\)</span>的结果。此时<span
+class="math inline">\(A\)</span>并没有直接和<span
+class="math inline">\(S\)</span>接触，我们就无法进行进一步推导。</p>
+<p>此时注意力集中的读者可能会想到，在新的基函数下Fock矩阵变为<span
+class="math inline">\(F&#39; =
+A^{\dagger}FA\)</span>，而重叠矩阵变为<span class="math inline">\(S&#39;
+= A^{\dagger}SA\)</span>。由此可得 <span class="math display">\[
+F&#39;C&#39; = S&#39;C&#39;\varepsilon
+\]</span> 但是我们不能只从物理上得出这一点，还要从数学上说明。对于<span
+class="math inline">\(S&#39;\)</span>的矩阵元<span
+class="math inline">\(S&#39;_{rs}\)</span>，我们有（需要注意，新的基下必然存在<span
+class="math inline">\(S&#39;\)</span>，我们这里是在寻找<span
+class="math inline">\(S&#39;\)</span>与<span
+class="math inline">\(S\)</span>的联系。也就是说，此时我们不知道<span
+class="math inline">\(S&#39; = A^{\dagger}SA\)</span>） <span
+class="math display">\[
+\begin{aligned}
+S_{rs}&#39; &amp; = \langle \chi_{r}&#39; | \chi_{s}&#39;\rangle =
+\delta_{rs} \\
+&amp; = \sum\limits_{j}\sum\limits_{k} a_{jr}^{*}\langle \chi_{j} |
+\chi_{k}\rangle a_{ks} \\
+&amp; = \sum\limits_{j}\sum\limits_{k} a_{jr}^{*}S_{jk} a_{ks}\\
+\end{aligned}
+\]</span> 由矩阵元之间的关系不难得出 <span class="math display">\[
+A^{\dagger} S A = S&#39; = I
+\]</span></p>
+<p>接下来需要确定矩阵<span
+class="math inline">\(A\)</span>。首先，由于矩阵<span
+class="math inline">\(S\)</span>为实矩阵，并且是对称矩阵，因此<span
+class="math inline">\(S^{\dagger} =
+S\)</span>。我们将满足这种性质的矩阵称为Hermite矩阵。在数学上可以证明，对于Hermite矩阵，总是存在酉矩阵<span
+class="math inline">\(U\)</span>，使得<span
+class="math inline">\(S\)</span>可以被对角化 <span
+class="math display">\[
+U^{\dagger}SU = \Lambda
+\]</span> 其中酉矩阵指的是满足<span class="math inline">\(U^{\dagger} =
+U^{-1}\)</span>的矩阵。下面我们给出两种从<span
+class="math inline">\(U\)</span>求<span
+class="math inline">\(A\)</span>的方法。</p>
+<ol type="1">
+<li><p>对称正交化：假设<span class="math inline">\(A =
+S^{-\frac{1}{2}}\)</span>。为了构建这一矩阵，我们需要先将<span
+class="math inline">\(S\)</span>对角化，然后将每个本征值倒数的平方根组成矩阵<span
+class="math inline">\(\Lambda^{-\frac{1}{2}}\)</span>，最后通过“逆对角化”得到<span
+class="math inline">\(S^{-\frac{1}{2}}\)</span> <span
+class="math display">\[
+U\Lambda^{-\frac{1}{2}}U^{\dagger} = S^{-\frac{1}{2}}
+\]</span> 不难证明<span class="math inline">\(ASA^{-1} =
+I\)</span>。但当原来的基函数中有线性相关（或者接近线性相关）的情况时，这一方法在精度上会出现问题。因此我们更加推荐方法2。</p></li>
+<li><p>正则正交化：此时我们假设<span class="math inline">\(A =
+U\Lambda^{-\frac{1}{2}}\)</span>。由此 <span class="math display">\[
+A^{\dagger}SA =
+\Lambda^{-\frac{1}{2}}U^{\dagger}SU\Lambda^{-\frac{1}{2}} = I
+\]</span> 这一方法在理论上精度更高。</p></li>
+</ol>
+<p>无论如何，我们可以通过将矩阵<span
+class="math inline">\(S\)</span>对角化的矩阵<span
+class="math inline">\(U\)</span>来确定矩阵<span
+class="math inline">\(A\)</span>，从而由<span
+class="math inline">\(S&#39; = A^{\dagger}SA\)</span>确定<span
+class="math inline">\(S&#39;\)</span>。同时，我们也可以通过<span
+class="math inline">\(A\)</span>确定<span class="math inline">\(F&#39; =
+A^{\dagger}FA\)</span>。由于<span class="math inline">\(S&#39; =
+I\)</span>，因此原方程变为 <span class="math display">\[
+F&#39;C&#39; = C&#39;\varepsilon
+\]</span> 由于<span
+class="math inline">\(\varepsilon\)</span>为对角矩阵，因此我们只需将<span
+class="math inline">\(F&#39;\)</span>对角化即可求出<span
+class="math inline">\(C&#39;\)</span>。</p>
+<p>总结上面的过程，我们可以得到</p>
+<p><img src="流程图.png" title="每次SCF迭代流程图" /></p>
+<p>对于小体系，由于 <span class="math display">\[
+FC = SC\varepsilon
+\]</span> 因此有 <span class="math display">\[
+F\boldsymbol{c}_{i} = \varepsilon_{i}S\boldsymbol{c}_{i}
+\]</span> 假设<span class="math inline">\(F\)</span>中每个行向量为<span
+class="math inline">\(\boldsymbol{f}^{\mathrm{T}}\)</span>，<span
+class="math inline">\(S\)</span>中每个行向量为<span
+class="math inline">\(\boldsymbol{s}^{\mathrm{T}}\)</span>，那么有 <span
+class="math display">\[
+\boldsymbol{f}^{\mathrm{T}}\boldsymbol{c}_{i} =
+\varepsilon_{i}\boldsymbol{s}^{\mathrm{T}}\boldsymbol{c}_{i}
+\]</span> 因此可以通过求<span class="math inline">\(\det(F -
+\varepsilon_{i}S) = 0\)</span>来得到可能的所有<span
+class="math inline">\(\varepsilon_{i}\)</span>，从而由<span
+class="math inline">\((\boldsymbol{f}^{\mathrm{T}} -
+\varepsilon_{i}\boldsymbol{s}^{\mathrm{T}})\boldsymbol{c}_{i} =
+0\)</span>求出<span
+class="math inline">\(\boldsymbol{c}_{i}\)</span>，然后由<span
+class="math inline">\(\boldsymbol{c}_{i}\)</span>组成矩阵<span
+class="math inline">\(C\)</span>。由于我们这里只有一个波函数，因此使用这个方法。此时行列式为
+<span class="math display">\[
+\begin{vmatrix}
+-0.813-\varepsilon_{i} &amp; -0.892-0.8366\varepsilon_{i}\\
+-0.892-0.8366\varepsilon_{i} &amp; -0.07-\varepsilon_{i} \\
+\end{vmatrix} = 0
+\]</span> 解方程可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \varepsilon_{1} = -0.853 \\
+&amp; \varepsilon_{2} = 2.884 \\
+\end{aligned}
+\right.
+\]</span> 我们选择能量较低的<span
+class="math inline">\(\varepsilon_{1}\)</span>。由此可得 <span
+class="math display">\[
+c_{11}(F_{21} - \varepsilon_{1}S_{21}) + c_{21}(F_{22} -
+\varepsilon_{1}S_{22}) = 0
+\]</span> 由此可得 <span class="math display">\[
+\dfrac{c_{11}}{c_{21}} = 4.40
+\]</span> 由归一化不难得到 <span class="math display">\[
+c_{11}^{2} + c_{21}^{2} + 2c_{11}c_{21}S_{12} = 1
+\]</span> 将<span class="math inline">\(S_{12} =
+0.8366\)</span>以及<span class="math inline">\(\dfrac{c_{11}}{c_{21}} =
+4.40\)</span>代入可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; c_{11} = 0.836 \\
+&amp; c_{21} = 0.190 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第二次计算密度矩阵">第二次计算密度矩阵</h2>
+<p>此时，新密度矩阵的矩阵元分别为 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; P_{11} = 2c_{11}^{2} = 1.398 \\
+&amp; P_{12} = P_{21} = 2c_{11}c_{21} = 0.318 \\
+&amp; P_{22} = 2c_{21}^{2} = 0.072 \\
+\end{aligned}
+\right.
+\]</span>
+不难得出，此时密度矩阵与原有密度矩阵相差较大，因此我们需要重新计算Fock矩阵，进而重新求解<span
+class="math inline">\(C\)</span>和<span
+class="math inline">\(\varepsilon\)</span>。</p>
+<h2 id="第二次计算fock矩阵元">第二次计算Fock矩阵元</h2>
+<p>根据<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
+\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
+\dfrac{1}{2}(ru|ts)]\)</span>，我们可以得到Fock矩阵的矩阵元 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; F_{11} = H_{11}^{\mathrm{core}} + P_{11}[(11|11) -
+\dfrac{1}{2}(11|11)] + P_{12}[(11|12) - \dfrac{1}{2}(12|11)] \\
+&amp; \quad\quad\quad + P_{21}[(11|21) - \dfrac{1}{2}(11|21)] +
+P_{22}[(11|22) - \dfrac{1}{2}(12|21)] = -0.877\\
+&amp; F_{12} = F_{21} = H_{12}^{\mathrm{core}} + P_{11}[(12|11) -
+\dfrac{1}{2}(11|12)] + P_{12}[(12|12) - \dfrac{1}{2}(12|12)] \\
+&amp; \quad\quad\quad + P_{21}[(12|21) - \dfrac{1}{2}(11|22)] +
+P_{22}[(12|22) - \dfrac{1}{2}(12|22)] = -0.940\\
+&amp; F_{22} = H_{22}^{\mathrm{core}} + P_{11}[(22|11) -
+\dfrac{1}{2}(21|12)] + P_{12}[(22|12) - \dfrac{1}{2}(22|12)] \\
+&amp; \quad\quad\quad + P_{21}[(22|21) - \dfrac{1}{2}(21|22)] +
+P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.125\\
+\end{aligned}
+\right.
+\]</span></p>
+<h2
+id="第二次计算系数矩阵c和轨道能矩阵varepsilon">第二次计算系数矩阵<span
+class="math inline">\(C\)</span>和轨道能矩阵<span
+class="math inline">\(\varepsilon\)</span></h2>
+<p>求解行列式方程 <span class="math display">\[
+\begin{vmatrix}
+-0.877-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
+-0.940-0.8366\varepsilon_{i} &amp; -0.125-\varepsilon_{i} \\
+\end{vmatrix} = 0
+\]</span> 可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \varepsilon_{1} = -0.915 \\
+&amp; \varepsilon_{2} = 2.817 \\
+\end{aligned}
+\right.
+\]</span> 将能量较低的<span
+class="math inline">\(\varepsilon_{1}\)</span>代入 <span
+class="math display">\[
+c_{11}(F_{21} - \varepsilon_{1}S_{21}) + c_{21}(F_{22} -
+\varepsilon_{1}S_{22}) = 0
+\]</span> 可得 <span class="math display">\[
+\dfrac{c_{11}}{c_{21}} = 4.53
+\]</span> 由归一化不难得到 <span class="math display">\[
+c_{11}^{2} + c_{21}^{2} + 2c_{11}c_{21}S_{12} = 1
+\]</span> 将<span class="math inline">\(S_{12} =
+0.8366\)</span>以及<span class="math inline">\(\dfrac{c_{11}}{c_{21}} =
+4.53\)</span>代入可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; c_{11} = 0.840 \\
+&amp; c_{21} = 0.185 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第三次计算密度矩阵">第三次计算密度矩阵</h2>
+<p>新密度矩阵的矩阵元分别为 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; P_{11} = 2c_{11}^{2} = 1.411 \\
+&amp; P_{12} = P_{21} = 2c_{11}c_{21} = 0.311 \\
+&amp; P_{22} = 2c_{21}^{2} = 0.069 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第三次计算fock矩阵元">第三次计算Fock矩阵元</h2>
+<p>根据<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
+\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
+\dfrac{1}{2}(ru|ts)]\)</span>，我们可以得到Fock矩阵的矩阵元 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; F_{11} = H_{11}^{\mathrm{core}} + P_{11}[(11|11) -
+\dfrac{1}{2}(11|11)] + P_{12}[(11|12) - \dfrac{1}{2}(12|11)] \\
+&amp; \quad\quad\quad + P_{21}[(11|21) - \dfrac{1}{2}(11|21)] +
+P_{22}[(11|22) - \dfrac{1}{2}(12|21)] = -0.880\\
+&amp; F_{12} = F_{21} = H_{12}^{\mathrm{core}} + P_{11}[(12|11) -
+\dfrac{1}{2}(11|12)] + P_{12}[(12|12) - \dfrac{1}{2}(12|12)] \\
+&amp; \quad\quad\quad + P_{21}[(12|21) - \dfrac{1}{2}(11|22)] +
+P_{22}[(12|22) - \dfrac{1}{2}(12|22)] = -0.940\\
+&amp; F_{22} = H_{22}^{\mathrm{core}} + P_{11}[(22|11) -
+\dfrac{1}{2}(21|12)] + P_{12}[(22|12) - \dfrac{1}{2}(22|12)] \\
+&amp; \quad\quad\quad + P_{21}[(22|21) - \dfrac{1}{2}(21|22)] +
+P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.124\\
+\end{aligned}
+\right.
+\]</span></p>
+<h2
+id="第三次计算系数矩阵c和轨道能矩阵varepsilon">第三次计算系数矩阵<span
+class="math inline">\(C\)</span>和轨道能矩阵<span
+class="math inline">\(\varepsilon\)</span></h2>
+<p>求解行列式方程 <span class="math display">\[
+\begin{vmatrix}
+-0.880-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
+-0.940-0.8366\varepsilon_{i} &amp; -0.124-\varepsilon_{i} \\
+\end{vmatrix} = 0
+\]</span> 可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \varepsilon_{1} = -0.917 \\
+&amp; \varepsilon_{2} = 2.813 \\
+\end{aligned}
+\right.
+\]</span> 将能量较低的<span
+class="math inline">\(\varepsilon_{1}\)</span>代入 <span
+class="math display">\[
+c_{11}(F_{21} - \varepsilon_{1}S_{21}) + c_{21}(F_{22} -
+\varepsilon_{1}S_{22}) = 0
+\]</span> 可得 <span class="math display">\[
+\dfrac{c_{11}}{c_{21}} = 4.59
+\]</span> 由归一化不难得到 <span class="math display">\[
+c_{11}^{2} + c_{21}^{2} + 2c_{11}c_{21}S_{12} = 1
+\]</span> 将<span class="math inline">\(S_{12} =
+0.8366\)</span>以及<span class="math inline">\(\dfrac{c_{11}}{c_{21}} =
+4.59\)</span>代入可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; c_{11} = 0.842 \\
+&amp; c_{21} = 0.183 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第四次计算密度矩阵">第四次计算密度矩阵</h2>
+<p>新密度矩阵的矩阵元分别为 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; P_{11} = 2c_{11}^{2} = 1.418 \\
+&amp; P_{12} = P_{21} = 2c_{11}c_{21} = 0.308 \\
+&amp; P_{22} = 2c_{21}^{2} = 0.067 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第四次计算fock矩阵元">第四次计算Fock矩阵元</h2>
+<p>根据<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
+\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
+\dfrac{1}{2}(ru|ts)]\)</span>，我们可以得到Fock矩阵的矩阵元 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp; F_{11} = H_{11}^{\mathrm{core}} + P_{11}[(11|11) -
+\dfrac{1}{2}(11|11)] + P_{12}[(11|12) - \dfrac{1}{2}(12|11)] \\
+&amp; \quad\quad\quad + P_{21}[(11|21) - \dfrac{1}{2}(11|21)] +
+P_{22}[(11|22) - \dfrac{1}{2}(12|21)] = -0.881\\
+&amp; F_{12} = F_{21} = H_{12}^{\mathrm{core}} + P_{11}[(12|11) -
+\dfrac{1}{2}(11|12)] + P_{12}[(12|12) - \dfrac{1}{2}(12|12)] \\
+&amp; \quad\quad\quad + P_{21}[(12|21) - \dfrac{1}{2}(11|22)] +
+P_{22}[(12|22) - \dfrac{1}{2}(12|22)] = -0.940\\
+&amp; F_{22} = H_{22}^{\mathrm{core}} + P_{11}[(22|11) -
+\dfrac{1}{2}(21|12)] + P_{12}[(22|12) - \dfrac{1}{2}(22|12)] \\
+&amp; \quad\quad\quad + P_{21}[(22|21) - \dfrac{1}{2}(21|22)] +
+P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.124\\
+\end{aligned}
+\right.
+\]</span></p>
+<h2
+id="第四次计算系数矩阵c和轨道能矩阵varepsilon">第四次计算系数矩阵<span
+class="math inline">\(C\)</span>和轨道能矩阵<span
+class="math inline">\(\varepsilon\)</span></h2>
+<p>求解行列式方程 <span class="math display">\[
+\begin{vmatrix}
+-0.881-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
+-0.940-0.8366\varepsilon_{i} &amp; -0.124-\varepsilon_{i} \\
+\end{vmatrix} = 0
+\]</span> 可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \varepsilon_{1} = -0.918 \\
+&amp; \varepsilon_{2} = 2.810 \\
+\end{aligned}
+\right.
+\]</span> 将能量较低的<span
+class="math inline">\(\varepsilon_{1}\)</span>代入 <span
+class="math display">\[
+c_{11}(F_{21} - \varepsilon_{1}S_{21}) + c_{21}(F_{22} -
+\varepsilon_{1}S_{22}) = 0
+\]</span> 可得 <span class="math display">\[
+\dfrac{c_{11}}{c_{21}} = 4.62
+\]</span> 由归一化不难得到 <span class="math display">\[
+c_{11}^{2} + c_{21}^{2} + 2c_{11}c_{21}S_{12} = 1
+\]</span> 将<span class="math inline">\(S_{12} =
+0.8366\)</span>以及<span class="math inline">\(\dfrac{c_{11}}{c_{21}} =
+4.62\)</span>代入可得 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; c_{11} = 0.842 \\
+&amp; c_{21} = 0.182 \\
+\end{aligned}
+\right.
+\]</span></p>
+<h2 id="第五次计算密度矩阵">第五次计算密度矩阵</h2>
+<p>新密度矩阵的矩阵元分别为 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; P_{11} = 2c_{11}^{2} = 1.418 \\
+&amp; P_{12} = P_{21} = 2c_{11}c_{21} = 0.306 \\
+&amp; P_{22} = 2c_{21}^{2} = 0.066 \\
+\end{aligned}
+\right.
+\]</span></p>
+<p>不难看出，在当前精度下，我们可以认为此时SCF已经收敛。由此可得计算能量</p>
+<h2 id="能量计算">能量计算</h2>
+<p>由于Hartree-Fock能量可以表示为 <span class="math display">\[
+E_{\mathrm{HF}} = \dfrac{1}{2}\sum\limits_{r = 1}^{b}\sum\limits_{s =
+1}^{b}P_{rs}(F_{rs} + H_{rs}^{\mathrm{core}}) + V_{NN}
+\]</span> 对于He原子而言，<span class="math inline">\(V_{NN} =
+0\)</span>。将<span class="math inline">\(b =
+2\)</span>和其它数据代入可得 <span class="math display">\[
+E_{\mathrm{HF}} = -2.862\ \mathrm{Hartree}
+\]</span> 此时<span
+class="math inline">\(\mathrm{Hartree}\)</span>为原子单位下的能量单位，其大小为<span
+class="math inline">\(4.3598 \times 10^{-18}\ \mathrm{J}\)</span>。由此
+<span class="math display">\[
+E_{\mathrm{HF}} = -1.248\times 10^{-17}\ \mathrm{J} = -77.89\
+\mathrm{eV}
+\]</span></p>
+<h1 id="参考文献">参考文献</h1>
+<p>[1] Ira N. Levine.Quantum Chemistry[M].Seventh
+edition.Boston:Pearson,2014:407-416.</p>
+<p>[2] Attila Szabo, Neil S. Ostlund.Modern Quantum Chemistry:
+introduction to advanced electronic structure theory[M].First
+edition.Mineola, N.Y.:Dover Publications,1996:142-145.</p>
+<p>[3] Henry Eyring, The Late John Walter, George E. Kimball.Quantum
+Chemistry[M].First edition.John Wiley &amp; Sons, Inc.,1944:369-371.</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/728848b4/" title="使用SCF计算He原子基态能量">https://vasily-alexievich-korolev.github.io/posts/728848b4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Quantum-Chemistry/" rel="tag"># Quantum Chemistry</a>
+              <a href="/tags/Example/" rel="tag"># Example</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/d305f066/" rel="prev" title="对Condon-Slater规则的推导">
+      <i class="fa fa-chevron-left"></i> 对Condon-Slater规则的推导
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E5%AE%9A%E5%88%86%E5%AD%90%E6%9E%84%E5%9E%8B%E4%B8%8B%E7%9A%84%E8%87%AA%E6%B4%BD%E5%9C%BA%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">一定分子构型下的自洽场计算过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8scf%E8%AE%A1%E7%AE%97he%E5%8E%9F%E5%AD%90%E8%83%BD%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">使用SCF计算He原子能量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">初始化波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E5%AE%9A%E5%88%9D%E7%8C%9C%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">给定初猜波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.3.</span> <span class="nav-text">计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.4.</span> <span class="nav-text">计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.5.</span> <span class="nav-text">计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.6.</span> <span class="nav-text">第二次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.7.</span> <span class="nav-text">第二次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.8.</span> <span class="nav-text">第二次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.9.</span> <span class="nav-text">第三次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.10.</span> <span class="nav-text">第三次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.11.</span> <span class="nav-text">第三次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.12.</span> <span class="nav-text">第四次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.13.</span> <span class="nav-text">第四次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.14.</span> <span class="nav-text">第四次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.15.</span> <span class="nav-text">第五次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">2.16.</span> <span class="nav-text">能量计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">36k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

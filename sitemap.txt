@@ -1,3 +1,5 @@
+https://vasily-alexievich-korolev.github.io/posts/9de67d0e/
+https://vasily-alexievich-korolev.github.io/posts/c7bffa72/
 https://vasily-alexievich-korolev.github.io/posts/728848b4/
 https://vasily-alexievich-korolev.github.io/posts/edb6a73/
 https://vasily-alexievich-korolev.github.io/posts/d305f066/
@@ -22,6 +24,7 @@ https://vasily-alexievich-korolev.github.io/tags/Vector-Calculus/
 https://vasily-alexievich-korolev.github.io/tags/Linear-Algebra/
 https://vasily-alexievich-korolev.github.io/tags/Test/
 https://vasily-alexievich-korolev.github.io/tags/Example/
+https://vasily-alexievich-korolev.github.io/tags/Group-Theory/
 https://vasily-alexievich-korolev.github.io/categories/Computer-Science/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
 https://vasily-alexievich-korolev.github.io/categories/Chemistry/
@@ -31,3 +34,6 @@ https://vasily-alexievich-korolev.github.io/categories/Mathematics/Ordinary-Diff
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Real-Analysis/
 https://vasily-alexievich-korolev.github.io/categories/Chemistry/Quantum-Chemistry/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Vector-Calculus/
+https://vasily-alexievich-korolev.github.io/categories/Mathematics/Group-Theory/
+https://vasily-alexievich-korolev.github.io/categories/Mathematicsa/
+https://vasily-alexievich-korolev.github.io/categories/Mathematicsa/Group-Theory/

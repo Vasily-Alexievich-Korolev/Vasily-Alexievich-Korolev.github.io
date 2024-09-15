@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了群论的基本知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理学与群论笔记1——群的基本性质">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/c7bffa72/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了群论的基本知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-08T16:28:02.893Z">
+<meta property="article:modified_time" content="2024-09-15T19:26:45.563Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Group Theory">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/c7bffa72/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>物理学与群论笔记1——群的基本性质 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/c7bffa72/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物理学与群论笔记1——群的基本性质
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-09 00:28:02" itemprop="dateCreated datePublished" datetime="2024-09-09T00:28:02+08:00">2024-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-16 03:26:45" itemprop="dateModified" datetime="2024-09-16T03:26:45+08:00">2024-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/Group-Theory/" itemprop="url" rel="index"><span itemprop="name">Group Theory</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了群论的基本知识</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="群的定义和实例">群的定义和实例</h2>
+<h3 id="群的定义">群的定义</h3>
+<p>我们将群按照如下方式进行定义</p>
+<blockquote>
+<p>定义（群）：</p>
+<p>对于一个集合<span class="math inline">\(G{a, b, c,
+\dots}\)</span>，我们定义群的乘法为群的两元素按照一定次序得到另一元素的规则。此时如果其内部元素满足：</p>
+<ol type="1">
+<li>封闭性：任意两元素之积属于该群，即<span
+class="math inline">\(\forall a, b \in G\)</span>，那么 <span
+class="math display">\[
+a \times b \in G
+\]</span></li>
+<li>结合律，即<span class="math inline">\(\forall a, b, c \in
+G\)</span>，有 <span class="math display">\[
+a \times (b \times c) = (a \times b) \times c
+\]</span></li>
+<li>存在逆元，即<span class="math inline">\(\forall a \in G\)</span>，有
+<span class="math display">\[
+b = a^{-1} \in G
+\]</span></li>
+<li>存在单位元，即对于群<span
+class="math inline">\(G\)</span>，必定存在<span class="math inline">\(e
+\in G\)</span>，其对于<span class="math inline">\(\forall a \in
+G\)</span>有 <span class="math display">\[
+e \times a = a \times e = a
+\]</span></li>
+</ol>
+</blockquote>
+<p>不难得到，对于任意一个群中的元素而言，其逆元为存在且唯一的。</p>
+<p>此外，我们将群<span
+class="math inline">\(G\)</span>中的元素数量称为群的阶，记为 <span
+class="math display">\[
+n = |G|
+\]</span>
+如果群的阶数不是无限大，我们将其称为有限群，反之我们称为无限群。同时，如果群的乘法满足交换律，那么我们将群称为Abel群。</p>
+<h3 id="置换群">置换群</h3>
+<p>假设我们有<span
+class="math inline">\(n\)</span>个元素，我们将其按照如下顺序排列 <span
+class="math display">\[
+1, 2, 3, \dots, n
+\]</span> 此时我们对该顺序进行置换，例如按照如下方式进行置换 <span
+class="math display">\[
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; \dots &amp; n \\
+3 &amp; 5 &amp; 2 &amp; \dots &amp; m \\
+\end{pmatrix}
+\]</span>
+也就是说，上述符号表示一个将3换到1，将5换到2，将2换到3，...，将<span
+class="math inline">\(m\)</span>换到<span
+class="math inline">\(n\)</span>的置换。注意置换并不是交换，置换可以只发生两个元素之间的交换，也可以将全部元素的顺序改变。</p>
+<p>我们可以将置换写为乘积的形式。例如如下的置换 <span
+class="math display">\[
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+3 &amp; 2 &amp; 4 &amp; 1 &amp; 6 &amp; 5 \\
+\end{pmatrix}
+\]</span> 可以写为<span class="math inline">\((1\ 3\ 4)(5\
+6)(2)\)</span>，其中<span class="math inline">\((1\ 3\
+4)\)</span>表示1换为3，3换为4，4换为1。我们将这种括号称为“循环”，而循环内符号个数为循环的长度。长度为2的循环被称为对换。</p>
+<p>显然，任何置换均可写为循环的乘积，而<span
+class="math inline">\(n\)</span>符号循环可以写为<span
+class="math inline">\((n - 1)\)</span>个对换的乘积。</p>
+<p>下面给出置换群的定义</p>
+<blockquote>
+<p>定义（置换群）：</p>
+<p>对于<span class="math inline">\(n\)</span>个物体，存在<span
+class="math inline">\(n!\)</span>个置换。我们将这些置换组成的集合称为置换群，记为<span
+class="math inline">\(S_{n}\)</span>。</p>
+</blockquote>
+<p>如果一个置换表示为循环时有奇数个循环，那么我们将该置换称为奇置换，反之为偶置换。可以证明，偶置换单独可以组成群，而奇置换不能组成群（奇置换之积为偶置换）。</p>
+<h3 id="乘法表">乘法表</h3>
+<p>对于有限群，我们常将其乘法关系用乘法表表示。例如如果我们对于一个4阶群定义乘法
+<span class="math display">\[
+a^{2} = b \quad ab = c \quad ac = e
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(C_{4}\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(a\)</span></th>
+<th><span class="math inline">\(b\)</span></th>
+<th><span class="math inline">\(c\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>如果我们将乘法关系定义为 <span class="math display">\[
+a^{2} = b^{2} = c^{2} = e \quad ab = c
+\]</span> 那么我们可以得到另一个四阶群，也就是<span
+class="math inline">\(V\)</span>群的乘法表</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(V\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(a\)</span></th>
+<th><span class="math inline">\(b\)</span></th>
+<th><span class="math inline">\(c\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>显然，由于我们定义的乘法关系是可以交换次序的，因此这两个群都是Abel群。</p>
+<p>同时，在构造乘法表时，我们已经不自觉地得到了重排定理。下面我们不加证明地给出</p>
+<blockquote>
+<p>定理（重排定理）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，<span
+class="math inline">\(\forall g \in G\)</span>，有 <span
+class="math display">\[
+gG = Gg = G
+\]</span> 其中，<span class="math inline">\(gG = \left\{ gg_{i} | g_{i}
+\in G\right\}\)</span>，而<span class="math inline">\(Gg = \left\{
+g_{i}g | g_{i} \in G\right\}\)</span></p>
+</blockquote>
+<h2 id="子群与生成元">子群与生成元</h2>
+<h3 id="子群">子群</h3>
+<p>顾名思义，子群是群中的一部分元素组成的群。我们将子群定义为</p>
+<blockquote>
+<p>定义（子群）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>而言，如果其中一部分元素按照其乘法规则能够组成群<span
+class="math inline">\(G&#39;\)</span>，那么我们将群<span
+class="math inline">\(G&#39;\)</span>称为群<span
+class="math inline">\(G\)</span>的子群。</p>
+</blockquote>
+<p>群<span
+class="math inline">\(G\)</span>和单位元组成的群为非真子群，其余均为真子群</p>
+<p>为了确认一个群是否为子群，我们给出以下命题</p>
+<blockquote>
+<p>命题（确定子群的充要条件）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果<span
+class="math inline">\(H \subset G\)</span>，那么<span
+class="math inline">\(H\)</span>为<span
+class="math inline">\(G\)</span>子群的充要条件为以下两条中的任意一条 1.
+如果<span class="math inline">\(a, b \in H\)</span>，那么<span
+class="math inline">\(ab^{-1} \in H\)</span> 2. 如果<span
+class="math inline">\(a, b \in H\)</span>，那么<span
+class="math inline">\(a^{-1} \in H\)</span>，<span
+class="math inline">\(b^{-1} \in H\)</span>且<span
+class="math inline">\(ab \in H\)</span></p>
+</blockquote>
+<p>不难想到，子群内部还可以分出新的子群，以下是几个例子</p>
+<blockquote>
+<p>示例：</p>
+<p>以下是关于子群的例子 1. 对于4阶<span
+class="math inline">\(V\)</span>群而言，有 <span class="math display">\[
+\left\{ e \right\} \subset V\left\{ e, a\right\} \subset V\left\{ e, a,
+b, c \right\}
+\]</span> 对于子群<span class="math inline">\(V\left\{ e,
+b\right\}\)</span>和<span class="math inline">\(V\left\{ e,
+c\right\}\)</span>同理。 2. 对于4阶<span
+class="math inline">\(C_{4}\)</span>群而言，有 <span
+class="math display">\[
+\left\{ e \right\} \subset C_{4}\left\{ e, b\right\} \subset
+C_{4}\left\{ e, a, b, c\right\}
+\]</span> 之所以<span class="math inline">\(C_{4}\left\{ e,
+a\right\}\)</span>和<span class="math inline">\(C_{4}\left\{ e,
+c\right\}\)</span>无法成为子群，是因为我们可以将<span
+class="math inline">\(b\)</span>视为<span
+class="math inline">\(a^{2}\)</span>、<span
+class="math inline">\(c\)</span>视为<span
+class="math inline">\(a^{3}\)</span>以及将<span
+class="math inline">\(e\)</span>视为<span
+class="math inline">\(a^{4}\)</span>。不难想到，由于偶数与偶数之和为偶数，并且子群内必须存在<span
+class="math inline">\(e\)</span>，因此只有<span
+class="math inline">\(C_{4}\left\{ e, b\right\}\)</span>可以成为子群。
+3. 对于<span class="math inline">\(n!\)</span>阶置换群<span
+class="math inline">\(S_{n}\)</span>，其中一个对象<span
+class="math inline">\(i\)</span>不动的置换的集合构成<span
+class="math inline">\((n - 1)!\)</span>阶群<span
+class="math inline">\(S_{n - 1}\)</span>，并且其为<span
+class="math inline">\(S_{n}\)</span>的子群。由此不难得到 <span
+class="math display">\[
+\left\{ e \right\} = S_{1} \subset S_{2} \subset \dots \subset S_{n -
+1}\subset S_{n}
+\]</span></p>
+</blockquote>
+<p>下面直接给出一个重要的定理</p>
+<blockquote>
+<p>定理（Cayley定理）：</p>
+<p>任何一个<span class="math inline">\(n\)</span>阶有限群都与置换群<span
+class="math inline">\(S_{n}\)</span>的一个子群同构。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>关键的一点：在证明<span class="math inline">\(P_{a_{i}} =
+P_{a_{j}}^{-1}\)</span>时，对于<span class="math inline">\(\forall a_{k}
+\in G\)</span>，在<span
+class="math inline">\(P_{a_{i}}\)</span>中存在换位置关系 <span
+class="math display">\[
+a_{k} \to a_{j}^{-1}a_{k}
+\]</span> 而对于<span class="math inline">\(a_{k}\)</span>，<span
+class="math inline">\(\exists a_{m} \in G\)</span>，满足 <span
+class="math display">\[
+a_{j}a_{m} = a_{k}
+\]</span> 此时我们可以将换位置关系表示为 <span class="math display">\[
+a_{j}a_{m} \to a_{m}
+\]</span> 因此置换<span
+class="math inline">\(P_{a_{i}}\)</span>等价于<span
+class="math inline">\(P_{a_{j}}^{-1}\)</span></p>
+</blockquote>
+<p>由于有限群必定与有限置换群的某个子群同构，因此我们直接可得如下推论</p>
+<blockquote>
+<p>推论：</p>
+<p>互相不同构的有限群的数量有限。</p>
+</blockquote>
+<h3 id="生成元">生成元</h3>
+<p>生成元与循环群的定义密不可分，下面我们一起给出定义</p>
+<blockquote>
+<p>定义（循环群与生成元）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，如果通过其中一个元素<span
+class="math inline">\(a\)</span>的幂可以得到群中所有元素，那么我们将该群称为循环群，并将该元素称为群的生成元。如果
+<span class="math display">\[
+a^{m} = e
+\]</span> 那么我们将该元素称为<span
+class="math inline">\(m\)</span>级的。</p>
+</blockquote>
+<p>由此我们直接给出循环群的几个性质</p>
+<blockquote>
+<p>命题（循环群的性质）：</p>
+<p>以下是循环群的几个性质： 1. 所有循环群都是互换群 2.
+循环群的子群也一定是循环群 3. 如果<span
+class="math inline">\(m\)</span>和<span
+class="math inline">\(l\)</span>互质，那么<span
+class="math inline">\(a^{l}\)</span>也可以作为生成元</p>
+</blockquote>
+<p>显然，并不是所有群都能由生成元直接给出。因此我们将生成元的定义扩展为生成元系，这样就可以将所有群表示为生成元系的派生物</p>
+<blockquote>
+<p>定义（生成元系）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果存在集合<span
+class="math inline">\(M\)</span>满足<span
+class="math inline">\(G\)</span>中所有元素都可表示为集合<span
+class="math inline">\(M\)</span>中元素乘积的幂的形式，那么我们将集合<span
+class="math inline">\(M\)</span>称为群<span
+class="math inline">\(G\)</span>的生成元系。</p>
+</blockquote>
+<blockquote>
+<p>示例：</p>
+<p>例如，对于4阶群<span
+class="math inline">\(V\)</span>而言，其中所有元素均可表示为<span
+class="math inline">\(a\)</span>、<span
+class="math inline">\(b\)</span>以及<span
+class="math inline">\(ab\)</span>的幂，因此其生成元系为<span
+class="math inline">\(\left\{ a, b\right\}\)</span></p>
+</blockquote>
+<p>显然，如果两个群的生成元系和生成关系（也就是从生成元系得到整个群的乘法关系）完全相同，那么这两个群是同构的。</p>
+<h2 id="直积与直和">直积与直和</h2>
+<h3 id="直积">直积</h3>
+<p>我们直接给出直积的定义</p>
+<blockquote>
+<p>定义：</p>
+<p>对于群<span class="math inline">\(G_{1}\)</span>和<span
+class="math inline">\(G_{2}\)</span>，其直积为 <span
+class="math display">\[
+G = G_{1}\otimes G_{2} = \left\{ (g_{1}, g_{2}) | g_{1} \in G_{1}, g_{2}
+\in G_{2} \right\}
+\]</span> 而<span class="math inline">\(G\)</span>中的乘法规则为 <span
+class="math display">\[
+gg&#39; = (g_{1}, g_{2})(g_{1}&#39;, g_{2}&#39;) = (g_{1}g_{1}&#39;,
+g_{2}g_{2}&#39;)
+\]</span></p>
+</blockquote>
+<p>如果<span class="math inline">\(G_{1} = H_{1}\)</span>、<span
+class="math inline">\(G_{2} = H_{2}\)</span>是群<span
+class="math inline">\(G\)</span>的两个子群，且除单位元外没有相同元素。同时，<span
+class="math inline">\(\forall h_{1} \in H_{1}\)</span>与<span
+class="math inline">\(\forall h_{2} \in H_{2}\)</span>可交换，并且<span
+class="math inline">\(\exists! g \in G\)</span>满足 <span
+class="math display">\[
+g = h_{1}h_{2}
+\]</span> 那么<span class="math inline">\(G_{1}\)</span>和<span
+class="math inline">\(G_{2}\)</span>的直积<span
+class="math inline">\(G&#39; = G_{1} \otimes G_{2}\)</span>与<span
+class="math inline">\(G\)</span>之间存在一一映射关系，因此两个群是同构的。所以对于这种情况，我们可以直接将直积的定义变为</p>
+<blockquote>
+<p>定义：</p>
+<p>如果<span class="math inline">\(G_{1} = H_{1}\)</span>、<span
+class="math inline">\(G_{2} = H_{2}\)</span>是群<span
+class="math inline">\(G\)</span>的两个子群，且除单位元外没有相同元素。同时，<span
+class="math inline">\(\forall h_{1} \in H_{1}\)</span>与<span
+class="math inline">\(\forall h_{2} \in H_{2}\)</span>可交换，并且<span
+class="math inline">\(\exists! g \in G\)</span>满足 <span
+class="math display">\[
+g = h_{1}h_{2}
+\]</span> 那么<span class="math inline">\(H_{1}\)</span>和<span
+class="math inline">\(H_{2}\)</span>之间的直积为 <span
+class="math display">\[
+G = H_{1}\otimes H_{2} = \left\{ h_{1}h_{2} | h_{1} \in H_{1},  h_{2}
+\in H_{2} \right\}
+\]</span></p>
+</blockquote>
+<h2 id="直和">直和</h2>
+<p>相比于讨论群的直和，我们将在此处介绍矩阵之间的直和。下面是矩阵直和的定义</p>
+<blockquote>
+<p>定义：</p>
+<p>对于矩阵<span class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>，其直和为 <span class="math display">\[
+A \oplus B = \begin{bmatrix}
+A &amp; 0 \\
+0 &amp; B \\
+\end{bmatrix}
+\]</span></p>
+</blockquote>
+<p>有关矩阵的直和将在表示论相关部分经常用到，由于与直积的名字很接近，因此在此对比介绍。</p>
+<h2 id="陪集共轭元素和类">陪集、共轭元素和类</h2>
+<h3 id="陪集">陪集</h3>
+<p>下面我们直接给出陪集的定义</p>
+<blockquote>
+<p>定义：</p>
+<p>对于群<span class="math inline">\(G\)</span>，假设其有子群<span
+class="math inline">\(G&#39;\)</span>。对于<span
+class="math inline">\(\forall g_{i} \in G\)</span>，将其与子群<span
+class="math inline">\(G&#39;\)</span>中每个元素相乘，得到的新集合 <span
+class="math display">\[
+H_{i} = g_{i}G&#39; = \left\{ g_{i}g&#39; | g&#39; \in G&#39;\right\}
+\]</span> 被称为子群<span
+class="math inline">\(G&#39;\)</span>的左陪集。</p>
+</blockquote>
+<p>由于我们是从原群<span
+class="math inline">\(G\)</span>中挑选元素来构造陪集，因此存在两种情况：挑选的元素在子群中或不在子群中。如果其在子群中，那么根据重排定理，构造得到的左陪集为子群本身。反之由反证法不难得到，左陪集中元素与子群中元素没有重复部分。同时由于陪集中不存在单位元，因此其不是群。</p>
+<p>由此可得，子群的左陪集要么与子群完全重合，要么与子群完全不同。对于这些与子群不同的陪集，我们有以下定理</p>
+<blockquote>
+<p>定理：</p>
+<p>子群<span
+class="math inline">\(G&#39;\)</span>的两个左陪集要么完全相同，要么完全不同。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>通过假设两个左陪集中存在相同元素，并通过重排定理即可证明两个陪集相同。</p>
+</blockquote>
+<p>由此我们可以得到，对于<span
+class="math inline">\(n\)</span>阶的群<span
+class="math inline">\(G\)</span>，如果给定<span
+class="math inline">\(n_{H}\)</span>阶的子群<span
+class="math inline">\(H\)</span>，则其可以按照子群<span
+class="math inline">\(H\)</span>分解为<span
+class="math inline">\(\dfrac{n}{n_{H}}\)</span>个不同的陪集。这样我们就得到了Lagrange定理</p>
+<blockquote>
+<p>定理（Lagrange定理）：</p>
+<p>对于<span class="math inline">\(n\)</span>阶有限群<span
+class="math inline">\(G\)</span>，如果其有<span
+class="math inline">\(n_{H}\)</span>阶的子群<span
+class="math inline">\(H\)</span>，那么<span
+class="math inline">\(\exists l \in N_{+}\)</span>，满足 <span
+class="math display">\[
+\dfrac{n}{n_{H}} = l
+\]</span> 我们将<span class="math inline">\(l\)</span>称为子群<span
+class="math inline">\(H\)</span>的指数。</p>
+</blockquote>
+<p>由此我们可以得到一个推论</p>
+<blockquote>
+<p>推论：</p>
+<p>如果有限群<span class="math inline">\(G\)</span>的阶数<span
+class="math inline">\(n\)</span>为质数，那么其必定为循环群。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>假设其存在一个<span
+class="math inline">\(r\)</span>阶的循环子群，那么<span
+class="math inline">\(\dfrac{n}{r}\)</span>必定为整数。当<span
+class="math inline">\(n\)</span>为质数时，<span
+class="math inline">\(r\)</span>必定为<span
+class="math inline">\(1\)</span>或<span
+class="math inline">\(n\)</span>。由此<span
+class="math inline">\(n\)</span>阶群<span
+class="math inline">\(G\)</span>只存在由单位元素组成的子群以及其本身，也就是两个子群。由此可以说明其必定为循环群。</p>
+</blockquote>
+<p>对于任意一个群<span class="math inline">\(G\)</span>，必定<span
+class="math inline">\(\exists a \in G\)</span>，使得集合<span
+class="math inline">\(\left\{ e, a, a^{2}, \dots, a^{r -
+1}\right\}\)</span>为<span
+class="math inline">\(G\)</span>的子群。对于这种情况，我们将<span
+class="math inline">\(r\)</span>称为元素<span
+class="math inline">\(a\)</span>的级。由此我们又可以得到一个推论</p>
+<blockquote>
+<p>推论：</p>
+<p>对于<span class="math inline">\(n\)</span>阶群<span
+class="math inline">\(G\)</span>，其元素的级等于<span
+class="math inline">\(n\)</span>的因数。</p>
+</blockquote>
+<h3 id="共轭元素和类">共轭元素和类</h3>
+<p>首先我们定义共轭关系</p>
+<blockquote>
+<p>定义（共轭关系）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，<span
+class="math inline">\(\forall g_{i}, g_{j} \in G\)</span>，如果<span
+class="math inline">\(\exists g \in G\)</span>，满足 <span
+class="math display">\[
+g_{i} = gg_{j}g^{-1}
+\]</span> 那么我们称二者是相互共轭的，表示为<span
+class="math inline">\(g_{i} \sim g_{j}\)</span>。</p>
+</blockquote>
+<p>下面给出共轭的性质</p>
+<blockquote>
+<p>命题（共轭关系的性质）：</p>
+<p>共轭关系具有以下几个性质： 1. 反身性：每个元素都与自己共轭，即<span
+class="math inline">\(g_{i} \sim g_{i}\)</span> 2. 对称性：如果有<span
+class="math inline">\(g_{i} \sim g_{j}\)</span>，那么就有<span
+class="math inline">\(g_{j} \sim g_{i}\)</span> 3. 传递性：如果有<span
+class="math inline">\(g_{i} \sim g_{j}\)</span>，<span
+class="math inline">\(g_{j} \sim g_{k}\)</span>，那么有<span
+class="math inline">\(g_{i} \sim g_{k}\)</span></p>
+</blockquote>
+<p>在给出共轭的定义后，我们接着给出共轭类的定义：</p>
+<blockquote>
+<p>定义（共轭类）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，我们将其内部彼此共轭的元素组成的集合称为共轭类，简称类。</p>
+</blockquote>
+<p>由此可以得出类的性质</p>
+<blockquote>
+<p>命题（类的性质）：</p>
+<p>类有以下几个性质： 1. 群中的单位元素自己为一个类 2.
+Abel群中的元素组成一个类 3. 对于属于同一个类的元素，他们的级相同 4.
+共轭元素类的逆也构成一个类（如果这两个类相同，我们将其称为自逆元素类）</p>
+</blockquote>
+<p>同时我们可以得到以下定理</p>
+<blockquote>
+<p>定理：</p>
+<p>对于<span class="math inline">\(n\)</span>阶群<span
+class="math inline">\(G\)</span>，其中每个共轭元素类的元素个数都是<span
+class="math inline">\(n\)</span>的因数。</p>
+</blockquote>
+<h3 id="置换群的类">置换群的类</h3>
+<p>我们直接给出置换群中两置换属于同一类的条件</p>
+<blockquote>
+<p>命题（置换群中属于同一类的条件）：</p>
+<p>对于两个属于同一置换群的置换，二者属于同一类的充要条件为其循环结构相同。</p>
+</blockquote>
+<h2 id="共轭子群不变子群和商群">共轭子群、不变子群和商群</h2>
+<h3 id="共轭子群">共轭子群</h3>
+<p>我们直接给出共轭子群的定义</p>
+<blockquote>
+<p>定义（共轭子群）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果<span
+class="math inline">\(G&#39;\)</span>是其子群，<span
+class="math inline">\(\forall g \in G\)</span>，我们将 <span
+class="math display">\[
+G&#39;&#39; = gG&#39;g^{-1}
+\]</span> 称为<span
+class="math inline">\(G&#39;\)</span>的共轭子群。</p>
+</blockquote>
+<p>下面直接给出几个性质</p>
+<blockquote>
+<p>命题（共轭子群的性质）：</p>
+<p>共轭子群具有以下性质： 1.
+如果某子群是另一子群的共轭子群，那么这两个群是同构的。 2. 对于群<span
+class="math inline">\(G\)</span>，如果<span
+class="math inline">\(K\)</span>是其一个类，那么由群<span
+class="math inline">\(G\)</span>中与<span
+class="math inline">\(K\)</span>中元素对易的元素组成的子群是相互共轭的。</p>
+</blockquote>
+<h3 id="不变子群">不变子群</h3>
+<blockquote>
+<p>定义（不变子群）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果其子群<span
+class="math inline">\(G&#39;\)</span>与其所有共轭子群重合，即<span
+class="math inline">\(\forall g \in G\)</span> <span
+class="math display">\[
+gG&#39;g^{-1} = G&#39;
+\]</span> 那么我们将该子群称为不变子群，或称为自逆子群。</p>
+</blockquote>
+<blockquote>
+<p>命题（不变子群的性质）：</p>
+<p>下面是几个不变子群的性质： 1.
+对于某一个类，不变子群要么不包含，要么包含所有 2.
+由某一类为生成元系得到的子群为不变子群。 3. 对于群<span
+class="math inline">\(G\)</span>，如果其左陪集等于右陪集，即 <span
+class="math display">\[
+gG&#39; = G&#39;g
+\]</span> 那么<span class="math inline">\(G&#39;\)</span>亦为不变子群。
+4.
+由Lagrange定理可得，指数为2的子群必定是不变子群（指数指的是原群阶数除以子群阶数的结果）。</p>
+</blockquote>
+<p>如果群<span class="math inline">\(G\)</span>不存在除<span
+class="math inline">\(\left\{ e \right\}\)</span>和<span
+class="math inline">\(G\)</span>之外的不变子群，那么我们将其称为单群；如果其不存在除<span
+class="math inline">\(\left\{ e
+\right\}\)</span>之外的不变Abel子群，那么我们将其称为半单群。</p>
+<h3 id="商群">商群</h3>
+<p>下面直接给出相关定义</p>
+<blockquote>
+<p>定义（商群）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，假设<span
+class="math inline">\(H\)</span>是其不变子群，我们定义 <span
+class="math display">\[
+\left \{\begin{aligned}
+&amp; f_{1} = Hg_{1} = He = H \\
+&amp; f_{2} = Hg_{2} \\
+&amp; \vdots \\
+&amp; f_{l} = Hg_{l} \\
+\end{aligned}
+\right.
+\]</span> 由此我们得到了<span
+class="math inline">\(H\)</span>所有的陪集。我们将这些陪集组成的集合
+<span class="math display">\[
+F = \{f_{i} | i = 1, 2, \dots, l\}
+\]</span> 定义为群<span
+class="math inline">\(G\)</span>关于不变子群<span
+class="math inline">\(H\)</span>的商群，记为<span
+class="math inline">\(F = \dfrac{G}{H}\)</span>。对于<span
+class="math inline">\(\forall f_{i}, f_{j} \in F\)</span>，其乘法为
+<span class="math display">\[
+f_{i}f_{j} = Hg_{i}Hg_{j} = HHg_{i}g_{j} = Hg_{i}g_{j}
+\]</span></p>
+</blockquote>
+<h3 id="同态和同构">同态和同构</h3>
+<p>简单而言，同态和同构指的都是群之间的映射关系。同态指的是在两个群之间存在映射，而同构指的是两个群之间存在一一映射。首先来看同态的定义</p>
+<blockquote>
+<p>定义（同态映射）：</p>
+<p>对于两个群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(G&#39;\)</span>，如果存在映射<span
+class="math inline">\(f: G \to G&#39;\)</span>，并且满足 <span
+class="math display">\[
+f(g_{i}g_{j}) = f(g_{i})f(g_{j}),\quad \forall g_{i}, g_{j} \in G
+\]</span> 那么我们称<span class="math inline">\(f\)</span>为<span
+class="math inline">\(G \to G&#39;\)</span>的同态映射，并且称<span
+class="math inline">\(G&#39;\)</span>同态于<span
+class="math inline">\(G\)</span>。</p>
+</blockquote>
+<p>不难想到，一阶群在此基础上，我们可以得到群的同构的定义。</p>
+<blockquote>
+<p>定义（群的同构）：</p>
+<p>对于两个群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(G&#39;\)</span>，如果同态映射<span
+class="math inline">\(f: G \to
+G&#39;\)</span>，并且该映射为一一映射，那么我们称<span
+class="math inline">\(f\)</span>为<span class="math inline">\(G \to
+G&#39;\)</span>的同构映射，并且称这两个群为同构的。</p>
+</blockquote>
+<p>下面给出几个同构映射的性质</p>
+<blockquote>
+<p>命题（同构映射的性质）：</p>
+<p>如果映射<span
+class="math inline">\(f\)</span>为同构映射，那么其具有以下几个性质： 1.
+其对应的逆映射<span class="math inline">\(f^{-1}\)</span>也为同构映射 2.
+<span class="math inline">\(f(e) = e&#39;\)</span> 3. <span
+class="math inline">\(f(g^{-1}) = f(g)^{-1}\)</span></p>
+</blockquote>
+<p>显然，产生同构映射的两个群可以是一个群，也就是<span
+class="math inline">\(f: G \to
+G\)</span>，我们将这种同构映射称为自同构。大部分自同构都是平凡的，但我们可以按照下面的方式构造一个非平凡的自同构</p>
+<blockquote>
+<p>定义（内自同构和外自同构）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，我们构造如下的同构映射<span
+class="math inline">\(f: G \to G\)</span> <span class="math display">\[
+f(g) = xgx^{-1}, \quad \forall x \in G \vee x \neq e
+\]</span> 也就是说，我们让<span
+class="math inline">\(G\)</span>中每个元素与其共轭元素对应。我们将这种同构映射称为内自同构，并将除此以外的同构称为外自同构。</p>
+</blockquote>
+<p>关于同态映射，我们先定义一个特殊的集合</p>
+<blockquote>
+<p>定义（同态映射的核）：</p>
+<p>对于群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(G&#39;\)</span>，我们在二者之间定义同态映射<span
+class="math inline">\(f: G \to
+G&#39;\)</span>，则该同态映射的核为如下集合 <span
+class="math display">\[
+N = \left\{ x | f(x) = e&#39;,x\in G \right\}
+\]</span></p>
+</blockquote>
+<p>此时我们给出如下命题</p>
+<blockquote>
+<p>命题：</p>
+<p>对于群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(G&#39;\)</span>，我们在二者之间定义同态映射<span
+class="math inline">\(f: G \to
+G&#39;\)</span>，并定义该同态映射的核为<span
+class="math inline">\(N\)</span>，那么同态核<span
+class="math inline">\(N\)</span>为不变子群，且<span
+class="math inline">\(G&#39;\)</span>同构于商群<span
+class="math inline">\(\dfrac{G}{N}\)</span>，并且 <span
+class="math display">\[
+|G&#39;| = \dfrac{|G|}{|N|}
+\]</span></p>
+</blockquote>
+<p>由此可直接得到推论</p>
+<blockquote>
+<p>推论：</p>
+<p>如果同态映射的同态核为<span class="math inline">\(\left\{ e
+\right\}\)</span>，那么该同态映射为同构映射。</p>
+</blockquote>
+<p>此外，我们还有以下命题</p>
+<blockquote>
+<p>命题：</p>
+<p>对于群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(G&#39;\)</span>，我们在二者之间定义同态映射<span
+class="math inline">\(f: G \to G&#39;\)</span>，并假设<span
+class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的子群，那么 <span
+class="math display">\[
+f(H) = \left\{ y | f(x) = y, x\in H\right\}
+\]</span> 是<span class="math inline">\(G&#39;\)</span>的子群。如果<span
+class="math inline">\(H\)</span>为不变子群，那么<span
+class="math inline">\(f(H)\)</span>也是<span
+class="math inline">\(G&#39;\)</span>的不变子群。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/c7bffa72/" title="物理学与群论笔记1——群的基本性质">https://vasily-alexievich-korolev.github.io/posts/c7bffa72/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Group-Theory/" rel="tag"># Group Theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/728848b4/" rel="prev" title="使用SCF计算He原子基态能量">
+      <i class="fa fa-chevron-left"></i> 使用SCF计算He原子基态能量
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/9de67d0e/" rel="next" title="物理学与群论笔记2——有限群表示论基础">
+      物理学与群论笔记2——有限群表示论基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">群的定义和实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">群的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E7%BE%A4"><span class="nav-number">1.2.</span> <span class="nav-text">置换群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E8%A1%A8"><span class="nav-number">1.3.</span> <span class="nav-text">乘法表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%BE%A4%E4%B8%8E%E7%94%9F%E6%88%90%E5%85%83"><span class="nav-number">2.</span> <span class="nav-text">子群与生成元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BE%A4"><span class="nav-number">2.1.</span> <span class="nav-text">子群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%85%83"><span class="nav-number">2.2.</span> <span class="nav-text">生成元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E7%A7%AF%E4%B8%8E%E7%9B%B4%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">直积与直和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E7%A7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">直积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E5%92%8C"><span class="nav-number">4.</span> <span class="nav-text">直和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%AA%E9%9B%86%E5%85%B1%E8%BD%AD%E5%85%83%E7%B4%A0%E5%92%8C%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">陪集、共轭元素和类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%AA%E9%9B%86"><span class="nav-number">5.1.</span> <span class="nav-text">陪集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD%E5%85%83%E7%B4%A0%E5%92%8C%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">共轭元素和类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E7%BE%A4%E7%9A%84%E7%B1%BB"><span class="nav-number">5.3.</span> <span class="nav-text">置换群的类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD%E5%AD%90%E7%BE%A4%E4%B8%8D%E5%8F%98%E5%AD%90%E7%BE%A4%E5%92%8C%E5%95%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">共轭子群、不变子群和商群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD%E5%AD%90%E7%BE%A4"><span class="nav-number">6.1.</span> <span class="nav-text">共轭子群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%98%E5%AD%90%E7%BE%A4"><span class="nav-number">6.2.</span> <span class="nav-text">不变子群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%86%E7%BE%A4"><span class="nav-number">6.3.</span> <span class="nav-text">商群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%80%81%E5%92%8C%E5%90%8C%E6%9E%84"><span class="nav-number">6.4.</span> <span class="nav-text">同态和同构</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">47k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:36</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

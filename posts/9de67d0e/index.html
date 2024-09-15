@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了有限群表示论的相关内容，包括正则表示、基础表示、诱导表示、特征标表以及Clebsch-Gordan系数等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理学与群论笔记2——有限群表示论基础">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/9de67d0e/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了有限群表示论的相关内容，包括正则表示、基础表示、诱导表示、特征标表以及Clebsch-Gordan系数等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-15T18:31:22.319Z">
+<meta property="article:modified_time" content="2024-09-15T19:27:24.506Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Group Theory">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/9de67d0e/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>物理学与群论笔记2——有限群表示论基础 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/9de67d0e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物理学与群论笔记2——有限群表示论基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-16 02:31:22 / 修改时间：03:27:24" itemprop="dateCreated datePublished" datetime="2024-09-16T02:31:22+08:00">2024-09-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematicsa/" itemprop="url" rel="index"><span itemprop="name">Mathematicsa</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematicsa/Group-Theory/" itemprop="url" rel="index"><span itemprop="name">Group Theory</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了有限群表示论的相关内容，包括正则表示、基础表示、诱导表示、特征标表以及Clebsch-Gordan系数等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="群的表示">群的表示</h1>
+<h2 id="表示的定义">表示的定义</h2>
+<p>所谓表示，就是将群与某个算符相互联系，从而通过算符的性质来研究群的性质。在实际使用中，我们常通过矩阵来达到这一目的。</p>
+<blockquote>
+<p>定义（群的表示）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，假设在线性向量空间<span
+class="math inline">\(V\)</span>中存在某个算符群<span
+class="math inline">\(\hat{P}_{G}\)</span>，满足同态映射<span
+class="math inline">\(f: G \to M\)</span> <span class="math display">\[
+g \mapsto f(g) = \hat{P}_{g}, \quad \forall g \in G
+\]</span> 那么我们称<span
+class="math inline">\(\hat{P}_{G}\)</span>为群<span
+class="math inline">\(G\)</span>的表示。</p>
+</blockquote>
+<p>如果该同态映射是同构映射，那么我们称其为忠实表示（奇怪的翻译）。</p>
+<p>通过在<span
+class="math inline">\(V\)</span>中选择一组基，我们不难得到映射 <span
+class="math display">\[
+\boldsymbol{G}: G \to \boldsymbol{M},\quad \forall g \in G,\quad
+g\mapsto \boldsymbol{G}(g) \in \boldsymbol{M}
+\]</span> 其中，<span
+class="math inline">\(\boldsymbol{M}\)</span>表示矩阵组成的群，从此之后我们将矩阵表示加粗的大写字母。以后我们直接将群的矩阵表示称为群的表示。下面直接给出几个性质</p>
+<blockquote>
+<p>命题（群的表示的性质）：</p>
+<p>以下是群的表示的几个性质：</p>
+<ol type="1">
+<li><p>表示矩阵一定是方阵。同时，我们将矩阵的维数作为表示的维数。</p></li>
+<li><p>群<span
+class="math inline">\(G\)</span>的单位元映射到单位矩阵，即 <span
+class="math display">\[
+\boldsymbol{G}(e) = \boldsymbol{I}
+\]</span></p></li>
+</ol>
+</blockquote>
+<ol start="3" type="1">
+<li>原像的逆对应的像为像的逆，即 <span class="math display">\[
+\boldsymbol{G}(g^{-1}) = \boldsymbol{G}(g)^{-1}
+\]</span></li>
+</ol>
+<h2 id="等价表示">等价表示</h2>
+<p>对于群<span
+class="math inline">\(G\)</span>，我们将其矩阵表示记为<span
+class="math inline">\(\left\{ \boldsymbol{G}(g)
+\right\}\)</span>。对于任意的非奇异矩阵<span
+class="math inline">\(\boldsymbol{X}\)</span>，我们可以说明组成的新群
+<span class="math display">\[
+\left\{ \boldsymbol{X}\boldsymbol{G}(g)\boldsymbol{X}^{-1} \right\} =
+\left\{
+\boldsymbol{X}\boldsymbol{G}(g_{1})\boldsymbol{X}^{-1},\boldsymbol{X}\boldsymbol{G}(g_{2})\boldsymbol{X}^{-1},\dots,
+\boldsymbol{X}\boldsymbol{G}(g_{n})\boldsymbol{X}^{-1}\right\}
+\]</span> 与群<span
+class="math inline">\(G\)</span>是同态的。因此其也可以被视为<span
+class="math inline">\(G\)</span>的一个表示。</p>
+<p>这表明，通过非奇异矩阵，我们可以得到许许多多等价的群的表示，因此我们只需通过其中一个即可研究出这一类群的性质。</p>
+<h2 id="可约表示和不可约表示">可约表示和不可约表示</h2>
+<p>我们直接给出可约表示的定义</p>
+<blockquote>
+<p>定义（可约表示和不可约表示）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果其表示<span
+class="math inline">\(\left\{ \boldsymbol{G}(g)
+\right\}\)</span>可以通过相似变换变为 <span class="math display">\[
+\left\{ \boldsymbol{G}(g) \bigg| \boldsymbol{G}(g) = \begin{bmatrix}
+\boldsymbol{G}_{1}(g) &amp; \boldsymbol{R}(g) \\
+0 &amp; \boldsymbol{G}_{2}(g) \\
+\end{bmatrix},\quad \forall g \in G\right\}
+\]</span> 其中，<span
+class="math inline">\(\boldsymbol{R}(g)\)</span>为任意矩阵。也就是说，如果群<span
+class="math inline">\(G\)</span>的表示中的每个矩阵都可以变为上三角形矩阵，那么我们称该表示为可约表示。</p>
+</blockquote>
+<p>如果<span class="math inline">\(\boldsymbol{R} =
+0\)</span>，也就是表示都变为对角矩阵，那么我们称这样的表示为完全可约表示。</p>
+<p>反之，如果<span class="math inline">\(\left\{ \boldsymbol{G}(g)
+\right\}\)</span>通过一切相似变换都无法将其中所有矩阵化为相同结构的上三角形分块矩阵，那么我们将该表示称为不可约的。</p>
+<p>由此我们给出有限群的可约表示的定理</p>
+<blockquote>
+<p>定理（有限群的可约表示）：</p>
+<p>有限群的可约表示一定是完全可约表示。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>核心是凑合适的相似变换矩阵<span
+class="math inline">\(\boldsymbol{A}\)</span>，使得 <span
+class="math display">\[
+\boldsymbol{A}^{-1}\boldsymbol{G}(g)\boldsymbol{A} = \begin{bmatrix}
+\boldsymbol{G}_{1}(g) &amp; 0 \\
+0 &amp; \boldsymbol{G}_{2}(g) \\
+\end{bmatrix}
+\]</span> 而由此<span
+class="math inline">\(\boldsymbol{A}\)</span>必然为如下结构 <span
+class="math display">\[
+\boldsymbol{A} = \begin{bmatrix}
+\boldsymbol{I}_{k_{1}} &amp; \boldsymbol{C} \\
+0 &amp; \boldsymbol{I}_{k_{2}} \\
+\end{bmatrix}
+\]</span> 最后核心就是凑<span
+class="math inline">\(\boldsymbol{C}\)</span>，但是我没有搞明白是怎么凑出来的。</p>
+</blockquote>
+<p>总之，我们对于有限群不再区分可约和完全可约，一并将其称为可约表示。显然，由于矩阵加法的存在，可约表示可以约化为不可约表示的直和
+<span class="math display">\[
+\boldsymbol{G}(g) = \sum\limits_{p}^{\oplus}
+a_{p}\boldsymbol{G}^{(p)}(g),\quad g \in G
+\]</span></p>
+<p>此外，我们给出一个被称为特征标的定义。这个定义在后面会发挥作用。</p>
+<blockquote>
+<p>定义（特征标）：</p>
+<p>假设<span class="math inline">\(\boldsymbol{G}(g)\)</span>是群<span
+class="math inline">\(G\)</span>的<span
+class="math inline">\(d\)</span>维表示，那么我们将 <span
+class="math display">\[
+\chi(g) = \mathrm{Tr} \boldsymbol{G}(g) = \sum\limits_{i = 1}^{d}
+\boldsymbol{G}_{ii}(g)
+\]</span> 称为元素<span class="math inline">\(g\)</span>在表示<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>中的特征标。</p>
+</blockquote>
+<h1 id="有限群表示论的一些基本定理">有限群表示论的一些基本定理</h1>
+<p>我们暂且跳过证明，直接给出几个定理。</p>
+<blockquote>
+<p>定理：</p>
+<p>任何表示都有等价的酉表示。也就是说，任何表示矩阵都对应一个酉矩阵（共轭转置后变为逆矩阵的矩阵）。</p>
+</blockquote>
+<blockquote>
+<p>定理（Schur定理）：</p>
+<p>与某一个不可约表示的所有矩阵对易的矩阵一定是常数矩阵（也就是单位矩阵乘上常数）。</p>
+</blockquote>
+<blockquote>
+<p>推论（Schur定理的逆定理）：</p>
+<p>如果不存在一个非常数矩阵与某一表示中所有矩阵对易，那么该表示是不可约表示。</p>
+</blockquote>
+<blockquote>
+<p>定理：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，假设其两个不可约表示为<span
+class="math inline">\(\left\{
+\boldsymbol{G}_{1}(g)\right\}\)</span>和<span
+class="math inline">\(\left\{
+\boldsymbol{G}_{2}(g)\right\}\)</span>，其维数分别为 <span
+class="math inline">\(l_{1}\)</span>和<span
+class="math inline">\(l_{2}\)</span>。如果存在<span
+class="math inline">\(l_{2}\times l_{1}\)</span>的矩阵<span
+class="math inline">\(\boldsymbol{M}\)</span>，使得对<span
+class="math inline">\(\forall g \in G\)</span>有 <span
+class="math display">\[
+\boldsymbol{M}\boldsymbol{G}_{1}(g) =
+\boldsymbol{G}_{2}(g)\boldsymbol{M}
+\]</span> 那么：</p>
+<ol type="1">
+<li><p>当<span class="math inline">\(l_{1} \neq l_{2}\)</span>时，<span
+class="math inline">\(\boldsymbol{M} = \boldsymbol{0}\)</span></p></li>
+<li><p>当<span class="math inline">\(l_{1} = l_{2}\)</span>时，<span
+class="math inline">\(\boldsymbol{M} = \boldsymbol{0}\)</span>或<span
+class="math inline">\(\det \boldsymbol{M} \neq 0\)</span>。如果<span
+class="math inline">\(\det \boldsymbol{M} \neq
+0\)</span>，那么其表示<span class="math inline">\(\left\{
+\boldsymbol{G}_{1}(g)\right\}\)</span>和<span
+class="math inline">\(\left\{
+\boldsymbol{G}_{2}(g)\right\}\)</span>等价。</p></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>定理（广义正交定理）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，假设其两个不可约表示为<span
+class="math inline">\(\left\{
+\boldsymbol{G}_{p}(g)\right\}\)</span>和<span
+class="math inline">\(\left\{
+\boldsymbol{G}_{q}(g)\right\}\)</span>，则有 <span
+class="math display">\[
+\sum\limits_{g \in G}\boldsymbol{G}^{(q)}_{\mu&#39;\nu&#39;}(g)
+\boldsymbol{G}^{(p)}_{\nu\mu}(g^{-1}) =
+\dfrac{|\boldsymbol{G}|}{l_{q}}\delta_{\nu\nu&#39;}\delta_{\mu\mu&#39;}\delta_{pq}
+\]</span> 如果不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(p)}\)</span>是酉的，那么上式变为
+<span class="math display">\[
+\sum\limits_{g \in G}\boldsymbol{G}^{(q)}_{\mu&#39;\nu&#39;}(g)
+\boldsymbol{G}^{(p)*}_{\nu\mu}(g) =
+\dfrac{|\boldsymbol{G}|}{l_{q}}\delta_{\nu\nu&#39;}\delta_{\mu\mu&#39;}\delta_{pq}
+\]</span> 其中，<span class="math inline">\(l_{p}\)</span>表示<span
+class="math inline">\(\left\{
+\boldsymbol{G}^{(p)}(g)\right\}\)</span>的维数。</p>
+</blockquote>
+<blockquote>
+<p>定理（Burnside定理）：</p>
+<p>有限群<span
+class="math inline">\(G\)</span>的所有不等价的不可约表示的维数的平方和等于群<span
+class="math inline">\(G\)</span>的阶，即 <span class="math display">\[
+\sum\limits_{i = 1}^{2}l_{i}^{2} = |\boldsymbol{G}|,\quad i
+\text{表示不等价的不可约表示的序号}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>定理（特征标正交定理）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，其不等价不可约的特征标满足正交关系
+<span class="math display">\[
+\sum\limits_{g \in G}\chi^{(p)*}(g)\chi^{(q)}(g) =
+|\boldsymbol{G}|\delta_{pq}
+\]</span></p>
+</blockquote>
+<p>由此可以得到以下推论</p>
+<blockquote>
+<p>推论：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果将其可约表示<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>约化为 <span
+class="math display">\[
+\boldsymbol{G}(g) = \sum\limits_{p}^{\oplus}
+a_{p}\boldsymbol{G}^{(p)}(g),\quad g \in G
+\]</span> 那么约化系数<span class="math inline">\(a_{p}\)</span>满足
+<span class="math display">\[
+a_{p} = \dfrac{1}{|G|}\sum\limits_{g \in G} \chi^{(p)*}(g)\chi(g)
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>定理：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，其不等价不可约表示的数量等于类的数量。</p>
+</blockquote>
+<blockquote>
+<p>定理：</p>
+<p>两个表示等价的充要条件是具有相同的特征标。</p>
+</blockquote>
+<blockquote>
+<p>定理：</p>
+<p>对于不可约表示，其特征标满足 <span class="math display">\[
+\sum\limits_{g \in G}|\chi(g)|^{2} = n
+\]</span> 而对于可约表示，则有 <span class="math display">\[
+\sum\limits_{g \in G}|\chi(g)|^{2} &gt; n
+\]</span></p>
+</blockquote>
+<h1 id="正则表示">正则表示</h1>
+<p>假设对于群<span
+class="math inline">\(G\)</span>，我们将这些群元素当作一个<span
+class="math inline">\(|G|\)</span>维线性向量空间的基，那么我们将这些基记为<span
+class="math inline">\(\left\{ g_{i}| i = 1, 2, \dots,
+|G|\right\}\)</span>。由于重排定理，我们有 <span class="math display">\[
+gg_{i} \in G
+\]</span> 也就是<span class="math inline">\(gg_{i} \in \left\{ g_{i} | i
+= 1, 2, \dots, |G|\right\}\)</span>。由此可以得到正则表示矩阵满足 <span
+class="math display">\[
+gg_{i} = \sum\limits_{j = 1}^{n}g_{j}\boldsymbol{G}^{(c)}_{ji}(g),\quad
+g\in G
+\]</span> 也就是说，对于上式而言，其只有一个<span
+class="math inline">\(\boldsymbol{G}_{ji}^{(c)}(g)\)</span>等于1，其余均为0。而正则表示矩阵的定义为</p>
+<blockquote>
+<p>定义（正则表示矩阵）：</p>
+<p>对于正则表示矩阵<span
+class="math inline">\(\boldsymbol{G}^{(c)}(g)\)</span>，其满足 <span
+class="math display">\[
+G^{(c)}_{ji}(g) = \left\{\begin{aligned}
+1,&amp;\quad gg_{i} = g_{j} \\
+0,&amp;\quad gg_{i} \neq g_{j} \\
+\end{aligned}\right.
+\]</span></p>
+</blockquote>
+<p>在此基础上，我们直接给出几个有关正则表示的性质</p>
+<blockquote>
+<p>命题（正则表示的性质）：</p>
+<p>下面是有关正则表示的几个性质，其中假设<span
+class="math inline">\(\boldsymbol{G}^{(c)}(g_{1})\)</span>和<span
+class="math inline">\(\boldsymbol{G}^{(c)}(g_{2})\)</span>是群<span
+class="math inline">\(G\)</span>的两个正则表示：</p>
+<ol type="1">
+<li><p><span
+class="math display">\[\boldsymbol{G}^{(c)}(g_{1})\boldsymbol{G}^{(c)}(g_{2})
+= \boldsymbol{G}^{(c)}(g_{1}g_{2})\]</span></p></li>
+<li><p>如果<span class="math inline">\(g_{1}g_{2}g_{i} =
+g_{k}\)</span>，那么 <span class="math display">\[
+G^{(c)}_{jl}(g_{1})G^{(c)}_{li}(g_{2}) = \left\{\begin{aligned}
+1,&amp; \quad l = k \\
+0,&amp; \quad l \neq k \\
+\end{aligned}\right.
+\]</span></p></li>
+</ol>
+</blockquote>
+<p>由正则表示的定义，可以通过乘法表来构造正则表示矩阵。对于<span
+class="math inline">\(g\)</span>的正则表示矩阵<span
+class="math inline">\(\boldsymbol{G}^{(c)}(g)\)</span>，如果有<span
+class="math inline">\(g_{j}g_{i}^{-1} = g\)</span>，那么<span
+class="math inline">\(G^{(c)}_{ji}(g) =
+1\)</span>。由此我们可以直接得出推论</p>
+<blockquote>
+<p>推论：</p>
+<p>由正则表示矩阵的构造方法不不难得到：</p>
+<ol type="1">
+<li><p>单位元的正则表示矩阵为单位阵，即 <span class="math display">\[
+\boldsymbol{G}^{(c)}(e) = \boldsymbol{I}
+\]</span></p></li>
+<li><p>除单位元的正则表示矩阵以外，其他元素的正则表示矩阵为的特征标均为0。</p></li>
+</ol>
+</blockquote>
+<p>上述两条可以总结为 <span class="math display">\[
+\chi^{(c)}(g) = \mathrm{Tr}\boldsymbol{G}^{(c)}(g) =
+\left\{\begin{aligned}
+n,&amp;\quad g = e \\
+0,&amp; \quad g \neq e \\
+\end{aligned}\right.
+\]</span></p>
+<p>由上一节的定理不难得到，所有正则表示的特征标满足 <span
+class="math display">\[
+\sum\limits_{g \in G}|\chi(g)|^{2} = n^{2} &gt; n
+\]</span> 所以正则表示一定是可约表示。如果我们将其表示为不可约表示的直和
+<span class="math display">\[
+\boldsymbol{G}^{(c)}(g) = \sum\limits_{p}a_{p}\boldsymbol{G}^{(p)}(g)
+\]</span> 那么其约化系数为 <span class="math display">\[
+a_{p} = \dfrac{1}{n}\sum\limits_{g \in G}\chi^{(p)*}\chi^{(c)}(g) =
+d_{p}
+\]</span> 其中，<span class="math inline">\(d_{p}\)</span>表示群<span
+class="math inline">\(G\)</span>第<span
+class="math inline">\(p\)</span>个不可约表示的维数。</p>
+<h1 id="基础表示">基础表示</h1>
+<p>在正则表示中，我们使用群中的元素作为基来负载表示。实际上，对于群<span
+class="math inline">\(G\)</span>而言，假设其子群<span
+class="math inline">\(H\)</span>的陪集为<span
+class="math inline">\(\left\{ g_{i}H|\ g_{i} \in
+G\right\}\)</span>，那么 <span class="math display">\[
+g(g_{i}H) = g_{j}H \in \left\{ g_{i}H|\ g_{i} \in G\right\}
+\]</span> 因此陪集<span class="math inline">\(\left\{ g_{i}H|\ g_{i} \in
+G\right\}\)</span>张成的向量空间在群<span
+class="math inline">\(G\)</span>的作用下是不变的的，因此可以作为基来负载<span
+class="math inline">\(G\)</span>的表示。这样得到的表示为基础表示。由此我们给出基础表示矩阵的定义</p>
+<blockquote>
+<p>定义（基础表示矩阵）：</p>
+<p>对于基础表示矩阵<span
+class="math inline">\(\boldsymbol{G}^{(d)}(g)\)</span>，其满足 <span
+class="math display">\[
+G^{(d)}_{ki}(g) = \left\{\begin{aligned}
+1,&amp; \quad k = j\text{且}gg_{i} \in g_{j}H \\
+0,&amp; \quad k \neq j \\
+\end{aligned}\right.
+\]</span></p>
+</blockquote>
+<p>容易得到，当<span class="math inline">\(H = \left\{ e
+\right\}\)</span>时，基础表示就是正则表示。同时，我们可以仿照正则表示来构造基础表示矩阵。由<span
+class="math inline">\(gg_{i} \in g_{j}H\)</span>可得<span
+class="math inline">\(g \in g_{j}Hg_{i}^{-1}\)</span>。由重排定理可得
+<span class="math display">\[
+g \in g_{j}HHg_{i}^{-1}
+\]</span> 由此可以构造乘法表<span class="math inline">\(g_{j}H ~
+Hg_{i}^{-1}\)</span>。当<span
+class="math inline">\(g\)</span>在乘法表中的某个位置出现时，其基础表示矩阵<span
+class="math inline">\(\boldsymbol{D}^{(d)}(g)\)</span>的对应位置为1，其余位置为0。</p>
+<h1 id="诱导表示">诱导表示</h1>
+<p>群<span
+class="math inline">\(G\)</span>的表示也是其子群的表示。反过来，如果我们找到<span
+class="math inline">\(G\)</span>的子群<span
+class="math inline">\(H\)</span>的不可约表示，那么通过诱导表示方法可以构造出群<span
+class="math inline">\(G\)</span>的不可约表示。</p>
+<p>假设负载<span class="math inline">\(H\)</span>的不可约表示<span
+class="math inline">\(\boldsymbol{H}\)</span>的基为<span
+class="math inline">\(\left\{ \boldsymbol{e}_{1}, \boldsymbol{e}_{2},
+\dots, \boldsymbol{e}_{|\boldsymbol{H}|}\right\}\)</span>，那么对于<span
+class="math inline">\(\forall g \in H\)</span>，由于<span
+class="math inline">\(\hat{P}_{g}\boldsymbol{e}_{i} =
+\boldsymbol{e}_{j}\)</span>，因此 <span class="math display">\[
+\hat{P}_{g}\boldsymbol{e}_{i} = \sum\limits_{j = 1}^{|\boldsymbol{H}|}
+\boldsymbol{H}_{ji}(g)\boldsymbol{e}_{j}
+\]</span> 同时将<span class="math inline">\(G\)</span>按子群<span
+class="math inline">\(H\)</span>做陪集分解可得 <span
+class="math display">\[
+G = \sum\limits_{\alpha}^{m} g_{\alpha}H,\quad m =
+\dfrac{|\boldsymbol{G}|}{|\boldsymbol{H}|}
+\]</span> 由此我们能够得到一个集合 <span class="math display">\[
+\left\{ \hat{P}_{g_{\alpha}} \boldsymbol{e}_{i} | \alpha = 1, 2, \dots,
+m,\quad i = 1, 2, \dots, |\boldsymbol{H}| \right\}
+\]</span> 这个集合中有<span
+class="math inline">\(|\boldsymbol{G}|\)</span>个元素。可以证明，其可以负载<span
+class="math inline">\(G\)</span>的一个表示，我们将其称为<span
+class="math inline">\(\boldsymbol{H}\)</span>的诱导表示。</p>
+<blockquote>
+<p>证明：</p>
+<p>要证明这一点，只需要证明其在群<span
+class="math inline">\(G\)</span>的作用下不变，也就是对于<span
+class="math inline">\(\forall g \in G\)</span> <span
+class="math display">\[
+\hat{P}_{g}(\hat{P}_{g_{\alpha}}\boldsymbol{e}_{i}) \in \left\{
+\hat{P}_{g_{\alpha}} \boldsymbol{e}_{i} | \alpha = 1, 2, \dots, m,\quad
+i = 1, 2, \dots, |\boldsymbol{H}| \right\}
+\]</span> 由于我们现在只知道群<span
+class="math inline">\(H\)</span>的表示，因此需要将其转化为群<span
+class="math inline">\(H\)</span>的表示。假设<span
+class="math inline">\(gg_{\alpha} \in g_{\beta}H\)</span>，那么 <span
+class="math display">\[
+gg_{\alpha} = g_{\beta}h_{\alpha}
+\]</span> 由此 <span class="math display">\[
+\begin{aligned}
+\hat{P}_{g}(\hat{P}_{g_{\alpha}}\boldsymbol{e}_{i}) &amp; =
+\hat{P}_{g_{\beta}}\hat{P}_{h_{\alpha}(g)}\boldsymbol{e}_{i} \\
+&amp; = \hat{P}_{g_{\beta}}\sum\limits_{j =
+1}^{|\boldsymbol{H}|}H_{ji}(h_{\alpha(g)})\boldsymbol{e}_{j} \\
+\end{aligned}
+\]</span> 注意，此时我们需要将<span
+class="math inline">\(\hat{P}_{g_{\beta}}\)</span>拆分为<span
+class="math inline">\(\hat{P}_{g_{\alpha}}\)</span>所表示的形式。由此即可得到结果。后略。</p>
+</blockquote>
+<p>从证明过程可以得到，诱导表示矩阵为 <span class="math display">\[
+\boldsymbol{G}(g)_{\beta\alpha} =
+G_{\beta\alpha}^{(d)}(g)\boldsymbol{H}(h_{\alpha}(g))
+\]</span> 也就是说，在由子群<span
+class="math inline">\(H\)</span>诱导出的群<span
+class="math inline">\(G\)</span>的诱导表示矩阵中，每个“元素”都是由群<span
+class="math inline">\(G\)</span>的基础表示矩阵<span
+class="math inline">\(\boldsymbol{G}^{(d)}(g)\)</span>和群<span
+class="math inline">\(H\)</span>的表示矩阵<span
+class="math inline">\(H(h_{\alpha}(g))\)</span>得到的。</p>
+<p>我们直接给出几个有关诱导表示的性质</p>
+<blockquote>
+<p>命题（诱导表示的性质）：</p>
+<p>对于群<span class="math inline">\(G\)</span>而言，假设其子群为<span
+class="math inline">\(H\)</span>，那么以下是有关诱导表示的性质：</p>
+<ol type="1">
+<li><p>如果子群<span
+class="math inline">\(H\)</span>的表示为一维恒等表示，那么诱导表示就是群<span
+class="math inline">\(G\)</span>的基础表示。</p></li>
+<li><p>如果子群<span
+class="math inline">\(H\)</span>的表示为正则表示，那么其诱导表示即为<span
+class="math inline">\(G\)</span>的正则表示。</p></li>
+</ol>
+</blockquote>
+<p>以及一个相关的定理</p>
+<blockquote>
+<p>定理（Frobenius倒易定理）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，假设其子群为<span
+class="math inline">\(H\)</span>，那么由<span
+class="math inline">\(H\)</span>诱导出的诱导表示<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>中包含群<span
+class="math inline">\(G\)</span>不可约表示的重数，等于群<span
+class="math inline">\(G\)</span>的不可约表示包含的子群<span
+class="math inline">\(H\)</span>的不可约表示的重数。</p>
+</blockquote>
+<h1 id="特征标表">特征标表</h1>
+<p>所谓特征标表，指的是对于一个特定的群<span
+class="math inline">\(G\)</span>，将其不可约表示、共轭类以及特征标联系起来的一张表。下面以一个例子讲解如何构造特征标表</p>
+<blockquote>
+<p>示例（构造特征标表）：</p>
+<p>我们以群<span
+class="math inline">\(G_{6}^{2}\)</span>为例，其乘法表为</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(G_{6}^{2}\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(a\)</span></th>
+<th><span class="math inline">\(b\)</span></th>
+<th><span class="math inline">\(c\)</span></th>
+<th><span class="math inline">\(d\)</span></th>
+<th><span class="math inline">\(f\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(f\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(f\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(f\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(f\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(f\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(b\)</span></td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(a\)</span></td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>由乘法表可以得到，在群<span
+class="math inline">\(G_{6}^{2}\)</span>中有三个类：<span
+class="math inline">\(\left\{ e \right\}\)</span>、<span
+class="math inline">\(\left\{ d, f\right\}\)</span>、<span
+class="math inline">\(\left\{ a, b,
+c\right\}\)</span>。由于群的不等价的不可约表示的数量等于类的数量，因此有
+<span class="math display">\[
+d_{1}^{2} + d_{2}^{2} + d_{3}^{2} = 6
+\]</span> 其中，<span
+class="math inline">\(d\)</span>表示不等价的不可约表示的维数。不难得到其解为<span
+class="math inline">\((d_{1}, d_{2}, d_{3})^{\mathrm{T}} = (1, 1,
+2)^{\mathrm{T}}\)</span>。所以群<span
+class="math inline">\(G_{6}^{2}\)</span>有3个不等价的不可约表示，并且分别为两种一维表示和一种二维表示。我们将两种一维表示分别记为<span
+class="math inline">\(A_{1}\)</span>和<span
+class="math inline">\(A_{2}\)</span>，将二维表示记为<span
+class="math inline">\(E\)</span>，由此可以得到特征标表的框架</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(G_{6}^{2}\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(3a\)</span></th>
+<th><span class="math inline">\(2d\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_{1}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_{2}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>其中，第一行为每一类的元素代表以及该类的元素数量。我们在表的主体部分填上对应的特征标。首先，<span
+class="math inline">\(A_{1}\)</span>对应的行为平凡表示，也就是所有元素都对应1，因此该行为<span
+class="math inline">\((1, 1, 1)\)</span>。同时，由于<span
+class="math inline">\(e\)</span>的表示为单位矩阵，因此其对应的列为<span
+class="math inline">\((1, 1,
+2)^{\mathrm{T}}\)</span>。我们将其他暂时不知道的部分分别用字母表示，由此可得</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(G_{6}^{2}\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(3a\)</span></th>
+<th><span class="math inline">\(2d\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_{1}\)</span></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_{2}\)</span></td>
+<td>1</td>
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><span class="math inline">\(\beta\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E\)</span></td>
+<td>2</td>
+<td><span class="math inline">\(\gamma\)</span></td>
+<td><span class="math inline">\(\delta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>下面我们介绍两个正交关系式，它们分别表示行之间的正交关系和列之间的正交关系
+<span class="math display">\[
+\left\{\begin{aligned}
+\sum\limits_{g \in G}\chi^{(p)*}(g)\chi^{(q)}(g) &amp; =
+|\boldsymbol{G}|\delta_{pq} \\
+\sum\limits_{p}\chi^{(p)*}(g_{i})\chi^{(p)}(g_{j}) &amp; =
+\dfrac{|\boldsymbol{G}|}{C_{i}}\delta_{ij} \\
+\end{aligned}\right.
+\]</span> 其中，<span class="math inline">\(C_{i}\)</span>为类<span
+class="math inline">\([g_{i}]\)</span>中元素数目。由行正交关系可以得到
+<span class="math display">\[
+1 + 3\alpha + 2\beta = 0
+\]</span> 结合类与群阶数之间的数量关系 <span class="math display">\[
+1 + 3\alpha^{2} + 2\beta^{2} = 6
+\]</span> 以及乘法关系可以解出 <span class="math display">\[
+\left\{
+\begin{aligned}
+\alpha = &amp; -1 \\
+\beta = &amp; 1 \\
+\end{aligned}
+\right.
+\]</span> 同理可得 <span class="math display">\[
+\left\{
+\begin{aligned}
+\gamma = &amp; 0 \\
+\delta = &amp; -1 \\
+\end{aligned}
+\right.
+\]</span> 从而该群的特征标表为</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(G_{6}^{2}\)</span></th>
+<th><span class="math inline">\(e\)</span></th>
+<th><span class="math inline">\(3a\)</span></th>
+<th><span class="math inline">\(2d\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_{1}\)</span></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_{2}\)</span></td>
+<td>1</td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(E\)</span></td>
+<td>2</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h1 id="表示的直积">表示的直积</h1>
+<p>我们将表示的直积为</p>
+<blockquote>
+<p>定义（表示的直积）：</p>
+<p>对于两个群<span class="math inline">\(G_{1}\)</span>和<span
+class="math inline">\(G_{2}\)</span>，假设其阶数分别为<span
+class="math inline">\(n_{1}\)</span>和<span
+class="math inline">\(n_{2}\)</span>，那么其直积<span
+class="math inline">\(G = G_{1}\otimes G_{2}\)</span>为<span
+class="math inline">\(n_{1}n_{2}\)</span>阶的群。令<span
+class="math inline">\(\boldsymbol{G}^{(p)}(G_{1})\)</span>和<span
+class="math inline">\(\boldsymbol{G}^{(p)}(G_{2})\)</span>分别为群<span
+class="math inline">\(G_{1}\)</span>和<span
+class="math inline">\(G_{2}\)</span>的不可约表示，维数分别为<span
+class="math inline">\(d_{1}\)</span>和<span
+class="math inline">\(d_{2}\)</span>，那么其直积 <span
+class="math display">\[
+\boldsymbol{G}^{(p, q)}(g) = \boldsymbol{G}^{(p)}(g_{1}) \otimes
+\boldsymbol{G}^{(p)}(g_{2})
+\]</span> 为直积群<span class="math inline">\(G\)</span>的维数为<span
+class="math inline">\(d_{1}d_{2}\)</span>的不可约表示表示。</p>
+</blockquote>
+<p>其中，矩阵的直积满足 <span class="math display">\[
+(A \otimes B)_{ik, jl} = A_{ij}B_{kl}
+\]</span> 例如，对于两个<span
+class="math inline">\(2\times2\)</span>矩阵，其直积为 <span
+class="math display">\[
+A \otimes B = \begin{bmatrix}
+A_{11}B_{11} &amp; A_{11}B_{12} &amp; A_{12}B_{11} &amp; A_{12}B_{12} \\
+A_{11}B_{21} &amp; A_{11}B_{22} &amp; A_{12}B_{21} &amp; A_{12}B_{22} \\
+A_{21}B_{11} &amp; A_{21}B_{12} &amp; A_{22}B_{11} &amp; A_{22}B_{12} \\
+A_{21}B_{21} &amp; A_{21}B_{22} &amp; A_{22}B_{21} &amp; A_{22}B_{22} \\
+\end{bmatrix} = \begin{bmatrix}
+A_{11}\boldsymbol{B} &amp; A_{12}\boldsymbol{B} \\
+A_{12}\boldsymbol{B} &amp; A_{22}\boldsymbol{B} \\
+\end{bmatrix}
+\]</span> 下面讨论有关群<span
+class="math inline">\(G\)</span>的两个不可约表示的直积。我们有如下定理</p>
+<blockquote>
+<p>定理：</p>
+<p>假设<span
+class="math inline">\(\boldsymbol{G}^{(p)}(G)\)</span>和<span
+class="math inline">\(\boldsymbol{G}^{(q)}(G)\)</span>是群<span
+class="math inline">\(G\)</span>的两个不可约酉表示，维数分别为<span
+class="math inline">\(d_{p}\)</span>和<span
+class="math inline">\(d_{q}\)</span>，那么这两个不可约表示的直积 <span
+class="math display">\[
+\boldsymbol{G}^{(p, q)}(g) = \boldsymbol{G}^{(p)}(g) \otimes
+\boldsymbol{G}^{(q)}(g),\forall g \in G  
+\]</span> 是群<span class="math inline">\(G\)</span>的维数为<span
+class="math inline">\(d_{p}d_{q}\)</span>的酉表示，并且一般是可约表示。</p>
+</blockquote>
+<h1 id="clebsch-gorden系数">Clebsch-Gorden系数</h1>
+<blockquote>
+<p>定义（Clebsch-Gorden系数）：</p>
+<p>对于群<span
+class="math inline">\(G\)</span>，假设负载不可约表示的向量空间分别为<span
+class="math inline">\(U\)</span>、<span
+class="math inline">\(V\)</span>，相应的基为<span
+class="math inline">\(\left\{ \boldsymbol{e}_{i}^{p} | i = 1, 2, \dots,
+d_{p}\right\}\)</span>和<span class="math inline">\(\left\{
+\boldsymbol{e}_{j}^{q} | j = 1, 2, \dots,
+d_{q}\right\}\)</span>，那么这两个空间的直积空间的基为二者的张量积 <span
+class="math display">\[
+\left\{ \boldsymbol{w}_{ij} | \boldsymbol{w}_{ij} =
+\boldsymbol{e}_{i}^{p}\otimes\boldsymbol{e}_{j}^{q},\quad i = 1, 2,
+\dots, d_{p},\quad j = 1, 2, \dots, d_{q}\right\}
+\]</span>
+在对表示的直积进行约化同时，相当于对基进行了重新的线性组合。假设约化后的基为
+<span class="math display">\[
+\left\{ \boldsymbol{w}_{l}^{(\lambda)\alpha} | l = 1, 2, \dots,
+d_{\lambda},\quad \alpha = 1, 2, \dots, a_{\lambda} \right\}
+\]</span> 并且其和之前的基之间满足 <span class="math display">\[
+\boldsymbol{w}_{l}^{(\lambda)\alpha} = \sum\limits_{i, j} \bigg &lt;
+\begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \bigg &gt; \boldsymbol{w}_{ij}
+\]</span> 我们将<span class="math inline">\(\displaystyle \bigg &lt;
+\begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \bigg &gt;\)</span>称为Clebsch-Gorden系数。</p>
+</blockquote>
+<p>其中，<span class="math inline">\(\alpha\)</span>是将表示的直积<span
+class="math inline">\(\boldsymbol{G}^{(p, q)}(g) =
+\boldsymbol{G}^{(p)}(g) \otimes
+\boldsymbol{G}^{(q)}(g)\)</span>约化后，不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(p)}\)</span>的指标。</p>
+<p>Clebsch-Gorden系数满足以下性质：</p>
+<blockquote>
+<p>命题（Clebsch-Gorden系数的性质）：</p>
+<p>以下是几个Clebsch-Gorden系数的性质： 1.
+Clebsch-Gorden系数的复共轭满足 <span class="math display">\[
+\bigg &lt; \begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \bigg &gt; = \bigg &lt;\begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \ \bigg |\  \begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned} \bigg &gt;^{*}
+\]</span> 2. 存在以下正交关系 <span class="math display">\[
+\left\{\begin{aligned}
+&amp; \sum\limits_{\alpha, \lambda, l} \bigg &lt; \begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \bigg &gt; \bigg &lt;\begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \ \bigg |\  \begin{aligned}
+&amp; p &amp; q \\
+&amp; i&#39; &amp; j&#39; \\
+\end{aligned} \bigg &gt; = \delta_{ii&#39;}\delta_{jj&#39;} \\
+&amp; \sum\limits_{i, j} \bigg &lt;\begin{aligned}
+&amp; \lambda &amp; \\
+&amp; l &amp; \\
+\end{aligned}\alpha \ \bigg |\  \begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned} \bigg &gt; \bigg &lt; \begin{aligned}
+&amp; p &amp; q \\
+&amp; i &amp; j \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; \lambda&#39; &amp; \\
+&amp; l&#39; &amp; \\
+\end{aligned}\alpha&#39; \bigg &gt; =
+\delta_{\alpha\alpha&#39;}\delta_{ll&#39;}\delta_{\lambda\lambda&#39;}
+\end{aligned}\right.
+\]</span></p>
+</blockquote>
+<h1 id="投影算符">投影算符</h1>
+<p>在介绍投影算符之前，我们补充有关同构线性算符群的内容</p>
+<h2 id="同构线性算符群">同构线性算符群</h2>
+<p>对于群<span class="math inline">\(G\)</span>，我们可以定义如下映射
+<span class="math display">\[
+\hat{P} : G \to \hat{P}_{G},\quad g \mapsto \hat{P}_{g}
+\]</span> 并将<span
+class="math inline">\(\hat{P}_{g}\)</span>组成的集合记为<span
+class="math inline">\(\hat{P}_{G} = \left\{ \hat{P}_{g} | \forall g \in
+G \right\}\)</span>。如果该映射是同态映射，那么就有 <span
+class="math display">\[
+\hat{P}_{g_{1}g_{2}} = \hat{P}_{g_{1}}\hat{P}_{g_{2}}
+\]</span> 而如果我们假定此映射的同态核为<span
+class="math inline">\(\left\{ e
+\right\}\)</span>，那么该同态映射为同构映射。</p>
+<p>在量子力学中，我们遇到的很多算符都是Hilbert空间的线性算符。对于线性算符<span
+class="math inline">\(\hat{P}\)</span>，有 <span class="math display">\[
+\hat{P}(c_{1}\psi_{1}(\boldsymbol{x}) + c_{2}\psi_{2}(\boldsymbol{x})) =
+c_{1}\hat{P}\psi_{1}(\boldsymbol{x}) +
+c_{2}\hat{P}\psi_{2}(\boldsymbol{x})
+\]</span> 其中，<span class="math inline">\(c_{1}\)</span>和<span
+class="math inline">\(c_{2}\)</span>为常数，而<span
+class="math inline">\(\psi_{1}(\boldsymbol{x})\)</span>和<span
+class="math inline">\(\psi_{2}(\boldsymbol{x})\)</span>为波函数。</p>
+<p>如果我们定义算符<span class="math inline">\(\hat{P}_{g}\)</span>为
+<span class="math display">\[
+\hat{P}_{g}\varPsi(\boldsymbol{x}) = \varPsi(g^{-1}\boldsymbol{x}),\quad
+\boldsymbol{x}&#39; = g\boldsymbol{x}
+\]</span> 那么可以证明这一算符对应的映射<span
+class="math inline">\(\hat{P}:G \to \hat{P}_{G}\)</span>是同构映射。</p>
+<h2 id="三维euclid空间e_3">三维Euclid空间<span
+class="math inline">\(E_{3}\)</span></h2>
+<p>假设在<span class="math inline">\(E_{3}\)</span>中存在一组坐标变换
+<span class="math display">\[
+g_{i}: \boldsymbol{x} \mapsto \boldsymbol{x}&#39;,\quad \boldsymbol{x},
+\boldsymbol{x}&#39; \in E_{3},\quad i = 1, 2, \dots  
+\]</span> 将<span class="math inline">\(\boldsymbol{x}&#39;\)</span>记为
+<span class="math display">\[
+\boldsymbol{x}&#39; = g_{i}(\boldsymbol{x})
+\]</span>
+那么可以得到映射（或者说坐标变换）构成一个群。这个群为三维Euclid空间的线性变换群，我们将其记为
+<span class="math display">\[
+G = \left\{ g_{i} | i = 1, 2, \dots \right\}
+\]</span></p>
+<p>根据前一小节的结论，存在一个与群<span
+class="math inline">\(G\)</span>同构的群，其由线性算符<span
+class="math inline">\(\hat{P}\)</span>定义。该线性算符的定义为 <span
+class="math display">\[
+\hat{P}_{g} \psi(x) = \psi(g^{-1}x),\quad \forall g \in G
+\]</span></p>
+<p>在物理中，算符大部分是作用在Hilbert空间上的线性算符。我们假定内积为
+<span class="math display">\[
+(\phi, \psi) = \int \phi^{*} \psi \mathrm{d} \tau
+\]</span> 如果我们假定<span class="math inline">\(\tilde{\phi} =
+\hat{P}_{g}\phi\)</span>，那么由酉算符的性质可得 <span
+class="math display">\[
+\begin{aligned}
+(\tilde{\phi}, \tilde{\psi}) &amp; = \int \phi^{*}
+\hat{P}_{g}^{\dagger}\hat{P}_{g} \psi \mathrm{d} \tau \\
+&amp; = \int \phi^{*}\psi \mathrm{d} \tau \\
+&amp; = (\phi, \psi) \\
+\end{aligned}
+\]</span>
+也就是说，如果将酉算符同时作用于内积的两个函数，那么内积不变。</p>
+<p>在Hilbert空间中，每一个在算符<span
+class="math inline">\(\hat{P}_{G}\)</span>的作用下不变的子空间<span
+class="math inline">\(H_{i}\)</span> <span class="math display">\[
+\hat{P}_{g}: H_{i} \to H_{i},\quad \forall g \in G
+\]</span> 都负载算符<span
+class="math inline">\(\hat{P}_{G}\)</span>的一个表示。假设<span
+class="math inline">\(\boldsymbol{G}^{(p)}\)</span>是算符<span
+class="math inline">\(\hat{P}_{G}\)</span>的第<span
+class="math inline">\(p\)</span>个不可约表示，负载这一表示的基为<span
+class="math inline">\(\left\{ \boldsymbol{\phi}_{1}^{(p)},
+\boldsymbol{\phi}_{2}^{(p)}, \dots, \boldsymbol{\phi}_{d_{p}}^{(p)}
+\right\}\)</span>。如果这些基对应的函数<span
+class="math inline">\(\phi_{\mu}^{(p)}\)</span>为归一化的，那么有如下定理</p>
+<blockquote>
+<p>定理：</p>
+<p>对于酉算符群，属于不同的不可约表示，或属于同一不可约表示的不同列函数彼此是正交的，即
+<span class="math display">\[
+(\phi_{\mu}^{p}, \phi_{\nu}^{q}) = \delta_{\mu\nu}\delta_{pq}
+\]</span></p>
+</blockquote>
+<h2 id="任意函数按不可约表示基的展开">任意函数按不可约表示基的展开</h2>
+<p>我们直接给出定理</p>
+<blockquote>
+<p>定理：</p>
+<p>如果<span class="math inline">\(\left\{ \boldsymbol{G}^{(1)}(g)
+\right\}\)</span>，<span class="math inline">\(\left\{
+\boldsymbol{G}^{(2)}(g) \right\}\)</span>，<span
+class="math inline">\(\dots\)</span>，<span
+class="math inline">\(\left\{ \boldsymbol{G}^{(r)}(g)
+\right\}\)</span>是算符<span
+class="math inline">\(\hat{P}_{G}\)</span>对应群的所有不等价不可约表示，<span
+class="math inline">\(\left\{ \phi^{(p)}_{\mu}\right\}\)</span>（<span
+class="math inline">\(p = 1, 2, \dots,
+r\)</span>）是对应的归一化基，那么任意的平方可积函数<span
+class="math inline">\(\psi(\boldsymbol{r})\)</span>可以展开为 <span
+class="math display">\[
+\psi(\boldsymbol{r}) = \sum\limits_{p}\sum\limits_{\mu}
+a_{\mu}^{(p)}\phi_{\mu}^{(p)}(\boldsymbol{r})
+\]</span></p>
+</blockquote>
+<h2 id="投影算符-1">投影算符</h2>
+<p>我们先给出投影算符的定义</p>
+<blockquote>
+<p>定义（投影算符）：</p>
+<p>如果<span class="math inline">\(\left\{ \boldsymbol{G}^{(1)}(g)
+\right\}\)</span>，<span class="math inline">\(\left\{
+\boldsymbol{G}^{(2)}(g) \right\}\)</span>，<span
+class="math inline">\(\dots\)</span>，<span
+class="math inline">\(\left\{ \boldsymbol{G}^{(r)}(g)
+\right\}\)</span>是算符<span
+class="math inline">\(\hat{P}_{G}\)</span>对应群的所有不等价不可约表示，<span
+class="math inline">\(\left\{ \phi^{(p)}_{\mu}\right\}\)</span>（<span
+class="math inline">\(p = 1, 2, \dots,
+r\)</span>）是对应的归一化基，那么我们将 <span class="math display">\[
+\hat{O}^{(p)}_{\lambda\mu} = \dfrac{d_{p}}{|G|}\sum\limits_{g \in G}
+G^{(p)}_{\mu\lambda}(g^{-1})\hat{P}_{g}
+\]</span> 定义为得到任意函数<span
+class="math inline">\(\psi\)</span>在分量<span
+class="math inline">\(\phi_{\lambda}^{(p)}\)</span>上投影的投影算符。</p>
+</blockquote>
+<p>由此不难得到 <span class="math display">\[
+\hat{O}^{(p)}_{\mu\nu}\hat{O}^{(p)}_{\lambda\sigma} =
+\delta_{pq}\delta_{\nu\lambda}\hat{O}^{(p)}_{\mu\sigma}
+\]</span></p>
+<p>如果定义特征标投影算符为 <span class="math display">\[
+\begin{aligned}
+\hat{O}^{(p)} &amp; = \sum\limits_{\mu} \hat{O}^{(p)}_{\mu\mu} \\
+&amp; = \dfrac{d_{p}}{|G|}\sum\limits_{g \in G}\chi^{(p)*}(g)\hat{P}_{g}
+\end{aligned}
+\]</span> 那么可得如下性质</p>
+<blockquote>
+<p>命题（特征标投影算符的性质）：</p>
+<p>以下是特征标投影算符的性质： 1. <span class="math display">\[
+\hat{O}^{(p)}\hat{O}^{(q)} = \delta_{pq}\hat{O}^{(p)}
+\]</span> 2. <span class="math display">\[
+\sum\limits_{p}\sum\limits_{\mu}\hat{O}^{(p)}_{\mu\mu} = I
+\]</span> 也就是说，<span
+class="math inline">\(\sum\limits_{p}\sum\limits_{\mu}\hat{O}^{(p)}_{\mu\mu}\)</span>为恒等算符。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/9de67d0e/" title="物理学与群论笔记2——有限群表示论基础">https://vasily-alexievich-korolev.github.io/posts/9de67d0e/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Group-Theory/" rel="tag"># Group Theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/c7bffa72/" rel="prev" title="物理学与群论笔记1——群的基本性质">
+      <i class="fa fa-chevron-left"></i> 物理学与群论笔记1——群的基本性质
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BE%A4%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">群的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">表示的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">等价表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%BA%A6%E8%A1%A8%E7%A4%BA%E5%92%8C%E4%B8%8D%E5%8F%AF%E7%BA%A6%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.3.</span> <span class="nav-text">可约表示和不可约表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E7%BE%A4%E8%A1%A8%E7%A4%BA%E8%AE%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">有限群表示论的一些基本定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.</span> <span class="nav-text">正则表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">基础表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B1%E5%AF%BC%E8%A1%A8%E7%A4%BA"><span class="nav-number">5.</span> <span class="nav-text">诱导表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%A0%87%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">特征标表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E7%9A%84%E7%9B%B4%E7%A7%AF"><span class="nav-number">7.</span> <span class="nav-text">表示的直积</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#clebsch-gorden%E7%B3%BB%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">Clebsch-Gorden系数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">投影算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%9E%84%E7%BA%BF%E6%80%A7%E7%AE%97%E7%AC%A6%E7%BE%A4"><span class="nav-number">9.1.</span> <span class="nav-text">同构线性算符群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4euclid%E7%A9%BA%E9%97%B4e_3"><span class="nav-number">9.2.</span> <span class="nav-text">三维Euclid空间\(E_{3}\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E5%87%BD%E6%95%B0%E6%8C%89%E4%B8%8D%E5%8F%AF%E7%BA%A6%E8%A1%A8%E7%A4%BA%E5%9F%BA%E7%9A%84%E5%B1%95%E5%BC%80"><span class="nav-number">9.3.</span> <span class="nav-text">任意函数按不可约表示基的展开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%AE%97%E7%AC%A6-1"><span class="nav-number">9.4.</span> <span class="nav-text">投影算符</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">47k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:36</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

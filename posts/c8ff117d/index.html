@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了群论在量子力学中的运用，包括使用对称性来减少Schrodinger方程的计算量、微扰对于简并的影响、不可约张量算符、Wigner-Eckart定理的推导、时间反演对称以及其与附加简并的关系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理学与群论笔记3——群论和量子力学">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/c8ff117d/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了群论在量子力学中的运用，包括使用对称性来减少Schrodinger方程的计算量、微扰对于简并的影响、不可约张量算符、Wigner-Eckart定理的推导、时间反演对称以及其与附加简并的关系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-18T15:49:40.558Z">
+<meta property="article:modified_time" content="2024-09-18T15:58:46.294Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Group Theory">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/c8ff117d/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>物理学与群论笔记3——群论和量子力学 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/c8ff117d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物理学与群论笔记3——群论和量子力学
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-18 23:49:40 / 修改时间：23:58:46" itemprop="dateCreated datePublished" datetime="2024-09-18T23:49:40+08:00">2024-09-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index"><span itemprop="name">Mathematics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/Group-Theory/" itemprop="url" rel="index"><span itemprop="name">Group Theory</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了群论在量子力学中的运用，包括使用对称性来减少Schrodinger方程的计算量、微扰对于简并的影响、不可约张量算符、Wigner-Eckart定理的推导、时间反演对称以及其与附加简并的关系。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="schrodinger方程和对称算符">Schrodinger方程和对称算符</h1>
+<p>假设某体系满足不含时Schrodinger方程 <span class="math display">\[
+\hat{H}\psi_{n} = \varepsilon_{n}\psi_{n},\quad n = 1, 2, \dots
+\]</span>
+下面我们来考虑Hamilton量的对称性。我们先给出结论，然后进行说明</p>
+<blockquote>
+<p>定理：</p>
+<p>假设对称群为<span class="math inline">\(G\)</span>，对应的算符为<span
+class="math inline">\(\left\{ \hat{P_{g}} | g \in G
+\right\}\)</span>。如果 <span class="math display">\[
+\hat{H} \hat{P_{g}}\psi_{n} = \varepsilon_{n} \hat{P_{g}}\psi_{n}
+\]</span> 也就是<span
+class="math inline">\(\hat{P_{g}}\psi_{n}\)</span>也是<span
+class="math inline">\(\hat{H}\)</span>的本征值为<span
+class="math inline">\(\varepsilon_{n}\)</span>的本征函数，此时我们称Hamilton量<span
+class="math inline">\(\hat{H}\)</span>在群<span
+class="math inline">\(G\)</span>的作用下不变。那么 <span
+class="math display">\[
+[\hat{P}_{g}, \hat{H}] = 0
+\]</span> 也就是<span
+class="math inline">\(\hat{H}\)</span>与群对应的算符对易。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>注意到 <span class="math display">\[
+\begin{aligned}
+\hat{H} \hat{P_{g}}\psi_{n} &amp; = \varepsilon_{n}\hat{P_{g}} \psi \\
+&amp; = \hat{P_{g}} \varepsilon_{n}\psi_{n} \\
+&amp; = \hat{P_{g}} \hat{H} \psi_{n} \\
+\end{aligned}
+\]</span> 由此可以得出结论。</p>
+</blockquote>
+<p>如果<span
+class="math inline">\(\hat{H}\)</span>与群对应的算符对易，那么还可以写成
+<span class="math display">\[
+\hat{P}_{g}\hat{H} \hat{P}_{g}^{-1} = \hat{H}
+\]</span></p>
+<p>如果考虑到本征函数可能出现简并，那么我们将Schrodinger方程改写为 <span
+class="math display">\[
+\hat{H}\psi_{n\lambda} = \varepsilon_{n}\psi_{n\lambda},\quad \lambda =
+1, 2, \dots, d
+\]</span> 此时简并的<span
+class="math inline">\(d\)</span>个本征函数是线性无关的，并且通过Schmit正交化可以变为相互正交的。因此，算符作用在本征函数上后仍可表示为本征函数的线性组合，即
+<span class="math display">\[
+\hat{P}_{g}\psi_{n} = \sum\limits_{\mu = 1}^{d} \psi_{n\mu}
+G_{\mu\lambda}(g)
+\]</span> 此时<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>即为群<span
+class="math inline">\(G\)</span>的一个<span
+class="math inline">\(d\)</span>维表示，负载这个表示的基为简并的<span
+class="math inline">\(d\)</span>个波函数<span
+class="math inline">\(\psi_{n\mu}\)</span>。所以Hamilton量的本征函数可以负载群<span
+class="math inline">\(G\)</span>的表示。一般来说，这个表示是可约表示，我们可以将其约化为不可约表示的直和
+<span class="math display">\[
+\boldsymbol{G}(g) = \sum\limits_{p}a_{p}\boldsymbol{G}^{(p)}(g)
+\]</span> 其中，<span class="math inline">\(s\)</span>表示只有<span
+class="math inline">\(s\)</span>种不可约表示。由此，针对每个不可约表示，我们可以给出新的基
+<span class="math display">\[
+\left\{ \phi_{\mu\alpha_{p}}^{(p)} \big| p = 1, 2, \dots, s,\quad \mu =
+1, 2,\dots, d_{p},\quad \alpha_{p} = 1, 2, \dots, a_{p} \right\}
+\]</span> 其中，<span
+class="math inline">\(p\)</span>表示这一组基是负载第<span
+class="math inline">\(p\)</span>个<span
+class="math inline">\(\boldsymbol{G}^{(p)}(g)\)</span>不可约表示的，<span
+class="math inline">\(\alpha_{p}\)</span>表示其为<span
+class="math inline">\(a_{p}\)</span>个不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(p)}\)</span>中第<span
+class="math inline">\(\alpha_{p}\)</span>个的基函数，而<span
+class="math inline">\(\mu\)</span>表示这个函数是这一组基中的第<span
+class="math inline">\(\mu\)</span>个。由于本质上这些基函数是原有的<span
+class="math inline">\(d\)</span>个本征函数的线性组合，因此它们在<span
+class="math inline">\(\hat{H}\)</span>下对应的本征值仍然为<span
+class="math inline">\(\varepsilon_{n}\)</span>，并且在数量上满足 <span
+class="math display">\[
+\sum\limits_{i}^{s} a_{i}d_{i} = d
+\]</span>
+同时，由于每个不可约表示都有自己的基函数，因此我们可以将对应每个不可约表示基函数的本征值划为一类。例如，对于<span
+class="math inline">\(\boldsymbol{G}^{(p)}\)</span>而言，其对应的本征值为
+<span class="math display">\[
+\left\{ \varepsilon_{n_{p}}^{(\alpha_{p})} | \alpha_{p} = 1, 2, \dots,
+a_{p}\right\}
+\]</span> 由此可得，不同标记的本征值共有<span
+class="math inline">\(\sum\limits_{p}^{s}a_{p}\)</span>个，而每个本征值的简并度（同一能级对应基函数个数）为<span
+class="math inline">\(d_{p}\)</span>。由此定义正常简并和偶然简并</p>
+<blockquote>
+<p>定义（正常简并与偶然简并）：</p>
+<p>如果一个能级的波函数只负载一个不可约表示，那么我们称该简并为正常简并；反之，如果一个能级的波函数负载了多个不可约表示，那么我们称该简并为偶然简并。</p>
+</blockquote>
+<p>换言之，对于两个能级<span
+class="math inline">\(\varepsilon_{n_{p}}^{(\alpha_{p})} =
+\varepsilon_{n_{q}}^{(\alpha_{q})}\)</span>，如果其满足<span
+class="math inline">\(p =
+q\)</span>，那么我们称这种简并为正常简并，反之为偶然简并。</p>
+<p>不难想到，如果对于某体系不存在偶然简并的情况，那么不同不可约表示对应的能级不可能简并，由此如果一些波函数是简并的，那么它们必然负载一个不可约表示。</p>
+<h1 id="微扰对于简并的影响">微扰对于简并的影响</h1>
+<p>首先，我们来计算跃迁矩阵元<span class="math inline">\(\langle
+\phi_{\mu\alpha_{p}}^{(p)} | \hat{H} |
+\phi_{\nu\beta_{q}}^{(q)}\rangle\)</span>。我们先给出结论，然后给出过程的思路。</p>
+<blockquote>
+<p>命题：</p>
+<p>对于某量子体系，假设其满足如下的不含时Schrodinger方程 <span
+class="math display">\[
+\hat{H}\psi_{n\lambda} = \varepsilon_{n}\psi_{n\lambda},\quad \lambda =
+1, 2, \dots, d
+\]</span> 并且<span class="math inline">\(\hat{H}\)</span>与群<span
+class="math inline">\(G\)</span>对应的算符<span
+class="math inline">\(\left\{ \hat{P}_{g} | g \in G
+\right\}\)</span>对易。我们将<span
+class="math inline">\(g\)</span>对应的表示<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>约化为不可约表示后，假设每个不可约表示对应的基函数为
+<span class="math display">\[
+\left\{ \phi_{\mu\alpha_{p}}^{(p)} \big| p = 1, 2, \dots, s,\quad \mu =
+1, 2,\dots, d_{p},\quad \alpha_{p} = 1, 2, \dots, a_{p} \right\}
+\]</span> 那么有 <span class="math display">\[
+\langle \phi_{\mu\alpha_{p}}^{(p)} | \hat{H} |
+\phi_{\nu\beta_{q}}^{(q)}\rangle =
+\delta_{pq}\delta_{\mu\nu}\dfrac{1}{d_{p}}\sum\limits_{\lambda}\langle
+\phi^{(p)}_{\lambda\alpha_{p}} | \hat{H} | \phi^{(q)}_{\lambda\beta_{p}}
+\rangle
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>在证明时需要注意以下几点： 1. 在证明时需要利用酉算符与单位算符的关系
+2. 由于第一点，对于<span class="math inline">\(\forall g \in
+G\)</span>，结果都是一样的。因此可以通过对<span class="math inline">\(g
+\in G\)</span>求和来使用广义正交定理。</p>
+</blockquote>
+<p>这一命题表明，对于不同不可约表示之间的跃迁，以及同一个不可约表示的不同序号之间的跃迁，跃迁矩阵元一定为0。同时，可以发现跃迁矩阵元的结果与<span
+class="math inline">\(\mu\)</span>无关，因此 <span
+class="math display">\[
+\langle \phi_{\mu\alpha_{p}}^{(p)} | \hat{H} |
+\phi_{\mu\beta_{q}}^{(p)}\rangle =
+\dfrac{1}{d_{p}}\sum\limits_{\lambda}\langle
+\phi^{(p)}_{\lambda\alpha_{p}} | \hat{H} | \phi^{(p)}_{\lambda\beta_{p}}
+\rangle,\quad \mu = 1, 2, \dots, d_{p}
+\]</span></p>
+<p>假如我们给Hamilton量加上一个微扰，那么Hamilton量变为 <span
+class="math display">\[
+\hat{H} = \hat{H}_{0} + \hat{H}&#39;
+\]</span> 如果微扰<span
+class="math inline">\(\hat{H}&#39;\)</span>与<span
+class="math inline">\(\hat{H}_{0}\)</span>具有相同对称性，那么 <span
+class="math display">\[
+\Delta \varepsilon \approx \langle \phi_{\mu\alpha_{p}}^{(p)}
+|\hat{H}&#39;|\phi_{\nu\beta_{q}}^{(q)} \rangle =
+\delta_{pq}\delta_{\mu\nu}\Delta^{(p)}
+\]</span> 因此能级的移动只与<span
+class="math inline">\(p\)</span>，因此属于同一个不可约表示的能级移动是相同的。也就是说，对称微扰有可能消除偶然简并，而不会影响正常简并。</p>
+<p>这表明，加上微扰后体系的对称性下降，同时原本简并的能级现在也可能变得不再简并。如果<span
+class="math inline">\(\hat{H}_{0}\)</span>的对称群为<span
+class="math inline">\(G_{0}\)</span>，那么加上微扰的<span
+class="math inline">\(\hat{H}\)</span>的对称群为<span
+class="math inline">\(G \subset
+G_{0}\)</span>（也就是对称性降低）。如果我们假设负载<span
+class="math inline">\(a_{p}\)</span>个不可约表示<span
+class="math inline">\(G^{(p)}\)</span>的基函数对应的本征值为 <span
+class="math display">\[
+\left\{ \varepsilon_{n_{p}}^{(\alpha_{p})} | \alpha_{p} = 1, 2, \dots,
+a_{p}\right\}
+\]</span> 那么原本偶然简并的两个能级<span
+class="math inline">\(\varepsilon_{n_{p}}^{(\alpha_{p})}\)</span>和<span
+class="math inline">\(\varepsilon_{n_{q}}^{(\alpha_{q})}\)</span>，此时不再是简并能级。</p>
+<p>此外，如果假设<span
+class="math inline">\(G_{0}\)</span>的不可约表示<span
+class="math inline">\(\boldsymbol{G}_{0}^{(p)}\)</span>对于子群<span
+class="math inline">\(G\)</span>为可约表示，并且可以约化为 <span
+class="math display">\[
+\boldsymbol{G}^{(p)}_{0} = \sum\limits_{r}^{t}a_{r}\boldsymbol{G}^{r}
+\]</span> 其中，<span
+class="math inline">\(t\)</span>为不可约表示的种类数。那么按照之前的结论，现在共有<span
+class="math inline">\(\sum\limits_{r}^{t}a_{r}\)</span>个不可约表示，因此对应的能级共有<span
+class="math inline">\(\sum\limits_{r}^{t}a_{r}\)</span>个。</p>
+<h1
+id="使用对称性简化schrodinger方程">使用对称性简化Schrodinger方程</h1>
+<p>考虑Schrodinger方程 <span class="math display">\[
+\hat{H} \psi = \varepsilon \psi
+\]</span> 将<span class="math inline">\(\psi\)</span>展开为 <span
+class="math display">\[
+\psi = \sum\limits_{p}\sum\limits_{\alpha_{p}}\sum\limits_{\mu}
+a_{\mu\alpha_{p}}^{(p)}\phi_{\mu\alpha_{p}}^{(p)}
+\]</span> 将其带入，与<span
+class="math inline">\(\phi_{\nu\beta_{q}}^{(q)}\)</span>内积可得 <span
+class="math display">\[
+\sum\limits_{p}\sum\limits_{\alpha_{p}}\sum\limits_{\mu}
+a_{\mu\alpha_{p}}^{(p)} \left( \langle \phi_{\nu\beta_{q}}^{(q)} |
+\hat{H} | \phi_{\mu\alpha_{p}}^{(p)}\rangle - \varepsilon \langle
+\phi_{\nu\beta_{q}}^{(q)} \phi_{\mu\alpha_{p}}^{(p)}\rangle \right) = 0
+\]</span> 由正交性可得，只有当<span class="math inline">\(p =
+q\)</span>、<span class="math inline">\(\mu =
+\nu\)</span>时括号中才不为0。因此 <span class="math display">\[
+\sum\limits_{\alpha_{q}}a_{\nu\alpha_{q}}^{(q)} \left( \langle
+\phi_{\nu\beta_{q}}^{(q)} | \hat{H} | \phi_{\nu\alpha_{q}}^{(q)}\rangle
+- \varepsilon \langle \phi_{\nu\beta_{q}}^{(q)}
+\phi_{\nu\alpha_{q}}^{(q)}\rangle \right) = 0
+\]</span> 设 <span class="math display">\[
+G_{\alpha\beta}(q,\nu) = \langle \phi_{\nu\beta_{q}}^{(q)} | \hat{H} |
+\phi_{\nu\alpha_{q}}^{(q)}\rangle - \varepsilon \langle
+\phi_{\nu\beta_{q}}^{(q)} \phi_{\nu\alpha_{q}}^{(q)}\rangle
+\]</span> 那么 <span class="math display">\[
+\sum\limits_{\alpha_{a}}a_{\nu\alpha_{q}}^{(q)} G_{q\nu} = 0
+\]</span> 上式是通过与<span
+class="math inline">\(\phi_{\nu\beta_{q}}^{(q)}\)</span>内积得到的。不难看出，对于所有的<span
+class="math inline">\(\phi_{\nu\beta_{q}}^{(q)}\)</span>，做内积都应得到相同的结果（也就是0）。因此我们对<span
+class="math inline">\(\nu\)</span>与<span
+class="math inline">\(q\)</span>求和依然可以得到0。 <span
+class="math display">\[
+\sum\limits_{q}\sum\limits_{\nu}\sum\limits_{\alpha_{a}}a_{\nu\alpha_{q}}^{(q)}
+G_{\alpha\beta}(q,\nu) = 0
+\]</span> 如果我们将所有的<span
+class="math inline">\(a_{\nu\alpha_{q}}^{(q)}\)</span>组成一个向量<span
+class="math inline">\(\boldsymbol{a}\)</span>，将<span
+class="math inline">\(G_{\alpha\beta}(q,\nu)\)</span>组成位于<span
+class="math inline">\((\alpha_{q}, \beta_{q})\)</span>元素的矩阵<span
+class="math inline">\(\boldsymbol{G}\)</span>，那么上式变为 <span
+class="math display">\[
+\boldsymbol{G} \boldsymbol{a} = 0
+\]</span> 其有非零解的条件为 <span class="math display">\[
+\det \boldsymbol{G} = 0
+\]</span> 由于<span
+class="math inline">\(\boldsymbol{G}\)</span>可以表示为分块矩阵 <span
+class="math display">\[
+\boldsymbol{G} = \begin{bmatrix}
+\boldsymbol{G}(1, 1) &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; 0 &amp;
+\dots \\
+0 &amp; \boldsymbol{G}(1, 2) &amp; \dots &amp; 0 &amp; 0 &amp; 0 &amp;
+\dots \\
+\vdots &amp; \vdots &amp;  &amp; \vdots &amp; \vdots &amp; \vdots &amp;
+\\
+0 &amp; 0 &amp; \dots &amp; \boldsymbol{G}(1, d_{1}) &amp; 0 &amp; 0
+&amp; \dots \\
+0 &amp; 0 &amp; \dots &amp; 0 &amp; \boldsymbol{G}(2, 1) &amp; 0 &amp;
+\dots \\
+0 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; \boldsymbol{G}(2, 2) &amp;
+\dots \\
+\vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots &amp; \vdots &amp;
+\\
+\end{bmatrix}
+\]</span> 由行列式性质不难得到 <span class="math display">\[
+\prod\limits_{q = 1}^{s}\prod\limits_{\nu = 1}^{d_{q}} \det
+\boldsymbol{G}(q, \nu) = 0
+\]</span> 由于相同不可约表示对应的能级相同，因此只用求解 <span
+class="math display">\[
+\prod\limits_{q = 1}^{s}\det \boldsymbol{G}(q, 1) = 0
+\]</span> 其中，1也可以换成其他符号。要求解该方程，只需对每个<span
+class="math inline">\(q\)</span>求解<span
+class="math inline">\(\det\boldsymbol{G}(q, 1) = 0\)</span>即可。</p>
+<h1
+id="不可约张量算符和wigner-eckart定理">不可约张量算符和Wigner-Eckart定理</h1>
+<p>我们将不可约张量算符定义为</p>
+<blockquote>
+<p>定义（不可约张量算符）：</p>
+<p>对于一组算符 <span class="math display">\[
+\left\{ \hat{J}^{(p)}_{\lambda} | \lambda = 1, 2, \dots, d_{p}\right\}
+\]</span> 如果与群<span
+class="math inline">\(G\)</span>对应的算符群<span
+class="math inline">\(\hat{P}_{G}\)</span>满足 <span
+class="math display">\[
+\hat{P}_{g}\hat{J}^{(p)}_{\lambda}\hat{P}_{g}^{-1} = \sum\limits_{\mu =
+1}^{d_{p}}\hat{J}_{\mu}^{(p)}\boldsymbol{G}_{\mu\lambda}(g),\quad
+\forall g \in G
+\]</span> 那么我们称这一组算符为不可约张量算符。</p>
+</blockquote>
+<p>如果<span class="math inline">\(\left\{
+\phi_{\mu}^{(q)}\right\}\)</span>是负载不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(q)}(g)\)</span>的基，那么有 <span
+class="math display">\[
+\hat{P}_{g} \hat{J}_{\lambda}^{(p)} \phi_{\mu}^{(q)} =
+\sum\limits_{\lambda&#39;, \mu&#39;}
+\hat{J}_{\lambda&#39;}^{(p)}\phi_{\mu&#39;}^{(q)} \left(
+\boldsymbol{G}^{(p)}(g) \otimes
+\boldsymbol{G}^{(q)}(g)\right)_{\lambda&#39;\mu&#39;, \lambda\mu}
+\]</span> 也就是说，<span class="math inline">\(\left\{
+\hat{J}_{\lambda}^{(p)}
+\phi_{\mu}^{(q)}\right\}\)</span>负载了两个表示的直积<span
+class="math inline">\(\boldsymbol{G}^{(p)}(g) \otimes
+\boldsymbol{G}^{(q)}(g)\)</span>。一般情况下，这种表示是可约表示。假设约化后的基为
+<span class="math display">\[
+\left\{ \psi_{\mu}^{(r)\alpha} | \nu = 1, 2, \dots, d_{r},\quad \alpha =
+1, 2, \dots, a_{r} \right\}
+\]</span> 其可以用原来的基线性组合为 <span class="math display">\[
+\psi_{\nu}^{(r)\alpha} = \sum\limits_{\lambda, \mu} \bigg &lt;
+\begin{aligned}
+&amp; p &amp; q \\
+&amp; \lambda &amp; \mu \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; r &amp; \\
+&amp; \nu &amp; \\
+\end{aligned}\alpha \bigg &gt; \hat{J}^{(p)}_{\lambda}\phi_{\mu}^{(q)}
+\]</span> 由此，我们直接给出Wigner-Eckart定理，然后给出证明思路</p>
+<blockquote>
+<p>定理（Wigner-Eckart定理）：</p>
+<p>对于一组不可约张量算符<span class="math inline">\(\left\{
+\hat{J}_{\lambda}^{(p)} | \lambda = 1, 2, \dots,
+d_{p}\right\}\)</span>，其与负载不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(q)}(g)\)</span>的基<span
+class="math inline">\(\left\{
+\phi_{\mu}^{(q)}\right\}\)</span>的内积满足 <span
+class="math display">\[
+\langle \phi_{\sigma}^{(s)\gamma} | \hat{J}_{\lambda}^{(p)} |
+\phi_{\mu}^{(q)\varepsilon} \rangle = \sum\limits_{\alpha} \bigg &lt;
+\begin{aligned}
+&amp; p &amp; q \\
+&amp; \lambda &amp; \mu \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; r &amp; \\
+&amp; \nu &amp; \\
+\end{aligned}\alpha \bigg &gt;^{*}\delta_{sr}\delta_{\sigma\nu} \left[
+\dfrac{1}{l_{q}}\sum\limits_{\mu&#39;}\langle
+\phi_{\mu&#39;}^{(s)\gamma} | \psi_{\mu&#39;}^{(r)}\alpha\rangle\right]
+\]</span> 其中，<span
+class="math inline">\(l_{q}\)</span>表示不可约表示<span
+class="math inline">\(\boldsymbol{G}^{(q)}(g)\)</span>的维数，中括号内部的部分仅与<span
+class="math inline">\(s\)</span>和<span
+class="math inline">\(\alpha\)</span>相关。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>要证明这一定理，需要先证明如下命题 <span class="math display">\[
+\langle \phi^{(p)\alpha}_{\mu} | \phi^{(q)\beta}_{\nu} \rangle =
+\dfrac{1}{l_{p}}\delta_{pq}\delta_{\mu\nu} \sum\limits_{\mu&#39;}
+\langle \phi^{(p)\alpha}_{\mu&#39;} | \phi^{(q)\beta}_{\mu&#39;} \rangle
+\]</span> 对于这一命题，我们只需要利用算符<span
+class="math inline">\(\hat{P}_{g}\)</span>为酉算符的性质，将上式左端变形为
+<span class="math display">\[
+\langle \phi^{(p)\alpha}_{\mu} | \phi^{(q)\beta}_{\nu} \rangle = \langle
+\phi^{(p)\alpha}_{\mu} | \hat{P}^{\dagger}_{g}\hat{P}_{g} |
+\phi^{(q)\beta}_{\nu} \rangle
+\]</span> 然后凑广义正交定理 <span class="math display">\[
+\begin{aligned}
+\langle \phi^{(p)\alpha}_{\mu} | \hat{P}^{\dagger}_{g}\hat{P}_{g} |
+\phi^{(q)\beta}_{\nu} \rangle &amp; = \dfrac{1}{|G|}\sum\limits_{g \in
+G} \langle \phi^{(p)\alpha}_{\mu} | \hat{P}^{\dagger}_{g}\hat{P}_{g} |
+\phi^{(q)\beta}_{\nu} \rangle \\
+&amp; = \dfrac{1}{|G|} \sum\limits_{g \in G} \left[ \left(
+\sum\limits_{\mu&#39;} \langle \phi^{(p)\alpha}_{\mu&#39;} |
+G_{\mu&#39;\mu}^{(p)*}(g) \right) \left( \sum\limits_{\nu&#39;}
+G_{\nu&#39;\nu}^{(q)}(g) | \phi^{(q)\beta}_{\nu} \rangle \right) \right]
+\\
+&amp; = \sum\limits_{\mu&#39;}\sum\limits_{\nu&#39;} \left[ \langle
+\phi^{(p)\alpha}_{\mu&#39;} | \phi^{(q)\beta}_{\nu} \rangle \left(
+\dfrac{1}{|G|} \sum\limits_{g \in G}  G_{\mu&#39;\mu}^{(p)*}(g)
+G_{\nu&#39;\nu}^{(q)}(g) \right) \right] \\
+&amp; = \sum\limits_{\mu&#39;}\sum\limits_{\nu&#39;} \left[
+\dfrac{\delta_{pq}\delta_{\mu\nu}\delta_{\mu&#39;\nu&#39;}}{l_{p}}\langle
+\phi^{(p)\alpha}_{\mu&#39;} | \phi^{(q)\beta}_{\nu} \rangle \right] \\
+&amp; = \dfrac{1}{l_{p}}\delta_{pq}\delta_{\mu\nu}
+\sum\limits_{\mu&#39;} \langle \phi^{(p)\alpha}_{\mu&#39;} |
+\phi^{(q)\beta}_{\mu&#39;} \rangle \\
+\end{aligned}
+\]</span>
+由此我们证明了这一命题。由于具体的函数形式对上式没有影响，有影响的是求和标签，因此
+<span class="math display">\[
+\langle \phi^{(p)\alpha}_{\mu} | \hat{P}^{\dagger}_{g}\hat{P}_{g} |
+\psi^{(q)\beta}_{\nu} \rangle =
+\dfrac{1}{l_{p}}\delta_{pq}\delta_{\mu\nu} \sum\limits_{\mu&#39;}
+\langle \phi^{(p)\alpha}_{\mu&#39;} | \psi^{(q)\beta}_{\mu&#39;} \rangle
+\]</span> 在此基础上，我们有 <span class="math display">\[
+\begin{aligned}
+\langle \phi_{\sigma}^{(s)\gamma} | \hat{J}_{\lambda}^{(p)} |
+\phi_{\mu}^{(q)}\varepsilon \rangle &amp; = \sum\limits_{r, \nu, \alpha}
+\bigg &lt; \begin{aligned}
+&amp; p &amp; q \\
+&amp; \lambda &amp; \mu \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; r &amp; \\
+&amp; \nu &amp; \\
+\end{aligned}\alpha \bigg &gt;^{*} \langle \phi_{\sigma}^{(s)\gamma} |
+\phi_{\nu}^{(r)\alpha} \rangle \\
+&amp; = \sum\limits_{r, \nu, \alpha, \mu&#39;} \bigg &lt;
+\begin{aligned}
+&amp; p &amp; q \\
+&amp; \lambda &amp; \mu \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; r &amp; \\
+&amp; \nu &amp; \\
+\end{aligned}\alpha \bigg &gt;^{*} \dfrac{1}{l_{p}}
+\delta_{sr}\delta_{\sigma\nu} \langle \phi_{\mu&#39;}^{(s)\gamma} |
+\psi_{\mu&#39;}^{(r)\alpha} \rangle \\
+&amp; = \sum\limits_{\alpha} \bigg &lt; \begin{aligned}
+&amp; p &amp; q \\
+&amp; \lambda &amp; \mu \\
+\end{aligned}\ \bigg |\  \begin{aligned}
+&amp; r &amp; \\
+&amp; \nu &amp; \\
+\end{aligned}\alpha \bigg &gt;^{*}\delta_{sr}\delta_{\sigma\nu} \left[
+\dfrac{1}{l_{q}}\sum\limits_{\mu&#39;}\langle
+\phi_{\mu&#39;}^{(s)\gamma} | \psi_{\mu&#39;}^{(r)}\alpha\rangle\right]
+\end{aligned}
+\]</span></p>
+</blockquote>
+<h1 id="实表示">实表示</h1>
+<p>假设<span class="math inline">\(\boldsymbol{G}(G)\)</span>是群<span
+class="math inline">\(G\)</span>的表示，那么<span
+class="math inline">\(\boldsymbol{G}^{*}(G)\)</span>也是群<span
+class="math inline">\(G\)</span>的表示。针对这两个表示之间的关系，我们给出实表示的定义</p>
+<blockquote>
+<p>定义（实表示）：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果其表示<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>与<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>等价，并且都等价于一个实数表示，那么我们称这样的表示为实表示。</p>
+</blockquote>
+<p>可以用如下的定理来判断一个表示是否为实表示</p>
+<blockquote>
+<p>定理：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果其表示<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>与<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>为等价的不可约表示，即<span
+class="math inline">\(\exists \boldsymbol{C}\)</span>，使得 <span
+class="math display">\[
+\boldsymbol{G}^{*}(g) =
+\boldsymbol{C}\boldsymbol{G}(g)\boldsymbol{C}^{-1},\forall g \in G
+\]</span> 那么<span class="math inline">\(\boldsymbol{C}\)</span>满足
+<span class="math display">\[
+\boldsymbol{C}^{\mathrm{T}} = \pm \boldsymbol{C}
+\]</span> 如果<span class="math inline">\(\boldsymbol{C}^{\mathrm{T}} =
+\boldsymbol{C}\)</span>，那么<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>为实表示，反之为非实表示</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>对定义式两边取复共轭，然后由Schur引理可得 <span
+class="math display">\[
+\boldsymbol{C}^{*}\boldsymbol{C} = \lambda \boldsymbol{I}
+\]</span> 假设<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>是酉矩阵，那么根据同样的思路可得
+<span class="math display">\[
+\boldsymbol{C}^{\dagger}\boldsymbol{C} = \lambda&#39;\boldsymbol{I}
+\]</span> 由此可得 <span class="math display">\[
+|\det \boldsymbol{C}|^{2} = \lambda^{d} = \lambda&#39;^{d}
+\]</span> 由此 <span class="math display">\[
+\boldsymbol{C}^{\dagger}\boldsymbol{C} = \pm\boldsymbol{C}^{*}
+\boldsymbol{C}
+\]</span> 即 <span class="math display">\[
+\boldsymbol{C}^{\mathrm{T}} = \pm \boldsymbol{C}
+\]</span></p>
+</blockquote>
+<p>实表示和特征标之间的关系为</p>
+<blockquote>
+<p>定理：</p>
+<p>对于群<span class="math inline">\(G\)</span>，如果<span
+class="math inline">\(\chi_{g}\)</span>是不可约表示<span
+class="math inline">\(\boldsymbol{G}(g)\)</span>的特征标，那么 <span
+class="math display">\[
+\sum\limits_{g \in G} \chi(g^{2}) = \left\{\begin{aligned}
+&amp; n,\quad \text{$\boldsymbol{G}(g)$是实表示} \\
+&amp; 0,\quad \text{$\boldsymbol{G}(g)$和$\boldsymbol{G}^{*}(g)$不等价}
+\\
+&amp; -n,\quad
+\text{$\boldsymbol{G}(g)$和$\boldsymbol{G}^{*}(g)$等价，但不是实表示} \\
+\end{aligned}\right.
+\]</span></p>
+</blockquote>
+<h1 id="时间反演对称和附加简并">时间反演对称和附加简并</h1>
+<h2 id="时间反演对称">时间反演对称</h2>
+<p>如果物理量具有时间反演对称性，那么相反的物理过程也是可能的物理过程。在时间反演变换下有
+<span class="math display">\[
+\left\{\begin{aligned}
+\boldsymbol{r} &amp; \to \boldsymbol{r} \\
+\boldsymbol{p} &amp; \to -\boldsymbol{p} \\
+\end{aligned}\right.
+\]</span> 由于Hamilton算符为 <span class="math display">\[
+\hat{H} = \dfrac{\hat{\boldsymbol{p}}^{2}}{2m} + V(\boldsymbol{r})
+\]</span> 那么显然Hamilton算符在时间反演操作下是不变的。</p>
+<p>不同自旋的粒子在时间反演下的表现不同。我们首先考虑自旋为0的粒子。这样的粒子满足下面的Schrodinger方程
+<span class="math display">\[
+\mathrm{i}\hbar\dfrac{\partial}{\partial t}\psi(\boldsymbol{r}, t) =
+\hat{H}\psi(\boldsymbol{r}, t)
+\]</span> 作变换<span class="math inline">\(t\to
+-t\)</span>，然后同时取复共轭，接着利用Hamilton算符的不变性，并假设
+<span class="math display">\[
+\hat{T}\psi(\boldsymbol{r}, t) = \psi^{*}(\boldsymbol{r}, -t)
+\]</span> 由此可得 <span class="math display">\[
+\mathrm{i}\hbar \dfrac{\partial}{\partial t}\hat{T}\psi(\boldsymbol{r},
+t) = \hat{H}\hat{T}\psi(\boldsymbol{r}, t)
+\]</span></p>
+<p>与通常的算符不同，时间反演算符是反线性算符，其满足 <span
+class="math display">\[
+\hat{T}(c_{1}\psi_{1} + c_{2}\psi_{2}) = c_{1}^{*}\hat{T}\psi_{1} +
+c_{2}^{*}\hat{T}\psi_{2}
+\]</span></p>
+<p>对于不含时Schrodinger方程 <span class="math display">\[
+\hat{H}\psi(\boldsymbol{r}) = E\psi(\boldsymbol{r})
+\]</span> 如果Hamilton具有时间反演对称，也就是<span
+class="math inline">\(\hat{H}\hat{T} = \hat{T}\hat{H}\)</span>，那么
+<span class="math display">\[
+\hat{H}\hat{T}\psi(\boldsymbol{r}) = \hat{T}\hat{H}\psi(\boldsymbol{r})
+= E\hat{T}\psi(\boldsymbol{r})
+\]</span> 这表明，<span
+class="math inline">\(\hat{T}\psi(\boldsymbol{r})\)</span>也是满足Schrodinger方程的物理状态。</p>
+<p>此外，如果我们假设了<span class="math inline">\(\psi(\boldsymbol{r},
+t)\)</span>可以通过分离变量的方式表示为 <span class="math display">\[
+\psi(\boldsymbol{r}, t) =
+\psi(\boldsymbol{r})\mathrm{e}^{-\frac{\mathrm{i} E t}{\hbar}}
+\]</span> 那么两边同时取复共轭，并作变换<span class="math inline">\(t
+\to -t\)</span>可得 <span class="math display">\[
+\hat{T} \psi(\boldsymbol{r}, t) = \psi^{*}(\boldsymbol{r}, -t) =
+\psi^{*}(\boldsymbol{r}) \mathrm{e}^{-\frac{\mathrm{i} E t}{\hbar}}
+\]</span> 由此可得 <span class="math display">\[
+\hat{T}\psi(\boldsymbol{r}) = \psi^{*}(\boldsymbol{r})
+\]</span> 从而 <span class="math display">\[
+\hat{T}^{2}\psi(\boldsymbol{r}) = \psi(\boldsymbol{r})
+\]</span> 这表明，对于自旋为0的粒子，<span
+class="math inline">\(\hat{T}^{2}\)</span>为恒等算符。</p>
+<p>对于自旋为<span
+class="math inline">\(\dfrac{1}{2}\)</span>的粒子，研究这一体系需要使用Dirac方程。由于笔者还没有学习这一部分，因此略去推导过程，直接给出结论：对于自旋为<span
+class="math inline">\(\dfrac{1}{2}\)</span>的粒子，<span
+class="math inline">\(\hat{T}^{2}\)</span>不再是恒等算符。</p>
+<h2 id="时间反演对称与附加简并的联系">时间反演对称与附加简并的联系</h2>
+<p>附加简并指的是由于时间反演对称而产生的额外的简并度，或者说时间反演算符作用到原本的基函数上后，得到了一组新的简并函数。下面我们直接给出结论</p>
+<blockquote>
+<p>定理（时间反演对称导致的附加简并）：</p>
+<p>在某量子体系中，假设某一能级为<span
+class="math inline">\(d\)</span>重简并的，<span
+class="math inline">\(\left\{ \psi_{\mu}
+\right\}\)</span>为相对应的本征函数。假设这些本征函数可以负载满足时间反演对称的群<span
+class="math inline">\(G\)</span>的不可约表示<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>，那么我们将时间反演算符作用于本征函数集合产生的新集合<span
+class="math inline">\(\left\{ \hat{T} \psi_{\mu}
+\right\}\)</span>负载的不可约表示称为<span
+class="math inline">\(\boldsymbol{G}(G)^{*}\)</span>。由此 1. 如果<span
+class="math inline">\(\boldsymbol{G}(G)\)</span>与<span
+class="math inline">\(\boldsymbol{G}(G)^{*}\)</span>不等价，那么体系是<span
+class="math inline">\(2d\)</span>重简并的，也就是时间反演对称会产生附加简并。
+2. 如果<span class="math inline">\(\boldsymbol{G}(G) =
+\boldsymbol{G}(G)^{*}\)</span>是实表示，那么 1.
+对于自旋为0的粒子，时间反演对称不产生附加简并 2. 对于自旋为<span
+class="math inline">\(\dfrac{1}{2}\)</span>的粒子，体系是<span
+class="math inline">\(2d\)</span>重简并的，也就是时间反演对称会产生附加简并。
+3. 如果<span class="math inline">\(\boldsymbol{G}(G)\)</span>与<span
+class="math inline">\(\boldsymbol{G}(G)^{*}\)</span>等价，但不是实表示，那么
+1. 对于自旋为0的粒子，体系是<span
+class="math inline">\(2d\)</span>重简并的，也就是时间反演对称会产生附加简并。
+2. 对于自旋为<span
+class="math inline">\(\dfrac{1}{2}\)</span>的粒子，时间反演对称不产生附加简并。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/c8ff117d/" title="物理学与群论笔记3——群论和量子力学">https://vasily-alexievich-korolev.github.io/posts/c8ff117d/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Group-Theory/" rel="tag"># Group Theory</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/9de67d0e/" rel="prev" title="物理学与群论笔记2——有限群表示论基础">
+      <i class="fa fa-chevron-left"></i> 物理学与群论笔记2——有限群表示论基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#schrodinger%E6%96%B9%E7%A8%8B%E5%92%8C%E5%AF%B9%E7%A7%B0%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">Schrodinger方程和对称算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%89%B0%E5%AF%B9%E4%BA%8E%E7%AE%80%E5%B9%B6%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">2.</span> <span class="nav-text">微扰对于简并的影响</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%AE%80%E5%8C%96schrodinger%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">使用对称性简化Schrodinger方程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E7%BA%A6%E5%BC%A0%E9%87%8F%E7%AE%97%E7%AC%A6%E5%92%8Cwigner-eckart%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">不可约张量算符和Wigner-Eckart定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E8%A1%A8%E7%A4%BA"><span class="nav-number">5.</span> <span class="nav-text">实表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0%E5%92%8C%E9%99%84%E5%8A%A0%E7%AE%80%E5%B9%B6"><span class="nav-number">6.</span> <span class="nav-text">时间反演对称和附加简并</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0"><span class="nav-number">6.1.</span> <span class="nav-text">时间反演对称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0%E4%B8%8E%E9%99%84%E5%8A%A0%E7%AE%80%E5%B9%B6%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-number">6.2.</span> <span class="nav-text">时间反演对称与附加简并的联系</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">52k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:52</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

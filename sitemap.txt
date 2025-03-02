@@ -1,3 +1,4 @@
+https://vasily-alexievich-korolev.github.io/posts/3352eca2/
 https://vasily-alexievich-korolev.github.io/posts/b5972983/
 https://vasily-alexievich-korolev.github.io/posts/c8ff117d/
 https://vasily-alexievich-korolev.github.io/posts/9de67d0e/
@@ -29,6 +30,7 @@ https://vasily-alexievich-korolev.github.io/tags/Summary/
 https://vasily-alexievich-korolev.github.io/tags/Test/
 https://vasily-alexievich-korolev.github.io/tags/Marxism/
 https://vasily-alexievich-korolev.github.io/tags/Article/
+https://vasily-alexievich-korolev.github.io/tags/Classical-Mechanics/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
 https://vasily-alexievich-korolev.github.io/categories/Computer-Science/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Real-Analysis/
@@ -41,3 +43,5 @@ https://vasily-alexievich-korolev.github.io/categories/Mathematics/Linear-Algebr
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/
 https://vasily-alexievich-korolev.github.io/categories/Chemistry/Quantum-Chemistry/
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/Dialectics-of-Nature/
+https://vasily-alexievich-korolev.github.io/categories/Physics/
+https://vasily-alexievich-korolev.github.io/categories/Physics/Classical-Mechanics/

@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。">
+  <meta name="description" content="本文主要介绍了理论力学中有关d&#39;Alembert原理的相关内容，包括位形与位置的不同、约束的相关概念、虚功原理以及d&#39;Alembert原理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简述进制转换原理">
-<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/index.html">
+<meta property="og:title" content="d&#39;Alembert原理——经典力学笔记1">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/3352eca2/index.html">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
-<meta property="og:description" content="本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。">
+<meta property="og:description" content="本文主要介绍了理论力学中有关d&#39;Alembert原理的相关内容，包括位形与位置的不同、约束的相关概念、虚功原理以及d&#39;Alembert原理。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-08T09:56:20.059Z">
-<meta property="article:modified_time" content="2024-03-08T10:00:57.573Z">
+<meta property="article:published_time" content="2025-03-02T14:34:54.630Z">
+<meta property="article:modified_time" content="2025-03-02T14:43:32.510Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
-<meta property="article:tag" content="Computer Science">
-<meta property="article:tag" content="Others">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Classical Mechanics">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/">
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/3352eca2/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>简述进制转换原理 | Vasily's Blog</title>
+  <title>d'Alembert原理——经典力学笔记1 | Vasily's Blog</title>
   
 
 
@@ -168,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/3352eca2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          简述进制转换原理
+          d'Alembert原理——经典力学笔记1
         </h1>
 
         <div class="post-meta">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-03-08 17:56:20 / 修改时间：18:00:57" itemprop="dateCreated datePublished" datetime="2024-03-08T17:56:20+08:00">2024-03-08</time>
+              <time title="创建时间：2025-03-02 22:34:54 / 修改时间：22:43:32" itemprop="dateCreated datePublished" datetime="2025-03-02T22:34:54+08:00">2025-03-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -200,11 +200,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Science/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+                  <a href="/categories/Physics/Classical-Mechanics/" itemprop="url" rel="index"><span itemprop="name">Classical Mechanics</span></a>
                 </span>
             </span>
 
@@ -221,16 +221,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>8 分钟</span>
             </span>
-            <div class="post-description">本文简述了整数和小数的进制转换原理。整数部分包括十进制向k进制，以及k进制向十进制转换；小数部分仅包含十进制向k进制转换。</div>
+            <div class="post-description">本文主要介绍了理论力学中有关d'Alembert原理的相关内容，包括位形与位置的不同、约束的相关概念、虚功原理以及d'Alembert原理。</div>
 
         </div>
       </header>
@@ -241,117 +241,252 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="整数的进制转换">整数的进制转换</h1>
-<h2 id="十进制向k进制转换">十进制向<span
-class="math inline">\(k\)</span>进制转换</h2>
-<p>为了考虑<span
-class="math inline">\(k\)</span>进制的本质，我们先来思考这样一个问题：</p>
-<blockquote>
-<p>当我们有一大堆苹果时，我们如何数出它们的数量？</p>
-</blockquote>
-<p>我们当然可以一个一个数，每数一个就发明一个数字记下来。这样的话，当我们有几百个苹果的时候，可能相对于数苹果，我们花在发明新的计数符号上的时间更多。为了避免这种情况，我们可以将苹果分组。比如每当数到10个苹果，我们就找一个袋子将其装起来。而当装苹果的袋子攒够10个，我们就找一个箱子将其装起来。</p>
-<p>这样，我们只需要发明0~9这10个计数符号（也就是数字），而每当超过9就向前进1位，并重新计数。这就是进制的本质。</p>
-<p>因此，当我们将一个数从十进制向<span
-class="math inline">\(k\)</span>进制转换时，我们需要打破之前“装苹果的袋子和箱子”，并重新数数，每当数到<span
-class="math inline">\(k\)</span>个就用袋子装起来。这也就是说，在进行进制转换时，我们需要将十进制的数除以<span
-class="math inline">\(k\)</span>。第一次除法得到的是装袋剩下的苹果数和苹果袋数，也就是<span
-class="math inline">\(k\)</span>进制的“个位数”和暂时的“十位数”（这里只是借用了“十位数”的名字，“暂时”指的是真正的“十位数”应当为装箱后剩下的苹果数，也就是再除一次<span
-class="math inline">\(k\)</span>得到的余数）。接着，第二次对“十位数”的除法能得到真正的“十位数”和暂时的百位数。就这样一直做除法，直到商为0。</p>
-<p>下面是一个例子</p>
-<blockquote>
-<p>例：将123转换为2进制</p>
-<p>解：123/2=61......1（“个位”）</p>
-<p>61/2=30......1（“十位”）</p>
-<p>30/2=15......0（“百位”）</p>
-<p>15/2=7......1</p>
-<p>7/2=3......1</p>
-<p>3/2=1......1</p>
-<p>1/2=0......1</p>
-<p>这样，最下方的余数为最左边的数，而最上面的余数为最右边的数。由此我们可以得到
+        <h1 id="位形和位置">位形和位置</h1>
+<h2 id="位形与位置的概念">位形与位置的概念</h2>
+<p>在下面的问题中，不同于Newton力学中仅仅研究单个或几个物体的运动，我们将会考虑由许多质点组成的系统，并研究这种系统在不同环境下的变化。为此我们需要提出一个新的概念，也就是位形来描述这一过程。</p>
+<p>对于单个质点而言，我们只需要用一组坐标即可确定其位置，例如直角坐标<span
+class="math inline">\((x, y, z)\)</span>或极坐标<span
+class="math inline">\((r, \theta, \varphi)\)</span>。而对于一个包含<span
+class="math inline">\(n\)</span>个质点的系统，我们则需要分别描述每个质点的位置，例如<span
+class="math inline">\((x_{1}, y_{1}, z_{1})\)</span>、<span
+class="math inline">\(\dots\)</span>、<span
+class="math inline">\((x_{n}, y_{n},
+z_{n})\)</span>。就像单个质点时我们可以使用极坐标来代替直角坐标，我们也可以通过选取其他的坐标（不只是极坐标，任何可以描述质点位置的独立变量均可）来简化问题。这样我们就得到了一组描述系统的变量
 <span class="math display">\[
-(123)_{10} = (1111011)_{2}
+(q_{1}, q_{2}, \dots, q_{3n})
+\]</span> 其中，<span
+class="math inline">\(q_{i}\)</span>被称为广义坐标。如果我们使用<span
+class="math inline">\(u_{i},\ i = 1, 2, \dots, 3n\)</span>来描述<span
+class="math inline">\(3n\)</span>个直角坐标，那么广义坐标与直角坐标之间的坐标变换关系为
+<span class="math display">\[
+u_{i} = u_{i}(q_{1}, q_{2}, \dots, q_{3n}, t)
+\]</span>
+在下面我们会看到，实际上坐标变换关系中不需要如此多的变量，只要选出足够的独立变量即可。
+## 位形空间 在三维空间中，我们需要用<span
+class="math inline">\(3n\)</span>个坐标，并且使用<span
+class="math inline">\(n\)</span>个点来描述具有<span
+class="math inline">\(n\)</span>个质点的系统。如果我们换一种角度来看待问题，那么在<span
+class="math inline">\(3n\)</span>维空间中我们只需要1个点来描述具有<span
+class="math inline">\(n\)</span>个质点的体系。我们将由此定义出来的空间称为位形空间，对于这种空间我们在后面会更加详细分析。
+# 约束 约束是对于系统状态的限制。其一般数学表示形式为 <span
+class="math display">\[
+f(q_{1}, q_{2}, \dots, q_{3n};\ \dot{q}_{1}, \dot{q}_{2}, \dots,
+\dot{q}_{3n};\ t) = 0
+\]</span> 其中，<span
+class="math inline">\(q_{i}\)</span>为广义坐标，<span
+class="math inline">\(\dot{q}_{i}\)</span>为广义速度。</p>
+<p>按照所含变量的类型，我们可以给出如下定义</p>
+<blockquote>
+<p>定义：</p>
+<p>按照变量的类型，我们将约束分为完整约束和非完整约束：</p>
+<ul>
+<li>完整约束：完整约束是仅包含广义坐标和时间的约束，其形式如下 <span
+class="math display">\[
+f(u_{1}, u_{2}, \dots, u_{3n};\ t) = 0
+\]</span></li>
+<li>非完整约束：非完整约束是包含广义坐标、广义速度和时间的约束，其形式为
+<span class="math display">\[
+f(u_{1}, u_{2}, \dots, u_{3n};\ \dot{u}_{1}, \dot{u}_{2}, \dots,
+\dot{u}_{3n};\ t) = 0
+\]</span></li>
+</ul>
+</blockquote>
+<p>我们还可以将约束分为以下两类：</p>
+<ul>
+<li>定常约束：不显式含时的约束</li>
+<li>非定常约束：显式含时的约束</li>
+</ul>
+<p>之所以要划分完整约束和非完整约束，是因为这两种划分具有不同的性质，也即下面的命题</p>
+<blockquote>
+<p>命题：</p>
+<p>对于<span
+class="math inline">\(n\)</span>个质点的力学系统，假设有<span
+class="math inline">\(3n\)</span>个广义坐标，以及<span
+class="math inline">\(m\)</span>个完整约束与<span
+class="math inline">\(k\)</span>个非完整约束，那么</p>
+<ul>
+<li>独立广义坐标有<span class="math inline">\(3n - m\)</span>个</li>
+<li>独立广义速度有<span class="math inline">\(3n - k - m\)</span>个</li>
+</ul>
+</blockquote>
+<p>看起来，独立广义速度似乎的减少似乎无法降低我们分析系统的难度，但实际上独立广义坐标和独立广义速度的作用是不同的。独立广义坐标的个数<span
+class="math inline">\(3n -
+m\)</span>是力学系统在有限运动中的自由度，也就是唯一确定一个系统的位形必须给出的独立变量数量。而独立广义速度的个数表示力学系统在无限小运动中的自由度。</p>
+<h1 id="虚功原理">虚功原理</h1>
+<h2 id="虚位移">虚位移</h2>
+<p>对于含<span class="math inline">\(n\)</span>个质点的系统中的质点<span
+class="math inline">\(i\)</span>，我们将其位移的变分记为<span
+class="math inline">\(\delta \boldsymbol{r}_{i},\ i = 1, 2, \dots,
+n\)</span>，并将其称为虚位移。之所以使用位移的变分，是因为我们需要考虑所有可能的位移，而真实位移仅仅是其中的一个。需要注意的是，虚位移需要满足约束条件，违反约束条件的虚位移不存在。</p>
+<blockquote>
+<p>引理：</p>
+<p>假设含<span class="math inline">\(n\)</span>个质点的系统中存在<span
+class="math inline">\(m\)</span>个完整约束 <span class="math display">\[
+f_{j}(\boldsymbol{r}_{1}, \boldsymbol{r}_{2}, \dots,
+\boldsymbol{r}_{n};\ t) = 0,\quad j = 1, 2, \dots, m
+\]</span> 那么对于虚位移<span class="math inline">\(\delta
+\boldsymbol{r}_{i},\ i = 1, 2, \dots, n\)</span>，有 <span
+class="math display">\[
+\sum\limits_{i = 1}^{n}\nabla_{i}f_{j} \cdot \delta \boldsymbol{r}_{i} =
+0,\quad j = 1, 2, \dots, m
 \]</span></p>
 </blockquote>
-<h2 id="k进制转换十进制"><span
-class="math inline">\(k\)</span>进制转换十进制</h2>
-<p>类似地，我们也可以用<span
-class="math inline">\(k\)</span>进制的数除以<span
-class="math inline">\(k\)</span>进制的10，从而得到对应的十进制数。比如下面这个例子</p>
 <blockquote>
-<p>例：将<span
-class="math inline">\((1111011)_{2}\)</span>转换为十进制</p>
-<p>解：由于<span
-class="math inline">\((10)_{10}=(1010)_{2}\)</span>，因此1111011/1010=1100...11（均为二进制数）</p>
-<p>1100/1010=1...10</p>
-<p>1/1010=0...1</p>
-<p>由此可以得到<span class="math inline">\((1111011)_{2}=(01\ 10\
-11)_{10}\)</span>，将<span
-class="math inline">\((01)_{2}\)</span>、<span
-class="math inline">\((10)_{2}\)</span>、<span
-class="math inline">\((11)_{2}\)</span>分别转换为1、2、3后即为<span
-class="math inline">\((123)_{10}\)</span>。</p>
+<p>证明：</p>
+<p>由于有虚位移<span class="math inline">\(\delta \boldsymbol{r}_{i},\ i
+= 1, 2, \dots, n\)</span>，因此其必须满足 <span class="math display">\[
+f_{j}(\boldsymbol{r}_{1} + \delta \boldsymbol{r}_{1}, \boldsymbol{r}_{2}
++ \delta\boldsymbol{r}_{2}, \dots, \boldsymbol{r}_{n} + \delta
+\boldsymbol{r}_{n};\ t) = 0,\quad j = 1, 2, \dots, j
+\]</span> 由多元函数Taylor展开不难得到 <span class="math display">\[
+\begin{aligned}
+f_{j}(\boldsymbol{r}_{1} + \delta \boldsymbol{r}_{1}, \boldsymbol{r}_{2}
++ \delta\boldsymbol{r}_{2}, \dots, \boldsymbol{r}_{n} + \delta
+\boldsymbol{r}_{n};\ t) &amp; \approx f_{j}(\boldsymbol{r}_{1},
+\boldsymbol{r}_{2}, \dots, \boldsymbol{r}_{n};\ t) \\
+&amp; \quad+ \sum\limits_{i = 1}^{n}\nabla_{i}f_{j} \cdot
+\delta\boldsymbol{r}_{i}
+\end{aligned}\quad j = 1, 2, \dots, j
+\]</span> 因为添加虚位移前后的约束方程均为0，因此我们有 <span
+class="math display">\[
+\sum\limits_{i = 1}^{n}\nabla_{i}f_{j} \cdot \delta \boldsymbol{r}_{i} =
+0,\quad j = 1, 2, \dots, m
+\]</span></p>
 </blockquote>
-<p>但我们马上会发现一个困难的事情，那就是我们很难进行<span
-class="math inline">\(k\)</span>进制除法。相比于此，我们有一种很简单的方法。由于<span
-class="math inline">\(k\)</span>进制的第<span
-class="math inline">\(n\)</span>位表示<span
-class="math inline">\(k^{n-1}\)</span>的个数（比如十进制的第二位表示10的个数），因此<span
-class="math inline">\(k\)</span>进制数<span
-class="math inline">\((a_{n}...a_{2}a_{1})_{k} = \sum\limits_{i =
-i}^{n}a_{i}k^{i - 1}\)</span></p>
-<h1 id="小数的进制转换">小数的进制转换</h1>
-<h2 id="十进制向k进制转换-1">十进制向<span
-class="math inline">\(k\)</span>进制转换</h2>
-<p>要思考这个问题，首先我们需要明确<span
-class="math inline">\(k\)</span>进制的小数含义。例如，在三进制中，<span
-class="math inline">\((0.1)_{3}\)</span>与十进制中的<span
-class="math inline">\((1/3)_{10}\)</span>相等。</p>
-<p>同时，在十进制中，小数的第一位“十分位”表示这个数是在十分之几之间。比如0.56中的5表示这个数大于<span
-class="math inline">\(\dfrac{5}{10}\)</span>，但小于<span
-class="math inline">\(\dfrac{6}{10}\)</span>。</p>
-<p>因此，如果我们想要把十进制小数转换为<span
-class="math inline">\(k\)</span>进制小数，就需要思考这个十进制小数在<span
-class="math inline">\(k\)</span>进制小数的哪个区间。下面我们以0.25转换为三进制为例，探究转换方法。</p>
+<h2 id="理想约束">理想约束</h2>
+<p>在Newton中，一切影响质点运动的因素都被归结为力，因此约束也可以视为一种力。对于<span
+class="math inline">\(n\)</span>质点系统，我们将质点<span
+class="math inline">\(i\)</span>所受约束力记为<span
+class="math inline">\(\boldsymbol{N}_{i}\)</span>，而其虚位移为<span
+class="math inline">\(\delta
+\boldsymbol{r}_{i}\)</span>，这样约束力对于系统的虚功（因为位移不是实在的，所以我们将功称为虚功）为
+<span class="math display">\[
+\delta W = \sum\limits_{i = 1}^{n}\boldsymbol{N}_{i}\cdot
+\delta\boldsymbol{r}_{i}
+\]</span> 由此我们可以给出如下定义</p>
 <blockquote>
-<p>例：将<span
-class="math inline">\((0.25)_{10}\)</span>转换为三进制</p>
-<p>解：首先，<span class="math inline">\(0.25\)</span>小于<span
-class="math inline">\(\dfrac{1}{3}\)</span>，因此可以得到<span
-class="math inline">\((0.25)_{10} = (0.0...)_{3}\)</span></p>
-<p>然后，由于<span class="math inline">\(0.25 \in [\dfrac{2}{9},
-\dfrac{3}{9}]\)</span>，因此<span class="math inline">\((0.25)_{10} =
-(0.02...)_{3}\)</span></p>
-<p>通过这种方法，我们可以得到<span class="math inline">\((0.25)_{10} =
-(0.020202...)_{3}\)</span></p>
+<p>定义：</p>
+<p>如果约束力的虚功为0，即 <span class="math display">\[
+\sum\limits_{i = 1}^{n}\boldsymbol{N}_{i}\cdot \delta\boldsymbol{r}_{i}
+= 0
+\]</span> 那么我们将这种约束称为理想约束。</p>
 </blockquote>
-<p>实际上，上面的步骤就是在一步步寻找十进制数0.25在<span
-class="math inline">\([0, 1]\)</span>上由<span
-class="math inline">\(k\)</span>等分点、<span
-class="math inline">\(k^{2}\)</span>等分点...<span
-class="math inline">\(k^{n}\)</span>等分点分割成的哪一部分。因此，我们可以考虑一种在此基础上的简便方法。</p>
-<p>在求三进制小数“十分位”时，我们可以选择将十进制数乘三。这实际上就是将原本长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔映射到长度为<span
-class="math inline">\(1\)</span>的间隔。如果<span
-class="math inline">\(0.25\)</span>原本属于<span
-class="math inline">\([0,
-\dfrac{1}{3}]\)</span>这个间隔，那么其在乘3放大后应当属于<span
-class="math inline">\([0,
-1]\)</span>这个间隔。因此，在乘3后，十进制个位数即为三进制的“十分位”。</p>
-<p>对于第一次乘3后得到的小数的小数部分，我们也可以用相似的步骤接着乘3，然后取整数部分作为三进制“十分位”。这是因为要得到三进制“十分位”，需要考察这个十进制数位于九等分点形成的哪个区间。在第一次乘3后，九等分点形成的间隔变为了长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔，因此我们可以接着构造类似的映射，将长为<span
-class="math inline">\(\dfrac{1}{3}\)</span>的间隔映射为长为<span
-class="math inline">\(1\)</span>的映射。</p>
-<p>用这个新的方法，我们可以重新求出<span
-class="math inline">\((0.25)_{10}\)</span>对应的三进制数</p>
+<p>有许多约束都属于理想约束，以下是几个常见的例子</p>
 <blockquote>
-<p>例：将<span
-class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
-<p>解：0.25*3=0.75</p>
-<p>0.75*3=2.25</p>
-<p>0.25*3=0.75</p>
-<p>0.75*3=2.25</p>
-<p>由此不难看出<span class="math inline">\((0.25)_{10} =
-(0.020202...)_{3}\)</span></p>
+<p>光滑曲面：</p>
+<p>如果质点沿着固定的光滑曲面运动，曲面方程为 <span
+class="math display">\[
+f(x, y, z) = 0
+\]</span>
+由于虚位移必须满足约束，因此虚位移必须沿着曲面的切平面方向。而由于曲面是光滑的，因此曲面对于质点的约束力只能是沿法线方向。这样，约束力为
+<span class="math display">\[
+\boldsymbol{N} = \lambda\left( \dfrac{\partial f}{\partial x},
+\dfrac{\partial f}{\partial y}, \dfrac{\partial f}{\partial z} \right)
+\]</span> 因此 <span class="math display">\[
+\begin{aligned}
+\delta W &amp; = \boldsymbol{N} \cdot \delta \boldsymbol{r} \\
+&amp; = \lambda \left( \dfrac{\partial f}{\partial x} \delta x +
+\dfrac{\partial f}{\partial y} \delta y + \dfrac{\partial f}{\partial z}
+\delta z\right)
+\end{aligned}
+\]</span> 由于虚位移与平面满足 <span class="math display">\[
+\dfrac{\partial f}{\partial x} \delta x + \dfrac{\partial f}{\partial y}
+\delta y + \dfrac{\partial f}{\partial z} \delta z = 0  
+\]</span> 因此<span class="math inline">\(\delta W = 0\)</span></p>
+</blockquote>
+<h2 id="虚功原理-1">虚功原理</h2>
+<p>我们先给出虚功原理，然后给出推导</p>
+<blockquote>
+<p>虚功原理：</p>
+<p>如果一个处于平衡状态的力学系统中只有理想约束，那么作用于该力学系统的所有主动力的虚功之和为0，即
+<span class="math display">\[
+\delta W = \sum\limits_{i = 1}^{n} \boldsymbol{F}_{i} \cdot \delta
+\boldsymbol{r}_{i} = 0
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>如果力学系统处于平衡状态，那么对于质点<span
+class="math inline">\(i\)</span>而言，其所受主动力<span
+class="math inline">\(\boldsymbol{F}_{i}\)</span>和所受约束力<span
+class="math inline">\(N_{i}\)</span>满足 <span class="math display">\[
+\boldsymbol{F}_{i} + \boldsymbol{N}_{i} = 0
+\]</span> 如果假设质点<span
+class="math inline">\(i\)</span>的虚位移为<span
+class="math inline">\(\delta
+\boldsymbol{r}_{i}\)</span>，那么合力作用于质点<span
+class="math inline">\(i\)</span>的虚功为 <span class="math display">\[
+\delta W_{i} = \left( \boldsymbol{F}_{i} + \boldsymbol{N}_{i}  \right)
+\cdot \delta \boldsymbol{r}_{i} = 0
+\]</span> 对所有质点求和可得 <span class="math display">\[
+\delta W = \sum\limits_{i = 1}^{n} \left( \boldsymbol{F}_{i} +
+\boldsymbol{N}_{i} \right) \cdot \delta \boldsymbol{r}_{i} = 0
+\]</span> 由于在理想约束条件下<span class="math inline">\(\displaystyle
+\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \delta\boldsymbol{r}_{i}
+= 0\)</span>，因此 <span class="math display">\[
+\delta W = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \delta
+\boldsymbol{r}_{i} = 0
+\]</span></p>
+</blockquote>
+<h2 id="广义坐标下的虚功原理">广义坐标下的虚功原理</h2>
+<p>由于约束的存在，直角坐标往往不是全部独立的坐标，因此如果使用广义坐标，我们就可以使得坐标完全独立。我们先给出广义坐标下的虚功原理，然后再给出推导</p>
+<blockquote>
+<p>广义坐标下的虚功原理：</p>
+<p>对于<span class="math inline">\(s\)</span>个独立的广义坐标，有 <span
+class="math display">\[
+\delta W = \sum\limits_{\alpha = 1}^{s}Q_{\alpha}\delta q_{\alpha} = 0
+\]</span> 其中，<span class="math inline">\(\displaystyle Q_{\alpha} =
+\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}}\)</span>为广义力。</p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>我们假设任何一个质点的径矢<span
+class="math inline">\(\boldsymbol{r}_{i}\)</span>可以用<span
+class="math inline">\(s\)</span>个独立的广义坐标表示 <span
+class="math display">\[
+\boldsymbol{r}_{i} = \boldsymbol{r}_{i}(q_{1}, q_{2}, \dots, q_{s};\
+t),\quad i = 1, 2, \dots, n
+\]</span> 这样原本的虚位移可以表示为 <span class="math display">\[
+\delta\boldsymbol{r}_{i} = \sum\limits_{\alpha = 1}^{n} \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}}\delta q_{\alpha}
+\]</span> 带入原本的虚功原理表达式可得 <span class="math display">\[
+\begin{aligned}
+\delta W &amp; = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \left(
+\sum\limits_{\alpha = 1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \delta q_{\alpha} \right) \\
+&amp; = \sum\limits_{\alpha = 1}^{s}\left( \sum\limits_{i = 1}^{n}
+\boldsymbol{F}_{i} \cdot \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \right) \delta q_{\alpha} = 0 \\
+\end{aligned}
+\]</span> 将广义力表达式<span class="math inline">\(\displaystyle
+Q_{\alpha} = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\)</span>带入可得 <span class="math display">\[
+\delta W = \sum\limits_{\alpha = 1}^{s}Q_{\alpha}\delta q_{\alpha} = 0
+\]</span></p>
+</blockquote>
+<h1 id="dalembert原理">d'Alembert原理</h1>
+<p>可以将d'Alembert原理作为静力学中虚功原理在动力学中的推广。</p>
+<blockquote>
+<p>d'Alembert原理：</p>
+<p>如果一个力学系统重只有理想约束，那么作用于系统的所有主动力与惯性力的虚功之和为0，即
+<span class="math display">\[
+\sum\limits_{i = 1}^{n}\left( \boldsymbol{F}_{i} -
+m_{i}\mathrm{d}ot{\boldsymbol{r}} \right) \cdot \delta
+\boldsymbol{r}_{i} = 0
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>按照Newton运动方程，对于质点<span
+class="math inline">\(i\)</span>我们有 <span class="math display">\[
+\boldsymbol{F}_{i} + \boldsymbol{N}_{i} = m\ddot{\boldsymbol{r}}
+\]</span> 如果把<span
+class="math inline">\(-m\ddot{\boldsymbol{r}}\)</span>理解为惯性力，那么有
+<span class="math display">\[
+\boldsymbol{F}_{i} + \boldsymbol{N}_{i} - m\ddot{\boldsymbol{r}} = 0
+\]</span> 按照之前推导虚功原理的过程即可得到结果。</p>
 </blockquote>
 
     </div>
@@ -368,7 +503,7 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/" title="简述进制转换原理">https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/3352eca2/" title="d&#39;Alembert原理——经典力学笔记1">https://vasily-alexievich-korolev.github.io/posts/3352eca2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -379,8 +514,8 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Computer-Science/" rel="tag"># Computer Science</a>
-              <a href="/tags/Others/" rel="tag"># Others</a>
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Classical-Mechanics/" rel="tag"># Classical Mechanics</a>
           </div>
 
         
@@ -389,13 +524,10 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/ad7882da/" rel="prev" title="常微分方程第一章">
-      <i class="fa fa-chevron-left"></i> 常微分方程第一章
+    <a href="/posts/b5972983/" rel="prev" title="彻底批判自然科学理论中的资产阶级反动观点 评相对论的基础————光速不变原理">
+      <i class="fa fa-chevron-left"></i> 彻底批判自然科学理论中的资产阶级反动观点 评相对论的基础————光速不变原理
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/36e84dd7/" rel="next" title="Stein实分析第一章练习">
-      Stein实分析第一章练习 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -454,7 +586,7 @@ class="math inline">\((0.25)_{10}\)</span>转化为三进制数</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">整数的进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E5%90%91k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">十进制向\(k\)进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">\(k\)进制转换十进制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">小数的进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E5%90%91k%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2-1"><span class="nav-number">2.1.</span> <span class="nav-text">十进制向\(k\)进制转换</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E5%BD%A2%E5%92%8C%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">位形和位置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E5%BD%A2%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">位形与位置的概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">虚功原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E4%BD%8D%E7%A7%BB"><span class="nav-number">2.1.</span> <span class="nav-text">虚位移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.2.</span> <span class="nav-text">理想约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.3.</span> <span class="nav-text">虚功原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">广义坐标下的虚功原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dalembert%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">d&#39;Alembert原理</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

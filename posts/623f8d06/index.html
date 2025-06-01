@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文主要介绍了理论力学中有关Lagrange动力学的相关内容，包括Lagrange方程的推导、广义动量积分与广义能量积分，以及讨论了广义能量积分的含义。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lagrange动力学——经典力学笔记2">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/623f8d06/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文主要介绍了理论力学中有关Lagrange动力学的相关内容，包括Lagrange方程的推导、广义动量积分与广义能量积分，以及讨论了广义能量积分的含义。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-01T16:41:49.101Z">
+<meta property="article:modified_time" content="2025-06-01T17:08:58.574Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Classical Mechanics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/623f8d06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Lagrange动力学——经典力学笔记2 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/623f8d06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Lagrange动力学——经典力学笔记2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-06-02 00:41:49 / 修改时间：01:08:58" itemprop="dateCreated datePublished" datetime="2025-06-02T00:41:49+08:00">2025-06-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Classical-Mechanics/" itemprop="url" rel="index"><span itemprop="name">Classical Mechanics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+            <div class="post-description">本文主要介绍了理论力学中有关Lagrange动力学的相关内容，包括Lagrange方程的推导、广义动量积分与广义能量积分，以及讨论了广义能量积分的含义。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="lagrange方程">Lagrange方程</h1>
+<h2 id="lagrange关系">Lagrange关系</h2>
+<p>对于一个包含<span
+class="math inline">\(n\)</span>个质点的力学系统而言，如果我们定义<span
+class="math inline">\(s\)</span>个广义坐标<span
+class="math inline">\(q_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>，那么有</p>
+<blockquote>
+<p>引理（Lagrange关系）：</p>
+<p>系统的直角坐标<span class="math inline">\(\boldsymbol{r}_{i},\ i = 1,
+2, \dots, n\)</span>和广义坐标<span class="math inline">\(q_{\alpha},\
+\alpha = 1, 2, \dots, s\)</span>之间满足如下两个关系 <span
+class="math display">\[
+\left\{\begin{aligned}
+&amp; \dfrac{\partial \dot{\boldsymbol{r}}_{i}}{\partial
+\dot{q}_{\alpha}} = \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \\
+&amp; \dfrac{\partial}{\partial q_{\alpha}} \left( \dfrac{\mathrm{d}
+\boldsymbol{r}_{i}}{\mathrm{d} t} \right) = \dfrac{\mathrm{d}
+}{\mathrm{d} t} \left( \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \right)  \\
+\end{aligned}\right.
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>由于系统的直角坐标<span class="math inline">\(\boldsymbol{r}_{i},\ i
+= 1, 2, \dots, n\)</span>和广义坐标<span
+class="math inline">\(q_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>之间满足 <span class="math display">\[
+\boldsymbol{r}_{i} = \boldsymbol{r}_{i} (q_{1}, q_{2}, \dots, q_{s};\
+t),\quad i = 1, 2, \dots, n
+\]</span> 因此对时间求导可得 <span class="math display">\[
+\dfrac{\mathrm{d} \boldsymbol{r}_{i}}{\mathrm{d} t} = \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial t} +
+\sum\limits_{\alpha}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \dot{q}_{\alpha}
+\]</span></p>
+<p>如果将<span
+class="math inline">\(\dot{\boldsymbol{r}}_{i}\)</span>对<span
+class="math inline">\(\dot{q}_{\alpha}\)</span>求偏导，那么 <span
+class="math display">\[
+\begin{aligned}
+\dfrac{\partial \dot{\boldsymbol{r}}_{i}}{\partial \dot{q}_{\alpha}}
+&amp; = \dfrac{\partial}{\partial \dot{q}_{\alpha}} \left(
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\beta =
+1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}}
+\dot{q}_{\beta} \right) \\
+&amp; = \dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}}
+\end{aligned}
+\]</span></p>
+<p>如果将<span
+class="math inline">\(\dot{\boldsymbol{r}}_{i}\)</span>对于<span
+class="math inline">\(q_{\alpha}\)</span>求偏导，那么 <span
+class="math display">\[
+\begin{aligned}
+\dfrac{\partial \dot{\boldsymbol{r}}_{i}}{\partial q_{\alpha}} &amp; =
+\dfrac{\partial}{\partial q_{\alpha}} \left( \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\beta = 1}^{s}
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\beta}
+\right) \\
+&amp; = \dfrac{\partial^{2} \boldsymbol{r}_{i}}{\partial
+q_{\alpha}\partial t} + \sum\limits_{\beta =
+1}^{s}\dfrac{\partial^{2}\boldsymbol{r}_{i}}{\partial q_{\alpha}\partial
+q_{\beta}} \dot{q}_{\beta} \\
+&amp; = \dfrac{\partial}{\partial t}\left( \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) + \sum\limits_{\beta =
+1}^{s} \dfrac{\partial}{\partial q_{\beta}}\left( \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) \dfrac{\partial
+q_{\beta}}{\partial t} \\
+&amp; = \dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right)
+\end{aligned}
+\]</span></p>
+</blockquote>
+<h2 id="lagrange方程-1">Lagrange方程</h2>
+<blockquote>
+<p>定理（Lagrange方程）：</p>
+<p>对于只受完整约束，并包含<span
+class="math inline">\(n\)</span>个质点的系统，如果我们用<span
+class="math inline">\(s\)</span>个独立的广义坐标表示质点位置，那么有方程组
+<span class="math display">\[
+\dfrac{\mathrm{d}}{\mathrm{d} t}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}} =
+Q_{\alpha},\quad \alpha = 1, 2, \dots, s
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>d'Alembert原理的表达式为 <span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} \left( \boldsymbol{F}_{i} -
+m_{i}\ddot{\boldsymbol{r}}_{i} \right) \cdot \delta
+\boldsymbol{r}_{i}  = \sum\limits_{i = 1}^{n}\left( \boldsymbol{F}_{i}
+\cdot\delta \boldsymbol{r}_{i} - m_{i}\ddot{\boldsymbol{r}}_{i}\right) =
+0
+\end{aligned}
+\]</span> 我们将上式拆分为两部分计算。首先计算第一部分 <span
+class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \delta
+\boldsymbol{r}_{i} &amp; = \sum\limits_{i = 1}^{n}\left(
+\boldsymbol{F}_{i} \cdot \sum\limits_{\alpha}\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \delta q_{\alpha}\right) \\
+&amp; = \sum\limits_{\alpha = 1}^{s}\left( \sum\limits_{i =
+1}^{n}\boldsymbol{F}_{i} \cdot\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}}\right) \delta q_{\alpha} \\
+&amp; = \sum\limits_{\alpha = 1}^{s}Q_{\alpha}\delta q_{\alpha}
+\end{aligned}
+\]</span> 其中<span class="math inline">\(\displaystyle Q_{\alpha} =
+\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\)</span>为广义力。第二部分为</p>
+<p><span class="math display">\[
+\begin{aligned}
+- \sum\limits_{i = 1}^{n} m_{i}\ddot{r}_{i} \cdot \delta
+\boldsymbol{r}_{i} &amp; = -\sum\limits_{i = 1}^{n} \left(
+m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
+\sum\limits_{\alpha}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \delta q_{\alpha} \right) \\
+&amp; = -\sum\limits_{\alpha = 1}^{s} \left( \sum\limits_{i = 1}^{n}
+m_{i}\ddot{\boldsymbol{r}}_{i} \cdot\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) \delta q_{\alpha}
+\end{aligned}
+\]</span> 针对括号中的部分，我们有 <span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
+\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
+\sum\limits_{i = 1}^{n}m_{i}\dfrac{\mathrm{d}
+\dot{\boldsymbol{r}}_{i}}{\mathrm{d} t} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \\
+&amp; = \sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t}
+\left( \dot{\boldsymbol{r}}_{i} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) - \sum\limits_{i =
+1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot \dfrac{\mathrm{d}}{\mathrm{d}
+t} \left( \dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}
+\right)
+\end{aligned}
+\]</span> 将Lagrange关系带入上式可得 <span class="math display">\[
+\begin{aligned}
+\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
+\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
+\sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t} \left(
+\dot{\boldsymbol{r}}_{i} \cdot \dfrac{\partial
+\dot{\boldsymbol{r}_{i}}}{\partial \dot{q_{\alpha}}} \right) -
+\sum\limits_{i = 1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot
+\dfrac{\partial}{\partial q_{\alpha}} \left( \dfrac{\mathrm{d}
+\boldsymbol{r}_{i}}{\mathrm{d} t} \right) \\
+&amp; = \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial}{\partial
+\dot{q}_{\alpha}}\left( \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
+\dot{\boldsymbol{r}}_{i}^{2}  \right) - \dfrac{\partial}{\partial
+q_{\alpha}} \left( \sum\limits_{i = 1}^{n}\dfrac{1}{2} m_{i}
+\dot{\boldsymbol{r}}_{i}^{2} \right)
+\end{aligned}
+\]</span> 注意到动能表达式为<span class="math inline">\(\displaystyle T
+= \sum\limits_{i =
+1}^{n}\dfrac{1}{2}m_{i}\dot{\boldsymbol{r}}_{i}^{2}\)</span>，因此 <span
+class="math display">\[
+\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
+\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} =
+\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}}
+\]</span> 这样第二部分最终可以表示为 <span class="math display">\[
+-\sum\limits_{i = 1}^{n}m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
+\delta\boldsymbol{r}_{i} = - \left( \sum\limits_{\alpha =
+1}^{s}\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}} \right)
+\delta q_{\alpha}
+\]</span> 将第一部分与第二部分结合可得 <span class="math display">\[
+\sum\limits_{\alpha = 1}^{s}\left( Q_{\alpha} -
+\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} + \dfrac{\partial T}{\partial q_{\alpha}} \right)
+\delta q_{\alpha} = 0
+\]</span>
+对于只受完整约束的系统，由于我们前面引入的广义坐标是独立的，因此广义虚位移<span
+class="math inline">\(\delta
+q_{\alpha}\)</span>也应该是相互独立的，这样只有每个括号都等于0才能满足上式要求。由此我们可以得到方程组
+<span class="math display">\[
+\dfrac{\mathrm{d}}{\mathrm{d} t}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}} =
+Q_{\alpha},\quad \alpha = 1, 2, \dots, s
+\]</span></p>
+</blockquote>
+<p>当主动力均为保守力时，存在一个势能函数<span
+class="math inline">\(V\left( \boldsymbol{r}_{1}, \boldsymbol{r}_{2},
+\dots, \boldsymbol{r}_{n}, t \right)\)</span>，使得作用于质点<span
+class="math inline">\(i\)</span>上的主动力<span
+class="math inline">\(\boldsymbol{F}_{i}\)</span>满足 <span
+class="math display">\[
+\boldsymbol{F}_{i} = -\nabla_{i}V = -\left(\dfrac{\partial V}{\partial
+x_{i}}, \dfrac{\partial V}{\partial y_{i}}, \dfrac{\partial V}{\partial
+z_{i}} \right)
+\]</span> 这样广义力表达式为 <span class="math display">\[
+\begin{aligned}
+Q_{\alpha} &amp; = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} \\
+&amp; = -\sum\limits_{i = 1}^{n} \left( \dfrac{\partial V}{\partial
+x_{i}} \dfrac{\partial x_{i}}{\partial q_{\alpha}} + \dfrac{\partial
+V}{\partial y_{i}}\dfrac{\partial y_{i}}{\partial q_{\alpha}} +
+\dfrac{\partial V}{\partial z_{i}}\dfrac{\partial z_{i}}{\partial
+q_{\alpha}}\right) \\
+&amp; = -\dfrac{\partial V}{\partial q_{\alpha}}
+\end{aligned}
+\]</span> 这样原本的Lagrange方程就变为 <span class="math display">\[
+\dfrac{\mathrm{d} }{\mathrm{d} t}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial (T - V)}{\partial q_{\alpha}} =
+0,\quad \alpha = 1, 2, \dots, s
+\]</span> 定义Lagrange函数 <span class="math display">\[
+L = T - V
+\]</span> 这样有 <span class="math display">\[
+\dfrac{\mathrm{d} }{\mathrm{d} t}\dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} - \dfrac{\partial L}{\partial q_{\alpha}} = 0,\quad
+\alpha = 1, 2, \dots, s
+\]</span></p>
+<h1 id="运动积分">运动积分</h1>
+<p>在系统运动过程中，存在某些广义坐标<span
+class="math inline">\(q_{\alpha}\)</span>和广义速度<span
+class="math inline">\(\dot{q}_{\alpha}\)</span>的函数不随时间变化，我们将这些函数称为运动积分。</p>
+<h2 id="广义动量积分">广义动量积分</h2>
+<p>我们先给出下面需要使用的定义</p>
+<blockquote>
+<p>定义（广义动量）：</p>
+<p>我们将广义坐标<span
+class="math inline">\(q_{\alpha}\)</span>对应的广义动量<span
+class="math inline">\(p_{\alpha}\)</span>定义为 <span
+class="math display">\[
+p_{\alpha} = \dfrac{\partial L}{\partial \dot{q}_{\alpha}}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>定义（可遗坐标）：</p>
+<p>如果对于广义坐标<span
+class="math inline">\(q_{\alpha}\)</span>，Lagrange函数满足 <span
+class="math display">\[
+\dfrac{\partial L}{\partial q_{\alpha}} = 0
+\]</span> 那么我们将该广义坐标称为可遗坐标（或循环坐标）。</p>
+</blockquote>
+<p>对于可遗坐标而言，由Lagrange方程显然有 <span class="math display">\[
+\dfrac{\mathrm{d} }{\mathrm{d} t} \left( \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \right) = 0
+\]</span>
+这表明，广义动量是不随时间变化的，或者说广义动量是守恒的。由此可得</p>
+<blockquote>
+<p>命题：</p>
+<p>如果广义坐标<span
+class="math inline">\(q_{\alpha}\)</span>为可遗坐标，那么其对应的广义动量<span
+class="math inline">\(p_{\alpha}\)</span>为守恒的，即 <span
+class="math display">\[
+p_{\alpha} = C
+\]</span></p>
+</blockquote>
+<h2 id="广义能量积分">广义能量积分</h2>
+<p>我们先给出广义能量积分相关的结论，然后再给出推导过程</p>
+<blockquote>
+<p>定义（广义能量）：</p>
+<p>我们将广义能量函数定义为 <span class="math display">\[
+H = \sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - L
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>命题：</p>
+<p>如果Lagrange函数<span
+class="math inline">\(L\)</span>不显式含时，也就是<span
+class="math inline">\(L=  L(q, \dot{q})\)</span>，或者说 <span
+class="math display">\[
+\dfrac{\partial L}{\partial t} = 0
+\]</span> 那么广义能量为守恒的，即 <span class="math display">\[
+H = C
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>证明：</p>
+<p>对于一般的Lagrange函数，其对于时间的全导数为 <span
+class="math display">\[
+\dfrac{\mathrm{d} L}{\mathrm{d} t} = \dfrac{\partial L}{\partial t} +
+\sum\limits_{\alpha = 1}^{s} \dfrac{\partial L}{\partial
+q_{\alpha}}\dot{q}_{\alpha} + \sum\limits_{\alpha = 1}^{s}
+\dfrac{\partial L}{\partial \dot{q}_{\alpha}} \dfrac{\mathrm{d}
+\dot{q}_{\alpha}}{\mathrm{d} t}
+\]</span> 在主动力均为保守力的情况下，由Lagrange方程有 <span
+class="math display">\[
+\dfrac{\partial L}{\partial q_{\alpha}} = \dfrac{\mathrm{d}}{\mathrm{d}
+t}\left( \dfrac{\partial L}{\partial \dot{q}_{\alpha}} \right)
+\]</span> 由此可得 <span class="math display">\[
+\begin{aligned}
+\dfrac{\mathrm{d} L}{\mathrm{d} t} &amp; = \sum\limits_{\alpha =
+1}^{s}\dfrac{\mathrm{d}}{\mathrm{d} t}\left( \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \right) \dot{q}_{\alpha} + \sum\limits_{\alpha =
+1}^{s} \dfrac{\partial L}{\partial \dot{q}_{a}} \dfrac{\mathrm{d}
+\dot{q}_{\alpha}}{\mathrm{d} t} \\
+&amp; = \dfrac{\partial L}{\partial t} + \dfrac{\mathrm{d} }{\mathrm{d}
+t}\left( \sum\limits_{\alpha = 1}^{s} \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} \right)
+\end{aligned}
+\]</span> 由于<span class="math inline">\(\displaystyle \dfrac{\partial
+L}{\partial \dot{q}_{\alpha}} = p_{\alpha}\)</span>，因此可得 <span
+class="math display">\[
+\dfrac{\mathrm{d} }{\mathrm{d} t} \left( \sum\limits_{\alpha = 1}^{s}
+p_{\alpha} \dot{q}_{\alpha} - L \right) = -\dfrac{\partial L}{\partial
+t}
+\]</span> 将广义能量的表达式代入可得 <span class="math display">\[
+\dfrac{\mathrm{d} H}{\mathrm{d} t} = -\dfrac{\partial L}{\partial t}
+\]</span> 如果Lagrange函数不显式含时，那么 <span class="math display">\[
+\dfrac{\mathrm{d} H}{\mathrm{d} t} = -\dfrac{\partial L}{\partial t} = 0
+\]</span> 从而广义能量为常数 <span class="math display">\[
+H = C
+\]</span></p>
+</blockquote>
+<h3 id="广义能量的含义">广义能量的含义</h3>
+<p>在讨论广义能量的含义之前，我们先不加证明地给出齐次函数的Euler定理</p>
+<blockquote>
+<p>定义（齐次函数）：</p>
+<p>对于函数<span class="math inline">\(f(x_{1}, x_{2}, \dots,
+x_{n})\)</span>而言，如果其满足 <span class="math display">\[
+f(\lambda x_{1}, \lambda x_{2}, \dots, \lambda x_{n}) =
+\lambda^{m}f(x_{1}, x_{2}, \dots, x_{n})
+\]</span> 其中，<span
+class="math inline">\(\lambda\)</span>为任意常数，<span
+class="math inline">\(m\)</span>为函数中每项的次数，那么我们将这种函数称为齐次函数。</p>
+</blockquote>
+<blockquote>
+<p>定理（齐次函数的Euler定理）：</p>
+<p>如果函数<span class="math inline">\(f(x_{1}, x_{2}, \dots,
+x_{n})\)</span>为齐次函数，那么其满足 <span class="math display">\[
+\sum\limits_{i = 1}^{n}\dfrac{\partial f}{\partial x_{i}}x_{i} = mf
+\]</span> 其中，<span
+class="math inline">\(m\)</span>为函数中每项的次数。</p>
+</blockquote>
+<p>广义能量的定义式为 <span class="math display">\[
+H = \sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - L
+\]</span> 由于势能与广义速度无关，因此上式变为 <span
+class="math display">\[
+H = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} - L
+\]</span> 我们分为两种情况讨论：</p>
+<ul>
+<li><p>如果坐标不显式含时，即<span
+class="math inline">\(\boldsymbol{r}_{i} =
+\boldsymbol{r}_{i}(q)\)</span>，那么速度可以表示为 <span
+class="math display">\[
+  \dot{\boldsymbol{r}}_{i} = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \dot{q}_{\alpha}
+  \]</span> 从而 <span class="math display">\[
+  \begin{aligned}
+  T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
+\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+  &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\sum\limits_{\alpha =
+1}^{s} \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\dot{q}_{\alpha} \cdot \sum\limits_{\beta =
+1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}}
+\dot{q}_{\beta} \\
+  &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
+1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2} m_{i}\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta}
+  \end{aligned}
+  \]</span>
+此时不难看出，动能为广义速度的二次齐次多项式，因此由齐次函数的Euler定理可得
+<span class="math display">\[
+  \sum\limits_{\alpha = 1}^{s} \dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} = 2T
+  \]</span> 由此可得 <span class="math display">\[
+  \begin{aligned}
+  H &amp; = \sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - L
+\\
+  &amp; = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} - L \\
+  &amp; = 2T - (T - V) \\
+  &amp; = T + V \\
+  \end{aligned}
+  \]</span> 由此，在坐标不显式含时的情况下，动能<span
+class="math inline">\(T\)</span>为广义速度的二次齐次多项式，而广义能量函数<span
+class="math inline">\(H\)</span>即为机械能。</p></li>
+<li><p>如果坐标显式含时，即<span
+class="math inline">\(\boldsymbol{r}_{i} = \boldsymbol{r}_{i}(q,
+t)\)</span>，那么速度可以表示为 <span class="math display">\[
+  \dot{\boldsymbol{r}}_{i} = \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\alpha =
+1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}}
+\dot{q}_{\alpha}
+  \]</span> 因此动能表达式变为 <span class="math display">\[
+  \begin{aligned}
+  T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
+\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+  &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i} \left(
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\alpha =
+1}^{s} \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\dot{q}_{\alpha} \right) \cdot \left( \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial t} +\sum\limits_{\beta =
+1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}}
+\dot{q}_{\beta} \right) \\
+  &amp; = \sum\limits_{i = 1}^{n} \left\{ \dfrac{1}{2}m_{i}\left(
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \right)^{2} +
+\sum\limits_{\alpha = 1}^{s}m_{i}\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial t} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
++  \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
+m_{i}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
+\dot{q}_{\beta} \right\}
+  \end{aligned}
+  \]</span>
+上式中包含三个部分，分别为广义速度的零次、一次和二次的齐次多项式，我们分别将其记为
+<span class="math display">\[
+  \left\{\begin{aligned}
+  T_{0} &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\left(
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \right)^{2} \\
+  T_{1} &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
+1}^{s}m_{i}\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \cdot
+\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
+\\
+  T_{2} &amp; = \sum\limits_{i = 1}^{n}\sum\limits_{\alpha =
+1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2} m_{i}\dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
+\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta}
+\\
+  \end{aligned}\right.
+  \]</span> 这样广义动能可以表示为 <span class="math display">\[
+  T = T_{0} + T_{1} + T_{2}
+  \]</span> 这样由齐次函数的Euler定理可得 <span class="math display">\[
+  \begin{aligned}
+  \sum\limits_{\alpha = 1}^{s} \dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} &amp; = \sum\limits_{\alpha = 1}^{s}
+\dfrac{\partial T_{0}}{\partial \dot{q}_{\alpha}}\dot{q}_{\alpha} +
+\dfrac{\partial T_{1}}{\partial \dot{q}_{\alpha}}\dot{q}_{\alpha} +
+\dfrac{\partial T_{2}}{\partial\dot{q}_{\alpha}}\dot{q}_{\alpha} \\
+  &amp; = 0T_{0} + 1T_{1} + 2T_{2} \\
+  \end{aligned}
+  \]</span> 由此可得 <span class="math display">\[
+  \begin{aligned}
+  H &amp; = \sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - L
+\\
+  &amp; = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial T}{\partial
+\dot{q}_{\alpha}} \dot{q}_{\alpha} - L \\
+  &amp; = (T_{1} + 2T_{2}) - (T_{0} + T_{1} + T_{2} - V) \\
+  &amp; = T_{2} - T_{0} + V \\
+  \end{aligned}
+  \]</span> 此时广义能量函数并非机械能，但是具有机械能的量纲。</p></li>
+</ul>
+<h2 id="noether定理">Noether定理</h2>
+<p>我们先直接给出Noether定理</p>
+<blockquote>
+<p>定理：</p>
+<p>对于任何一种在坐标连续变化下，系统的Hamilton量 <span
+class="math inline">\(\displaystyle S = \int_{t_{1}}^{t_{2}}L(q(t),
+\dot{q}(t), t)\mathrm{d} t\)</span> 的不变性都有相应的运动积分。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/623f8d06/" title="Lagrange动力学——经典力学笔记2">https://vasily-alexievich-korolev.github.io/posts/623f8d06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Classical-Mechanics/" rel="tag"># Classical Mechanics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/3352eca2/" rel="prev" title="d'Alembert原理——经典力学笔记1">
+      <i class="fa fa-chevron-left"></i> d'Alembert原理——经典力学笔记1
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lagrange%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Lagrange方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">Lagrange关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange%E6%96%B9%E7%A8%8B-1"><span class="nav-number">1.2.</span> <span class="nav-text">Lagrange方程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">运动积分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E5%8A%A8%E9%87%8F%E7%A7%AF%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">广义动量积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E8%83%BD%E9%87%8F%E7%A7%AF%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">广义能量积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E8%83%BD%E9%87%8F%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">广义能量的含义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#noether%E5%AE%9A%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">Noether定理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">73k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:02</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

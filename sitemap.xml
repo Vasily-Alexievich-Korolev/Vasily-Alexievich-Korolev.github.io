@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/623f8d06/</loc>
+    
+    <lastmod>2025-06-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/3352eca2/</loc>
+    
+    <lastmod>2025-03-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/b5972983/</loc>
     
     <lastmod>2025-03-02</lastmod>
     
@@ -11,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/b5972983/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/f362be77/</loc>
     
     <lastmod>2025-03-02</lastmod>
     
@@ -66,15 +84,6 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/d305f066/</loc>
-    
-    <lastmod>2024-04-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/f362be77/</loc>
     
     <lastmod>2024-04-02</lastmod>
     
@@ -157,7 +166,7 @@
 
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -165,105 +174,105 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Ordinary-Diffenertial-Equation/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Note/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Computer-Science/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Others/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Linear-Algebra/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Real-Analysis/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Vector-Calculus/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Linear-Algebra/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Real-Analysis/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Quantum-Chemistry/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Example/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Group-Theory/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Summary/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Test/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Group-Theory/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Marxism/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/tags/Article/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Example/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/tags/Classical-Mechanics/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Test/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Marxism/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/Article/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -272,98 +281,98 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Computer-Science/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Real-Analysis/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Ordinary-Differential-Equation/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Vector-Calculus/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Chemistry/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Computer-Science/Others/</loc>
-    <lastmod>2025-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Group-Theory/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Linear-Algebra/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Marxsim/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Ordinary-Differential-Equation/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Chemistry/Quantum-Chemistry/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Real-Analysis/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/categories/Marxsim/Dialectics-of-Nature/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Chemistry/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Computer-Science/Others/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Group-Theory/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Mathematics/Vector-Calculus/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Physics/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Chemistry/Quantum-Chemistry/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/Physics/Classical-Mechanics/</loc>
-    <lastmod>2025-03-02</lastmod>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Marxsim/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/Marxsim/Dialectics-of-Nature/</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

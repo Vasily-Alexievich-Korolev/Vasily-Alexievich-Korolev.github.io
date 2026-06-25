@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://vasily-alexievich-korolev.github.io/sitemap.xml
+
+# 禁止搜索引擎索引以下路径
+Disallow: /lib/
+Disallow: /js/
+Disallow: /css/

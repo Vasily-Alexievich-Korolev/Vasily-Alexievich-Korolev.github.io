@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基于FI多项式描述子和伪标签核岭回归方法，对C6H6分子11465个构型的势能面进行拟合。在源域能量均方误差仅0.036 eV的同时，目标域R²达到0.586、RMSE为0.228 eV，验证了伪标签模型选择在高维对称性约束下的势能面拟合中的有效性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="伪标签核岭回归：跨构型势能面拟合的一次实践">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="基于FI多项式描述子和伪标签核岭回归方法，对C6H6分子11465个构型的势能面进行拟合。在源域能量均方误差仅0.036 eV的同时，目标域R²达到0.586、RMSE为0.228 eV，验证了伪标签模型选择在高维对称性约束下的势能面拟合中的有效性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/gamma_sweep.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/pseudo_label_krr_v3_final.png">
+<meta property="article:published_time" content="2026-06-25T13:47:22.467Z">
+<meta property="article:modified_time" content="2026-06-25T13:47:22.482Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Computational Chemistry">
+<meta property="article:tag" content="Kernel Methods">
+<meta property="article:tag" content="PES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vasily-alexievich-korolev.github.io/images/gamma_sweep.png">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>伪标签核岭回归：跨构型势能面拟合的一次实践 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          伪标签核岭回归：跨构型势能面拟合的一次实践
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 21:47:22" itemprop="dateCreated datePublished" datetime="2026-06-25T21:47:22+08:00">2026-06-25</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+            <div class="post-description">基于FI多项式描述子和伪标签核岭回归方法，对C6H6分子11465个构型的势能面进行拟合。在源域能量均方误差仅0.036 eV的同时，目标域R²达到0.586、RMSE为0.228 eV，验证了伪标签模型选择在高维对称性约束下的势能面拟合中的有效性。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="缘起">缘起</h2>
+<p>计算化学有一个核心矛盾：<strong>精度 vs
+速度</strong>。量子力学方法（DFT、CCSD(T)）能给出高精度的势能面，但每次单点计算耗时数分钟到数小时；而分子动力学模拟需要
+(10<sup>6)–(10</sup>9) 次能量评估。这就是<strong>势能面（Potential
+Energy Surface,
+PES）拟合</strong>要解决的问题——用少量高精度QM数据训练一个代理模型，让它"学会"分子的能量函数。</p>
+<p>问题有三个难点：</p>
+<ol type="1">
+<li><strong>对称性必须严格满足</strong>。平移、旋转、同种原子置换都不能改变能量。违反对称性的模型会产生物理学上不存在的梯度。</li>
+<li><strong>训练数据天然有偏</strong>。平衡构型附近采样密集、标签充足；而过渡态、解离通道这些动力学关键区域数据稀少——协变量偏移（covariate
+shift）。</li>
+<li><strong>维度诅咒</strong>。对于N原子体系，核坐标维度为
+(3N-6)，完全覆盖所有构型空间需要指数级的数据量。</li>
+</ol>
+<p>本文记录的是对一个<strong>C6H6（苯单体）</strong>体系的一次完整尝试：用
+<strong>FI多项式</strong> 保证对称性、<strong>核岭回归（KRR）</strong>
+做非参数拟合、<strong>伪标签（pseudo-labeling）</strong>
+在标签稀疏区域引导模型选择。最终在目标域（高能构型）上取得了 <strong>R²
+= 0.586、RMSE = 0.228 eV</strong> 的结果。</p>
+<hr />
+<h2 id="第一块砖fi多项式描述子">第一块砖：FI多项式描述子</h2>
+<h3 id="对称性问题的数学结构">对称性问题的数学结构</h3>
+<p>体系的对称性可以严格地形式化。对N个原子，定义 (R = N(N-1)/2)
+个原子间距 (d_{ij} = |_i - <em>j|)。体系的对称群 (G)（C6H6中为D₆点群 ×
+同种原子间的置换群）作用于这R个变量上：群元 (g) 将 (d</em>{ij})
+重新排列。</p>
+<p>我们需要找到所有在G作用下不变的多项式函数。学过群论的人会意识到，这等价于求<strong>不变多项式环</strong>
+([]^G)。Hilbert-Noether定理告诉我们：这个环是<strong>有限生成的</strong>，即存在有限个(p_1,,p_s)（称为<strong>完全不变量</strong>，Full
+Invariants,
+FI），使得任何G-不变多项式都可以唯一地表示为这些生成元的多项式组合。</p>
+<h3 id="hyperfi程序">HyperFI程序</h3>
+<p>这个FI生成过程由<a
+href="FI原理与架构文档.md">HyperFI</a>程序完成。其核心算法是：</p>
+<ol type="1">
+<li><strong>1阶</strong>：每个原子间距变量 (d_{ij})
+本身经过Reynolds算符（群平均投影）后就是FI</li>
+<li><strong>高阶</strong>：枚举已有FI的乘积，构建系数矩阵，高斯消元判断哪些是"新"的生成元</li>
+</ol>
+<p>对于C6H6（N=12, R=66），到3阶为止共生成
+<strong>172个FI多项式</strong>。每一维都是原子间距的置换不变多项式——也就是说，任意构型被映射为一个172维向量
+(())，天然满足置换不变性，而平移/旋转不变性则继承自原子间距本身。</p>
+<p>这172维FI值直接作为后续所有机器学习模型的<strong>输入特征</strong>。本质上，FI描述子把<strong>一个有对称性约束的回归问题</strong>变成了一个<strong>高维空间中的无约束回归问题</strong>——而且这个变换是严格保真的，没有近似。</p>
+<hr />
+<h2 id="第二块砖核岭回归">第二块砖：核岭回归</h2>
+<h3 id="为什么用核方法">为什么用核方法</h3>
+<p>在FI特征空间 (^{172})
+上，线性模型显然不够用——势能面是高度非线性的。深度神经网络是另一个选择，但需要调参、需要防止过拟合、需要小心处理有限数据下的稳定性。核岭回归（Kernel
+Ridge Regression, KRR）提供了一个优雅的替代：</p>
+<ul>
+<li><strong>解析解</strong>：没有局部极小值问题</li>
+<li><strong>单超参数</strong>：只有一个正则化参数 () 需要调</li>
+<li><strong>表示定理</strong>：最优解一定在训练数据的核函数张成的空间中</li>
+</ul>
+<h3 id="数学形式">数学形式</h3>
+<p>选择RBF核（Gaussian核）：</p>
+<p>[ k(, ') = (-|() - (')|^2) ]</p>
+<p>KRR最小化：</p>
+<p>[ _{f <em>k} </em>{i=1}^n (f(<em>i) - E_i)^2 + |f|</em>{_k}^2 ]</p>
+<p>由表示定理，最优解为：</p>
+<p>[ <em>() = </em>{i=1}^n _i k(_i, ) ]</p>
+<p>对偶系数通过求解线性系统得到：</p>
+<p>[ ( + n ) = ]</p>
+<p>计算中用Cholesky分解保证数值稳定性——当数据量不大时（~7000），这是非常可靠的。</p>
+<h3 id="两个关键超参数">两个关键超参数</h3>
+<ul>
+<li><strong>()（正则化强度）</strong>：控制偏差-方差权衡。()时模型插值数据（过拟合），()时收缩到零（欠拟合）。论文中采用几何序列覆盖从
+(10^{-5}/n) 到 (10^{2}/n) 的范围。</li>
+<li><strong>()（RBF核宽度）</strong>：用<strong>median
+heuristic</strong>自动设定——(= 1/(2 ^2{|_i - _j| : i
+j}))，使核的尺度与数据中的典型间距匹配。本实验中 (= 0.00268)。</li>
+</ul>
+<hr />
+<h2 id="第三块砖伪标签模型选择">第三块砖：伪标签模型选择</h2>
+<h3 id="协变量偏移的困境">协变量偏移的困境</h3>
+<p>最朴素的做法是：在源域上用交叉验证选
+()，然后应用到目标域上。这在独立同分布（i.i.d.）假设下是最优的。</p>
+<p>但我们的场景不是i.i.d.——源域（(E )
+eV）是势阱底部的平衡构型，目标域（(E &gt; 1.036)
+eV）是过渡态和解离通道。CV选出的 ()
+在源域密集区域最优，但可能完全不适合目标域稀疏区域的泛化。</p>
+<h3 id="伪标签策略">伪标签策略</h3>
+<p>伪标签（pseudo-labeling）的思路非常直观：</p>
+<ol type="1">
+<li>把带标签的源域 ({}_{}) 随机分成两半：(_1)（训练候选模型）+
+(_2)（训练"老师"模型）</li>
+<li>在 (_2) 上用<strong>极小正则化</strong>（(
+)）训练一个欠平滑的伪标签生成模型 ()，让它几乎插值数据</li>
+<li>用 () 为目标域所有构型生成伪标签 (_j^0)</li>
+<li>对每个候选模型 (_)，计算伪标签风险：</li>
+</ol>
+<p>[ (<em>) = </em>{j=1}^{n_0} (_(_j^0) - _j<sup>0)</sup>2 ]</p>
+<ol start="5" type="1">
+<li>选择使该风险最小的 (^*)</li>
+</ol>
+<h3 id="为什么欠平滑的模型还能用">为什么欠平滑的模型还能用？</h3>
+<p>这是一个反直觉的事情：一个在 (_2)
+上近乎过拟合的模型，怎么会产生有用的伪标签？关键在于<strong>排序</strong>而非<strong>绝对精度</strong>。</p>
+<p>伪标签的误差可以分解为：</p>
+<p>[ (<em>) </em>{} + <em>{} + </em>{} ]</p>
+<ul>
+<li>常数项对所有 () 都一样，不影响排序</li>
+<li>交叉项中，( - f^*)
+主要由<strong>偏差</strong>（bias）而非方差（variance）主导——因为 ()
+极小，函数空间被推到了表达能力极限，其方向由基函数空间决定，与 ()
+无关</li>
+<li>当目标域样本数 (n_0) 足够大时，方差项通过平均显著衰减</li>
+</ul>
+<p>因此，尽管 () 的绝对预测可能很粗糙，但它对不同 ()
+优劣的<strong>相对排序</strong>是可靠的。实验验证了这一结论：伪标签选出的
+(^*) 与 Oracle（用真实标签选出的 ()）之间的差距仅 <strong>0.0068
+eV</strong>。</p>
+<h3 id="伪标签正则化λ_tilde的调节">伪标签正则化λ_tilde的调节</h3>
+<p>伪标签模型的正则化由参数 <code>ps</code> 控制：</p>
+<p>[ = ]</p>
+<p>本实验尝试了四个尺度 (ps {10^{-6}, 10^{-4}, 10^{-2},
+1.0})，结果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">ps</th>
+<th style="text-align: center;">(^*)</th>
+<th style="text-align: center;">目标域 RMSE</th>
+<th style="text-align: center;">(R^2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">(10^{-6})</td>
+<td style="text-align: center;">(2.53^{-9})</td>
+<td style="text-align: center;"><strong>0.2283</strong></td>
+<td style="text-align: center;"><strong>0.5856</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">(10^{-4})</td>
+<td style="text-align: center;">(2.34^{-8})</td>
+<td style="text-align: center;">0.3072</td>
+<td style="text-align: center;">0.2495</td>
+</tr>
+<tr>
+<td style="text-align: center;">(10^{-2})</td>
+<td style="text-align: center;">(2.00^{-6})</td>
+<td style="text-align: center;">0.5132</td>
+<td style="text-align: center;">-1.0946</td>
+</tr>
+<tr>
+<td style="text-align: center;">(1.0)</td>
+<td style="text-align: center;">(2.97^{-4})</td>
+<td style="text-align: center;">0.6960</td>
+<td style="text-align: center;">-2.8532</td>
+</tr>
+</tbody>
+</table>
+<p>趋势非常清晰：<strong>伪标签模型越欠平滑（ps越小），最终模型越好</strong>。这与理论预期一致——偏差越低，排序越可靠。</p>
+<hr />
+<h2 id="程序架构">程序架构</h2>
+<p>完整的 Python 实现见 <code>pseudo_label_krr_v3.py</code>，约 560
+行，包含：</p>
+<h3 id="核心类">核心类</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">KRR</span>:</span><br><span class="line">    <span class="comment"># 核岭回归实现</span></span><br><span class="line">    <span class="comment"># - 支持 RBF / Linear / Laplacian 三种核函数</span></span><br><span class="line">    <span class="comment"># - Cholesky 分解求解，失败时回退至 lstsq</span></span><br><span class="line">    <span class="comment"># - 接口简洁：fit(X, E) / predict(X) / rmse(X, E)</span></span><br></pre></td></tr></table></figure>
+<h3 id="主要模块">主要模块</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load_data()</code></td>
+<td>加载数据 + Z-score 标准化</td>
+</tr>
+<tr>
+<td><code>split_domains()</code></td>
+<td>按能量分位点划分源域/目标域</td>
+</tr>
+<tr>
+<td><code>pseudo_label_pipeline()</code></td>
+<td>单次伪标签 KRR 全流程</td>
+</tr>
+<tr>
+<td><code>ridge_cv_pipeline()</code></td>
+<td>Ridge + 5-fold CV 基线</td>
+</tr>
+<tr>
+<td><code>scan_and_plot()</code></td>
+<td>γ / 核类型扫描 + 可视化</td>
+</tr>
+<tr>
+<td><code>main()</code></td>
+<td>主控流程 + 六面板最终结果图</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数据流">数据流</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">数据 (11465×173)</span><br><span class="line">  → Z-score标准化</span><br><span class="line">  → 域划分: 源域 6879 / 目标域 4586</span><br><span class="line">  → Ridge+CV 基线</span><br><span class="line">  → γ扫描找最优核参数</span><br><span class="line">  → D1(候选) + D2(伪标签)</span><br><span class="line">  → 对每个ps:</span><br><span class="line">       伪标签模型(D2) → 伪标签</span><br><span class="line">       候选模型(D1, 30个λ) → 伪标签风险评估</span><br><span class="line">       ← 选λ*</span><br><span class="line">  → 选出最佳ps</span><br><span class="line">  → 六面板可视化 + JSON摘要</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="实验结果与分析">实验结果与分析</h2>
+<h3 id="最佳性能总结">最佳性能总结</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: center;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>源域 RMSE</td>
+<td style="text-align: center;"><strong>0.036 eV</strong></td>
+</tr>
+<tr>
+<td>目标域 RMSE</td>
+<td style="text-align: center;"><strong>0.228 eV</strong></td>
+</tr>
+<tr>
+<td>目标域 MAE</td>
+<td style="text-align: center;"><strong>0.112 eV</strong></td>
+</tr>
+<tr>
+<td>目标域 (R^2)</td>
+<td style="text-align: center;"><strong>0.586</strong></td>
+</tr>
+<tr>
+<td>Ridge 基线 RMSE</td>
+<td style="text-align: center;">2.598 eV（(R^2 = -52.68)）</td>
+</tr>
+<tr>
+<td>Oracle λ* RMSE</td>
+<td style="text-align: center;">0.221 eV</td>
+</tr>
+<tr>
+<td>伪标签 vs Oracle 差距</td>
+<td style="text-align: center;"><strong>0.0068 eV</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="几个重要的观察">几个重要的观察</h3>
+<p><strong>1. 非线性核是必要的</strong></p>
+<p>线性核（Ridge）的目标域 RMSE 高达 2.598 eV，(R^2) 为
+(-52.68)——这意味着线性模型甚至不如直接用源域均值预测。而 RBF 核的 KRR 将
+RMSE 降到了 0.228 eV。这说明 FI 特征空间中的势能面具有强非线性结构，RBF
+核的无穷维特征映射是捕捉这种结构的关键。</p>
+<p><strong>2. γ 的选择影响显著</strong></p>
+<p>γ 扫描结果（图1）显示，γ 从 0.0001 增加到 10，目标域 RMSE 从 0.697
+先降到 0.679 再飙升到 1.318。最优 γ 在 0.0027 附近，这与 median
+heuristic 的估计完全一致。</p>
+<figure>
+<img src="/images/gamma_sweep.png" alt="gamma_sweep" />
+<figcaption aria-hidden="true">gamma_sweep</figcaption>
+</figure>
+<p><em>图1: 核参数γ扫描。最优γ为0.00268（约等于median
+heuristic估计值），过大或过小的γ都会显著降低泛化性能。</em></p>
+<p><strong>3. 伪标签选择极为可靠</strong></p>
+<p>选出的 λ* 与 Oracle（用真实目标域标签选出的 λ）之间的 RMSE 差距仅
+0.0068 eV。考虑到 RBF 的核矩阵条件数极大（(10^{-9})
+时接近奇异），这个差距可能主要来自数值精度而非方法缺陷。</p>
+<p><strong>4. 源域拟合近乎完美</strong></p>
+<p>源域 RMSE 仅 0.036
+eV，说明模型在训练数据分布上已经学到了势能面的精细结构。但目标域的 (R^2
+= 0.586) 说明仍有约 41% 的方差未被解释——这是域差异带来的泛化瓶颈。</p>
+<figure>
+<img src="/images/pseudo_label_krr_v3_final.png"
+alt="pseudo_label_krr_v3_final" />
+<figcaption aria-hidden="true">pseudo_label_krr_v3_final</figcaption>
+</figure>
+<p><em>图2:
+六面板结果可视化。左上为预测散点图（蓝色源域、红色目标域），中上为正则化路径，右上为误差分布，左下为伪标签质量，中下为候模型对比，右下为误差随能量变化。</em></p>
+<h3 id="误差分析">误差分析</h3>
+<p>从图2的右下面板可以看到，目标域预测误差随着真实能量升高有明显的<strong>系统性偏移</strong>趋势——能量越高，预测误差越大（且偏负，即低估能量）。这与协变量偏移的直觉一致：远离训练数据分布的构型，模型的泛化能力必然衰减。</p>
+<p>误差分布（右上）显示目标域的分布比源域宽得多（标准差 0.23 vs
+0.04），且呈现一定的右偏。这提示可能在大变形构型中存在部分未被 FI
+描述子充分编码的结构特征。</p>
+<hr />
+<h2 id="讨论与展望">讨论与展望</h2>
+<h3 id="为什么伪标签在这里有效">为什么伪标签在这里有效？</h3>
+<p>这个问题的本质可以追溯到<strong>域适应</strong>（domain
+adaptation）的一个核心问题：当目标域没有标签时，如何在候选模型中选出在目标域上真正最好的那个？</p>
+<p>伪标签提供了一个"牺牲绝对精度、保留相对排序"的巧妙思路。其<strong>隐含假设</strong>是：伪标签模型与真实函数在目标域上的偏差方向，与模型复杂度（由
+λ
+控制）的相关性小于与基函数空间的依赖性。本实验的结果从经验上验证了这一假设。</p>
+<p>另一个角度是：KRR 的正则化路径通常是一条平滑曲线，不同 λ
+之间的性能变化是单调的或单峰的。因此，只要伪标签风险曲线与真实风险曲线的<strong>形状</strong>相似（即使有系统偏差），最优
+λ 的位置就会一致。图2中上面板完美地展示了这一点。</p>
+<h3 id="局限性与改进方向">局限性与改进方向</h3>
+<p><strong>1. 计算可扩展性</strong></p>
+<p>KRR 的复杂度是 ((n^3)) 训练和 ((n^2)) 存储。对 7000
+个训练点，核矩阵约 400 MB，尚可接受。但扩展到 5 万个点就需要稀疏近似或
+Nyström 方法。</p>
+<p><strong>2. FI 描述子的完备性</strong></p>
+<p>FI
+多项式是代数生成元——任意多项式不变量都可以表示为它们的多项式组合。但势能面不一定是多项式（实际上包含指数衰减的排斥项等）。RBF
+核的 RKHS
+是通用的（universal），理论上可以逼近任意连续函数，但样本效率可能不如精心设计的物理特征。</p>
+<p><strong>3. 域划分方式</strong></p>
+<p>当前按简单能量分位点硬划分。更好的做法可能是用 FI
+空间的密度估计来定义目标域——那些 FI
+值远离训练集的构型才是真正的"外推"区域。</p>
+<p><strong>4. 伪标签模型的正则化</strong></p>
+<p>实验发现 ps 越小越好。但如果 ps 过小（如 (10^{-8})），KRR
+矩阵的条件数会接近机器精度极限，数值不稳定。一个改进是使用更稳定的求解器（如
+conjugate gradient）或对核矩阵加一个极小量的 jitter。</p>
+<h3 id="实际应用价值">实际应用价值</h3>
+<p>对于 C6H6 这样的中等分子，这套方法的价值在于：</p>
+<ul>
+<li>用 <strong>~7000 次</strong> QM 计算的数据，训练出一个在训练集上
+RMSE &lt; 0.04 eV、在未曾见过的外推区域 RMSE &lt; 0.23 eV
+的势能模型</li>
+<li>这个精度已经足够做<strong>定性正确</strong>的分子动力学模拟——可以分辨不同反应路径的能量次序，预测反应能垒的近似值</li>
+<li>如果再结合主动学习（主动选择信息量最大的构型进行 QM
+计算），可以系统地填补目标域的空白区域</li>
+</ul>
+<hr />
+<h2 id="结语">结语</h2>
+<p>这个项目从 FI 描述子的构造开始，经历了 KRR
+的实现、伪标签方案的落地、到最终在服务器上跑出一组有意义的数字。最有价值的收获不是
+0.228 eV
+这个结果本身，而是验证了<strong>伪标签选择在高维对称性约束回归问题中的有效性</strong>——一个理论上漂亮、实现上简洁、实践中有效的方法。</p>
+<p>当然，0.586 的 R²
+远非极限。从γ扫描图可以看出，RBF核在最优参数下的表现已经比线性核好了一个数量级，但仍然受限于数据覆盖。下一步的方向很明确：添加主动学习采样，在目标域的关键区域补充数据，让模型学会它现在还不知道的东西。</p>
+<hr />
+<h2 id="参考文献">参考文献</h2>
+<ol type="1">
+<li>HyperFI 程序文档: <a
+href="FI原理与架构文档.md">FI原理与架构文档.md</a></li>
+<li>Schölkopf, B., &amp; Smola, A. J. (2002). <em>Learning with
+Kernels</em>. MIT Press.</li>
+<li>Behler, J. (2011). Atom-centered symmetry functions for constructing
+high-dimensional neural network potentials. <em>J. Chem. Phys.</em>,
+134(7), 074106.</li>
+<li>Pseudo-labeling theory: theorems on covariate shift and model
+selection with unlabeled data.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/" title="伪标签核岭回归：跨构型势能面拟合的一次实践">https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+              <a href="/tags/Computational-Chemistry/" rel="tag"># Computational Chemistry</a>
+              <a href="/tags/Kernel-Methods/" rel="tag"># Kernel Methods</a>
+              <a href="/tags/PES/" rel="tag"># PES</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/fwm20260625/" rel="prev" title="因子化世界模型：一次彻底的失败">
+      <i class="fa fa-chevron-left"></i> 因子化世界模型：一次彻底的失败
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9D%97%E7%A0%96fi%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%8F%E8%BF%B0%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">第一块砖：FI多项式描述子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E5%AD%A6%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">对称性问题的数学结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperfi%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">HyperFI程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%9D%97%E7%A0%96%E6%A0%B8%E5%B2%AD%E5%9B%9E%E5%BD%92"><span class="nav-number">3.</span> <span class="nav-text">第二块砖：核岭回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%A0%B8%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">为什么用核方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%BD%A2%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">数学形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E8%B6%85%E5%8F%82%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">两个关键超参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%9D%97%E7%A0%96%E4%BC%AA%E6%A0%87%E7%AD%BE%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text">第三块砖：伪标签模型选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E5%8F%98%E9%87%8F%E5%81%8F%E7%A7%BB%E7%9A%84%E5%9B%B0%E5%A2%83"><span class="nav-number">4.1.</span> <span class="nav-text">协变量偏移的困境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E6%A0%87%E7%AD%BE%E7%AD%96%E7%95%A5"><span class="nav-number">4.2.</span> <span class="nav-text">伪标签策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AC%A0%E5%B9%B3%E6%BB%91%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%BF%98%E8%83%BD%E7%94%A8"><span class="nav-number">4.3.</span> <span class="nav-text">为什么欠平滑的模型还能用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E6%A0%87%E7%AD%BE%E6%AD%A3%E5%88%99%E5%8C%96%CE%BB_tilde%E7%9A%84%E8%B0%83%E8%8A%82"><span class="nav-number">4.4.</span> <span class="nav-text">伪标签正则化λ_tilde的调节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">程序架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%B1%BB"><span class="nav-number">5.1.</span> <span class="nav-text">核心类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">主要模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="nav-number">5.3.</span> <span class="nav-text">数据流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">实验结果与分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E6%80%A7%E8%83%BD%E6%80%BB%E7%BB%93"><span class="nav-number">6.1.</span> <span class="nav-text">最佳性能总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E8%A7%82%E5%AF%9F"><span class="nav-number">6.2.</span> <span class="nav-text">几个重要的观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-number">6.3.</span> <span class="nav-text">误差分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BA%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="nav-number">7.</span> <span class="nav-text">讨论与展望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%AA%E6%A0%87%E7%AD%BE%E5%9C%A8%E8%BF%99%E9%87%8C%E6%9C%89%E6%95%88"><span class="nav-number">7.1.</span> <span class="nav-text">为什么伪标签在这里有效？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7%E4%B8%8E%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="nav-number">7.2.</span> <span class="nav-text">局限性与改进方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%BB%B7%E5%80%BC"><span class="nav-number">7.3.</span> <span class="nav-text">实际应用价值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">8.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">9.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">78k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:21</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

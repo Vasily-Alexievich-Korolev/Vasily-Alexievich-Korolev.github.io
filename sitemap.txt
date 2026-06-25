@@ -1,3 +1,4 @@
+https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/
 https://vasily-alexievich-korolev.github.io/posts/fwm20260625/
 https://vasily-alexievich-korolev.github.io/posts/623f8d06/
 https://vasily-alexievich-korolev.github.io/posts/3352eca2/
@@ -36,6 +37,9 @@ https://vasily-alexievich-korolev.github.io/tags/Article/
 https://vasily-alexievich-korolev.github.io/tags/Quant/
 https://vasily-alexievich-korolev.github.io/tags/Machine-Learning/
 https://vasily-alexievich-korolev.github.io/tags/Trading/
+https://vasily-alexievich-korolev.github.io/tags/Computational-Chemistry/
+https://vasily-alexievich-korolev.github.io/tags/Kernel-Methods/
+https://vasily-alexievich-korolev.github.io/tags/PES/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
 https://vasily-alexievich-korolev.github.io/categories/Computer-Science/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Linear-Algebra/

@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #af50a4;
+  background: #ff58de;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2449,4 +2449,59 @@ mjx-container + br {
 }
 .links-of-blogroll-item {
   padding: 0;
+}
+.footer {
+  color: #8c9aa8;
+  padding: 30px 0;
+  font-size: 0.8em;
+}
+.footer .footer-inner a {
+  color: #2d8cf0;
+  border-bottom: none;
+}
+.footer .footer-inner a:hover {
+  color: #096dd9;
+  text-decoration: underline;
+}
+.footer .with-love {
+  color: #e74c3c !important;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+#timeDate,
+#times {
+  display: inline-block;
+  color: #8c9aa8;
+  margin: 0 2px;
+}
+@-moz-keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+@-webkit-keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+@-o-keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
 }

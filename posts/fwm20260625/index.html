@@ -28,7 +28,7 @@
 <meta property="og:description" content="用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T13:22:58.480Z">
-<meta property="article:modified_time" content="2026-06-25T13:22:58.492Z">
+<meta property="article:modified_time" content="2026-06-25T13:29:40.599Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Quant">
 <meta property="article:tag" content="Machine Learning">
@@ -191,8 +191,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2026-06-25 21:22:58" itemprop="dateCreated datePublished" datetime="2026-06-25T21:22:58+08:00">2026-06-25</time>
+              <time title="创建时间：2026-06-25 21:22:58 / 修改时间：21:29:40" itemprop="dateCreated datePublished" datetime="2026-06-25T21:22:58+08:00">2026-06-25</time>
             </span>
 
           
@@ -688,6 +689,59 @@ setInterval("createtime()",250);
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>

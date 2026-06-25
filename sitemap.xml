@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/a48aba4a/</loc>
     
     <lastmod>2026-06-25</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/a48aba4a/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/d4a12969/</loc>
     
     <lastmod>2026-06-25</lastmod>
     
@@ -38,15 +38,6 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/334e70f1/</loc>
-    
-    <lastmod>2026-06-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/ffd9729a/</loc>
     
     <lastmod>2026-06-25</lastmod>
@@ -56,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/30f39389/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/334e70f1/</loc>
     
     <lastmod>2026-06-25</lastmod>
     
@@ -65,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/d4a12969/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/30f39389/</loc>
     
     <lastmod>2026-06-25</lastmod>
     
@@ -84,6 +75,15 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/f3c76234/</loc>
+    
+    <lastmod>2026-06-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/</loc>
     
     <lastmod>2026-06-25</lastmod>
     

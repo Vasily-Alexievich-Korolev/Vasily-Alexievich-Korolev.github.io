@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了磁介质的磁化理论，包括磁化强度、磁场强度、边界条件等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磁介质">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了磁介质的磁化理论，包括磁化强度、磁场强度、边界条件等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.923Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.924Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>磁介质 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          磁介质
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>26 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了磁介质的磁化理论，包括磁化强度、磁场强度、边界条件等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="磁介质">磁介质</h1>
+<h2
+id="磁介质的磁化磁化强度矢量及其与磁化电流的关系">磁介质的磁化、磁化强度矢量及其与磁化电流的关系</h2>
+<p>在前两章我们讨论磁效应时，大多假定导体外为真空，或不存在磁性介质。然而，当我们在线圈中加入铁芯后，我们会发现线圈中的感应电流大大加强了。这表明，加入铁芯后线圈中磁通量增加。</p>
+<p>有关磁介质（铁芯）磁化的理论，有两种不同的观点——分子电流观点和磁荷观点。我们先介绍分子电流观点，下节介绍磁荷观点。</p>
+<p>分子电流观点就是第四章中出现的Ampere分子环流假说。该假说认为，导体的磁性是由无数磁分子所产生的，而每个磁分子都相当于一个环形电流。在没有外加磁场
+时，各分子环流的取向是杂乱无章的。因此，从宏观上看各分子环流的磁矩相互抵消，没有磁性。</p>
+<p>当线圈中通入电流后，对于铁芯来说，线圈会产生外磁场<span
+class="math inline">\(\boldsymbol{B}_{0}\)</span>。我们称这种由外加电流产生，并与外加电流大小成正比的磁场为磁化场。在磁化场的力矩作用下，各分子环流的磁矩在一定程度上会沿场的方向排列起来，此时我们称铁芯被磁化了。</p>
+<p>如上图所示，对于铁芯的任意一个横截面来说，其内部的分子环流会相互抵消，只有在横截面边缘上会表现分子环流。这样，宏观上来看，横截面内部所有分子环流的总体与沿横截面边缘的一个大环形电流等效。因此，磁化了的铁芯就如同一个由磁化电流组成的螺线管，这个螺线管在铁芯内部的方向与磁化场<span
+class="math inline">\(\boldsymbol{B}_{0}\)</span>一致，因此铁芯内部的总磁感应强度<span
+class="math inline">\(\boldsymbol{B} = \boldsymbol{B}_{0} +
+\boldsymbol{B}&#39;\)</span>比没有铁芯时的磁感应强度大。</p>
+<p>为了描述磁介质的磁化状态，我们引入磁化强度矢量的概念。它被定义为单位体积内分子磁矩的矢量和。如果我们在磁介质内部取一宏观体积元<span
+class="math inline">\(\Delta V\)</span>，用<span
+class="math inline">\(\sum
+\boldsymbol{m}_{\mathrm{mol}}\)</span>代表体积元内部所有分子磁矩的矢量和，用
+代表磁化强度矢量，那么磁化强度矢量 可表示为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{M} = \dfrac{\sum \boldsymbol{m}_{\mathrm{mol}}}{\Delta V}
+\end{equation}\]</span>
+这样，分子磁矩定向排列的程度越高，其矢量和就越大，因而
+的数值就越大。因此，磁化强度 可以反映出介质的磁化状态。</p>
+<p>正如电介质中极化强度<span
+class="math inline">\(\boldsymbol{P}\)</span>与极化电荷之间关系为 <span
+class="math display">\[
+\varoiint_{S} \boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} =
+-\sum\limits_{\mbox{内部}}q&#39;
+\]</span> 磁介质中磁化强度
+与磁化电流之间也有一定的关系。下面我们来推导这种关系。</p>
+<p>为了便于说明问题，我们将每个宏观体积元内的分子看成完全一样的电流环，即环具有同样的面积与取向，用矢量面元<span
+class="math inline">\(\boldsymbol{a}\)</span>表示。环内拥有同样的电流<span
+class="math inline">\(I\)</span>，从而拥有相同的磁矩<span
+class="math inline">\(\boldsymbol{m}_{\mathrm{mol}} =
+I\boldsymbol{a}\)</span>。实际上，这里我们是使用平均分子磁矩代替了每个分子的真实磁矩。由此可得介质中的磁化强度为
+<span class="math display">\[\begin{equation}
+\boldsymbol{M} = n\boldsymbol{m}_{\mathrm{mol}} = nI\boldsymbol{a}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(n\)</span>表示单位体积中的分子环流数。</p>
+<p>我们在磁介质中划出任意一个宏观的面<span
+class="math inline">\(S\)</span>，并令其边界线为<span
+class="math inline">\(L\)</span>，以此来考察有无分子电流通过它。由此，介质中的分子环流分为三类：</p>
+<p>（1）不与<span class="math inline">\(S\)</span>相交</p>
+<p>（2）与<span class="math inline">\(S\)</span>相交两次</p>
+<p>（3）与<span class="math inline">\(S\)</span>相交一次</p>
+<p>我们在此只考虑第三种分子环流。对于这一种，<span
+class="math inline">\(L\)</span>实际上从分子环流中间穿过。此时，我们在边界线<span
+class="math inline">\(L\)</span>上取一线元<span
+class="math inline">\(\mathrm{d}  l\)</span>，并以其所穿过的分子环流<span
+class="math inline">\(\boldsymbol{a}\)</span>为底面做一柱体，体积为<span
+class="math display">\[
+V = a\ \mathrm{d}  l \cos \theta = \boldsymbol{a} \cdot
+\mathrm{d}  \boldsymbol{l}
+\]</span></p>
+<p>假设分子环流的浓度为<span
+class="math inline">\(n\)</span>。由于只要分子环流的中心在柱体内，那么线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>就会穿过此分子环流，因此线元穿过的分子环流量为<span
+class="math inline">\(n \boldsymbol{a} \cdot
+\mathrm{d}  \boldsymbol{l}\)</span>。由于每个分子环流都贡献一个通过<span
+class="math inline">\(S\)</span>面的电流<span
+class="math inline">\(I\)</span>，因此线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>贡献的电流为<span
+class="math inline">\(n I \boldsymbol{a} \cdot
+\mathrm{d}  \boldsymbol{l} = \boldsymbol{M} \cdot
+\mathrm{d}  \boldsymbol{l}\)</span>。最后，沿曲面边界<span
+class="math inline">\(L\)</span>对<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>积分，即可得到通过以<span
+class="math inline">\(L\)</span>为边界的面<span
+class="math inline">\(S\)</span>的全部分子电流的代数和<span
+class="math inline">\(\sum I&#39;\)</span>，即 <span
+class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{M} \cdot \mathrm{d}  \boldsymbol{l} =
+\sum\limits_{L\mbox{内}} I&#39;
+\end{equation}\]</span>
+这便是与上面的电介质公式对应的磁介质公式，是反映磁介质中磁化电流<span
+class="math inline">\(I&#39;\)</span>的分布与磁化强度
+之间关系的普遍公式。</p>
+<p>为了得到磁化强度
+与介质表面磁化电流之间的关系，我们取如下图所示的一个矩形回路。在此回路中，<span
+class="math inline">\(\Delta
+l\)</span>平行于磁介质表面，另一边长远小于<span
+class="math inline">\(\Delta
+l\)</span>。假设此时介质表面上，单位长度的磁化电流为<span
+class="math inline">\(i&#39;\)</span>（也可将<span
+class="math inline">\(i&#39;\)</span>称为面磁化电流密度）。另一方面，磁化强度
+的积分只有在介质表面内的一边上不为0，其贡献为<span
+class="math inline">\(M_{\mathrm{t}}\Delta l\)</span>，从而由上式可得
+<span class="math display">\[
+M_{\mathrm{t}} = i&#39;
+\]</span> 假如考虑到方向，那么可以写成下面的矢量形式 <span
+class="math display">\[\begin{equation}
+\boldsymbol{i}&#39; = \boldsymbol{M} \cdot \boldsymbol{e}_{\mathrm{n}}
+\end{equation}\]</span></p>
+<p>这样，我们就得到了类似于电介质中<span
+class="math inline">\(\sigma_{\mathrm{e}}&#39; = \boldsymbol{P} \cdot
+\boldsymbol{e}_{n}\)</span>的磁介质公式。此式反应了磁介质表面磁化电流密度与磁化强度之间的重要关系。</p>
+<h3 id="磁介质内的磁感应强度">磁介质内的磁感应强度</h3>
+<p>如果磁化强度 已知，我们可以计算其附加的磁感应强度<span
+class="math inline">\(\boldsymbol{B}&#39;\)</span>。这样，我们可以通过将其与外磁感应强度<span
+class="math inline">\(\boldsymbol{B}_{0}\)</span>
+叠加得到有磁介质时的磁感应强度 <span
+class="math display">\[\begin{equation}
+\boldsymbol{B} = \boldsymbol{B}_{0} + \boldsymbol{B}&#39;
+\end{equation}\]</span></p>
+<p>考虑一根沿轴均匀磁化的磁介质圆棒。如前文所述，此棒磁化的宏观效果相当于在棒侧面出现环形磁化电流，且单位长度内的磁化电流<span
+class="math inline">\(i&#39; =
+M_{\mathrm{t}}\)</span>。这时磁化电流的分布相当于一个均匀密绕的螺线管，而在第四章我们得到了螺线管磁感应强度公式
+<span class="math display">\[
+B = \dfrac{n\mu_{0}I}{2} \left(  \cos \beta_{1} - \cos \beta_{2} \right)
+\]</span> 此时，<span class="math inline">\(i&#39; =
+nI\)</span>，带入可得 <span class="math display">\[
+B&#39; = \dfrac{\mu_{0}i&#39;}{2} \left(  \cos \beta_{1} - \cos
+\beta_{2} \right)  = \dfrac{\mu_{0}M}{2} \left(  \cos \beta_{1} - \cos
+\beta_{2} \right)
+\]</span> 在轴线中点，有 <span class="math display">\[
+\cos \beta_{1} = -\cos \beta_{2} = \dfrac{\dfrac{l}{d}}{\sqrt{1 +
+\left(  \dfrac{l}{d}\right) ^{2}}}
+\]</span> 其中，<span class="math inline">\(d\)</span>为圆棒直径，<span
+class="math inline">\(l\)</span>为圆棒长度。由此可得 <span
+class="math display">\[\begin{equation}
+\boldsymbol{B}&#39;&#39; = \mu_{0}\boldsymbol{M}
+\dfrac{\dfrac{l}{d}}{\sqrt{1 + \left(  \dfrac{l}{d}\right) ^{2}}}
+\end{equation}\]</span> 下面讨论两种特殊情况</p>
+<h4 id="无限长圆棒">无限长圆棒</h4>
+<p>此时<span class="math inline">\(l \to \infty\)</span>，因此<span
+class="math inline">\(\cos \beta_{1} \to 1\)</span>、<span
+class="math inline">\(\cos \beta_{2} \to -1\)</span>。由此可得 <span
+class="math display">\[
+\boldsymbol{B}&#39; = \mu_{0}\boldsymbol{M}
+\]</span> 从而 <span class="math display">\[
+\boldsymbol{B} = \boldsymbol{B}_{0} + \boldsymbol{B}&#39; =
+\boldsymbol{B}_{0} + \mu_{0}\boldsymbol{M}
+\]</span></p>
+<h4 id="很薄的磁介质片">很薄的磁介质片</h4>
+<p>此时<span class="math inline">\(\dfrac{l}{d} \to 0\)</span>，因此
+<span class="math display">\[
+\boldsymbol{B}&#39; \approx 0
+\]</span> 从而 <span class="math display">\[
+\boldsymbol{B} = \boldsymbol{B}_{0} + \boldsymbol{B}&#39; \approx
+\boldsymbol{B}_{0}
+\]</span></p>
+<p>对于一般情况的圆棒，其<span
+class="math inline">\(\boldsymbol{B}&#39;\)</span>介于<span
+class="math inline">\(\mu_{0}\boldsymbol{M}\)</span>与0之间。我们可以这样理解：对于无限长圆棒，其磁感应强度<span
+class="math inline">\(\boldsymbol{B}&#39;\)</span>是由中间的一段有限长圆棒和两端无限长圆棒构成的。因此，当无限长圆棒变为有限长时，其磁感应强度<span
+class="math inline">\(\boldsymbol{B}&#39;\)</span>减小。当圆棒越短时，<span
+class="math inline">\(\boldsymbol{B}&#39;\)</span>越小。</p>
+<p>无限长介质棒的公式对于闭合介质环也使用，此时上述对于有限长介质棒的讨论对应的则是有缺口的介质环。</p>
+<h3
+id="磁场强度矢量有磁介质时的ampere环路定理与gauss定理">磁场强度矢量、有磁介质时的Ampere环路定理与“Gauss定理”</h3>
+<p>在第二章中，对于有电介质的情况，我们曾引入辅助矢量——电位移矢量<span
+class="math inline">\(\boldsymbol{D} = \varepsilon_{0}\boldsymbol{E} +
+\boldsymbol{P}\)</span>，并将电场强度通量的Gauss定理由 <span
+class="math display">\[
+\varoiint_{S}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} =
+\dfrac{1}{\varepsilon_{0}}\sum\limits_{\mbox{内部}}\left(  q_{0} +
+q&#39; \right)
+\]</span> 替换为 <span class="math display">\[
+\varoiint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+\sum\limits_{\mbox{内部}} q_{0}
+\]</span> 这样做的优点是从Gauss定理的表达式中消去了极化电荷<span
+class="math inline">\(q&#39;\)</span>，只需计算自由电荷<span
+class="math inline">\(q_{0}\)</span>的和即可。</p>
+<p>对于有磁介质时的情况，Ampere环路定理应表示为 <span
+class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \mu_{0}
+\sum\limits_{L\mbox{内}} \left(  I_{0} + I&#39; \right)
+\end{equation}\]</span> 为了消除磁化电流<span
+class="math inline">\(I&#39;\)</span>，我们引入磁场强度矢量 ，其定义为
+<span class="math display">\[\begin{equation}
+\boldsymbol{H} = \dfrac{\boldsymbol{B}}{\mu_{0}} - \boldsymbol{M}
+\end{equation}\]</span> 由于磁化电流<span
+class="math inline">\(I&#39;\)</span>与磁化强度 之间关系为 <span
+class="math display">\[
+\oint_{L} \boldsymbol{M} \cdot \mathrm{d}  \boldsymbol{l} =
+\sum\limits_{L\mbox{内}} I&#39;
+\]</span> 因此可以得到磁场强度 满足的Ampere环路定理 <span
+class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =
+\sum\limits_{L\mbox{内}}I_{0}
+\end{equation}\]</span> 在真空中，<span
+class="math inline">\(\boldsymbol{M} = \boldsymbol{0}\)</span>，因此
+<span class="math display">\[\begin{equation}
+\boldsymbol{H} = \dfrac{\boldsymbol{B}}{\mu_{0}}
+\end{equation}\]</span> 此时的<span
+class="math inline">\(\displaystyle\oint_{L} \boldsymbol{H} \cdot
+\mathrm{d}  \boldsymbol{l} =
+\sum\limits_{L\mbox{内}}I_{0}\)</span>与<span
+class="math inline">\(\displaystyle\oint_{L} \boldsymbol{B} \cdot
+\mathrm{d}  \boldsymbol{l} = \mu_{0}
+\sum\limits_{L\mbox{内}}I_{0}\)</span>等价</p>
+<p>此外，由于磁感应强度 所满足的“Gauss定理” <span
+class="math display">\[\begin{equation}
+\varoiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\end{equation}\]</span>
+是由Biot-Savart定律导出的，因此对导线中的传导电流和介质中的磁化电流均适用。</p>
+<p>这样，我们就得到了有关磁场的两个普遍公式：</p>
+<p>（1）磁场强度 的Ampere环路定理 <span class="math display">\[
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =
+\sum\limits_{L\mbox{内}}I_{0}
+\]</span></p>
+<p>（2）磁感应强度 的“Gauss定理” <span class="math display">\[
+\varoiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\]</span></p>
+<h2 id="等效的磁荷观点">等效的磁荷观点*</h2>
+<p>待补充</p>
+<h2 id="介质的磁化规律">介质的磁化规律</h2>
+<h3 id="磁化率与磁导率">磁化率与磁导率</h3>
+<p>在第二章中，我们介绍了对于多数电介质，极化强度<span
+class="math inline">\(\boldsymbol{P}\)</span>、电位移<span
+class="math inline">\(\boldsymbol{D}\)</span>和电场强度<span
+class="math inline">\(\boldsymbol{E}\)</span>之间彼此成正比，比例系数为电极化率<span
+class="math inline">\(\chi_{\mathrm{e}}\)</span>和介电常量<span
+class="math inline">\(\varepsilon\)</span>，即 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp;  \chi_{\mathrm{e}} =
+\dfrac{\boldsymbol{P}}{\varepsilon_{0}\boldsymbol{E}}\\
+&amp;  \varepsilon =
+\dfrac{\boldsymbol{D}}{\varepsilon_{0}\boldsymbol{E}}\\
+\end{aligned}
+\right.
+\]</span> 由此可得电极化率<span
+class="math inline">\(\chi_{\mathrm{e}}\)</span>和介电常量<span
+class="math inline">\(\varepsilon\)</span>之间关系为 <span
+class="math display">\[
+\varepsilon = 1 + \chi_{\mathrm{e}}
+\]</span></p>
+<p>在磁荷观点中，描述磁化状态的量为磁极化强度矢量<span
+class="math inline">\(\boldsymbol{J}\)</span>，其与磁化强度矢量
+之间的关系为 <span class="math display">\[\begin{equation}
+\boldsymbol{J} = \mu_{0}\boldsymbol{M}
+\end{equation}\]</span></p>
+<p>对于磁介质，我们可以仿照电介质中的情况，定义磁化率<span
+class="math inline">\(\chi_{\mathrm{m}}\)</span>和磁导率<span
+class="math inline">\(\mu\)</span> <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp;  \chi_{\mathrm{m}} = \dfrac{\boldsymbol{M}}{\boldsymbol{H}} =
+\dfrac{\boldsymbol{J}}{\mu_{0}\boldsymbol{H}}\\
+&amp;  \mu = \dfrac{\boldsymbol{B}}{\mu_{0}\boldsymbol{H}}\\
+\end{aligned}
+\right.
+\]</span> 由于 <span class="math display">\[
+\boldsymbol{B} = \mu_{0}\left(  \boldsymbol{H} + \boldsymbol{M}
+\right)  = \mu_{0}\boldsymbol{H} + \boldsymbol{J}
+\]</span> 因此，<span class="math inline">\(\mu\)</span>与<span
+class="math inline">\(\chi_{\mathrm{m}}\)</span>之间的关系为 <span
+class="math display">\[\begin{equation}
+\mu = 1 + \chi_{\mathrm{m}}
+\end{equation}\]</span> 不难计算，加入磁导率为<span
+class="math inline">\(\mu\)</span>的磁介质后，螺绕环的自感变为原来的<span
+class="math inline">\(\mu\)</span>倍。这与在电容中加入介电常量为<span
+class="math inline">\(\varepsilon\)</span>的电介质后，其电容变为原来的<span
+class="math inline">\(\varepsilon\)</span>相似。不过，与许多电介质均为线性电介质不同，磁介质的情况复杂很多，下面我们来仔细介绍一下。</p>
+<h3 id="顺磁质与抗磁质">顺磁质与抗磁质</h3>
+<p>对于顺磁质，有<span class="math inline">\(\chi_{\mathrm{m}} &gt;
+0\)</span>、<span class="math inline">\(\mu &gt;
+1\)</span>，而对于抗磁质，有<span
+class="math inline">\(\chi_{\mathrm{m}} &lt; 0\)</span>、<span
+class="math inline">\(\mu &lt; 1\)</span>。显然，这表明对顺磁质来说， 与
+的方向一致，而对于抗磁质来说， 与 的方向相反。</p>
+<p>下面我们简单介绍一下物质的顺磁性与抗磁性的微观机制。为此我们先看一下分子磁矩<span
+class="math inline">\(\boldsymbol{m}_{\mathrm{mol}}\)</span>的来源。实验证明，电子在原子或分子中的运动包括轨道运动与自旋两部分。绕原子核轨道旋转运动的电子相当于一个电流环，从而有一定的磁矩，我们将其称为轨道磁矩。同时，电子自旋运动还产生了一定的自旋磁矩。由于电子带负电，因此其磁矩<span
+class="math inline">\(\boldsymbol{m}\)</span>与角速度<span
+class="math inline">\(\boldsymbol{\omega}\)</span>的方向是相反的。</p>
+<p>假设电子以半径<span class="math inline">\(r\)</span>、角速度<span
+class="math inline">\(\boldsymbol{\omega}\)</span>运动，则其运动周期为
+<span class="math display">\[
+T = \dfrac{2\pi}{\omega}
+\]</span> 根据电流强度的定义可得 <span class="math display">\[
+I = -\dfrac{e}{T} = -\dfrac{e\omega}{2\pi}
+\]</span> 由于电子运动面积为<span class="math inline">\(S = \pi
+r^{2}\)</span>，因此磁矩<span
+class="math inline">\(\boldsymbol{m}\)</span>与角速度<span
+class="math inline">\(\boldsymbol{\omega}\)</span>之间关系为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{m} = -\dfrac{er^{2}}{2}\boldsymbol{\omega}
+\end{equation}\]</span>
+在原子或分子内一般不止有一个电子，整个分子的磁矩<span
+class="math inline">\(\boldsymbol{m}_{\mathrm{mol}}\)</span>是其中各个电子轨道磁矩与自旋磁矩的矢量和（忽略原子核磁矩）。如果分子中各电子磁矩完全抵消，那么该分子没有固有磁矩；反之，如果分子中各电子磁矩没有完全抵消，那么该分子有固有磁矩。</p>
+<p>对于顺磁性物质，其分子具有固有磁矩。无外磁场时，由于分子热运动的存在，各分子磁矩的取向无规律，因而磁化强度
+等于
+，介质处于未磁化状态。在有外磁场时，每个分子磁矩受到一个力矩，其效果为使磁矩与外磁场方向相同，这便是顺磁效应的来源。显然，随着温度的升高，分子热运动加强，顺磁效应会逐渐减弱。</p>
+<p>下面考虑抗磁效应。假设一个电子以角速度<span
+class="math inline">\(\omega_{0}\)</span>、半径<span
+class="math inline">\(r\)</span>绕原子核做圆周运动。同时，令<span
+class="math inline">\(Z\)</span>表示原子序数，那么由圆周运动规律可得
+<span class="math display">\[
+m_{\mathrm{e}}r\omega_{0}^{2} = \dfrac{1}{4\pi
+\varepsilon_{0}}\dfrac{Ze^{2}}{r^{2}}
+\]</span> 由此解得 <span class="math display">\[\begin{equation}
+\omega_{0} = \sqrt{\dfrac{Ze^{2}}{4\pi \varepsilon_{0} mr^{3}}}
+\end{equation}\]</span></p>
+<p>在加上外磁场 后，电子将受到Lorentz力作用。首先考虑<span
+class="math inline">\(\boldsymbol{\omega} //
+\boldsymbol{B}\)</span>的情况。此时电子受到的Lorentz力指向中心。假设轨道的半径<span
+class="math inline">\(r\)</span>不变，则角速度将变为<span
+class="math inline">\(\omega = \omega_{0} + \Delta
+\omega\)</span>，此时有 <span class="math display">\[
+\dfrac{1}{4\pi \varepsilon_{0}}\dfrac{Ze^{2}}{r^{2}} + e\omega rB =
+m_{\mathrm{e}}\omega^{2} r
+\]</span> 当<span class="math inline">\(\Delta \omega \ll
+\omega_{0}\)</span>，即<span
+class="math inline">\(B\)</span>不太大时，有<span
+class="math inline">\(\omega^{2} \approx \omega_{0}^{2} + 2\omega_{0}
+\Delta \omega\)</span>，此时化简可得 <span class="math display">\[
+e\omega_{0} rB + e\Delta \omega rB = 2m_{\mathrm{e}}\omega_{0}\Delta
+\omega r
+\]</span> 由于<span class="math inline">\(\Delta
+\omega\)</span>很小，因此可以将<span class="math inline">\(e\Delta
+\omega rB\)</span>忽略，此时可解得 <span
+class="math display">\[\begin{equation}
+\Delta \omega = \dfrac{eB}{2m_{\mathrm{e}}}
+\end{equation}\]</span></p>
+<p>接着，我们考虑<span class="math inline">\(\boldsymbol{\omega} //
+-\boldsymbol{B}\)</span>的情况。与前一种情况相似，我们假设此时<span
+class="math inline">\(\omega = \omega_{0} - \Delta
+\omega\)</span>。同理可得，此时<span class="math inline">\(\Delta
+\omega\)</span>也满足 <span class="math display">\[
+\Delta \omega = \dfrac{eB}{2m_{\mathrm{e}}}
+\]</span></p>
+<p>综上，我们可以看出，<span class="math inline">\(\Delta
+\boldsymbol{\omega}\)</span>的方向与外磁场 相同。由磁矩 与角速度<span
+class="math inline">\(\boldsymbol{\omega}\)</span>可得，磁矩的改变量<span
+class="math inline">\(\Delta \boldsymbol{m}\)</span>为 <span
+class="math display">\[\begin{equation}
+\Delta \boldsymbol{m} = -\dfrac{er^{2}}{2}\Delta \boldsymbol{\omega}_{0}
+= -\dfrac{e^{2}r^{2}}{4m_{\mathrm{e}}}\boldsymbol{B}
+\end{equation}\]</span></p>
+<p>理论上可以证明，当<span
+class="math inline">\(\boldsymbol{\omega}_{0}\)</span>与<span
+class="math inline">\(\boldsymbol{B}\)</span>成任何角度时，<span
+class="math inline">\(\Delta \boldsymbol{\omega}\)</span>总与<span
+class="math inline">\(\boldsymbol{B}\)</span>的方向一致，从而感生的附加磁矩<span
+class="math inline">\(\Delta \boldsymbol{m}\)</span>总与外加磁场
+的方向相反。</p>
+<p>因此，在抗磁性物质中，每个分子在整体上午固有磁矩，这是因为其中各个电子原有的磁矩<span
+class="math inline">\(\boldsymbol{m}_{0}\)</span>方向不同，相互抵消了。在外加磁场后，每个电子的感生磁矩<span
+class="math inline">\(\Delta
+\boldsymbol{m}\)</span>却都与外磁场方向相反，从而整个分子内将产生与外磁场方向相反的感生磁矩。这就是抗磁效应的来源。</p>
+<p>应当指出的是，上述抗磁效应在有固有磁矩的顺磁性分子中同样存在，只不过被其顺磁效应所掩盖了。</p>
+<h4 id="超导体特殊的磁性质">超导体特殊的磁性质*</h4>
+<p>待补充</p>
+<h3 id="铁磁质的磁化规律">铁磁质的磁化规律</h3>
+<p>在各种磁介质中，最重要的是以铁为代表的一类磁性很强的物质，被称为铁磁质。下面介绍铁磁质的磁化规律</p>
+<h4 id="起始磁化曲线">起始磁化曲线</h4>
+<p>实验表明，铁磁质磁化有以下的共同规律。假设磁介质环在磁化场<span
+class="math inline">\(H_{0} = 0\)</span>时处于未磁化状态，即<span
+class="math inline">\(M = 0\)</span>，那么此时介质的状态在<span
+class="math inline">\(M-H\)</span>曲线上相当于坐标原点<span
+class="math inline">\(O\)</span>。在磁化场<span
+class="math inline">\(H_{0}\)</span>逐渐增加的过程中，磁化强度<span
+class="math inline">\(M\)</span>变化规律为“缓慢增加-快速增加-缓慢增加-几乎不变”。</p>
+<p>当磁化强度<span
+class="math inline">\(M\)</span>几乎不变时，我们称此时介质的磁化以接近饱和，此时的磁化强度被称为“饱和磁化强度”<span
+class="math inline">\(M_{\mathrm{S}}\)</span>。</p>
+<p>实验表明，<span class="math inline">\(B-H\)</span>曲线与<span
+class="math inline">\(M-H\)</span>曲线的形状差不多，如上图所示。</p>
+<p>由磁化率<span class="math inline">\(\chi_{\mathrm{m}} =
+\dfrac{\boldsymbol{M}}{\boldsymbol{H}}\)</span>与磁导率<span
+class="math inline">\(\mu = \dfrac{\boldsymbol{B}}{\mu_{0}
+\boldsymbol{H}}\)</span>之间关系可得，<span
+class="math inline">\(M-H\)</span>曲线上一点与原点之间连线为该点对应的磁化率<span
+class="math inline">\(\chi_{\mathrm{m}}\)</span>，而<span
+class="math inline">\(B-H\)</span>曲线上一点与原点之间连线为该点对应的磁导率<span
+class="math inline">\(\mu \mu_{0} = \left(  1 +
+\chi_{\mathrm{m}}\right)  \mu_{0}\)</span>。显然，过原点做<span
+class="math inline">\(M-H\)</span>曲线与<span
+class="math inline">\(B-H\)</span>曲线的切线，切点对应的磁化率<span
+class="math inline">\(\chi_{\mathrm{m}}\)</span>和磁导率<span
+class="math inline">\(\mu \mu_{0}\)</span>最大。</p>
+<p><span class="math inline">\(\mu\)</span>随<span
+class="math inline">\(H\)</span>变化的曲线如下图所示，<span
+class="math inline">\(\mu_{1}\)</span>被称为起始磁导率，<span
+class="math inline">\(\mu_{\mathrm{M}}\)</span>最大磁导率。对应的，<span
+class="math inline">\(\chi_{1}\)</span>被称为起始磁化率，而<span
+class="math inline">\(\mu_{\mathrm{M}}\)</span>被称为最大磁化率。</p>
+<p>饱和磁化强度<span
+class="math inline">\(M_{\mathrm{S}}\)</span>、起始磁导率<span
+class="math inline">\(\mu_{1}\)</span>与最大磁导率<span
+class="math inline">\(\mu_{\mathrm{M}}\)</span>这三个概念是标志软磁材料性能好坏的基本量，在下面介绍软磁材料时会讨论。</p>
+<h4 id="磁滞回线">磁滞回线</h4>
+<p>当铁磁质的磁化饱和后，如果将磁化场去掉，即使<span
+class="math inline">\(H = H_{0} =
+0\)</span>，那么我们会发现介质的磁化状态并不会回到原点O
+，而是会保留一定的磁性。此时的磁化强度 与磁感应强度
+被称为剩余磁化强度<span
+class="math inline">\(M_{\mathrm{R}}\)</span>和剩余磁感应强度<span
+class="math inline">\(B_{\mathrm{R}}\)</span>。</p>
+<p>如果要使介质的磁化强度 或磁感应强度
+为0，那么必须外加反方向的磁化场。当介质在外加磁化场中退磁时，我们称此时外加磁化场的大小为这种铁磁质的矫顽力<span
+class="math inline">\(H_{\mathrm{C}}\)</span>。从具有剩磁的状态到完全退磁的这一段曲线被称为退磁曲线。</p>
+<p>显然，我们可以对在反方向磁化场作用下退磁的铁磁质施加更大的反向磁化场。实验表明，一般来说反向的饱和磁化强度<span
+class="math inline">\(M_{\mathrm{S}}\)</span>与正向磁化时相同。反向经过与正向相似的步骤后，我们可以得到一条闭合的磁滞回线。不难看出，此时<span
+class="math inline">\(M-H\)</span>与<span
+class="math inline">\(B-H\)</span>失去了单值性，对于同一个<span
+class="math inline">\(H\)</span>有两个值与其对应。</p>
+<p>这样，对于给定的磁场强度<span
+class="math inline">\(H\)</span>，要确定其对应的磁化强度<span
+class="math inline">\(M\)</span>或磁感应强度<span
+class="math inline">\(B\)</span>的话，还需要知道介质的磁化历史，即到达此状态的过程。</p>
+<h3 id="磁滞损耗">磁滞损耗</h3>
+<p>下面证明，<span
+class="math inline">\(B-H\)</span>图中磁滞回线所包围的面积代表在一个反复磁化的循环过程中，单位体积的铁芯损耗的能量。</p>
+<p>假设介质起初位于某一磁化状态<span
+class="math inline">\(P\)</span>，此时<span class="math inline">\(H &gt;
+0\)</span>、<span class="math inline">\(B &gt; 0\)</span>。当<span
+class="math inline">\(H\)</span>增加时，在时间<span
+class="math inline">\(\mathrm{d}  t\)</span>内磁化状态由P 到达<span
+class="math inline">\(P&#39;\)</span>点，磁感应强度<span
+class="math inline">\(B\)</span> 增加<span
+class="math inline">\(\mathrm{d}  B\)</span>。由于<span
+class="math inline">\(B\)</span>发生变化，因此在线圈中产生一个感应电动势
+<span class="math display">\[
+\mathscr{E} = -\dfrac{\mathrm{d}  \varPsi}{\mathrm{d}  t}
+\]</span> 其中，<span class="math inline">\(\varPsi =
+NBS\)</span>为线圈中磁通链匝数。在此过程中电源抵抗感应电动势做功为 <span
+class="math display">\[
+\mathrm{d}  A = -I_{0}\mathscr{E}\mathrm{d}  t = I_{0}
+\mathrm{d}  \varPsi
+\]</span> 在有闭合铁芯的螺绕环中，<span class="math inline">\(H =
+nI_{0}\)</span>。其中，<span class="math inline">\(n =
+\dfrac{N}{l}\)</span>为线圈单位长度内的匝数，而<span
+class="math inline">\(l\)</span>为线圈周长。同时，<span
+class="math inline">\(\mathrm{d}  \varPsi =
+NS\mathrm{d}  B\)</span>。将二者带入上式可得 <span
+class="math display">\[
+\mathrm{d}  A = SlH\mathrm{d}  B
+\]</span> 上式中<span
+class="math inline">\(Sl\)</span>是铁芯体积，因此对于单位体积的铁芯，电源抵抗感应电动势所做功为
+<span class="math display">\[\begin{equation}
+\mathrm{d}  a = \dfrac{\mathrm{d}  A}{V} = H\mathrm{d}  B
+\end{equation}\]</span></p>
+<p>显然，<span
+class="math inline">\(\mathrm{d}  a\)</span>等于上图中阴影部分面积。这表明当介质的磁化状态从P
+变为<span
+class="math inline">\(P&#39;\)</span>时，对单位体积铁芯而言，电源抵抗感应电动势做功等于其对<span
+class="math inline">\(B\)</span>轴围成的面积。因此可以得出，<span
+class="math inline">\(B-H\)</span>图中磁滞回线所包围的面积代表在一个反复磁化的循环过程中，单位体积的铁芯损耗的能量。</p>
+<h3 id="铁磁质的分类">铁磁质的分类</h3>
+<p>按照铁磁质的矫顽力大小，可将铁磁质分为软磁材料和硬磁材料。矫顽力很小的被称为软磁材料，反之为硬磁材料。</p>
+<h4 id="软磁材料">软磁材料</h4>
+<p>矫顽力小，意味着此种材料的磁滞回线形状较为“狭长”，同时其所包围的面积小。这样，这种材料在交变磁场中磁滞损耗小，适用于交变磁场。</p>
+<h4 id="硬磁材料">硬磁材料</h4>
+<p>永磁体是在外加磁化场去掉后，仍然保留有一定的剩余磁化强度<span
+class="math inline">\(M_{R}\)</span>的材料。显然，硬磁材料适合做永磁体。</p>
+<h2 id="边界条件磁路定理">边界条件、磁路定理</h2>
+<h3 id="磁介质的边界条件">磁介质的边界条件</h3>
+<p>在两种磁介质的分界面（或一种磁介质与真空的分界面）上，主要的边界条件有两条：</p>
+<p>（1）磁感应强度 的法线分量的连续性</p>
+<p>（2）磁场强度 切线分量的连续性</p>
+<h4 id="磁感应强度的法线分量的连续性">磁感应强度的法线分量的连续性</h4>
+如图，在两种磁介质的分界面上取一面元<span class="math inline">\(\Delta
+S\)</span>，并由此做一柱状闭合面。柱的两个底面分别位于不同介质中，并无限接近分界面。取面元<span
+class="math inline">\(\Delta S\)</span>的单位法向向量<span
+class="math inline">\(\boldsymbol{e}_{\mathrm{n}}\)</span>，其方向为介质1到介质2。假设在面元<span
+class="math inline">\(\Delta
+S\)</span>两侧不同介质中，磁感应强度分别为<span
+class="math inline">\(\boldsymbol{B}_{1}\)</span>和<span
+class="math inline">\(\boldsymbol{B}_{2}\)</span>，那么通过闭合面的磁感应强度通量为
+<span class="math display">\[
+\varoiint \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} =
+\iint_{\mbox{底面1}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} +
+\iint_{\mbox{底面2}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} +
+\iint_{\mbox{侧面}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} = 0
+\]</span>
+<p>对于图中所示的这种情况，前两项分别为<span
+class="math inline">\(-\boldsymbol{B}_{1}\cdot
+\boldsymbol{e}_{\mathrm{n}}\Delta S\)</span>和<span
+class="math inline">\(\boldsymbol{B}_{2}\cdot
+\boldsymbol{e}_{\mathrm{n}}\Delta
+S\)</span>。而由于侧面面积趋于0，因此第三项积分为0。这样可以得到 <span
+class="math display">\[
+\left(  \boldsymbol{B}_{2} - \boldsymbol{B}_{1} \right)  \cdot
+\boldsymbol{e}_{\mathrm{n}}\Delta S = 0
+\]</span> 由于<span class="math inline">\(\Delta S \neq
+0\)</span>，因此有 <span class="math display">\[\begin{equation}
+\left(  \boldsymbol{B}_{2} - \boldsymbol{B}_{1} \right)  \cdot
+\boldsymbol{e}_{\mathrm{n}} = 0
+\end{equation}\]</span> 由于<span class="math inline">\(\boldsymbol{B}
+\cdot \boldsymbol{e}_{\mathrm{n}} = B_{\mathrm{n}}\)</span>，因此有
+<span class="math display">\[\begin{equation}
+B_{1\mathrm{n}} = B_{2\mathrm{n}}
+\end{equation}\]</span> 这表明，边界面两侧的磁感应强度
+的法线分量是连续的。</p>
+<h3 id="磁场强度的切线分量的连续性">磁场强度的切线分量的连续性</h3>
+<p>如图所示，在两种磁介质的分界面上取一矩形回路<span
+class="math inline">\(ABCDA\)</span>，其中<span
+class="math inline">\(\overline{AB} = \overline{CD} = \Delta
+l\)</span>。同时，这两条边与界面平行，并无限靠近界面（即$ = <span
+class="math inline">\(）。假设在界面两侧的不同介质中，磁场强度分别为\)</span><em>{1}<span
+class="math inline">\(和\)</span></em>{2}<span
+class="math inline">\(，那么磁场强度沿此环路的积分为\)</span>$ <em>{L} =
+</em>{A}^{B} + <em>{B}^{C} + </em>{C}^{D} + <em>{D}^{A} = I</em>{0}
+$$</p>
+<p>显然，第一项与第三项分别为<span
+class="math inline">\(-H_{2\mathrm{t}}\Delta l\)</span>和<span
+class="math inline">\(H_{1\mathrm{t}}\Delta l\)</span>（注意磁场强度
+与<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>之间的夹角）。而由于<span
+class="math inline">\(AB\)</span>与<span
+class="math inline">\(CD\)</span>无限接近分界面，因此第二项与第四项为0。由此可得
+<span class="math display">\[
+\left(  H_{1\mathrm{t}} - H_{2\mathrm{t}} \right)  \Delta l = \sum I_{0}
+\]</span> 但是，在介质表面没有传导电流，因此 <span
+class="math display">\[\begin{equation}
+H_{1\mathrm{t}} = H_{2\mathrm{t}}
+\end{equation}\]</span> 这表明，矢量差<span
+class="math inline">\(\boldsymbol{H}_{2} -
+\boldsymbol{H}_{1}\)</span>是沿法线方向的，因此磁介质分界面的第二个边界条件也可写为
+<span class="math display">\[\begin{equation}
+\boldsymbol{e}_{\mathrm{n}} \times \left(  \boldsymbol{H}_{2} -
+\boldsymbol{H}_{1} \right)  = 0
+\end{equation}\]</span> 这表明，边界面两侧磁场强度
+的切线分量是连续的。</p>
+<h3 id="磁感应线在界面的折射">磁感应线在界面的“折射”</h3>
+<p>假设界面两侧感应线与界面法线的夹角分别为<span
+class="math inline">\(\theta_{1}\)</span>和<span
+class="math inline">\(\theta_{2}\)</span>，那么由边界条件有 <span
+class="math display">\[
+B_{1} \cos \theta_{1} = B_{2} \cos \theta_{2} \quad H_{1} \sin
+\theta_{1} = H_{2} \sin \theta_{2}
+\]</span></p>
+<p>对应相除即可得到 <span class="math display">\[
+\dfrac{H_{1}}{B_{1}}\tan \theta_{1} = \dfrac{H_{2}}{B_{2}} \tan
+\theta_{2}
+\]</span> 假设两种介质的磁导率分别为<span
+class="math inline">\(\mu_{1}\)</span>和<span
+class="math inline">\(\mu_{2}\)</span>，那么 <span
+class="math display">\[
+B_{i} = \mu_{i} \mu_{0} H_{i} \quad \left(  i = 1,2 \right)
+\]</span> 于是可得 <span class="math display">\[\begin{equation}
+\dfrac{\tan \theta_{1}}{\tan \theta_{2}} = \dfrac{\mu_{1}}{\mu_{2}}
+\end{equation}\]</span>
+即界面两侧磁感线与法线夹角的正切之比等于两侧磁导率之比。</p>
+<h3 id="磁路定理">磁路定理</h3>
+<p>由于铁磁材料的磁导率<span
+class="math inline">\(\mu\)</span>很大，因此铁芯有使磁感应通量集中到铁芯内部的作用。换言之，在没有铁芯时，线圈产生的磁感线弥散在整个空间中。而铁芯能够将磁感线“吸”到自己内部，这使得铁芯的边界相当于一个磁感应管，与电路有一定的相似性。因此，像电路一样，我们也可将磁感应管称为磁路。</p>
+<p>磁路与电路的相似性，为我们提供了一个分析和计算磁场分布的工具——磁路定理。下面我们将其推导出来。</p>
+<p>在铁芯中，由于磁场的“Gauss定理”，通过铁芯各截面的磁通量<em>B
+相同同时，对于磁路来说，由Ampere环路定理有 <span class="math display">\[
+NI_{0} = \oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =
+\sum\limits_{i} H_{i}l_{i} = \sum\limits_{i}
+\dfrac{\varPhi_{Bi}l_{i}}{\mu_{i}\mu_{0}S_{i}}
+\]</span> 其中<span class="math inline">\(H_{i}\)</span>值第<span
+class="math inline">\(i\)</span>段均匀磁路中的磁场强度，其他类似。由于通过铁芯各截面的磁通量<em>B
+相同，因此$</em>{Bi} = </em>{Bj}( i j ) $，从而有 <span
+class="math display">\[\begin{equation}
+NI_{0} = \varPhi_{B} \sum\limits_{i} \dfrac{l_{i}}{\mu_{i}\mu_{0}S_{i}}
+\end{equation}\]</span></p>
+<p>相应的，在电路中，电源电动势 等于各段导线上的电势降落之和，即 <span
+class="math display">\[
+\mathscr{E} = \sum\limits_{i} IR_{i} = I\sum\limits
+\dfrac{l_{i}}{\sigma_{i}S_{i}}
+\]</span> 通过将两式对照，我们可以将磁路中相关量有对应的符号来表达，即
+<span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \mbox{磁动势}\mathscr{E}_{\mathrm{m}} = NI_{0} \\
+&amp; \mbox{磁阻} R_{\mathrm{m}i} = \dfrac{l_{i}}{\mu_{i}\mu_{0}S_{i}}
+\\
+&amp; \mbox{磁势降落} H_{i}l_{i} = \varPhi_{B}R_{\mathrm{m}i}\\
+\end{aligned}
+\right.
+\]</span> 这样一来，上述磁路公式可写为 <span
+class="math display">\[\begin{equation}
+\mathscr{E}_{m} = \varPhi_{B}\sum\limits_{i}R_{\mathrm{m}i}
+\end{equation}\]</span>
+上式即为磁路定理，即闭合磁路的磁动势等于各段磁路上磁势降落之和。</p>
+<h3 id="磁场的能量与能量密度">磁场的能量与能量密度</h3>
+<p>在第二章中，我们曾指出，按照电场的近距作用的观点，电能定域在电场中。因此利用电容器储能公式<span
+class="math inline">\(W_{\mathrm{e}} =
+\dfrac{1}{2}CU^{2}\)</span>导出了电场的能量密度公式 <span
+class="math display">\[
+w_{\mathrm{e}} = \dfrac{1}{2} \boldsymbol{D} \cdot \boldsymbol{E}
+\]</span>
+由于按照磁场的近距作用的观点，磁能也定域在磁场中，因此下面我们从电感储能公式<span
+class="math inline">\(W_{\mathrm{m}} =
+\dfrac{1}{2}LI^{2}\)</span>推导磁场的能量密度公式。为了方便计算，我们通过螺绕环这一特例推导。</p>
+<p>对任意螺绕环，其自感系数为 <span class="math display">\[
+L = \mu\mu_{0}n^{2}V
+\]</span> 所以此时螺绕环的自感磁能为 <span class="math display">\[
+W_{\mathrm{m}} = \dfrac{1}{2}\mu\mu_{0}n^{2}VI^{2}
+\]</span> 因为此时<span class="math inline">\(H = nl\)</span>，且<span
+class="math inline">\(B = \mu\mu_{0}H = \mu\mu_{0}nI\)</span>，因此
+<span class="math display">\[
+W_{\mathrm{m}} = \dfrac{1}{2}BHV = \dfrac{1}{2} \boldsymbol{B} \cdot
+\boldsymbol{H}V
+\]</span> 由此可得单位体积内的磁能为 <span
+class="math display">\[\begin{equation}
+w_{\mathrm{m}} = \dfrac{W_{\mathrm{m}}}{V} = \dfrac{1}{2}\boldsymbol{B}
+\cdot \boldsymbol{H}
+\end{equation}\]</span></p>
+<p>对于任意磁场，总磁能<span
+class="math inline">\(W_{\mathrm{m}}\)</span>为 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{m}} = \iiint_{V}w_{\mathrm{m}}\mathrm{d}  V = \dfrac{1}{2}
+\iiint_{V}\boldsymbol{B} \cdot \boldsymbol{H}\mathrm{d}  V
+\end{equation}\]</span></p>
+<p>下面考虑两个线圈情况的磁能公式。假设线圈1、2中的电流强度分别为<span
+class="math inline">\(I_{1}\)</span>、<span
+class="math inline">\(I_{2}\)</span>，其各自产生的磁场强度和磁感应强度分别为<span
+class="math inline">\(\boldsymbol{H}_{1}\)</span>、<span
+class="math inline">\(\boldsymbol{H}_{2}\)</span>和<span
+class="math inline">\(\boldsymbol{B}_{1}\)</span>、<span
+class="math inline">\(\boldsymbol{B}_{2}\)</span>，则总磁场强度和磁感应强度分别为
+<span class="math display">\[
+\boldsymbol{H} = \boldsymbol{H}_{1} + \boldsymbol{H}_{2} \quad
+\boldsymbol{B} = \boldsymbol{B}_{1} + \boldsymbol{B}_{2}
+\]</span> 从而总磁能为 <span class="math display">\[
+W_{\mathrm{m}} = \dfrac{1}{2} \iiint_{V}\boldsymbol{B} \cdot
+\boldsymbol{H} \mathrm{d}  V = \dfrac{1}{2}\mu\mu_{0} \iiint_{V}
+\left(  \boldsymbol{H}_{1} + \boldsymbol{H}_{2} \right) ^{2}
+\mathrm{d}  V
+\]</span> 即 <span class="math display">\[\begin{equation}
+W_{\mathrm{m}} = \dfrac{1}{2} \mu\mu_{0} \iiint_{V}
+\left(  \boldsymbol{H}_{1}^{2} + \boldsymbol{H}_{2}^{2} +
+2\boldsymbol{H}_{1} \cdot \boldsymbol{H}_{2} \right)  \mathrm{d}  V
+\end{equation}\]</span>
+不难看出，上式中第一、第二部分代表自感磁能，而第三项表示互感磁能。显然，自感磁能恒正，而互感磁能与两线圈磁场强度
+的角度有关。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/" title="磁介质">https://vasily-alexievich-korolev.github.io/posts/3fca16e6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/30110ae4/" rel="prev" title="电磁感应与暂态过程">
+      <i class="fa fa-chevron-left"></i> 电磁感应与暂态过程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/56b63450/" rel="next" title="交流电">
+      交流电 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A3%81%E4%BB%8B%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">磁介质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E4%BB%8B%E8%B4%A8%E7%9A%84%E7%A3%81%E5%8C%96%E7%A3%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E7%9F%A2%E9%87%8F%E5%8F%8A%E5%85%B6%E4%B8%8E%E7%A3%81%E5%8C%96%E7%94%B5%E6%B5%81%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">磁介质的磁化、磁化强度矢量及其与磁化电流的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E4%BB%8B%E8%B4%A8%E5%86%85%E7%9A%84%E7%A3%81%E6%84%9F%E5%BA%94%E5%BC%BA%E5%BA%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">磁介质内的磁感应强度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E5%9C%86%E6%A3%92"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">无限长圆棒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%88%E8%96%84%E7%9A%84%E7%A3%81%E4%BB%8B%E8%B4%A8%E7%89%87"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">很薄的磁介质片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%BC%BA%E5%BA%A6%E7%9F%A2%E9%87%8F%E6%9C%89%E7%A3%81%E4%BB%8B%E8%B4%A8%E6%97%B6%E7%9A%84ampere%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86%E4%B8%8Egauss%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">磁场强度矢量、有磁介质时的Ampere环路定理与“Gauss定理”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E7%9A%84%E7%A3%81%E8%8D%B7%E8%A7%82%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">等效的磁荷观点*</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E8%B4%A8%E7%9A%84%E7%A3%81%E5%8C%96%E8%A7%84%E5%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">介质的磁化规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%8C%96%E7%8E%87%E4%B8%8E%E7%A3%81%E5%AF%BC%E7%8E%87"><span class="nav-number">1.3.1.</span> <span class="nav-text">磁化率与磁导率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E7%A3%81%E8%B4%A8%E4%B8%8E%E6%8A%97%E7%A3%81%E8%B4%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">顺磁质与抗磁质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B6%85%E5%AF%BC%E4%BD%93%E7%89%B9%E6%AE%8A%E7%9A%84%E7%A3%81%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">超导体特殊的磁性质*</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%81%E7%A3%81%E8%B4%A8%E7%9A%84%E7%A3%81%E5%8C%96%E8%A7%84%E5%BE%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">铁磁质的磁化规律</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%B7%E5%A7%8B%E7%A3%81%E5%8C%96%E6%9B%B2%E7%BA%BF"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">起始磁化曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E6%BB%9E%E5%9B%9E%E7%BA%BF"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">磁滞回线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E6%BB%9E%E6%8D%9F%E8%80%97"><span class="nav-number">1.3.4.</span> <span class="nav-text">磁滞损耗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%81%E7%A3%81%E8%B4%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.5.</span> <span class="nav-text">铁磁质的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E7%A3%81%E6%9D%90%E6%96%99"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">软磁材料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AC%E7%A3%81%E6%9D%90%E6%96%99"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">硬磁材料</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6%E7%A3%81%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">边界条件、磁路定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E4%BB%8B%E8%B4%A8%E7%9A%84%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.4.1.</span> <span class="nav-text">磁介质的边界条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E6%84%9F%E5%BA%94%E5%BC%BA%E5%BA%A6%E7%9A%84%E6%B3%95%E7%BA%BF%E5%88%86%E9%87%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">磁感应强度的法线分量的连续性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%BC%BA%E5%BA%A6%E7%9A%84%E5%88%87%E7%BA%BF%E5%88%86%E9%87%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7"><span class="nav-number">1.4.2.</span> <span class="nav-text">磁场强度的切线分量的连续性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E6%84%9F%E5%BA%94%E7%BA%BF%E5%9C%A8%E7%95%8C%E9%9D%A2%E7%9A%84%E6%8A%98%E5%B0%84"><span class="nav-number">1.4.3.</span> <span class="nav-text">磁感应线在界面的“折射”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.4.</span> <span class="nav-text">磁路定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E7%9A%84%E8%83%BD%E9%87%8F%E4%B8%8E%E8%83%BD%E9%87%8F%E5%AF%86%E5%BA%A6"><span class="nav-number">1.4.5.</span> <span class="nav-text">磁场的能量与能量密度</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

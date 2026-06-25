@@ -1,3 +1,11 @@
+https://vasily-alexievich-korolev.github.io/posts/64576629/
+https://vasily-alexievich-korolev.github.io/posts/56b63450/
+https://vasily-alexievich-korolev.github.io/posts/3fca16e6/
+https://vasily-alexievich-korolev.github.io/posts/30110ae4/
+https://vasily-alexievich-korolev.github.io/posts/2f05d78c/
+https://vasily-alexievich-korolev.github.io/posts/525defbd/
+https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/
+https://vasily-alexievich-korolev.github.io/posts/5b9f9152/
 https://vasily-alexievich-korolev.github.io/posts/d9e45f82/
 https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/
 https://vasily-alexievich-korolev.github.io/posts/4f8a2c71/
@@ -43,6 +51,7 @@ https://vasily-alexievich-korolev.github.io/tags/Kernel-Methods/
 https://vasily-alexievich-korolev.github.io/tags/PES/
 https://vasily-alexievich-korolev.github.io/tags/Marxism/
 https://vasily-alexievich-korolev.github.io/tags/Article/
+https://vasily-alexievich-korolev.github.io/tags/Electromagnetics/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
 https://vasily-alexievich-korolev.github.io/categories/Computer-Science/
 https://vasily-alexievich-korolev.github.io/categories/Chemistry/
@@ -57,3 +66,4 @@ https://vasily-alexievich-korolev.github.io/categories/Physics/
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/
 https://vasily-alexievich-korolev.github.io/categories/Physics/Classical-Mechanics/
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/Dialectics-of-Nature/
+https://vasily-alexievich-korolev.github.io/categories/Physics/Electromagnetics/

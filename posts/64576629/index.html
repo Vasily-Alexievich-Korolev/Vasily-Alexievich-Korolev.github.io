@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了Maxwell方程组和电磁波的基本理论，包括位移电流、电磁波的传播、电磁场的能量与动量等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maxwell电磁理论与电磁波">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/64576629/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了Maxwell方程组和电磁波的基本理论，包括位移电流、电磁波的传播、电磁场的能量与动量等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.959Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.960Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/64576629/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Maxwell电磁理论与电磁波 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/64576629/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maxwell电磁理论与电磁波
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了Maxwell方程组和电磁波的基本理论，包括位移电流、电磁波的传播、电磁场的能量与动量等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="maxwell电磁理论与电磁波">Maxwell电磁理论与电磁波</h1>
+<h2 id="maxwell电磁理论">Maxwell电磁理论</h2>
+<h3 id="位移电流">位移电流</h3>
+<p>到Maxwell的时代，关于电磁场的基本规律可概括如下</p>
+<p>（1）电场的Gauss定理 <span class="math display">\[
+\varoiint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = q_{0}
+\]</span></p>
+<p>（2）静电场的环路定理 <span class="math display">\[
+\oint_{L} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\]</span></p>
+<p>（3）磁场的“Gauss定理” <span class="math display">\[
+\varoiint_{S} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\]</span></p>
+<p>（4）Ampere环路定理 <span class="math display">\[
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = I_{0}
+\]</span></p>
+<p>（5）Faraday电磁感应定律 <span class="math display">\[
+\mathscr{E} = -\dfrac{\mathrm{d}  \varphi}{\mathrm{d}  t}
+\]</span></p>
+<p>下面我们来讨论这样一个问题：已知在恒定条件下，无论载流回路周围是真空还是有磁介质，Ampere环路定理均可写为
+<span class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = \iint_{S}
+\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} = I_{0}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(I_{0}\)</span>是穿过以闭合回路<span
+class="math inline">\(L\)</span>为边界的任意曲面<span
+class="math inline">\(S\)</span>的传导电流。那么，在非恒定条件下，Ampere环路定理是否成立。</p>
+<p>如果在非恒定条件下，Ampere环路定理仍然成立，那么对于以<span
+class="math inline">\(L\)</span>为边界的任意闭合曲面<span
+class="math inline">\(S\)</span>，通过曲面的传导电流都应当相同。也就是说，如果此时我们任意取出两个不同的曲面<span
+class="math inline">\(S_{1}\)</span>和<span
+class="math inline">\(S_{2}\)</span>，那么应当有 <span
+class="math display">\[
+\iint_{S_{1}}\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} =
+\iint_{S_{2}} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 即 <span class="math display">\[
+\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\]</span> 其中，<span class="math inline">\(S\)</span>是由<span
+class="math inline">\(S_{1}\)</span>与<span
+class="math inline">\(S_{2}\)</span>组成的闭合曲面。</p>
+<p>在非恒定情况下，上式是不成立的。比如电容器的充放电电路，在非恒定情况下，导线中的电流是随着时间而变化的。如果我们取<span
+class="math inline">\(S_{1}\)</span>与导线相交，而<span
+class="math inline">\(S_{2}\)</span>穿过电容器两极板之间，那么显然有
+<span class="math display">\[
+\iint_{S_{1}}\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} \neq
+0,\quad \iint_{S_{2}} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+0
+\]</span> 这样就有 <span class="math display">\[
+\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} \neq 0
+\]</span></p>
+<p>其实在上面的讨论中，不仅暴露了矛盾，而且提供了解决问题的线索。在非恒定条件下，有电流的连续原理有
+<span class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} =
+-\dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(q_{0}\)</span>是积累在<span
+class="math inline">\(S\)</span>面的自由电荷。另一方面，按照Gauss定理
+<span class="math display">\[
+\varoiint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = q_{0}
+\]</span> 从而可以得到 <span class="math display">\[
+\dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t} =
+\dfrac{\mathrm{d}  }{\mathrm{d}  t} \varoiint_{S} \boldsymbol{D} \cdot
+\mathrm{d}  \boldsymbol{S}
+\]</span> 即 <span class="math display">\[\begin{equation}
+\dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t} = \varoiint_{S} \dfrac{\partial
+\boldsymbol{D}}{\partial t} \cdot \mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span> 这样就能得到 <span
+class="math display">\[\begin{equation}
+\varoiint_{S} \left(  \boldsymbol{j}_{0} + \dfrac{\partial
+\boldsymbol{D}}{\partial \boldsymbol{t}} \right)  \cdot
+\mathrm{d}  \boldsymbol{S} = 0
+\end{equation}\]</span> 这说明，只要边界<span
+class="math inline">\(L\)</span>相同，那么<span
+class="math inline">\(\boldsymbol{j}_{0} + \dfrac{\partial
+\boldsymbol{D}}{\partial
+\boldsymbol{t}}\)</span>这个量是永远连续的，其在以<span
+class="math inline">\(L\)</span>为边界的任何曲面上的积分均为定值。</p>
+<p>设通过某一曲面的电位移通量为 <span class="math display">\[
+\varPhi_{D} = \iint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 那么有 <span class="math display">\[\begin{equation}
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} = \iint_{S}
+\dfrac{\partial \boldsymbol{D}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span> Maxwell将<span
+class="math inline">\(\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}\)</span>称为位移电流，而称<span
+class="math inline">\(\dfrac{\partial \boldsymbol{D}}{\partial
+t}\)</span>为位移电流密度。同时，将传导电流 <span
+class="math display">\[
+I_{0} = \iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
+\]</span>
+与位移电流合在一起称为全电流。由此可以得出：全电流在非恒定情况下依然连续。</p>
+<p>上述结论可以通过电容器的例子直观说明。如图所示，在一个极板表面内、外各取一面<span
+class="math inline">\(S_{1}\)</span>和<span
+class="math inline">\(S_{2}\)</span>，则通过<span
+class="math inline">\(S_{1}\)</span>的既有传导电流，又有位移电流，而通过<span
+class="math inline">\(S_{2}\)</span>的只有位移电流。但是由于导体内电位移<span
+class="math inline">\(D_{\mathrm{inner}}\)</span>与位移电流可以忽略
+，因此与静电情况类似，有 <span class="math display">\[
+D_{\mathrm{inner}} \approx 0
+\]</span> 同时 <span class="math display">\[
+D_{\mathrm{outer}} \approx \sigma_{\mathrm{e}0}
+\]</span></p>
+<p>假设电容器极板的面积为<span
+class="math inline">\(S\)</span>，那么通过<span
+class="math inline">\(S_{1}\)</span>的全电流为 <span
+class="math display">\[
+\left(  j_{0} + \dfrac{\partial D_{\mathrm{inner}}}{\partial t}
+\right)  S \approx j_{0}S = I_{0}
+\]</span> 通过<span class="math inline">\(S_{2}\)</span>的全电流为 <span
+class="math display">\[
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} = \dfrac{\partial
+D_{\mathrm{outer}}}{\partial t}S = \dfrac{\partial
+\sigma_{\mathrm{e}0}}{\partial t}S
+\]</span></p>
+<p>由于<span class="math inline">\(j_{0} = \dfrac{\partial
+\sigma_{\mathrm{e}0}}{\partial
+t}\)</span>，因此上面两表达式相等。这样，在电容器极板表面中断了的传导电流<span
+class="math inline">\(I_{0}\)</span>被间隙中的位移电流<span
+class="math inline">\(\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}\)</span>接替下去，二者在一起保持着连续性。</p>
+<p>现在我们回到开始时的那个问题：如何将Ampere环路定理推广到非恒定情况？显然，由于全电流的连续性，因此在非恒定条件下应当用全电流代替传导电流，即
+<span class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = I_{0} +
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}
+\end{equation}\]</span>
+以上便是Maxwell的位移电流假说（1861-1862年）。</p>
+<p>在电介质中，位移电流为 <span class="math display">\[\begin{equation}
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} =
+\varepsilon_{0}\iint_{S}\dfrac{\partial \boldsymbol{E}}{\partial t}
+\cdot \mathrm{d}  \boldsymbol{S} + \iint_{S}\dfrac{\partial
+\boldsymbol{P}}{\partial t} \cdot \mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span>
+我们分别看上式右端两项的物理意义。先看第二项。由第二章可得 <span
+class="math display">\[
+\varoiint_{S}\boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} = -q&#39;
+\]</span> 取对于时间的导数可得 <span class="math display">\[
+\varoiint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S} = -\dfrac{\mathrm{d}  q&#39;}{\mathrm{d}  t}
+\]</span> 由于极化电荷的连续方程为 <span class="math display">\[
+\varoiint_{S}\boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+-\dfrac{\mathrm{d}  q&#39;}{\mathrm{d}  t}
+\]</span> 其中，<span
+class="math inline">\(\boldsymbol{j}_{P}\)</span>为极化电流密度。由此可见
+<span class="math display">\[\begin{equation}
+\varoiint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S} = \varoiint_{S}\boldsymbol{j} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span>
+这表明，右端第二项表示由极化电荷运动所引起的电流。</p>
+<p>然后看右边第一项，其与电场的时间变化率<span
+class="math inline">\(\dfrac{\partial \boldsymbol{E}}{\partial
+t}\)</span>相联系。在真空中，<span class="math inline">\(\boldsymbol{P}
+= 0\)</span>，同时<span class="math inline">\(\dfrac{\partial
+\boldsymbol{P}}{\partial t} = 0\)</span>，因此此时位移电流表示为 <span
+class="math display">\[
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} =
+\varepsilon_{0}\iint_{S}\dfrac{\partial \boldsymbol{E}}{\partial t}
+\cdot \mathrm{d}  \boldsymbol{S}
+\]</span>
+由此可见，右边第一项是位移电流的基本组成部分。因此，我们可以看出，位移电流的本质并非“电荷流动”，而是变化的电场。</p>
+<p>Ampere环路定理<span class="math inline">\(\displaystyle \oint_{L}
+\boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =
+I_{0}\)</span>的实质在于说明传导电流是激发涡旋磁场的源泉，而位移电流假说<span
+class="math inline">\(\displaystyle \oint_{L} \boldsymbol{H} \cdot
+\mathrm{d}  \boldsymbol{l} = I_{0} +
+\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}\)</span>实质上意味着Maxwell认为变化着的电场激发涡旋磁场，这是在Ampere环路定理上的进步。</p>
+<h3 id="maxwell方程组">Maxwell方程组</h3>
+<p>将上述结果综合起来，就得到了在普遍情况下，电磁场必须满足的方程组
+<span class="math display">\[\begin{align}
+\left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
+\begin{aligned}
+&amp; \varoiint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+q_{0}\\
+&amp; \oint_{L}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = -\iint
+\dfrac{\partial \boldsymbol{B}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S}\quad\\
+&amp; \varoiint_{S} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\\
+&amp; \oint_{L}\boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =I_{0} +
+\iint \dfrac{\partial \boldsymbol{D}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S} \\
+\end{aligned}
+\right.
+\end{align}\]</span> 上式是Maxwell方程组的积分形式。</p>
+<p>利用矢量分析中的Gauss定理与Stokes定理，可以由Maxwell方程组的积分形式推导出其微分形式。首先推导Gauss定理的微分形式，假定自由电荷的体密度为<span
+class="math inline">\(\rho_{\mathrm{e}0}\)</span>，那么Gauss定理可写为
+<span class="math display">\[
+\varoiint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+\iiint_{V} \rho_{\mathrm{e}0} \mathrm{d}  V
+\]</span> 利用矢量分析中的Gauss定理可将左边的面积分变为体积分，因此可得
+<span class="math display">\[
+\iiint_{V} \nabla \cdot \boldsymbol{D}\mathrm{d}  V = \iiint_{V}
+\rho_{\mathrm{e}0} \mathrm{d}  V
+\]</span> 因为上式对于任何体积<span
+class="math inline">\(V\)</span>均成立，因此可得 <span
+class="math display">\[\begin{equation}
+\nabla \cdot \boldsymbol{D} = \rho_{\mathrm{e}0}
+\end{equation}\]</span> 这就是Gauss定理的微分形式</p>
+<p>其次推导Maxwell位移电流假说的微分形式。假定传导电流密度为<span
+class="math inline">\(\boldsymbol{j}_{0}\)</span>，那么有 <span
+class="math display">\[
+\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = \iint_{S}
+\left(  \boldsymbol{j}_{0} + \dfrac{\partial \boldsymbol{D}}{\partial t}
+\right)  \cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 利用矢量分析中的Stokes定量将左边的线积分化为面积分，因此有
+<span class="math display">\[
+\iint_{S} \nabla \times \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{S}
+= \iint_{S} \left(  \boldsymbol{j}_{0} + \dfrac{\partial
+\boldsymbol{D}}{\partial t} \right)  \cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 由于上式对于任意曲面成立，因此可得 <span
+class="math display">\[\begin{equation}
+\nabla \times \boldsymbol{H} = \boldsymbol{j}_{0} + \dfrac{\partial
+\boldsymbol{D}}{\partial t}
+\end{equation}\]</span></p>
+<p>由上述方法不难推导出剩下两个方程，由此可得下面的方程组 <span
+class="math display">\[\begin{align}
+\left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
+\begin{aligned}
+&amp; \nabla \cdot \boldsymbol{D} = \rho_{\mathrm{e}0}\\
+&amp; \nabla \times \boldsymbol{E} = -\dfrac{\partial
+\boldsymbol{B}}{\partial t}\\
+&amp; \nabla \cdot \boldsymbol{B} = 0\\
+&amp; \nabla \times \boldsymbol{H} = \boldsymbol{j}_{0} +
+\dfrac{\partial \boldsymbol{D}}{\partial t}\\
+\end{aligned}
+\right.
+\end{align}\]</span> 上述方程组是Maxwell方程组的微分形式。</p>
+<p>在介质中，还需补充三个描述介质性质的方程组。以各向同性线性介质为例，其所满足的方程组为
+<span class="math display">\[\begin{align}
+\left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
+\begin{aligned}
+&amp; \boldsymbol{D} = \varepsilon\varepsilon_{0}\boldsymbol{E}\\
+&amp; \boldsymbol{B} = \mu\mu_{0}\boldsymbol{H}\\
+&amp; \boldsymbol{j}_{0} = \sigma\boldsymbol{E}\\
+\end{aligned}
+\right.
+\end{align}\]</span> 其中，<span
+class="math inline">\(\varepsilon\)</span>是相对介电常量，<span
+class="math inline">\(\mu\)</span>是相对磁导率，<span
+class="math inline">\(\sigma\)</span>是电导率。最后一个表达式为Ohms定律的微分形式。</p>
+<p>Maxwell方程组加上上述描述介质性质的方程，全面总结了电磁场的规律，理论上可以利用其解决所有宏观电磁场问题。</p>
+<h4 id="拓展">拓展</h4>
+<p>上面的微分形式Maxwell方程组是其在宏观下的表达形式，并非其最基本形式。最基本形式应当为
+<span class="math display">\[\begin{align}
+\left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
+\begin{aligned}
+&amp; \nabla \cdot \boldsymbol{E} =
+\dfrac{\rho_{\mathrm{e}}}{\varepsilon_{0}}\\
+&amp; \nabla \times \boldsymbol{E} = -\dfrac{\partial
+\boldsymbol{B}}{\partial t}\\
+&amp; \nabla \cdot \boldsymbol{B} = 0\\
+&amp; \nabla \times \boldsymbol{B} =
+\varepsilon_{0}\mu_{0}\dfrac{\partial \boldsymbol{E}}{\partial t} +
+\mu_{0}\boldsymbol{j}_{0}\\
+\end{aligned}
+\right.
+\end{align}\]</span> 此方程组之中只包含两个基本场矢量<span
+class="math inline">\(\boldsymbol{E}\)</span>和<span
+class="math inline">\(\boldsymbol{B}\)</span>，其中<span
+class="math inline">\(\rho_{\mathrm{e}}\)</span>和<span
+class="math inline">\(\boldsymbol{j}\)</span>代表所有电荷和电流的密度。上式中所有量既可以被理解为微观量，也可被理解为宏观量。此时，宏观量代表微观量的统计平均。</p>
+<p>对于宏观场，要由此形式变为前文所述形式，需要将场源<span
+class="math inline">\(\rho_{\mathrm{e}}\)</span>和<span
+class="math inline">\(\boldsymbol{j}\)</span>做如下分解：</p>
+<p><span class="math display">\[\begin{align}
+\left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
+\begin{aligned}
+&amp; \rho_{\mathrm{e}} = \rho_{\mathrm{e}0} + \rho_{\mathrm{e}}&#39;\\
+&amp; \boldsymbol{j} = \boldsymbol{j}_{0} + \boldsymbol{j}&#39;,\quad
+\boldsymbol{j}&#39; = \boldsymbol{j}_{P} + \boldsymbol{j}_{M} \\
+\end{aligned}
+\right.
+\end{align}\]</span> 此时，<span
+class="math inline">\(\rho_{\mathrm{e}0}\)</span>是自由电荷密度，<span
+class="math inline">\(\rho_{\mathrm{e}}&#39; = -\nabla \cdot
+\boldsymbol{P}\)</span>是极化电荷密度，<span
+class="math inline">\(\boldsymbol{j}_{0}\)</span>是传导电流密度，<span
+class="math inline">\(\boldsymbol{j}&#39;\)</span>是诱导电流密度。其中，诱导电流密度<span
+class="math inline">\(\boldsymbol{j}&#39;\)</span>又可分为极化电流密度<span
+class="math inline">\(\boldsymbol{j}_{P} = \dfrac{\partial
+\boldsymbol{P}}{\partial t}\)</span>和磁化电流密度<span
+class="math inline">\(\boldsymbol{j}_{M} = \nabla \times
+\boldsymbol{M}\)</span>两部分。这样，在引入<span
+class="math inline">\(\boldsymbol{D} = \boldsymbol{P} +
+\varepsilon_{0}\boldsymbol{E}\)</span>和<span
+class="math inline">\(\boldsymbol{H} = \dfrac{\boldsymbol{B}}{\mu_{0}} -
+\boldsymbol{M}\)</span>后，即可得到宏观形式Maxwell方程组。</p>
+<p>\end{document}</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/64576629/" title="Maxwell电磁理论与电磁波">https://vasily-alexievich-korolev.github.io/posts/64576629/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/56b63450/" rel="prev" title="交流电">
+      <i class="fa fa-chevron-left"></i> 交流电
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#maxwell%E7%94%B5%E7%A3%81%E7%90%86%E8%AE%BA%E4%B8%8E%E7%94%B5%E7%A3%81%E6%B3%A2"><span class="nav-number">1.</span> <span class="nav-text">Maxwell电磁理论与电磁波</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#maxwell%E7%94%B5%E7%A3%81%E7%90%86%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">Maxwell电磁理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E7%94%B5%E6%B5%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">位移电流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maxwell%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">Maxwell方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">拓展</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

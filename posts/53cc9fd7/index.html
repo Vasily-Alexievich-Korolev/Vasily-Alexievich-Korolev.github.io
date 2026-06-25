@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了静电场中的导体与电介质的相关理论，包括静电平衡、电容、电介质极化、D的高斯定理等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静电场中的导体与电介质">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了静电场中的导体与电介质的相关理论，包括静电平衡、电容、电介质极化、D的高斯定理等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.837Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.837Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>静电场中的导体与电介质 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          静电场中的导体与电介质
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>31 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了静电场中的导体与电介质的相关理论，包括静电平衡、电容、电介质极化、D的高斯定理等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="静电场中的导体与电介质">静电场中的导体与电介质</h1>
+<h2 id="静电场中的导体">静电场中的导体</h2>
+<h3 id="导体的静电平衡条件">导体的静电平衡条件</h3>
+<p>所谓静电平衡，指的是带电体系中的电荷静止不动，从而电场分布不随时间而变化。由此我们能得出第一个结论，那就是“均匀导体的静电平衡条件是其内部场强
+处处为<span
+class="math inline">\(\boldsymbol{0}\)</span>”。因为，如果导体内部场强
+不处处为<span
+class="math inline">\(\boldsymbol{0}\)</span>，那么在不为<span
+class="math inline">\(\boldsymbol{0}\)</span>处电荷必定会发生移动，从而使得导体不处于静电平衡。</p>
+<p>由此我们还可以得出一下几个推论：</p>
+<p>（1）导体是等势体，导体表面是等势面</p>
+<p>由于导体内部任意两点的电势差<span class="math inline">\(U_{PQ} =
+\displaystyle\int_{P}^{Q} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l}\)</span>，如果 处处为 ，那么显然<span
+class="math inline">\(U_{PQ} = 0\)</span>恒成立。</p>
+<p>（2）导体外表面场强处处与其表面垂直</p>
+<h3 id="静电平衡时的电荷分布特点">静电平衡时的电荷分布特点</h3>
+<h4 id="体内无电荷">体内无电荷</h4>
+<p>这个特点是指，在达到静电平衡时，导体内部电荷体密度<span
+class="math inline">\(\rho_{\mathrm{e}} =
+0\)</span>恒成立，电荷只分布在导体表面。</p>
+<p>用Gauss定理即可证明此结论。假定导体静电平衡时内部某处有未抵消的净电荷<span
+class="math inline">\(q\)</span>，那么取一闭合面<span
+class="math inline">\(S\)</span>将其包围，由Gauss定理可得通过闭合面<span
+class="math inline">\(S\)</span>的电场强度通量等于<span
+class="math inline">\(\dfrac{q}{\varepsilon_{0}}\)</span>，这说明闭合面<span
+class="math inline">\(S\)</span>上存在至少一点的场强 不为
+。这与导体静电平衡相矛盾，因此达到静电平衡时，导体内部电荷体密度<span
+class="math inline">\(\rho_{\mathrm{e}} = 0\)</span>恒成立。</p>
+<h4 id="电荷面密度与场强的关系">电荷面密度与场强的关系</h4>
+<p>在静电平衡状态下，导体外表面附近某处的场强
+与该处导体表面的电荷面密度<span
+class="math inline">\(\sigma_{\mathrm{e}}\)</span>关系为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \dfrac{\sigma_{\mathrm{e}}}{\varepsilon_{0}}
+\boldsymbol{e}_{\mathrm{n}}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\boldsymbol{e}_{\mathrm{n}}\)</span>为该处垂直表面向外的单位向量。</p>
+用Gauss定理亦可证明此结论。设P 点为导体外表面附近一点，在P
+点附近取一面元<span
+class="math inline">\(\mathrm{d}  S\)</span>，此时可认为在此面元上电荷分布均匀（也就是电荷面密度<span
+class="math inline">\(\sigma_{\mathrm{e}}\)</span>为常数）。做一底面与面元<span
+class="math inline">\(\mathrm{d}  S\)</span>平行并包围其的圆柱，则由Gauss定理有
+<span class="math display">\[
+\varPhi_{E} = \iint\limits_{\mbox{上底}} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S} + \iint\limits_{\mbox{下底}} \boldsymbol{E}
+\cdot \mathrm{d}  \boldsymbol{S} + \iint\limits_{\mbox{侧面}}
+\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} =
+\dfrac{\sigma_{\mathrm{e}}\mathrm{d}  S}{\varepsilon_{0}}
+\]</span>
+<p>由于导体内部场强为 ，而导体外表面附近场强垂直导体表面向外，因此 <span
+class="math display">\[
+\varPhi_{E} = \iint\limits_{\mbox{上底}} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S}
+\]</span> 由于面元<span
+class="math inline">\(\mathrm{d}  S\)</span>很小，因此可以认为此时上底面场强与P
+处场强 均匀分布，因此 <span class="math display">\[
+\varPhi_{E} = E\mathrm{d}  S =
+\dfrac{\sigma_{\mathrm{e}}\mathrm{d}  S}{\varepsilon_{0}}
+\]</span> 即 <span class="math display">\[
+\boldsymbol{E} = \dfrac{\sigma_{\mathrm{e}}}{\varepsilon_{0}}
+\boldsymbol{e}_{\mathrm{n}}
+\]</span></p>
+<h3 id="导体壳腔体内部无带电体">导体壳（腔体内部无带电体）</h3>
+<p>导体壳有以下性质：</p>
+<p>（1）导体壳内表面没有电荷，电荷只分布在外表面</p>
+<p>（2）空腔内电势处处相等，或者说没有电场</p>
+<p>由（2）可得，在导体壳内部的区域不受导体壳外表面的电荷或外界电场的影响，这被称之为静电屏蔽。</p>
+<h3 id="导体壳腔体内部有带电体">导体壳（腔体内部有带电体）</h3>
+<p>当导体壳腔内有带电体时，在静电平衡状态下，导体壳内表面所带电荷与腔内电荷的代数和为0。</p>
+<h2 id="电容和电容器">电容和电容器</h2>
+<h3 id="孤立导体的电容">孤立导体的电容</h3>
+<p>孤立导体是指在此导体周围无其他导体或带电体。实验表明，随着孤立导体带电量<span
+class="math inline">\(q\)</span>的增加，其电势将按比例增加，即 <span
+class="math display">\[\begin{equation}
+C = \dfrac{q}{\varphi}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(C\)</span>只与导体的尺寸、形状等有关，被称为该孤立导体的电容。电容的单位为C/V，为纪念物理学家Faraday，这一单位被称为F。</p>
+<h3 id="电容器及其电容">电容器及其电容</h3>
+<p>如果一个导体A附近还有其他导体，那么此时该导体的电势<span
+class="math inline">\(\varphi_{A}\)</span>不仅与其所带电荷<span
+class="math inline">\(q_{A}\)</span>的多少有关，而且与附近其他导体的位置、形状等有关。这是由于导体A所带电荷<span
+class="math inline">\(q_{A}\)</span>能够使得临近导体的表面产生感应电荷，这会影响空间中电势分布以及每个导体的电势。此时我们可以用一封闭导体壳B将导体A包围起来。这样导体壳B之外的导体不会影响A的电势。此时由于导体A带电荷<span
+class="math inline">\(q_{A}\)</span>，因此导体壳B带电荷<span
+class="math inline">\(-q_{A}\)</span>。此时尽管A与B的电势<span
+class="math inline">\(\varphi_{A}\)</span>、<span
+class="math inline">\(\varphi_{B}\)</span>均会受到外界干扰，但其差值<span
+class="math inline">\(\varphi_{A} -
+\varphi_{B}\)</span>不会受到影响，因此 <span
+class="math display">\[\begin{equation}
+C_{AB} = \dfrac{q_{A}}{\varphi_{A} - \varphi_{B}}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(C_{AB}\)</span>被称为由导体A和导体壳B组成的电容器的电容。</p>
+<p>通常在电容器的两极板中间会夹有一层绝缘介质，下面我们先不考虑绝缘介质，推导一些常见电容器的电容公式。</p>
+<h4 id="平行板电容器">平行板电容器</h4>
+<p>设平行板电容器极板面积为<span
+class="math inline">\(S\)</span>，两极板之间距离为<span
+class="math inline">\(d\)</span>。通常情况下极板满足<span
+class="math inline">\(S\gg
+d^{2}\)</span>，这样可近似把极板当作无限大。</p>
+<p>假如此时两极板所带电荷量分别是<span
+class="math inline">\(+q\)</span>和<span
+class="math inline">\(-q\)</span>，结合式（1）则可得两极板之间电势差<span
+class="math inline">\(U_{AB}\)</span>为 <span class="math display">\[
+U_{AB} = \int_{A} ^{B}\boldsymbol{E}\cdot \mathrm{d}  \boldsymbol{l} =
+\dfrac{\sigma_{\mathrm{e}}d}{\varepsilon_{0}} =
+\dfrac{qd}{\varepsilon_{0}S}
+\]</span></p>
+<p>从而可得平行板电容器的电容<span class="math inline">\(C\)</span>为
+<span class="math display">\[\begin{equation}
+C = \dfrac{q}{U_{AB}} = \dfrac{\varepsilon_{0}S}{d}
+\end{equation}\]</span> 这说明，平行板电容器的电容<span
+class="math inline">\(C\)</span>正比于极板面积<span
+class="math inline">\(S\)</span>，同时与极板间隔<span
+class="math inline">\(d\)</span>成反比。</p>
+<h4 id="同心球电容器">同心球电容器</h4>
+<p>此种电容器由两个同心球形导体A、B组成，设其半径分别为<span
+class="math inline">\(R_{A}\)</span>和<span
+class="math inline">\(R_{B}\)</span>（不失一般性地假设<span
+class="math inline">\(R_{A} &lt; R_{B}\)</span>），所带电荷分别为<span
+class="math inline">\(q_{A}\)</span>、<span
+class="math inline">\(q_{B}\)</span>。由Gauss定理可得，两导体间场强 为
+<span class="math display">\[
+\boldsymbol{E} = k\dfrac{q}{r^{2}}\boldsymbol{e}_{n}
+\]</span> 则两极板之间电势差<span
+class="math inline">\(U_{AB}\)</span>为 <span class="math display">\[
+U_{AB} = \int_{A} ^{B}\boldsymbol{E} \cdot\mathrm{d}  \boldsymbol{l} =
+\int_{R_{A}}^{R_{B}}k\dfrac{q}{r^{2}}\mathrm{d}  r =
+kq\left(  \dfrac{1}{R_{A}} - \dfrac{1}{R_{B}} \right)
+\]</span></p>
+<p>因此，同心球电容器的电容公式为 <span
+class="math display">\[\begin{equation}
+C = \dfrac{q}{U_{AB}} = \dfrac{R_{A}R_{B}}{k\left(  R_{A} - R_{B}\right)
+}
+\end{equation}\]</span></p>
+<h4 id="同轴柱状电容器">同轴柱状电容器</h4>
+<p>此种电容器由两个同轴柱状导体A、B组成，设其半径分别为<span
+class="math inline">\(R_{A}\)</span>和<span
+class="math inline">\(R_{B}\)</span>（不失一般性地假设<span
+class="math inline">\(R_{A} &lt; R_{B}\)</span>），其长度为<span
+class="math inline">\(L\)</span>。当<span class="math inline">\(L \gg
+R_{B} -
+R_{A}\)</span>时，计算场强时可认为圆柱体为无限长的。由Gauss定理可得，此时两导体间的场强
+为 <span class="math display">\[
+\boldsymbol{E} = \dfrac{\lambda}{2\pi
+\varepsilon_{0}r}\boldsymbol{e}_{n}
+\]</span> 其中，<span
+class="math inline">\(\lambda\)</span>为柱体的电荷线密度。由上式可得
+<span class="math display">\[
+U_{AB} = \int_{A} ^{B}\boldsymbol{E} \cdot\mathrm{d}  \boldsymbol{l} =
+\int_{R_{A}}^{R_{B}}\dfrac{\lambda}{2\pi \varepsilon_{0}r}\mathrm{d}  r
+=\dfrac{\lambda}{2\pi\varepsilon_{0}}\ln  \dfrac{R_{B}}{R_{A}}
+\]</span></p>
+<p>因此，同心柱电容器的电容公式为 <span
+class="math display">\[\begin{equation}
+C = \dfrac{q}{U_{AB}}  = \dfrac{\lambda L}{U_{AB}} =
+\dfrac{2\pi\varepsilon_{0}L}{\ln  \dfrac{R_{B}}{R_{A}}}
+\end{equation}\]</span></p>
+<h3 id="电容器的并联与串联">电容器的并联与串联</h3>
+<h4 id="并联">并联</h4>
+<p>由于并联时各电容器上电势差相同，因此各电容器上所带电荷<span
+class="math inline">\(q_{i}\)</span>与其电容<span
+class="math inline">\(C_{i}\)</span>成正比，即 <span
+class="math display">\[
+q_{i} = UC_{i}
+\]</span></p>
+<p>因此该电容器系统总电容<span class="math inline">\(C\)</span>为 <span
+class="math display">\[\begin{equation}
+C = \dfrac{q}{U} = \dfrac{\sum\limits_{i = 1}^{n}UC_{i}}{U} =
+\sum\limits_{i = 1}^{n}C_{i}
+\end{equation}\]</span> 也就是说，电容器并联时，总电容<span
+class="math inline">\(C\)</span>等于各电容器电容<span
+class="math inline">\(C_{i}\)</span>之和。</p>
+<h4 id="串联">串联</h4>
+<p>如图所示，当电容器串联时，假设最左边电容器的左极板带上电荷<span
+class="math inline">\(+q\)</span>，则其右极板将产生感应电荷<span
+class="math inline">\(-q\)</span>。这种感应电荷又会导致下一个电容器的左极板带上电荷<span
+class="math inline">\(+q\)</span>，而由此又会使得此电容器的右极板产生感应带你和<span
+class="math inline">\(-q\)</span>。由此可以看出，当电容器串联起来时，各电容器所带电荷量相同。因此各电容器上电势差<span
+class="math inline">\(U_{i}\)</span>与其电容成反比，即 <span
+class="math display">\[
+U_{i} = \dfrac{q}{C_{i}}
+\]</span></p>
+<p>因此该电容器系统总电容<span class="math inline">\(C\)</span>为 <span
+class="math display">\[
+C = \dfrac{q}{U} = \dfrac{q}{\sum\limits_{i = 1}^{n}\dfrac{q}{C_{i}}} =
+\dfrac{1}{\sum\limits_{i = 1}^{n}\dfrac{1}{C_{i}}}
+\]</span> 上式可写为 <span class="math display">\[\begin{equation}
+\dfrac{1}{C} = \dfrac{1}{\sum\limits_{i = 1}^{n}\dfrac{1}{C_{i}}}
+\end{equation}\]</span> 也就是说，电容器并联时，总电容的倒数<span
+class="math inline">\(\dfrac{1}{C}\)</span>等于各电容器电容倒数<span
+class="math inline">\(\dfrac{1}{C_{i}}\)</span>之和。</p>
+<h3 id="电容器储能电能">电容器储能（电能）</h3>
+<p>电容器充电时，电源必须做功，才能克服静电场力把电荷从一个极板搬运到另一个极板上。假设充电完成时，电容器所带电荷量的绝对值为<span
+class="math inline">\(Q\)</span>，两极板间电势差为<span
+class="math inline">\(U\)</span>。我们先来考察一下充电过程中的某一瞬间，假设在此刻电容器上所带电荷量的绝对值为<span
+class="math inline">\(q\)</span>，两极板之间电势差为<span
+class="math inline">\(u\)</span>。若在此时，电源将电荷量为<span
+class="math inline">\(-\mathrm{d}  q\)</span>的电子从正极板运输到负极板，以能量守恒的角度来看，如果此时不考虑热效应，那么电容器电势能的增加等于电池所做功，即
+<span class="math display">\[
+\delta W_{\mathrm{e}} = u\mathrm{d}  q
+\]</span> 积分可得 <span class="math display">\[
+W_{\mathrm{e}} = \int_{0}^{Q} u\mathrm{d}  q = \int_{0}^{Q}
+\dfrac{q}{C}\mathrm{d}  q = \dfrac{Q^{2}}{2C}
+\]</span> 利用<span class="math inline">\(Q =
+UC\)</span>可将电容器储能量写为 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{e}} = \dfrac{Q^{2}}{2C} = \dfrac{1}{2}CU^{2} = \dfrac{1}{2}QU
+\end{equation}\]</span> 这表明，在电势差U
+一定时，电容与电容器所储电能成正比。从此种意义上讲，电容代表了电容器储能能力。</p>
+<p>对一组导体而言，假设其表面电势<span
+class="math inline">\(\varphi_{i}\)</span>为常量，则其总静电能可由式（1.46）得到
+<span class="math display">\[\begin{equation}
+W_{\mathrm{e}} = \sum\limits_{i =
+1}^{n}\dfrac{1}{2}\iint_{S_{i}}\sigma_{\mathrm{e}}\varphi\mathrm{d}  S =
+\dfrac{1}{2}\sum\limits_{i =
+1}^{n}\varphi_{i}\iint_{S_{i}}\sigma_{\mathrm{e}}\mathrm{d}  S
+=\sum\limits_{i = 1}^{n} \dfrac{1}{2}\varphi_{i} Q_{i}
+\end{equation}\]</span> 结合电容器实际可得 <span class="math display">\[
+W_{\mathrm{e}} = \dfrac{1}{2}\left(  q_{+} \varphi_{+} -
+q_{-}\varphi_{-}\right)  = \dfrac{1}{2}QU
+\]</span></p>
+<p>由此可见，电容器储能即为电容器体系的总静电能。</p>
+<h2 id="电介质">电介质</h2>
+<h3 id="电介质的极化">电介质的极化</h3>
+<p>实验可以得到，在原本为真空条件的两极板之间加入电介质（比如某种液体），或插入导体板，能够增加电容器的电容。</p>
+<p>对于插入导体板的情况，我们可以认为插入导体板之后，导体板上产生了感应电荷。以平行板电容器为例，假设插入的导体板厚度为两极板间距<span
+class="math inline">\(d\)</span>的<span
+class="math inline">\(\dfrac{1}{2}\)</span>，则此时可以认为总电容为两个平行板电容器的串联。其中一个电容器的电容为
+<span class="math display">\[
+C^{&#39;} = \dfrac{4\varepsilon_{0}S}{d}
+\]</span> 则电容器的总电容为 <span class="math display">\[
+C = \dfrac{C^{&#39;}}{2} = \dfrac{2\varepsilon_{0}S}{d} = C_{0}
+\]</span>
+此时电容的增大，本质上是由于导体的静电屏蔽效应。导体板在电容器电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>的作用下产生了感应电荷，使得导体板内部电场始终为
+，这导致两极板之间电势差U 的减小。</p>
+<p>对于加入电介质的情况，由于电介质分子能够极化，在外加电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>的作用下，电介质的极化电荷与导体上的感应电荷一起，起到了减弱电场，从而减小电势差，增大电容的作用。与导体板不同的是，由于受到分子本身的限制，分子极化是有限度的，这使得电介质的极化电荷所产生的电场<span
+class="math inline">\(\boldsymbol{E}^{&#39;}\)</span>在介质内部不能够彻底抵消外加电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>，只能对其产生削弱。因此，我们有必要进一步讨论电介质极化的物理机制。</p>
+<h3 id="极化的微观机制">极化的微观机制</h3>
+<p>我们把分子可以分成以下两类：极性分子和非极性分子</p>
+<p><span class="math display">\[
+\mbox{分子类型} \left \{
+\begin{aligned}
+&amp; \mbox{极性分子：分子偶极矩}\boldsymbol{p} \neq  \boldsymbol{0}\\
+&amp; \mbox{非极性分子：分子偶极矩}\boldsymbol{p} =  \boldsymbol{0}\\
+\end{aligned}
+\right.
+\]</span></p>
+<h4 id="非极性分子的位移极化">非极性分子的位移极化</h4>
+<p>在外加电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>作用下，分子正负电荷中心会分开，从而产生感生电偶极矩
+，其方向为从负指向正。</p>
+<p>对于电介质整体而言，介质中每一分子均形成了电偶极子，相邻的两个偶极子之间由于电场力作用正负电荷首尾相接。因此电介质内部仍然为电中性，但两端面则显现出极化电荷。这种极化机制被称为取向极化。</p>
+<h4 id="极性分子的取向极化">极性分子的取向极化</h4>
+<p>在无外加电场时，由于分子无规律热运动的存在，各分子电矩之和为
+，宏观上不产生电场。但在外加电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>的作用下，每个偶极子均受到力矩作用，转向外电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>方向，这样两端面会表现出电荷。这种极化机制被称为取向极化。</p>
+<p>需要指出的是，只有极性分子能够产生取向极化，而位移极化则是极性与非极性分子均可以产生的。同时，由于分子转向速率有物理极限，因此在高频电场作用下只剩下位移极化机制产生作用。</p>
+<h3 id="电极化强度boldsymbolp">电极化强度$\boldsymbol{P</h3>
+<h4 id="定义">定义</h4>
+<p>在上一节我们看到，当电介质分别处于极化状态和非极化状态时，在一体积元<span
+class="math inline">\(\Delta V\)</span>内分子的电矩之和<span
+class="math inline">\(\sum
+\boldsymbol{p}_{\mbox{分子}}\)</span>不同。我们由此定义一个向量<span
+class="math inline">\(\boldsymbol{P}\)</span> <span
+class="math display">\[\begin{equation}
+\boldsymbol{P} = \dfrac{\sum \boldsymbol{p}_{\mbox{分子}}}{\Delta V}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\boldsymbol{P}\)</span>被称为电极化强度，是量度电介质极化状态（包括极化的程度与方向）的物理量，单位为<span
+class="math inline">\(\mathrm{C/m^{2}}\)</span>。</p>
+<p>如果电介质中各点的电极化强度相等，那么我们称该极化是均匀的，否则是不均匀的。</p>
+<h4
+id="极化电荷的分布与电极化强度的关系">极化电荷的分布与电极化强度的关系</h4>
+<p>由前述可得，电介质的极化状态一方面可以表现为内部出现未抵消的电偶极矩
+，这点通过电极化强度矢量可以得出；另一方面，电介质的某些部位将出现极化电荷。可以证明，对于均匀电介质，极化电荷集中在其表面上。因此，下面我们研究极化电荷与电极化强度之间的关系。</p>
+<p>假设电介质极化时，每个分子的正电“重心”相对负电“重心”有位移<span
+class="math inline">\(\boldsymbol{l}\)</span>。假设分子中正、负电荷量绝对值为<span
+class="math inline">\(q\)</span>，那么分子偶极矩为<span
+class="math inline">\(\boldsymbol{p_{\mbox{分子}} = q
+\boldsymbol{l}}\)</span>。假设单位体积内有<span
+class="math inline">\(n\)</span>个分子，因此电极化强度<span
+class="math inline">\(\boldsymbol{P} = nq\boldsymbol{l}\)</span>。</p>
+<p>如上图所示，在极化了的电介质中取一面元向量<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S} =
+\boldsymbol{e}_{n}\mathrm{d}  S\)</span>。由于面元可以取得足够小，因此可以认为穿过面元的电荷所占据的体积是以面元向量<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>为底，长度为<span
+class="math inline">\(\boldsymbol{l}\)</span>的斜柱体。因此，此柱体的体积可以表示为
+<span class="math display">\[
+V = l \mathrm{d}  S \cos&lt;\boldsymbol{l}, \boldsymbol{e}_{n}&gt; =
+\boldsymbol{l}\cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 由于此时电荷密度为<span
+class="math inline">\(nq\)</span>，因此柱体内部极化电荷总量为 <span
+class="math display">\[
+\mathrm{d}  q&#39; = nq\boldsymbol{l}\cdot \mathrm{d}  \boldsymbol{S} =
+\boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 这即为由于极化穿过面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>的极化电荷量。</p>
+<p>假设上述面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>是某闭合面<span
+class="math inline">\(S\)</span>的一部分，此时根据电荷守恒定律，穿过曲面<span
+class="math inline">\(S\)</span>的极化电荷总量等于<span
+class="math inline">\(S\)</span>面内部剩余的净电荷量<span
+class="math inline">\(\sum
+q&#39;\)</span>的相反数（穿出的与剩余的电荷电性相反）。由此积分可得
+<span class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} =
+-\sum\limits_{\mbox{内部}}q&#39;
+\end{equation}\]</span></p>
+<p>如果把面元取在电介质中，需要考虑当前面的束缚电荷移出后会有新的束缚电荷移入的情况。可以证明，对于均匀电介质，其内部不会出现束缚电荷的静剩余，即内部的极化电荷体密度<span
+class="math inline">\(\rho_{\mathrm{e}}&#39; =
+0\)</span>。下面我们只考虑均匀电介质的情况。</p>
+<p>由于通过的电荷有正负之分，而极化电荷只在均匀电介质表面表现出来，因此下面我们考虑电极化强度与介质表面电荷分布之间的关系。由上文可知，通过面元的电荷量为
+<span class="math display">\[
+\mathrm{d}  q&#39; = P \mathrm{d}  S  \cos&lt;\boldsymbol{P},
+\mathrm{d}  \boldsymbol{S}&gt;
+\]</span> 从而可以得到电荷面密度为 <span
+class="math display">\[\begin{equation}
+\sigma_{\mathrm{e}}&#39; = \dfrac{\mathrm{d}  q&#39;}{\mathrm{d}  S} =
+P\cos &lt;\boldsymbol{P}, \mathrm{d}  \boldsymbol{S}&gt; =
+\boldsymbol{P} \cdot \boldsymbol{e}_{n}
+\end{equation}\]</span>
+这说明，极化电荷电性与电极化强度与面元单位法向<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>之间的夹角有关。</p>
+<h3 id="退极化场">退极化场</h3>
+<p>退极化场指在外加电场 作用下的电介质的极化电荷所产生的附加电场<span
+class="math inline">\(\boldsymbol{E}&#39;\)</span>。之所以其被称为退极化场，是因为此附加电场<span
+class="math inline">\(\boldsymbol{E}&#39;\)</span>所起到的作用为削弱原外加电场，从而减弱电介质的极化效果。</p>
+<h3 id="电介质的极化规律极化率">电介质的极化规律、极化率</h3>
+<p>在前文中，我们假定电极化强度已经给定，然后再求出极化电荷的分布与退极化场。但实际上电介质中任意一点的电极化强度是由外界电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>与退极化场<span
+class="math inline">\(\boldsymbol{E}&#39;\)</span>共同决定，也就是由总电场
+决定的。对于不同的物质，电极化强度与总电场
+的关系是不同的。实验表明，对于大多数各向同性线性电介质，其关系为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{P} = \chi_{\mathrm{e}}\varepsilon_{0}\boldsymbol{E}
+\end{equation}\]</span> 其中，比例系数<span
+class="math inline">\(\chi_{\mathrm{e}}\)</span>被称为极化率，只与电介质种类有关，是材料的固有属性。</p>
+<p>对于各向异性的电介质（如水晶），其极化规律虽然也是线性的，但与方向有关。如电极化强度与总场强
+的直角分量之间的关系为 <span class="math display">\[\begin{equation}
+P_{i} = \chi_{\mathrm{e},ii}\varepsilon_{0}E_{i} +
+\chi_{\mathrm{e},ij}\varepsilon_{0}E_{j} +
+\chi_{\mathrm{e},ik}\varepsilon_{0}E_{k}\quad \left(  i, j, k \in
+\left\{x, y, z\right\}, i \neq j\neq z \right)
+\end{equation}\]</span></p>
+<p>其他极化关系在此略过，不进行讨论。下面我们只考虑各向同性的线性电介质。</p>
+<h3
+id="电位移矢量与有介质时的gauss定理介电常量">电位移矢量与有介质时的Gauss定理、介电常量</h3>
+<p>由于电介质中极化电荷的出现并不能将介质内的电场完全抵消，因此在计算时需要两个物理量总场强
+与电极化强度参与，这使得计算较为繁琐。下面通过引入新物理量——电位移矢量的方法来避免复杂计算。</p>
+<p>在有电介质时，使用Gauss定理应当将假定的闭合面<span
+class="math inline">\(S\)</span>内的自由电荷<span
+class="math inline">\(q_{0}\)</span>与极化电荷<span
+class="math inline">\(q&#39;\)</span>均计算在内，即 <span
+class="math display">\[\begin{equation}
+\varoiint_{S}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} =
+\dfrac{1}{\varepsilon_{0}}\sum\limits_{\mbox{内部}}\left(  q_{0} +
+q&#39; \right)
+\end{equation}\]</span> 而极化电荷满足 <span class="math display">\[
+\varoiint_{S} \boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} =
+-\sum\limits_{\mbox{内部}}q&#39;
+\]</span> 这样，我们可以得到 <span class="math display">\[
+\varoiint_{S}\left(  \boldsymbol{P} + \varepsilon_{0}\boldsymbol{E}
+\right)  \cdot \mathrm{d}  \boldsymbol{S} = \sum\limits_{\mbox{内部}}
+q_{0}
+\]</span> 此时，我们定义电位移矢量<span
+class="math inline">\(\boldsymbol{D}\)</span>为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{D} = \boldsymbol{P} + \varepsilon_{0} \boldsymbol{E}
+\end{equation}\]</span> 则上式可写为 <span
+class="math display">\[\begin{equation}
+\varoiint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+\sum\limits_{\mbox{内部}} q_{0}
+\end{equation}\]</span> 这样，我们就避免了极化电荷的出现。此外，由于$ =
+<em>{}</em>{0} <span class="math inline">\(，因此我们可以得到
+\begin{equation}
+\boldsymbol{D} = \left(  1 +
+\chi_{\mathrm{e}}\right)  \varepsilon_{0}\boldsymbol{E}
+\end{equation}
+此时我们定义电介质的相对介电常量\)</span>$为 <span
+class="math display">\[\begin{equation}
+\varepsilon = 1 + \chi_{\mathrm{e}}
+\end{equation}\]</span> 则上式可写为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{D} = \varepsilon \varepsilon_{0} \boldsymbol{E}
+\end{equation}\]</span></p>
+<p>这样，我们的计算流程就变成了：</p>
+<p>（1）利用有电介质时的Gauss定理<span
+class="math inline">\(\displaystyle\varoiint_{S}\boldsymbol{D} \cdot
+\mathrm{d}  \boldsymbol{S} = \sum\limits_{\mbox{内部}}
+q_{0}\)</span>将电位移矢量求出</p>
+<p>（2）利用<span class="math inline">\(\boldsymbol{D} = \varepsilon
+\varepsilon_{0} \boldsymbol{E}\)</span>求出总场强</p>
+<p>对于电位移矢量 与外加电场<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>之间的关系，可以证明，当均匀电介质表面是等势面时，有
+<span class="math display">\[\begin{equation}
+\boldsymbol{D} = \varepsilon_{0} \boldsymbol{E}_{0}
+\end{equation}\]</span></p>
+<p>从而当电容器中充满均匀电介质后，其电容<span
+class="math inline">\(C\)</span>变化为 <span
+class="math display">\[\begin{equation}
+C = \varepsilon C_{0}
+\end{equation}\]</span></p>
+<p>下面是针对上式的讨论。</p>
+<p>设无电介质时的场强为<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>，则由Gauss定理有 <span
+class="math display">\[
+\varoiint_{S} \boldsymbol{E}_{0} \cdot \mathrm{d}  \boldsymbol{S} =
+\dfrac{1}{\varepsilon_{0}}\sum q_{0}
+\]</span> 另一方面，引入电介质后，用电位移矢量 表示的Gauss定理为 <span
+class="math display">\[
+\varoiint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = \sum
+q_{0}
+\]</span> 这样看来，似乎显然有<span class="math inline">\(\boldsymbol{D}
+= \varepsilon_{0}
+\boldsymbol{E}_{0}\)</span>。而且这种关系在充满介质的平行板电容器与均匀无限大电介质中均成立，我们是否能认为此关系一定成立呢？并不能。正如我们在第一章中指出的，Gauss定理只是刻画矢量场性质的一个角度，反映矢量场的另一个角度为环路定理。对于真空中的场强<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>，有 <span
+class="math display">\[
+\oint_{L}\boldsymbol{E}_{0} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\]</span> 但在一般情况下，电位移矢量 的环路积分有 <span
+class="math display">\[
+\oint_{L}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{l} \neq 0
+\]</span> 此外在电介质中，总场强 不一定与外加场强<span
+class="math inline">\(\boldsymbol{E}_{0}\)</span>成正比，因此我们可以发现，电位移矢量与<span
+class="math inline">\(\varepsilon_{0}\boldsymbol{E}_{0}\)</span>在本质上是不同的，一般情况下不能相互替代。</p>
+<h2 id="电场的能量与能量密度">电场的能量与能量密度</h2>
+<p>大量事实证明，电能是定域在电场之中的。既然如此，我们下面将用描述电场的特征量——场强
+表示电场能量。我们首先来看平行板电容器这一例子。</p>
+对于平行板电容器，其能量为 <span class="math display">\[
+W_{\mathrm{e}} = \dfrac{1}{2}Q_{0}U
+\]</span> 同时，由Gauss定理可得 <span class="math display">\[
+DS = \sigma_{\mathrm{e}0}S
+\]</span> 这样，电位移矢量在平行板电容器内部与自由电荷面密度<span
+class="math inline">\(\sigma_{\mathrm{e}0}\)</span>的关系即为 <span
+class="math display">\[
+D = \sigma_{\mathrm{e}0}
+\]</span>
+<p>由于极板上的自由电荷量<span class="math inline">\(Q_{0}\)</span>满足
+<span class="math display">\[
+Q_{0} = \sigma_{\mathrm{e}0}S = DS
+\]</span> 因此上文电容器储能公式可写为 <span class="math display">\[
+W_{\mathrm{e}} = \dfrac{1}{2}DS \cdot Ed = \dfrac{1}{2}DEV
+\]</span> 从这一表达式即可看出，电容器电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>与体积<span
+class="math inline">\(V\)</span>成正比。由此我们可以定义电能密度<span
+class="math inline">\(w_{\mathrm{e}}\)</span> <span
+class="math display">\[
+w_{\mathrm{e}} = \dfrac{W_{\mathrm{e}}}{V}
+\]</span> 由上式可得，电能密度<span
+class="math inline">\(w_{\mathrm{e}}\)</span>与场强 的关系即为 <span
+class="math display">\[\begin{equation}
+w_{\mathrm{e}} = \dfrac{1}{2}\varepsilon\varepsilon_{0}E^{2}
+\end{equation}\]</span> 在真空中，由于相对介电常数<span
+class="math inline">\(\varepsilon = 1\)</span>，因此有 <span
+class="math display">\[\begin{equation}
+w_{\mathrm{e}} = \dfrac{1}{2}\varepsilon_{0}E^{2}
+\end{equation}\]</span> 这表明，电场中的电能密度<span
+class="math inline">\(w_{\mathrm{e}}\)</span>与场强
+的平方成正比。虽然这个表达式是从平行板电容器这一特例中被推导出来的，但是实际上这个表达式是普遍成立的（普遍性的推导需要用到矢量分析，这里省略）。</p>
+<p>由此可以想到，当电场不均匀时，总电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>应当为电能密度<span
+class="math inline">\(w_{\mathrm{e}}\)</span>的三重积分 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{e}} = \iiint_{V}w_{\mathrm{e}} \mathrm{d}  V = \iiint_{V}
+\dfrac{1}{2}\varepsilon\varepsilon_{0}E^{2} \mathrm{d}  V
+\end{equation}\]</span></p>
+<h3 id="问题的提出">问题的提出</h3>
+<p>实际中的静电学问题，大多不是由一直电荷分布求电场分布，而是通过一定的电极来控制或实现某种电场分布。这样，问题的前提条件除了给定的带电导体形状与位置等，往往还会给定下列条件之一：</p>
+<p>（1）各导体的电势<span class="math inline">\(U_{i}\)</span></p>
+<p>（2）各导体上的总电荷量<span class="math inline">\(Q_{i}\)</span> \
+我们所寻求的答案便是在上述边界条件下电场
+的恒定分布，而这类问题也被称为静电场的边值问题。</p>
+<p>同时需要注意到，我们在解决边值问题前，需要先回答这样一个问题：对于给定的一组边界条件，空间中的电场
+分布是否为唯一的？唯一性定理对此的回答是肯定的，也就对于给定的边界条件，空间中电场
+的恒定分布将唯一地确定下来。</p>
+<h3 id="唯一性定理的引理证明">唯一性定理的引理证明</h3>
+<p>在证明唯一性定理之前，我们先来证明几个引理。简单起见，我们先将研究的范围限定为一组导体，而除导体之外的空间中没有电荷。</p>
+<h4
+id="引理1无电荷的空间中电势varphi不可能有极值">引理1：无电荷的空间中电势<span
+class="math inline">\(\varphi\)</span>不可能有极值</h4>
+<p>下面用反证法证明。假设在无电荷的空间中，电势在空间中某点P
+取得极大值，那么在P 周围电势梯度<span class="math inline">\(\nabla
+\varphi\)</span>必指向P 。由于场强 满足 <span class="math display">\[
+\boldsymbol{E} = -\nabla \varphi
+\]</span> 因此，P 周围场强 必然指向背离P
+的方向。这时，我们做一个很小的闭合面<span
+class="math inline">\(S\)</span>包围P ，由Gauss定理可得 <span
+class="math display">\[
+\varPhi_{E} = \varoiint_{S} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S} &gt; 0
+\]</span> 因此，闭合面<span
+class="math inline">\(S\)</span>内部必然有净正电荷，而这与无电荷的假设是矛盾的。因此，在无电荷的空间中电势<span
+class="math inline">\(\varphi\)</span>不可能有极大值。</p>
+<p>同理可得，在无电荷的空间中电势<span
+class="math inline">\(\varphi\)</span>不可能有极小值。</p>
+<h4
+id="引理2若所有导体的电势均为0那么导体外空间的电势处处为0">引理2：若所有导体的电势均为0，那么导体外空间的电势处处为0</h4>
+<p>假设空间中有电势不为0的点。因为电势在无电荷空间内的分布为连续的，而导体作为无电荷空间的边缘，其电势为0，所以空间中电势必有极值，这与引理1相矛盾。因此，若所有导体的电势均为0，那么导体外空间的电势处处为0。</p>
+<p>本引理还可推广为以下形式：若在完全由导体所包围的空间中，各导体的电势均相等（假如为<span
+class="math inline">\(\varphi_{0}\)</span>），那么空间电势也等于<span
+class="math inline">\(\varphi_{0}\)</span>。</p>
+<h4
+id="引理3若所有导体都不带电那么各导体的电势相等">引理3：若所有导体都不带电，那么各导体的电势相等</h4>
+<p>假设各导体电势不完全相等，那么必有一个电势最高的导体，假设其为导体1。由此，空间中电场线只可能由导体1出发，指向其他导体。这样由Gauss定理即可得到导体1带有净的正电荷，这与所有导体均不带电的假设相矛盾。因此，若所有导体都不带电，那么各导体的电势相等。</p>
+<p>将引理2与引理3结合可以得到，在所有导体都不带电时，空间中各处的电势与导体的电势相等。</p>
+<h3 id="叠加原理">叠加原理</h3>
+<p>电场中场强
+服从矢量叠加法则，而电势服从代数叠加法则。由此我们可以得到以下重要推论。在给定各带电导体的几何形状、相互位置后，赋予他们以下两组边界条件：</p>
+<p>（1）给定每个导体的电势为<span
+class="math inline">\(\varphi_{a,i}\)</span>（或电荷量为<span
+class="math inline">\(Q_{a,i}\)</span>）</p>
+<p>（2）给定每个导体的电势为<span
+class="math inline">\(\varphi_{b,i}\)</span>（或电荷量为<span
+class="math inline">\(Q_{b,i}\)</span>）\ 假设<span
+class="math inline">\(\varphi_{a}\)</span>、<span
+class="math inline">\(\varphi_{b}\)</span>是满足边界条件（1）、（2）的恒定电势分布，则它们的线性组合<span
+class="math inline">\(\varphi = a\varphi_{a} +
+b\varphi_{b}\)</span>必定是满足下列边界条件的恒定分布：</p>
+<p>（3）给定每个导体的电势为<span class="math inline">\(\varphi_{i} =
+a\varphi_{a,i} + b\varphi_{b,i}\)</span>（或电荷量为<span
+class="math inline">\(Q_{i} = aQ_{a,i} + bQ_{b,i}\)</span>）</p>
+<p>从而5.2中的所有引理都对电势<span class="math inline">\(\varphi =
+a\varphi_{a} +
+b\varphi_{b}\)</span>适用。这也就是说，如果某边界条件能够拆分为两个边界条件的线性组合，那么这两个拆分后的边界条件所决定的电势分布<span
+class="math inline">\(\varphi_{a}\)</span>、<span
+class="math inline">\(\varphi_{b}\)</span>的线性组合即为满足原边界条件的电势分布。</p>
+<p>作为一个特例，当<span class="math inline">\(\varphi_{a,i} =
+\varphi_{b,i}\)</span>且<span class="math inline">\(a = 1, b =
+-1\)</span>时，那么<span class="math inline">\(\varphi = \varphi_{a} -
+\varphi_{b}\)</span>是满足下列边界条件的恒定电势分布：</p>
+<p>（4）给定的每个导体的电势为<span class="math inline">\(\varphi_{i} =
+0\)</span></p>
+<h3 id="唯一性定理的证明">唯一性定理的证明</h3>
+<h4 id="给定每个导体电势的情形">给定每个导体电势的情形</h4>
+<p>假设对应同一组边界条件<span class="math inline">\(\varphi_{i}(i = 1,
+2, ...)\)</span>有两种恒定的电势分布<span
+class="math inline">\(\varphi_{a}\)</span>和<span
+class="math inline">\(\varphi_{b}\)</span>，那么由上可得，<span
+class="math inline">\(\varphi = \varphi_{a} -
+\varphi_{b}\)</span>是所有导体上电势<span
+class="math inline">\(\varphi_{i} =
+0\)</span>时的恒定电势分布。由引理2可得，若所有导体的电势<span
+class="math inline">\(\varphi_{i} = 0\)</span>，那么空间中电势<span
+class="math inline">\(\varphi = 0\)</span>恒成立，即<span
+class="math inline">\(\varphi_{a} = \varphi_{b}\)</span>恒成立。从而有
+<span class="math display">\[
+\boldsymbol{E}_{1} = -\nabla \varphi_{a} = -\nabla \varphi_{b} =
+\boldsymbol{E}_{2}
+\]</span></p>
+<h4 id="给定每个导体上总电荷量的情形">给定每个导体上总电荷量的情形</h4>
+<p>假设体系中导体所带电荷为<span class="math inline">\(Q_{i}(i = 1, 2,
+...)\)</span>，那么有 <span class="math display">\[
+Q_{i} = \oiint_{S_{i}}  \sigma_{\mathrm{e}} \mathrm{d}  S
+\]</span> 而在静电平衡状态下，导体外表面附近某处的场强
+与该处导体表面的电荷面密度<span
+class="math inline">\(\sigma_{\mathrm{e}}\)</span> 关系为 <span
+class="math display">\[
+\boldsymbol{E} =
+\dfrac{\sigma_{\mathrm{e}}}{\varepsilon_{0}}\boldsymbol{e}_{n}
+\]</span> 所以有 <span class="math display">\[
+Q_{i} = \oiint_{S_{i}}  \varepsilon_{0}E \mathrm{d}  S =
+-\varepsilon_{0} \oiint_{S_{i}} \nabla \varphi\mathrm{d}  S
+\]</span></p>
+<p>假设对于同一组边界条件<span class="math inline">\(Q_{i}(i = 1, 2,
+...)\)</span>有两种恒定电势分布<span
+class="math inline">\(\varphi_{a}\)</span>和<span
+class="math inline">\(\varphi_{b}\)</span>，那么 <span
+class="math display">\[
+-\varepsilon_{0} \oiint_{S_{i}} \left\lvert \nabla
+\varphi_{a}\right\rvert  \mathrm{d}  S = Q_{i} = -\varepsilon_{0}
+\oiint_{S_{i}} \left\lvert \nabla \varphi_{b}\right\rvert \mathrm{d}  S
+\]</span> 令<span class="math inline">\(\varphi = \varphi_{a} -
+\varphi_{b}\)</span>，那么 <span class="math display">\[
+-\varepsilon_{0} \oiint_{S_{i}} \left\lvert \nabla \varphi\right\rvert
+\mathrm{d}  S = -\varepsilon_{0} \oiint_{S_{i}} \left\lvert \nabla
+\varphi_{a} - \nabla \varphi_{b}\right\rvert \mathrm{d}  S \\ =
+-\varepsilon_{0} \oiint_{S_{i}} \left\lvert \nabla
+\varphi_{a}\right\rvert \mathrm{d}  S + \varepsilon_{0} \oiint_{S_{i}}
+\left\lvert \nabla \varphi_{b}\right\rvert \mathrm{d}  S  = 0
+\]</span> 这说明，电势分布<span class="math inline">\(\varphi\)</span>
+相当于所有导体都不带电时的恒定电势分布。由引理3的推论可得，当所有导体均不带电时，空间中各处电势与导体的电势相同。这说明此时电势梯度<span
+class="math inline">\(\nabla\varphi = \boldsymbol{0}\)</span>恒成立，即
+<span class="math display">\[
+\nabla\varphi_{a} = \nabla\varphi_{b}
+\]</span> 这样就可以得到 <span class="math display">\[
+\boldsymbol{E}_{a} = \boldsymbol{E}_{b}
+\]</span></p>
+<p>对于电势与电荷量<span
+class="math inline">\(Q\)</span>的混合边界条件，只需要对上述情形进行推广即可，这里省略。</p>
+<h3 id="静电屏蔽">静电屏蔽</h3>
+<p>要说明静电屏蔽的原理，需要用到上述的唯一性定理。</p>
+<p>假设有一个任意形状的闭合金属壳，将其接地。我们已知同时在外界引入若干正或负的带电体，若腔内无带电体，那么腔内的场强<span
+class="math inline">\(\boldsymbol{E} =
+\boldsymbol{0}\)</span>。反之，如果将腔内放入带电体，壳外无带电体，则外部空间的场强<span
+class="math inline">\(\boldsymbol{E} =
+\boldsymbol{0}\)</span>。我们现在要讨论的是，如果金属壳内外均引入带电体，那么其内部（外部）的电场恒定分布是否与只在内部（外部）存在带电体时一致。</p>
+<p>如果我们暂且不考虑金属壳内外带电体同时作用在金属壳上时，其达成与假设不符的可能性，那么显然我们可以认为在金属壳内外均引入带电体的条件下，其内部（外部）的电场恒定分布是否与只在内部（外部）存在带电体时一致。我们可以这样考虑：当在外部引入带电体后，由于其无法在壳内产生电场，因此此时壳内的环境与只在内部引入带电体前是相同的。所以，在外部引入带电体的情况下，继续在内部引入带电体所产生的效果与只在内部引入带电体是相同的。反之亦然。</p>
+<p>下面我们来考虑，在壳内、壳外带电体的共同作用下，电场的恒定分布发生变化的可能性。唯一性定理告诉我们，这种可能性是不存在的。这是因为，在内外均引入带电体与只有内部引入带电体这两种情况中，壳内部空间的边界条件是相同的（内表面的电势<span
+class="math inline">\(\varphi = 0\)</span>，内部带电体上总电荷量<span
+class="math inline">\(Q\)</span>一定）。由此，唯一性定理决定了，无论外界如何变化，内部的恒定分布是唯一的。反之亦然。</p>
+<h3 id="有电介质的情况">有电介质的情况</h3>
+<p>如果除导体外，所有空间被同一种均匀的电介质所充满，唯一性定理的证明依然与前文所述没有什么差别。下面我们考虑电介质分区均匀（也就是空间被不同的电介质充满）的情况。</p>
+<p>我们之前证明唯一性定理所用的引理1要求，在无电荷的空间中电势没有极值（这一引理蕴含了电势的连续性）。但是由于现在空间被不同的电介质所充满，因此产生了间断面。我们需要考虑上述的电势的连续性与无极值在此情况下是否成立。</p>
+<p>显然，介质界面上的边界条件为场强 的切向分量连续，电位移矢量
+的法向分量连续。用电势来描述即为：</p>
+<p>（1）通过界面是电势连续</p>
+<p>（2）在界面两侧有 <span class="math display">\[
+\varepsilon_{1} \dfrac{\partial \varphi_{1}}{\partial n} =
+\varepsilon_{2} \dfrac{\partial \varphi_{2}}{\partial n}
+\]</span></p>
+<p>由于介电常量<span
+class="math inline">\(\varepsilon_{1}\)</span>、<span
+class="math inline">\(\varepsilon_{2}\)</span>恒正，因此上式表明，界面两侧的电场如果有法向分量，则它们的方向一致，即界面上电势不是极值。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/" title="静电场中的导体与电介质">https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/5b9f9152/" rel="prev" title="静电场">
+      <i class="fa fa-chevron-left"></i> 静电场
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/525defbd/" rel="next" title="恒定电流">
+      恒定电流 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93%E4%B8%8E%E7%94%B5%E4%BB%8B%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">静电场中的导体与电介质</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%9A%84%E5%AF%BC%E4%BD%93"><span class="nav-number">1.1.</span> <span class="nav-text">静电场中的导体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E4%BD%93%E7%9A%84%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">导体的静电平衡条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E6%97%B6%E7%9A%84%E7%94%B5%E8%8D%B7%E5%88%86%E5%B8%83%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">静电平衡时的电荷分布特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%93%E5%86%85%E6%97%A0%E7%94%B5%E8%8D%B7"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">体内无电荷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E8%8D%B7%E9%9D%A2%E5%AF%86%E5%BA%A6%E4%B8%8E%E5%9C%BA%E5%BC%BA%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">电荷面密度与场强的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E4%BD%93%E5%A3%B3%E8%85%94%E4%BD%93%E5%86%85%E9%83%A8%E6%97%A0%E5%B8%A6%E7%94%B5%E4%BD%93"><span class="nav-number">1.1.3.</span> <span class="nav-text">导体壳（腔体内部无带电体）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E4%BD%93%E5%A3%B3%E8%85%94%E4%BD%93%E5%86%85%E9%83%A8%E6%9C%89%E5%B8%A6%E7%94%B5%E4%BD%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">导体壳（腔体内部有带电体）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E5%92%8C%E7%94%B5%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">电容和电容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A4%E7%AB%8B%E5%AF%BC%E4%BD%93%E7%9A%84%E7%94%B5%E5%AE%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">孤立导体的电容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E5%99%A8%E5%8F%8A%E5%85%B6%E7%94%B5%E5%AE%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">电容器及其电容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E8%A1%8C%E6%9D%BF%E7%94%B5%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">平行板电容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E5%BF%83%E7%90%83%E7%94%B5%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">同心球电容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E8%BD%B4%E6%9F%B1%E7%8A%B6%E7%94%B5%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">同轴柱状电容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E5%99%A8%E7%9A%84%E5%B9%B6%E8%81%94%E4%B8%8E%E4%B8%B2%E8%81%94"><span class="nav-number">1.2.3.</span> <span class="nav-text">电容器的并联与串联</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%81%94"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">并联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%81%94"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">串联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E5%99%A8%E5%82%A8%E8%83%BD%E7%94%B5%E8%83%BD"><span class="nav-number">1.2.4.</span> <span class="nav-text">电容器储能（电能）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E4%BB%8B%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text">电介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E4%BB%8B%E8%B4%A8%E7%9A%84%E6%9E%81%E5%8C%96"><span class="nav-number">1.3.1.</span> <span class="nav-text">电介质的极化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%8C%96%E7%9A%84%E5%BE%AE%E8%A7%82%E6%9C%BA%E5%88%B6"><span class="nav-number">1.3.2.</span> <span class="nav-text">极化的微观机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E6%9E%81%E6%80%A7%E5%88%86%E5%AD%90%E7%9A%84%E4%BD%8D%E7%A7%BB%E6%9E%81%E5%8C%96"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">非极性分子的位移极化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E6%80%A7%E5%88%86%E5%AD%90%E7%9A%84%E5%8F%96%E5%90%91%E6%9E%81%E5%8C%96"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">极性分子的取向极化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%9E%81%E5%8C%96%E5%BC%BA%E5%BA%A6boldsymbolp"><span class="nav-number">1.3.3.</span> <span class="nav-text">电极化强度$\boldsymbol{P</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E5%8C%96%E7%94%B5%E8%8D%B7%E7%9A%84%E5%88%86%E5%B8%83%E4%B8%8E%E7%94%B5%E6%9E%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">极化电荷的分布与电极化强度的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E6%9E%81%E5%8C%96%E5%9C%BA"><span class="nav-number">1.3.4.</span> <span class="nav-text">退极化场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E4%BB%8B%E8%B4%A8%E7%9A%84%E6%9E%81%E5%8C%96%E8%A7%84%E5%BE%8B%E6%9E%81%E5%8C%96%E7%8E%87"><span class="nav-number">1.3.5.</span> <span class="nav-text">电介质的极化规律、极化率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E4%BD%8D%E7%A7%BB%E7%9F%A2%E9%87%8F%E4%B8%8E%E6%9C%89%E4%BB%8B%E8%B4%A8%E6%97%B6%E7%9A%84gauss%E5%AE%9A%E7%90%86%E4%BB%8B%E7%94%B5%E5%B8%B8%E9%87%8F"><span class="nav-number">1.3.6.</span> <span class="nav-text">电位移矢量与有介质时的Gauss定理、介电常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E7%9A%84%E8%83%BD%E9%87%8F%E4%B8%8E%E8%83%BD%E9%87%8F%E5%AF%86%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text">电场的能量与能量密度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">1.4.1.</span> <span class="nav-text">问题的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E5%BC%95%E7%90%86%E8%AF%81%E6%98%8E"><span class="nav-number">1.4.2.</span> <span class="nav-text">唯一性定理的引理证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%90%861%E6%97%A0%E7%94%B5%E8%8D%B7%E7%9A%84%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%94%B5%E5%8A%BFvarphi%E4%B8%8D%E5%8F%AF%E8%83%BD%E6%9C%89%E6%9E%81%E5%80%BC"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">引理1：无电荷的空间中电势\(\varphi\)不可能有极值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%90%862%E8%8B%A5%E6%89%80%E6%9C%89%E5%AF%BC%E4%BD%93%E7%9A%84%E7%94%B5%E5%8A%BF%E5%9D%87%E4%B8%BA0%E9%82%A3%E4%B9%88%E5%AF%BC%E4%BD%93%E5%A4%96%E7%A9%BA%E9%97%B4%E7%9A%84%E7%94%B5%E5%8A%BF%E5%A4%84%E5%A4%84%E4%B8%BA0"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">引理2：若所有导体的电势均为0，那么导体外空间的电势处处为0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%90%863%E8%8B%A5%E6%89%80%E6%9C%89%E5%AF%BC%E4%BD%93%E9%83%BD%E4%B8%8D%E5%B8%A6%E7%94%B5%E9%82%A3%E4%B9%88%E5%90%84%E5%AF%BC%E4%BD%93%E7%9A%84%E7%94%B5%E5%8A%BF%E7%9B%B8%E7%AD%89"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">引理3：若所有导体都不带电，那么各导体的电势相等</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A0%E5%8A%A0%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">叠加原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">1.4.4.</span> <span class="nav-text">唯一性定理的证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99%E5%AE%9A%E6%AF%8F%E4%B8%AA%E5%AF%BC%E4%BD%93%E7%94%B5%E5%8A%BF%E7%9A%84%E6%83%85%E5%BD%A2"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">给定每个导体电势的情形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99%E5%AE%9A%E6%AF%8F%E4%B8%AA%E5%AF%BC%E4%BD%93%E4%B8%8A%E6%80%BB%E7%94%B5%E8%8D%B7%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">给定每个导体上总电荷量的情形</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%B1%8F%E8%94%BD"><span class="nav-number">1.4.5.</span> <span class="nav-text">静电屏蔽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%94%B5%E4%BB%8B%E8%B4%A8%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.4.6.</span> <span class="nav-text">有电介质的情况</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

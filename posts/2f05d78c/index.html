@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了恒定磁场的基本理论，包括Biot-Savart定律、安培环路定理、洛伦兹力等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恒定磁场">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/2f05d78c/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了恒定磁场的基本理论，包括Biot-Savart定律、安培环路定理、洛伦兹力等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.881Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.882Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/2f05d78c/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>恒定磁场 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/2f05d78c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          恒定磁场
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>23 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了恒定磁场的基本理论，包括Biot-Savart定律、安培环路定理、洛伦兹力等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="恒定磁场">恒定磁场</h1>
+<h2 id="磁的基本现象和基本规律">磁的基本现象和基本规律</h2>
+<h3 id="磁的基本现象">磁的基本现象</h3>
+<p>同号磁极相互排斥，异号磁极相互吸引。</p>
+<h3 id="ampere定律">Ampere定律</h3>
+<p>Ampere定律是恒定磁场的基本规律，下面我们来说明它。</p>
+<p>在研究两带电体相互作用时，我们是通过将其分割为无穷小带电元，然后研究两带电元之间的规律，并通过矢量叠加的方式求出的。因此，我们首先来研究一对电流元的规律。</p>
+<p>此处先给出结论，不进行论证。</p>
+<h4 id="大致关系">大致关系</h4>
+<p>假设<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>是电流元1给电流元2的力，而<span
+class="math inline">\(I_{1}\)</span>与<span
+class="math inline">\(I_{2}\)</span>分别为其电流强度，<span
+class="math inline">\(\mathrm{d}  l_{1}\)</span>与<span
+class="math inline">\(\mathrm{d}  l_{2}\)</span>为两线元长度，<span
+class="math inline">\(r_{12}\)</span>为二者之间距离。这样<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>满足</p>
+<p><span class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{F}_{12} \propto \dfrac{I_{1}I_{2}\
+\mathrm{d}  l_{1} \mathrm{d}  l_{2}}{r_{12}^{2}} \boldsymbol{e}_{r_{12}}
+\end{equation}\]</span></p>
+<h4 id="与电流元方向的关系">与电流元方向的关系</h4>
+<p><span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>的大小还和两电流元方向有关。此时假设<span
+class="math inline">\(\boldsymbol{r}_{12}\)</span>为电流元1到电流元2的径矢，而线元表示为<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{1}\)</span>、<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{2}\)</span>。</p>
+<p>（1）两电流元共面情况</p>
+<p>如图所示，此时<span
+class="math inline">\(\mathrm{d}  F_{12}\)</span>满足 <span
+class="math display">\[
+\mathrm{d}  F_{12} \propto \sin \theta_{1}
+\]</span></p>
+<p>（2）两电路元异面情况</p>
+<p>不难想到，此时应当考虑电流元的投影，这样<span
+class="math inline">\(\mathrm{d}  F_{12}\)</span>就满足 <span
+class="math display">\[
+\mathrm{d}  F_{12} \propto \sin \theta_{2}
+\]</span></p>
+<h4 id="结论">结论</h4>
+<p>将以上结果综合起来，可以得到 <span class="math display">\[
+\mathrm{d}  F_{12} = k\dfrac{I_{1}I_{2}\ \mathrm{d}  l_{1}\sin
+\theta_{1}\ \mathrm{d}  l_{2}\sin \theta_{2}}{r_{12}^{2}}
+\]</span> 此时，<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>的方向为在<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{1}\)</span>与<span
+class="math inline">\(\boldsymbol{r}_{12}\)</span>组成的平面内，且与<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{2}\)</span>垂直。</p>
+<p>为了表示出其方向，我们可以这样思考：既然<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>在在<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{1}\)</span>与<span
+class="math inline">\(\boldsymbol{r}_{12}\)</span>组成的平面内，那么其必然与平面的法向量<span
+class="math inline">\(\boldsymbol{e}_{\mathrm{n}}\)</span>垂直。而由于<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{12}\)</span>又与<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{2}\)</span>垂直，因此为上述两向量所在平面的法向量。结合相关数学知识，我们可以将法向量表示为叉乘的形式，这样就可以得到Ampere定理的以下表示形式：
+<span class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{F}_{12} = k\dfrac{I_{1}I_{2}\
+\mathrm{d}  \boldsymbol{l}_{2} \times
+\left(  \mathrm{d}  \boldsymbol{l}_{1} \times \boldsymbol{e}_{12}
+\right) }{r_{12}^{2}}
+\end{equation}\]</span></p>
+<p>在SI制中，比例系数<span class="math inline">\(k\)</span>为 <span
+class="math display">\[\begin{equation}
+k = \dfrac{\mu_{0}}{4\pi}
+\end{equation}\]</span> 其中，<span class="math inline">\(\mu_{0} = 4\pi
+\times 10^{-7}\)</span></p>
+<h3 id="磁感应强度矢量">磁感应强度矢量</h3>
+<p>为了定量地描述磁场的分布，我们引入磁感应强度矢量
+。作为借鉴，我们先来回顾以下场强 的引入。场强 是通过Coulomb定律引入的
+<span class="math display">\[
+\boldsymbol{F}_{12} = \dfrac{1}{4\pi
+\varepsilon_{0}}\dfrac{q_{1}q_{2}}{r^{12}}\boldsymbol{e}_{12}
+\]</span> 此时可将上式拆解为 <span class="math display">\[
+\boldsymbol{F}_{12} = q_{2}\boldsymbol{E}\ \mbox{和}\ \boldsymbol{E} =
+\dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{q_{1}}{r_{12}^{2}}\boldsymbol{e}_{12}
+\]</span></p>
+<p>在磁场的情形中，Ampere定律取代了Coulomb定律的位置。如果我们将电流元<span
+class="math inline">\(I_{2}\
+\mathrm{d}  \boldsymbol{l}_{2}\)</span>视为试探电流元，那么整个回路<span
+class="math inline">\(L_{1}\)</span>对于试探电流元的作用力<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{2}\)</span>应当为
+<span class="math display">\[
+\mathrm{d}  \boldsymbol{F}_{2} = \dfrac{\mu_{0}}{4\pi} \oint_{L_{1}}
+\dfrac{I_{1}I_{2}\ \mathrm{d}  \boldsymbol{l}_{2} \times
+\left(  \mathrm{d}  \boldsymbol{l}_{1} \times \boldsymbol{e}_{12}
+\right) }{r_{12}^{2}}
+\]</span> 由叉乘分配律<span class="math inline">\(\boldsymbol{A} \times
+\left(  \boldsymbol{B} + \boldsymbol{C}\right)  = \boldsymbol{A} \times
+\boldsymbol{B} + \boldsymbol{A} \times \boldsymbol{C}\)</span>可得 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{F}_{2} =
+\dfrac{\mu_{0}}{4\pi}I_{2}\mathrm{d}  \boldsymbol{l}_{2} \times
+\oint_{L_{1}} \dfrac{I_{1}\left(  \mathrm{d}  \boldsymbol{l}_{1} \times
+\boldsymbol{e}_{12} \right) }{r_{12}^{2}}
+\end{equation}\]</span> 仿照<span
+class="math inline">\(\boldsymbol{F}_{12} =
+q_{2}\boldsymbol{E}\)</span>可得 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{F}_{2} = I_{2}\mathrm{d}  \boldsymbol{l}_{2}
+\times \boldsymbol{B}
+\end{equation}\]</span> 这样就得到 <span
+class="math display">\[\begin{equation}
+\boldsymbol{B} = \dfrac{\mu_{0}}{4\pi} \oint_{L_{1}}
+\dfrac{I_{1}\left(  \mathrm{d}  \boldsymbol{l}_{1} \times
+\boldsymbol{e}_{12} \right) }{r_{12}^{2}}
+\end{equation}\]</span> 其中， 为磁感应强度。
+的单位为特斯拉，用T表示。同时
+的单位还可以为高斯，用Gs表示，二者之间的换算关系为 <span
+class="math display">\[
+1 \mathrm{T} = 10^{4} \mathrm{Gs}
+\]</span></p>
+<p>下面我们对上式做一些说明。先看
+的定义式。如果只考虑矢量的大小，那么由上式可得 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  F_{12} = I_{2}\ \mathrm{d}  l_{2} B \sin \theta
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\theta\)</span>为 与<span
+class="math inline">\(I_{2}\mathrm{d}  l_{2}\)</span>之间夹角。</p>
+<p>接下来，我们来看电流产生磁场的公式。此式将闭合回路产生的磁感应强度
+看做电流元产生的元磁感应强度<span
+class="math inline">\(\mathrm{d}  \boldsymbol{B} = \dfrac{\mu_{0}}{4\pi}
+\dfrac{I_{1}\left(  \mathrm{d}  \boldsymbol{l}_{1} \times
+\boldsymbol{e}_{12} \right) }{r_{12}^{2}}\)</span>的矢量叠加。实际上
+<span class="math display">\[
+\boldsymbol{B} = \dfrac{\mu_{0}}{4\pi} \oint_{L_{1}}
+\dfrac{I_{1}\left(  \mathrm{d}  \boldsymbol{l}_{1} \times
+\boldsymbol{e}_{12} \right) }{r_{12}^{2}}
+\]</span> 正是Biot-Savart定律，我们将要在接下来讨论它。</p>
+<p>像电场的分布可以用电场线来描述一样，磁场的分布也可以用磁感应线来描述。</p>
+<h2 id="载流回路的磁场">载流回路的磁场</h2>
+<h3 id="biot-savart定律">Biot-Savart定律</h3>
+<p>在上节我们就知道了Biot-Savart定律的微分形式为 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{B} = \dfrac{\mu_{0}}{4\pi} \dfrac{I
+\mathrm{d}  \boldsymbol{l}_{1} \times \boldsymbol{e}_{r} }{r^{2}}
+\end{equation}\]</span> 其中单位矢量<span
+class="math inline">\(\boldsymbol{e}_{r}\)</span>从电流元指向目标点。由上式可得，磁感应强度
+的方向为以<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>为圆心的同心圆的切线方向，也就是满足右手定则。</p>
+<p>下面我们利用上式与其积分形式 <span
+class="math display">\[\begin{equation}
+\boldsymbol{B} = \dfrac{\mu_{0}}{4\pi} \oint_{L_{1}} \dfrac{I
+\mathrm{d}  \boldsymbol{l} \times \boldsymbol{e}_{r} }{r^{2}}
+\end{equation}\]</span> 计算一些特殊形式的载流回路产生的磁场。</p>
+<h3 id="载流直导线的磁场">载流直导线的磁场</h3>
+<p>由Biot-Savart定律可得，对于载流直导线而言，任意电流元在同一点P
+产生的磁感应强度 方向相同。因此，我们只需要求各电流元产生的<span
+class="math inline">\(\mathrm{d}  \boldsymbol{B}\)</span>的代数和即可。</p>
+<p>我们以过点P 所做的垂线的垂足为原点O ，那么磁感应强度 就等于 <span
+class="math display">\[
+B = \int_{A_{1}}^{A_{2}}\mathrm{d}  B = \dfrac{\mu_{0}}{4\pi}
+\int_{A_{1}}^{A_{2}} \dfrac{I \mathrm{d}  l \sin \theta}{r^{2}}
+\]</span> 由于<span class="math inline">\(l = -r\cos
+\theta\)</span>，同时<span class="math inline">\(r_{0} = r\sin
+\theta\)</span>，因此有 <span class="math display">\[
+\mathrm{d}  l = \dfrac{r_{0}\mathrm{d}  \theta}{\sin^{2}\theta}
+\]</span> 这样就可以得到 <span class="math display">\[
+B = \dfrac{\mu_{0}}{4\pi} \int_{\theta_{1}}^{\theta_{2}} \dfrac{I\sin
+^{3}\theta}{r_{0}^{2}} \dfrac{r_{0}}{\sin^{2}\theta} \mathrm{d}  \theta
+= \dfrac{\mu_{0}}{4\pi} \int_{\theta_{1}}^{\theta_{2}} \dfrac{I\sin
+\theta}{r_{0}} \mathrm{d}  \theta
+\]</span> 即 <span class="math display">\[\begin{equation}
+B = \dfrac{\mu_{0}I}{4\pi r_{0}}\left(  \cos \theta_{1} - \cos
+\theta_{2}\right)
+\end{equation}\]</span></p>
+<p>假如导线为无限长，那么磁感应强度 的大小为 <span
+class="math display">\[\begin{equation}
+B = \dfrac{\mu_{0} I}{2\pi r_{0}}
+\end{equation}\]</span> 此时，磁感应强度 的方向可以由右手定则判断。</p>
+<h3 id="载流圆线圈轴线上的磁场">载流圆线圈轴线上的磁场</h3>
+<p>设圆线圈的中心为O ，那么线圈所产生磁感应强度
+如图所示。需要注意的是，在线圈上相对位置的两个电流元，产生的磁感应强度<span
+class="math inline">\(\mathrm{d}  \boldsymbol{B}\)</span>可以加和，从而通过抵消只剩下水平方向的磁感应强度。由图可得，加和后的磁感应强度<span
+class="math inline">\(\mathrm{d}  \boldsymbol{B}&#39;\)</span>满足 <span
+class="math display">\[
+\mathrm{d}  \boldsymbol{B}&#39; = 2\cos \alpha\
+\mathrm{d}  \boldsymbol{B} = 2\cos \alpha\ \dfrac{\mu_{0}}{4\pi}
+\dfrac{I \mathrm{d}  \boldsymbol{l} \times \boldsymbol{e}_{r} }{r^{2}}
+\]</span> 这样，由于<span class="math inline">\(\mathrm{d}  l = R
+\mathrm{d}  \theta\)</span>，以及<span class="math inline">\(r_{0} = r
+\sin \alpha\)</span>，因此由Biot-Savart定律可得 <span
+class="math display">\[
+B = \dfrac{\mu_{0}}{4\pi} \int_{0}^{\pi} 2\cos \alpha\
+\dfrac{IR}{r^{2}_{0}} \sin^{2} \alpha\ \mathrm{d}  \theta
+\]</span> 计算可得 <span class="math display">\[\begin{equation}
+B = \dfrac{\mu_{0}IR^{2}}{2\left(  R^{2} + r_{0}^{2}\right)
+^{\frac{3}{2}}}
+\end{equation}\]</span></p>
+<h3 id="载流螺线管中的磁场">载流螺线管中的磁场</h3>
+<p>下面计算载流螺线管轴线上的磁感应强度 。假设螺线管的半径为<span
+class="math inline">\(R\)</span>，总长度为<span
+class="math inline">\(L\)</span>，单位长度内的匝数为<span
+class="math inline">\(n\)</span>。如果螺线管是密绕，计算轴向磁场时，我们可以将其近似看为一系列圆线圈紧密排列组成的。假设其轴线为<span
+class="math inline">\(x\)</span>轴，其中点为原点O ，那么位于<span
+class="math inline">\(l\)</span>处附近<span
+class="math inline">\(\mathrm{d}  l\)</span>内有<span
+class="math inline">\(n\mathrm{d}  l\)</span>匝线圈，因此其在O
+产生的磁感应强度<span class="math inline">\(\mathrm{d}  B\)</span>为
+<span class="math display">\[
+\mathrm{d}  B = \dfrac{\mu_{0}IR^{2}}{2\left[  R^{2} + \left(  x - l
+\right) ^{2} \right] ^{\frac{3}{2}}} n \mathrm{d}  l
+\]</span> 积分可得 <span class="math display">\[
+B = \dfrac{n\mu_{0}IR^{2}}{2} \int_{-\frac{L}{2}}^{\frac{L}{2}}
+\dfrac{\mathrm{d}  l}{2\left[  R^{2} + \left(  x - l \right) ^{2}
+\right] ^{\frac{3}{2}}}
+\]</span></p>
+<p>由图可得，$x - l = R <span
+class="math inline">\(，两侧同时微分有\)</span>$ l = R <span
+class="math display">\[
+带入上式可得
+\]</span> B = <em>{</em>{1}}^{<em>{2}} <span class="math display">\[
+即
+\begin{equation}
+B = \dfrac{n\mu_{0}I}{2} \left(  \cos \beta_{1} - \cos \beta_{2} \right)
+\end{equation}
+其中
+\]</span> </em>{1} =  _{2} = $$ 下面讨论两种特殊情况</p>
+<p>（1）对于无限长的螺线管而言，<span class="math inline">\(L \to
+\infty\)</span>，此时<span class="math inline">\(\cos \beta_{1} =
+1\)</span>，<span class="math inline">\(\cos \beta_{2} =
+-1\)</span>，因此 <span class="math display">\[
+B = n\mu_{0}I
+\]</span></p>
+<p>（2）对于半无限长的螺线管，其有限一端的磁感应强度为 <span
+class="math display">\[
+B = \dfrac{n\mu_{0}I}{2}
+\]</span>
+不难想到，对于这种情况，半无限长螺线管产生的磁感应强度只有无限长螺线管的一半。</p>
+<h2
+id="磁场的gauss定理和ampere环路定理">磁场的“Gauss定理”和Ampere环路定理</h2>
+<h3 id="磁场的gauss定理">磁场的“Gauss定理”</h3>
+<p>仿照引入电场强度通量的方式，我们规定通过曲面<span
+class="math inline">\(S\)</span>的磁感应通量（简称磁通量）为 <span
+class="math display">\[\begin{equation}
+\varPhi_{B} = \iint_{S} \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span> 磁通量的单位为<span
+class="math inline">\(\mathrm{T \cdot
+m^{2}}\)</span>，这一单位也被定义为韦伯，用Wb表示。反过来，我们也可将磁感应强度
+视为单位面积磁通量，也就是磁通密度。正如电场强度通量<span
+class="math inline">\(\varPhi_{E}\)</span>代表通过曲面的电场线数目一样，磁通量也可被理解为<span
+class="math inline">\(\varPhi_{B}\)</span>通过曲面的磁感线数量。这样，磁感应强度
+就代表通过单位垂直面积的磁感线数目。</p>
+<p>下面说明磁通量所服从的物理规律。</p>
+<p>由于载流导线产生的磁感线是无始无终的闭合曲线，因此对于空间中某曲面<span
+class="math inline">\(S\)</span>，磁感线的穿入量与穿出量相等，因此通过此曲面的磁通量恒为0，即
+<span class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\end{equation}\]</span>
+我们姑且将上述定理称为磁场的“Gauss定理”。下面我们用Biot-Savart定律证明上述定理。</p>
+<h3 id="磁场的gauss定理的证明">磁场的“Gauss定理”的证明</h3>
+<h4 id="单个电流元的情况">单个电流元的情况</h4>
+<p>由右手定则（本质上是Biot-Savart定律）可得，对于单个电流元，其所产生的磁感线是以<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>为轴线的圆。这样不难想到，对于任意闭合曲面<span
+class="math inline">\(S\)</span>，磁感线要么与其不相交，要么同时穿入与穿出。因此，下面我们只考虑贯穿的磁感线。</p>
+<p>在上述闭合曲面上取一面元<span
+class="math inline">\(\mathrm{d}  S_{1}\)</span>，假设通过面元<span
+class="math inline">\(\mathrm{d}  S_{1}\)</span>进入闭合曲面的磁感线通过<span
+class="math inline">\(\mathrm{d}  S_{2}\)</span>穿出，那么 <span
+class="math display">\[
+\mathrm{d}  \varPhi_{B_{i}} = \dfrac{\mu_{0}}{4\pi}
+\dfrac{I\mathrm{d}  l\sin \theta}{r^{2}}\mathrm{d}  S_{i} \cos
+\theta_{i} = \mp \dfrac{\mu_{0}}{4\pi} \dfrac{I\mathrm{d}  l\sin
+\theta}{r^{2}}\mathrm{d}  S_{i}^{*}\quad \left(  i = 1, 2\right)
+\]</span> 其中，<span
+class="math inline">\(\mathrm{d}  S_{i}^{*}\)</span>表示<span
+class="math inline">\(\mathrm{d}  S_{i}\)</span>在磁感线方向的投影，<span
+class="math inline">\(\theta\)</span>为电流元方向<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>与径矢<span
+class="math inline">\(\boldsymbol{r}\)</span>之间的夹角。同时，当上式用投影面积表示时，<span
+class="math inline">\(i = 1\)</span>时为负号，<span
+class="math inline">\(i =
+2\)</span>时为正号。由于前文所述的对于单个电流元，其所产生的磁感线是以<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>为轴线的圆，因此磁感线的投影面积满足
+<span class="math display">\[
+\mathrm{d}  S_{1}^{*} = \mathrm{d}  S_{2}^{*}
+\]</span> 由此可得 <span class="math display">\[
+\mathrm{d}  \varPhi_{B_{1}} + \mathrm{d}  \varPhi_{B_{2}} = 0
+\]</span>
+由于我们在选取磁感线时没有规定条件，因此由磁感线选择的任意性不难看出，对于任意的单个电流元
+<span class="math display">\[
+\varoiint_{S} \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\]</span> 恒成立。</p>
+<h4 id="闭合回路的情况">闭合回路的情况</h4>
+<p>由于磁场满足叠加原理，因此任意载流回路产生的总磁场可以看做是很多单个电流元的叠加。从而通过某一面元<span
+class="math inline">\(\mathrm{d}  S\)</span>的总磁通量<span
+class="math inline">\(\varPhi_{B}\)</span>等于各电流元的磁通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{B}\)</span>的加和。</p>
+<p>至此，我们证明了磁场的“Gauss定理”。</p>
+<p>在通常情况下，载流回路所产生的磁感应管，一般来说截面都是不均衡的。因此，如果我们此时选取一磁感应管所经过的一对面元<span
+class="math inline">\(\mathrm{d}  S_{1}\)</span>和<span
+class="math inline">\(\mathrm{d}  S_{2}\)</span>，那么通常会有 <span
+class="math display">\[
+\mathrm{d}  S_{1} \neq \mathrm{d}  S_{2}
+\]</span> 那么，由于<span class="math inline">\(\mathrm{d}  \varPhi_{B}
+= \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S}\)</span>，同时<span
+class="math inline">\(\mathrm{d}  \varPhi_{1} + \mathrm{d}  \varPhi_{2}
+= 0\)</span>。因此，在磁感应强度 较大的地方，面元<span
+class="math inline">\(\mathrm{d}  S\)</span>通常较小，也就是磁感线密度较大。反之亦然。</p>
+<h3 id="ampere环路定理">Ampere环路定理</h3>
+<p>如果我们将磁感应强度 沿着任意磁感线进行积分，由于磁感应强度
+总是磁感线的切线方向，因此显然有 <span class="math display">\[
+\oint_{L} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} \neq 0
+\]</span> Ampere环路定理反映了磁感线这一特点。</p>
+<h4 id="ampere环路定理的表述">Ampere环路定理的表述</h4>
+<p>Ampere环路定理表述如下：在恒磁场中，磁感应强度 沿任意闭合环路<span
+class="math inline">\(L\)</span>的线积分，等于穿过这个管路的所有电流强度I
+的代数和的<span class="math inline">\(\mu_{0}\)</span>倍，即 <span
+class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \mu_{0}
+\sum\limits_{L\mbox{内}} I
+\end{equation}\]</span> 其中，对于电流I 的正负规定如下：</p>
+<p>（1）当穿过回路<span
+class="math inline">\(L\)</span>的电流方向与环绕方向符合右手定则时，<span
+class="math inline">\(I &gt; 0\)</span></p>
+<p>（2）当穿过回路<span
+class="math inline">\(L\)</span>的电流方向与环绕方向不符合右手定则时，<span
+class="math inline">\(I &lt; 0\)</span></p>
+<p>为了叙述方便，以下我们将上式中闭合积分回路<span
+class="math inline">\(L\)</span>称为“Ampere环路”。Ampere环路定理也可以由Biot-Savart定理出发证明。为了简单起见，下面我们只考虑单一载流回路。如果需要推广到多个载流回路，只需要使用叠加原理即可。</p>
+<h4 id="对ampere环路定理的证明">对Ampere环路定理的证明</h4>
+<p>为了区别Ampere环路<span class="math inline">\(L\)</span>上的线元
+，我们用<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}&#39;\)</span>表示载流回路<span
+class="math inline">\(L&#39;\)</span>上的线元。</p>
+<p>如图所示，点P 沿 的移动与载流回路<span
+class="math inline">\(L&#39;\)</span>沿<span
+class="math inline">\(-\mathrm{d}  \boldsymbol{l}\)</span>的移动等价。由Biot-Savart定律有
+<span class="math display">\[
+\boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \dfrac{\mu_{0}}{4\pi}
+\oint_{L&#39;}\dfrac{I \mathrm{d}  \boldsymbol{l}&#39; \times
+\boldsymbol{e}_{r}\cdot \mathrm{d}  \boldsymbol{l}}{r^{2}} = -
+\dfrac{\mu_{0}I}{4\pi}
+\oint_{L&#39;}\dfrac{\mathrm{d}  \boldsymbol{l}&#39; \times
+\left(  -\mathrm{d}  \boldsymbol{l} \right)  \cdot
+\boldsymbol{e}_{r}&#39;}{r^{2}}
+\]</span> 其中，<span
+class="math inline">\(\boldsymbol{e}_{r}\)</span>为电流元到P
+的单位径矢，而<span class="math inline">\(\boldsymbol{e}_{r}&#39; = -
+\boldsymbol{e}_{r}\)</span>代表P 到电流元的单位径矢。同时，$ ' ( - )
+<span class="math inline">\(等于电流元\)</span>I '<span
+class="math inline">\(位移时产生的面元\)</span> <span
+class="math inline">\(。这样，\)</span> ' ( - ) <em>{r}'<span
+class="math inline">\(就表示面元在\)</span></em>{r}'<span
+class="math inline">\(上的投影面积。因此，由立体角的定义可得\)</span>$ =
+<span class="math display">\[
+这样，上式可写为
+\]</span> = - $$ 其中，<span
+class="math inline">\(\omega\)</span>表示载流回路<span
+class="math inline">\(L&#39;\)</span>移动产生的带状面对点P
+所张成的立体角。</p>
+<p>现假设以<span
+class="math inline">\(L&#39;\)</span>为边界做一曲面<span
+class="math inline">\(S&#39;\)</span>，<span
+class="math inline">\(S&#39;\)</span>对点P 也张有一定的立体角<span
+class="math inline">\(\varOmega\)</span>。显然，当<span
+class="math inline">\(L&#39;\)</span>平移时，<span
+class="math inline">\(\varOmega\)</span>随之改变。假设平移前后的曲面分别为<span
+class="math inline">\(S_{1}&#39;\)</span>和<span
+class="math inline">\(S_{2}&#39;\)</span>，那么此时<span
+class="math inline">\(S_{1}&#39;\)</span>、<span
+class="math inline">\(S_{2}&#39;\)</span>和带状面能够组成闭合曲面。由第一章中立体角相关知识可得，此时有
+<span class="math display">\[
+\varOmega_{1} + \varOmega_{2} + \omega = 0
+\]</span>
+这一结论的前提是，闭合曲面的法向量指向外侧。不难想象，此时<span
+class="math inline">\(\varOmega_{1}\)</span>与<span
+class="math inline">\(\varOmega_{2}\)</span>是异号的。带入上式，我们有
+<span class="math display">\[
+\boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \dfrac{\mu_{0}I}{4\pi}
+\left(  \varOmega_{1} + \varOmega_{2} \right)
+\]</span> 同时，由于 <span class="math display">\[
+\varOmega_{2} = - \varOmega_{1} + \mathrm{d}  \boldsymbol{l} \cdot
+\nabla \varOmega
+\]</span> 这样 <span class="math display">\[
+\boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \dfrac{\mu_{0}I}{4\pi}
+\mathrm{d}  \boldsymbol{l} \cdot \nabla \varOmega =
+\dfrac{\mu_{0}I}{4\pi} \mathrm{d}  \varOmega
+\]</span> 即 <span class="math display">\[\begin{equation}
+\boldsymbol{B} = \dfrac{\mu_{0}I}{4\pi} \nabla \varOmega
+\end{equation}\]</span></p>
+<p>由上面的推导可得，此时<span class="math inline">\(\boldsymbol{B}
+\cdot \mathrm{d}  \boldsymbol{l}\)</span>与<span
+class="math inline">\(\mathrm{d}  \varOmega\)</span>成正比。因此，对于场点P
+恒在外部的情况下，载流回路相对P 移动一周后<span
+class="math inline">\(\Delta \varOmega = 0\)</span>，这样就有 <span
+class="math display">\[
+\oint_{L} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\]</span> 如果P 在内部的话，此时<span class="math inline">\(\Delta
+\varOmega = 4\pi\)</span>，那么由上式可得 <span class="math display">\[
+\oint_{L} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{l} = \mu_{0}I
+\]</span></p>
+<p>在上面的讨论中，场点没有移动。但由于场点和载流回路的移动是相对的，因此不难想象上面的第一种情景对应的是Ampere回路中没有电流，而第二种情景对应的是Ampere回路中有电流。</p>
+<h2 id="磁场对于载流导线的作用">磁场对于载流导线的作用</h2>
+<h3 id="ampere力">Ampere力</h3>
+<p>在前文中我们详细讨论了Boit-Savart定律，下面我们来接着讨论Ampere定律。将Ampere定律可用矢量表示为
+<span class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{F} = I \mathrm{d}  \boldsymbol{l} \times
+\boldsymbol{B}
+\end{equation}\]</span>
+上式既是电流元在外磁场中受力的基本规律，又是定义磁感应强度
+的依据。这种由于磁场而产生的力被称为Ampere力。</p>
+<h3
+id="平行无限长直导线之间的相互作用">平行无限长直导线之间的相互作用</h3>
+<p>假设两无限长直导线之间的垂直距离为<span
+class="math inline">\(a\)</span>，其上电流分别为<span
+class="math inline">\(I_{1}\)</span>和<span
+class="math inline">\(I_{2}\)</span>。由Biot-Savart定律可得，导线1在导线2处产生的磁感应强度大小为
+<span class="math display">\[
+B_{1} = \dfrac{\mu_{0}I_{1}}{2\pi a}
+\]</span> 由上式可得，对于导线2的一段<span
+class="math inline">\(\mathrm{d}  l_{2}\)</span>，其受力大小为 <span
+class="math display">\[
+\mathrm{d}  F_{12} = I_{2} B_{1} \mathrm{d}  l_{2}
+\]</span> 同理可得，导线2产生的磁场作用在导线1上一段<span
+class="math inline">\(\mathrm{d}  l_{1}\)</span>时，其受力大小为 <span
+class="math display">\[
+\mathrm{d}  F_{21} = I_{1} B_{2} \mathrm{d}  l_{1}
+\]</span> 因此，单位长度上导线的作用力大小为 <span
+class="math display">\[\begin{equation}
+f = \dfrac{\mathrm{d}  F_{12}}{\mathrm{d}  l_{2}} =
+\dfrac{\mathrm{d}  F_{21}}{\mathrm{d}  l_{1}} =
+\dfrac{\mu_{0}I_{1}I_{2}}{2\pi a}
+\end{equation}\]</span></p>
+<h3
+id="矩形载流线圈在均匀磁场中所受的力矩">矩形载流线圈在均匀磁场中所受的力矩</h3>
+<p>为了方便描述载流线圈的去向，下面我们用右旋单位法线矢量<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>来描述载流线圈在空间中的去向。所谓右旋单位法线矢量<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>，是指当载流线圈电流方向可以用右手四指弯曲表示时，矢量<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>的方向为此时右手拇指方向。</p>
+<p>我们首先考虑矩形线圈的情况。如图所示，由Ampere定律可得 <span
+class="math display">\[
+F_{AB} = IaB\sin \left(  \dfrac{\pi}{2} + \theta \right)  = IaB\sin
+\left(  \dfrac{\pi}{2} - \theta \right)  = F_{CD}
+\]</span>
+由于这两个力作用在一条直线上，因此这一对力不产生任何效果。对于<span
+class="math inline">\(AD\)</span>和<span
+class="math inline">\(BC\)</span>边而言，其受力大小为 <span
+class="math display">\[
+F_{AD} = F_{BC} = IbB
+\]</span> 其方向为同时与磁感应强度 和导线垂直。</p>
+<p>因此，这两个力并没有未作用在同一条直线上，因此产生了力偶矩。显然，力偶矩<span
+class="math inline">\(L\)</span>的大小为 <span class="math display">\[
+L = 2IbB \cdot \dfrac{a}{2} \sin \theta = IBS \sin \theta
+\]</span> 考虑到方向问题，力偶矩可以用下面的矢量形式表示 <span
+class="math display">\[\begin{equation}
+\boldsymbol{L} = IS\left(  \boldsymbol{e}_{n} \times \boldsymbol{B}
+\right)
+\end{equation}\]</span></p>
+<h3 id="载流线圈的磁矩">载流线圈的磁矩</h3>
+<p>上式虽然是从特例中推导出的，但其实适用于任意形状的平面线圈。下面我们证明这个结论。</p>
+<p>我们先说明线圈与磁感应强度
+平行的情况。如图所示，我们用垂直于转轴的平行线将线圈分割为许多小窄条。由Ampere定律有，磁场对同一组电流元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{1}\)</span>、<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{2}\)</span>的作用力为
+<span class="math display">\[
+\mathrm{d}  F_{i} = IB\mathrm{d}  l_{i} \sin \theta_{i} \quad \left(  i
+= 1, 2\right)
+\]</span> 我们假设分割出<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{1}\)</span>、<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}_{2}\)</span>的窄条的高度为<span
+class="math inline">\(\mathrm{d}  h\)</span>，那么此时显然有$ l_{i}
+<em>{i} = h <span class="math inline">\(，因此\)</span>$ F</em>{i} = IB
+h $$</p>
+<p>这表明，二者大小相同。同时根据矢量叉乘的规定，这两个力的方向相反。由于这两个力并不作用在同一直线上，因此产生了力矩
+<span class="math display">\[
+\mathrm{d}  L = IB\left(  x_{1} + x_{2}\right)  \mathrm{d}  h =
+IB\mathrm{d}  S
+\]</span> 其中，<span class="math inline">\(\mathrm{d}  S\)</span>
+为小窄条与线圈围成的区域面积。这样，作用在线圈上的力矩大小等于 <span
+class="math display">\[
+L = IBS
+\]</span></p>
+<p>当线圈与磁场成任意角度时，不难证明此时力矩<span
+class="math inline">\(\boldsymbol{L}\)</span>满足 <span
+class="math display">\[\begin{equation}
+\boldsymbol{L} = IS\left(  \boldsymbol{e}_{n} \times \boldsymbol{B}
+\right)
+\end{equation}\]</span> 其中，<span
+class="math inline">\(IS\boldsymbol{e}_{n}\)</span>是描述一个任意形状的载流平面线圈本身性质的矢量，我们称其为线圈的磁矩，用<span
+class="math inline">\(\boldsymbol{m}\)</span>表示，即 <span
+class="math display">\[\begin{equation}
+\boldsymbol{m} = IS\boldsymbol{e}_{n}
+\end{equation}\]</span> 这样上式用磁矩<span
+class="math inline">\(\boldsymbol{m}\)</span>即可表示为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{L} = \boldsymbol{m} \times \boldsymbol{B}
+\end{equation}\]</span></p>
+<h2 id="带电粒子在磁场中的运动">带电粒子在磁场中的运动</h2>
+<h3 id="lorentz力">Lorentz力</h3>
+<p>实验证明，运动的带电粒子在磁场中受力<span
+class="math inline">\(\boldsymbol{F}\)</span>与粒子的电荷<span
+class="math inline">\(q\)</span>、粒子的速度<span
+class="math inline">\(\boldsymbol{v}\)</span>与磁感应强度<span
+class="math inline">\(\boldsymbol{B}\)</span>之间的关系为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{F} = q\boldsymbol{v} \times \boldsymbol{B}
+\end{equation}\]</span> 上式给出的运动电荷在磁场中所受力<span
+class="math inline">\(\boldsymbol{F}\)</span>被称为Lorentz力。</p>
+<h3 id="lorentz力与ampere力的关系">Lorentz力与Ampere力的关系</h3>
+<p>比较<span class="math inline">\(\boldsymbol{F}_{L} = q\boldsymbol{v}
+\times \boldsymbol{B}\)</span>与<span
+class="math inline">\(\mathrm{d}  \boldsymbol{F}_{A} = I
+\mathrm{d}  \boldsymbol{l} \times
+\boldsymbol{B}\)</span>可以发现二者具有极高的相似性。这并不偶然，因为运动电荷可以视为一个瞬时的电流元。下面证明导线所受Ampere力就是作用在各自由电子上Lorentz力的宏观表现。</p>
+<p>如图所示，考虑一段长度为<span class="math inline">\(\Delta
+l\)</span>的金属导线，导线通入电流<span
+class="math inline">\(I\)</span>。从微观角度来看，电流是由道题中自由电子向下做定向运动形成的。假设自由电子的定向运动速度为<span
+class="math inline">\(\boldsymbol{u}\)</span>，导体的自由电子数密度为<span
+class="math inline">\(n\)</span>。那么，在时间<span
+class="math inline">\(\Delta t\)</span>内，通过导体截面积<span
+class="math inline">\(S\)</span>的电荷量为 <span class="math display">\[
+\Delta q = enuS\Delta t
+\]</span> 因此电流强度I 可表示为 <span
+class="math display">\[\begin{equation}
+I = \dfrac{\Delta q}{\Delta t} = enSu
+\end{equation}\]</span></p>
+<p>由于此处电子的定向速度<span
+class="math inline">\(\boldsymbol{u}\)</span>与磁感应强度
+垂直，因此每个电子由于定向运动所受Lorentz力大小为 <span
+class="math display">\[
+F_{L} = euB
+\]</span>
+虽然这个力是作用在电子上的，但是由于电子并不会冲出导线，因此宏观上这个力是作用在金属导线上的。对于长度为<span
+class="math inline">\(\Delta l\)</span>的导线而言，其所受到的力大小为
+<span class="math display">\[
+F = nS\Delta l \cdot euB = BI\Delta l
+\]</span></p>
+<h3 id="带电粒子在均匀磁场中的运动">带电粒子在均匀磁场中的运动</h3>
+<h4 id="粒子的初速boldsymbolv">粒子的初速$\boldsymbol{v</h4>
+<p>由于此时粒子的初速<span
+class="math inline">\(\boldsymbol{v}\)</span>、磁感应强度
+与Lorentz力之间互相垂直，因此不难想到，此时带电粒子将一直做圆周运动。因此有
+<span class="math display">\[
+m\dfrac{v^{2}}{R} = qvB
+\]</span> 由此可得圆周半径<span class="math inline">\(R\)</span>为 <span
+class="math display">\[
+R = \dfrac{mv}{qB}
+\]</span> 这样，粒子运动周期为 <span class="math display">\[
+T = \dfrac{2\pi R}{v} = \dfrac{2\pi m}{qB}
+\]</span> 由此可得粒子在磁场中的回旋频率为 <span class="math display">\[
+f = \dfrac{1}{T} = \dfrac{qB}{2\pi m}
+\]</span></p>
+<h4 id="普遍情况">普遍情况</h4>
+<p>在普遍的情况下，粒子的初速<span
+class="math inline">\(\boldsymbol{v}\)</span>与磁感应强度
+之间成任意角度<span
+class="math inline">\(\theta\)</span>，这时可以将速度分解为垂直方向<span
+class="math inline">\(\boldsymbol{v}_{\mathrm{v}}\)</span>和与磁感应强度平行方向<span
+class="math inline">\(\boldsymbol{v}_{\mathrm{h}}\)</span>。显然，只有垂直方向会产生Lorentz力。因此，带电粒子此时的运动应当为圆周运动与匀速直线运动的叠加，即螺旋线运动。</p>
+<p>此时带电粒子的螺距<span class="math inline">\(h\)</span>为 <span
+class="math display">\[\begin{equation}
+h = v_{h}T = \dfrac{2\pi mv_{h}}{qB}
+\end{equation}\]</span></p>
+<p>在粒子与磁感应强度 夹角很小时，有 <span class="math display">\[
+v_{h} \approx v \quad v_{v} \approx v\theta
+\]</span> 这样，即使粒子的入射角度各不相同，但其螺距<span
+class="math inline">\(h = \dfrac{2\pi
+mv_{h}}{qB}\)</span>却近似相同。这意味着，这些粒子在经过相同距离后会在同一点汇聚。由于这种现象与光学中的聚焦现象较为相似，因此被称为磁聚焦现象。</p>
+<h4 id="hall效应">Hall效应</h4>
+如图，将一个导体板放在垂直于它的磁场中，当有电流通过它时，在导电板的两侧会产生一个电势差<span
+class="math inline">\(U_{AA&#39;}\)</span>，这种现象被称为Hall效应。实验表明，在磁场不太强时，电势差<span
+class="math inline">\(U_{AA&#39;}\)</span>可表示为 <span
+class="math display">\[
+U_{AA&#39;} = K\dfrac{IB}{d}
+\]</span> 其中，比例系数<span
+class="math inline">\(K\)</span>被称为Hall系数。
+<p>Hall效应可以用Lorentz力来说明。假设导电板内部载流子的平均定向速率为u，那么其在磁场中所受Lorentz力大小为
+<span class="math display">\[
+F_{L} = quB
+\]</span>
+此时Lorentz力的方向为向上或向下（与载流子电性有关）。这样导体板上下就会产生电势差。当电势差形成后，载流子还会受到电场力<span
+class="math inline">\(q\dfrac{U_{AA&#39;}}{b}\)</span>。这样，在达到恒定状态后，Lorentz力与电场力平衡。
+<span class="math display">\[
+q\dfrac{U_{AA&#39;}}{b} = quB
+\]</span> 结合 <span class="math display">\[
+I  = nqSu = nqbdu
+\]</span> 可得 <span class="math display">\[
+U_{AA&#39;} = \dfrac{1}{nq} \dfrac{IB}{d}
+\]</span> 这样，Hall系数就可以表示为 <span
+class="math display">\[\begin{equation}
+K = \dfrac{1}{nq}
+\end{equation}\]</span> 上式说明，Hall系数是反映导体内载流子浓度<span
+class="math inline">\(n\)</span>的指标。这为研究不同导体内载流子浓度<span
+class="math inline">\(n\)</span>提供了很重要的参考方式。</p>
+<h2 id="电磁场的相对论变换">电磁场的相对论变换*</h2>
+<p>待补充</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/2f05d78c/" title="恒定磁场">https://vasily-alexievich-korolev.github.io/posts/2f05d78c/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/525defbd/" rel="prev" title="恒定电流">
+      <i class="fa fa-chevron-left"></i> 恒定电流
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/30110ae4/" rel="next" title="电磁感应与暂态过程">
+      电磁感应与暂态过程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%81%92%E5%AE%9A%E7%A3%81%E5%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">恒定磁场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%8E%B0%E8%B1%A1%E5%92%8C%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">磁的基本现象和基本规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">磁的基本现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ampere%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">Ampere定律</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E8%87%B4%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">大致关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E%E7%94%B5%E6%B5%81%E5%85%83%E6%96%B9%E5%90%91%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">与电流元方向的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E6%84%9F%E5%BA%94%E5%BC%BA%E5%BA%A6%E7%9F%A2%E9%87%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">磁感应强度矢量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E5%9B%9E%E8%B7%AF%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">载流回路的磁场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#biot-savart%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">Biot-Savart定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E7%9B%B4%E5%AF%BC%E7%BA%BF%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">载流直导线的磁场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E5%9C%86%E7%BA%BF%E5%9C%88%E8%BD%B4%E7%BA%BF%E4%B8%8A%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">1.2.3.</span> <span class="nav-text">载流圆线圈轴线上的磁场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E8%9E%BA%E7%BA%BF%E7%AE%A1%E4%B8%AD%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">1.2.4.</span> <span class="nav-text">载流螺线管中的磁场</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E7%9A%84gauss%E5%AE%9A%E7%90%86%E5%92%8Campere%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">磁场的“Gauss定理”和Ampere环路定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E7%9A%84gauss%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">磁场的“Gauss定理”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E7%9A%84gauss%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.2.</span> <span class="nav-text">磁场的“Gauss定理”的证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E7%94%B5%E6%B5%81%E5%85%83%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">单个电流元的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AD%E5%90%88%E5%9B%9E%E8%B7%AF%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">闭合回路的情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ampere%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.3.</span> <span class="nav-text">Ampere环路定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ampere%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86%E7%9A%84%E8%A1%A8%E8%BF%B0"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">Ampere环路定理的表述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9ampere%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">对Ampere环路定理的证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%AF%B9%E4%BA%8E%E8%BD%BD%E6%B5%81%E5%AF%BC%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">磁场对于载流导线的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ampere%E5%8A%9B"><span class="nav-number">1.4.1.</span> <span class="nav-text">Ampere力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E8%A1%8C%E6%97%A0%E9%99%90%E9%95%BF%E7%9B%B4%E5%AF%BC%E7%BA%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">平行无限长直导线之间的相互作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E5%BD%A2%E8%BD%BD%E6%B5%81%E7%BA%BF%E5%9C%88%E5%9C%A8%E5%9D%87%E5%8C%80%E7%A3%81%E5%9C%BA%E4%B8%AD%E6%89%80%E5%8F%97%E7%9A%84%E5%8A%9B%E7%9F%A9"><span class="nav-number">1.4.3.</span> <span class="nav-text">矩形载流线圈在均匀磁场中所受的力矩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E7%BA%BF%E5%9C%88%E7%9A%84%E7%A3%81%E7%9F%A9"><span class="nav-number">1.4.4.</span> <span class="nav-text">载流线圈的磁矩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%B2%92%E5%AD%90%E5%9C%A8%E7%A3%81%E5%9C%BA%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8"><span class="nav-number">1.5.</span> <span class="nav-text">带电粒子在磁场中的运动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lorentz%E5%8A%9B"><span class="nav-number">1.5.1.</span> <span class="nav-text">Lorentz力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lorentz%E5%8A%9B%E4%B8%8Eampere%E5%8A%9B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">Lorentz力与Ampere力的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E7%B2%92%E5%AD%90%E5%9C%A8%E5%9D%87%E5%8C%80%E7%A3%81%E5%9C%BA%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">带电粒子在均匀磁场中的运动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B2%92%E5%AD%90%E7%9A%84%E5%88%9D%E9%80%9Fboldsymbolv"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">粒子的初速$\boldsymbol{v</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%81%8D%E6%83%85%E5%86%B5"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">普遍情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hall%E6%95%88%E5%BA%94"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">Hall效应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E5%9C%BA%E7%9A%84%E7%9B%B8%E5%AF%B9%E8%AE%BA%E5%8F%98%E6%8D%A2"><span class="nav-number">1.6.</span> <span class="nav-text">电磁场的相对论变换*</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

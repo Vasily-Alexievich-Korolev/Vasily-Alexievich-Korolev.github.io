@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了电磁感应的基本规律，包括Faraday定律、自感与互感、暂态过程等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电磁感应与暂态过程">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/30110ae4/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了电磁感应的基本规律，包括Faraday定律、自感与互感、暂态过程等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.901Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.902Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/30110ae4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>电磁感应与暂态过程 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/30110ae4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          电磁感应与暂态过程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>23 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了电磁感应的基本规律，包括Faraday定律、自感与互感、暂态过程等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="电磁感应与暂态过程">电磁感应与暂态过程</h1>
+<h2 id="电磁感应定律">电磁感应定律</h2>
+<h3 id="电磁感应现象">电磁感应现象</h3>
+<p>四个相关实验表明，当穿过导体回路的磁通量发生变化时，回路中就会产生感应电动势。</p>
+<h3 id="faraday定律">Faraday定律</h3>
+<p>更加精确的实验表明，导体回路中感应电动势
+的大小与穿过回路的磁通量的变化率<span
+class="math inline">\(\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}\)</span>成正比。这被称为Faraday电磁感应定律，即
+<span class="math display">\[
+\mathscr{E} = -k \dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\]</span> 当磁通量_B 的单位为Wb，时间<span
+class="math inline">\(t\)</span>单位为s，感应电动势
+的单位为V时，比例常数<span class="math inline">\(k = 1\)</span>，此时
+<span class="math display">\[\begin{equation}
+\mathscr{E} = - \dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\end{equation}\]</span> 上式中的符号代表感应电动势
+的方向，后面我们将仔细讨论这个问题。</p>
+<p>需要注意的是，上式只适合与单匝导线组成的回路。如果线圈是由多匝回路组成的，那么每匝线圈都会产生感应电动势。由于各匝之间是串联的，因此整个线圈的总电动势为各匝产生的电动势之和。因此有
+<span class="math display">\[\begin{equation}
+\mathscr{E} = -\sum\limits_{i = 1}^{n}
+\dfrac{\mathrm{d}  \varPhi_{i}}{\mathrm{d}  t} = -\dfrac{\mathrm{d}
+}{\mathrm{d}  t} \sum\limits_{i = 1}^{n} \mathrm{d}  \varPhi_{i} =
+-\dfrac{\mathrm{d}  \varPsi}{\mathrm{d}  t}
+\end{equation}\]</span> 其中，<span class="math inline">\(\varPsi =
+\sum\limits_{i = 1}^{n}
+\mathrm{d}  \varPhi_{i}\)</span>被称为磁通链匝数。如果穿过每匝线圈的磁通量相同，那么<span
+class="math inline">\(\varPsi = N \varPhi\)</span>，此时有 <span
+class="math display">\[\begin{equation}
+\mathscr{E} = -N\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\end{equation}\]</span></p>
+<p>下面讨论感应电动势正负的问题。由于 <span class="math display">\[
+\varPhi_{B} = \iint_{S} \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 因此只要选定了面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>的法方向，那么磁通量_B
+的正负就能够确定。在此基础上，由于 <span class="math display">\[
+\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t} = \lim\limits_{t \to 0}
+\dfrac{\varPhi \left(  t_{0} + t \right)  - \varPhi \left(  t_{0}
+\right) }{t}
+\]</span> 因此，只要此时的$( t ) <span
+class="math inline">\(是增函数，那么\)</span> &gt; 0$。反之亦然。</p>
+<p>按照通常的习惯，我们用右手定则确定法向量方向：如果右手四指弯曲方向与组成曲面的回路<span
+class="math inline">\(L\)</span>绕行方向相同，那么右手拇指指向的方向即为单位法向量<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>方向。注意，无论回路绕行方向如何选择，感应电动势
+的正负总是与磁通量变化率<span
+class="math inline">\(\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}\)</span>的正负相反。</p>
+<h3 id="lenz定律">Lenz定律</h3>
+<p>Lenz在1834年提出了另一种直接判断感应电流方向的方法。通过大量实验，Lenz给出的结论为：闭合回路中感应电流所激发的磁场总是指向阻止产生感应电流的磁通量变化的方向。</p>
+<h3 id="趋肤效应">趋肤效应</h3>
+<p>在直流电路中，均匀导线横截面上的电流密度是均匀的。但在交流电路中，随着频率的增加，在导线截面上的电流分布越来越向着导线表面集中。这种现象被称为趋肤效应。</p>
+<p>为了定量地描述趋肤效应的大小，我们通常用“趋肤深度”这一概念。令<span
+class="math inline">\(d\)</span>为从导体表面开始算的深度，计算表明此时电流密度
+随着深度<span class="math inline">\(d\)</span>的增加按指数级衰减。 <span
+class="math display">\[\begin{equation}
+j = j_{0}e^{-\frac{d}{d_{\mathrm{s}}}}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(j_{0}\)</span>表示导体表面的电流密度，而<span
+class="math inline">\(d_{\mathrm{s}}\)</span>表示电流密度
+衰减为表面的<span
+class="math inline">\(\dfrac{1}{e}\)</span>时的深度，被称为“趋肤深度”。理论计算表明，趋肤深度由下式决定
+<span class="math display">\[\begin{equation}
+d_{\mathrm{s}} = \sqrt{\dfrac{2}{\omega \mu \mu_{0} \sigma}}
+\end{equation}\]</span></p>
+<h2 id="动生电动势与感生电动势">动生电动势与感生电动势</h2>
+<h3 id="动生电动势">动生电动势</h3>
+动生电动势可以看成是第四章讲过的Lorentz力所引起的。
+<p>如图，当导体以速度<span
+class="math inline">\(\boldsymbol{v}\)</span>向右移动时，导体内的自由电子速度也为<span
+class="math inline">\(\boldsymbol{v}\)</span>，此时电子所受Lorentz力为
+<span class="math display">\[
+\boldsymbol{F}_{L} = -e\left(  \boldsymbol{v} \times
+\boldsymbol{B}\right)
+\]</span>
+在Lorentz力的推动下，电子由导体的一端移动到另一端，从而产生恒定电流。此时作用在电子上的Lorentz力是一种非静电力。因此，我们可以用电动势
+来反映这种非静电力做功的能力。由Lorentz力可得非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>为 <span
+class="math display">\[
+\boldsymbol{K} = \dfrac{\boldsymbol{F}}{-e} = \boldsymbol{v} \times
+\boldsymbol{B}
+\]</span> 于是动生电动势为 <span class="math display">\[\begin{equation}
+\mathscr{E} = \int_{-}^{+} \boldsymbol{K} \cdot
+\mathrm{d}  \boldsymbol{l} = Blv
+\end{equation}\]</span></p>
+<p>对于一般的导体而言，其内部电子的Lorentz力方向不一定与导线方向重合，并且也不一定在闭合回路中。此时的动生电动势可表示为
+<span class="math display">\[\begin{equation}
+\mathscr{E} = \int_{L} \left(  \boldsymbol{v} \times \boldsymbol{B}
+\right)  \cdot \mathrm{d}  \boldsymbol{l}
+\end{equation}\]</span></p>
+<p>注意，此处并不与前文所说的Lorentz力不做功矛盾。由于此时电子不仅有与导体一起运动的速度<span
+class="math inline">\(\boldsymbol{u}\)</span>，还有在导体内部定向运动的速度<span
+class="math inline">\(\boldsymbol{v}\)</span>。可以证明，电子的和速度<span
+class="math inline">\(\boldsymbol{u}+\boldsymbol{v}\)</span>所产生的Lorentz力不做功，我们上面计算的只是Lorentz力的一个分力。这表明，外力克服Lorentz力的分力<span
+class="math inline">\(\boldsymbol{F}_{2}\)</span>所做的功通过另一分力<span
+class="math inline">\(\boldsymbol{F}_{1}\)</span>转化为感应电流的能量。</p>
+<h3 id="交流发电机原理">交流发电机原理</h3>
+假设线圈的<span class="math inline">\(AB\)</span>边长为<span
+class="math inline">\(l\)</span>，而<span
+class="math inline">\(AD\)</span>边长为s，那么线圈面积为<span
+class="math inline">\(S =
+ls\)</span>。下面我们用上一节中的计算方法来计算发电机所产生的感应电动势。
+<p>显然，此时<span class="math inline">\(AD\)</span>与<span
+class="math inline">\(BC\)</span>边并不产生感应电动势，只有<span
+class="math inline">\(AB\)</span>与<span
+class="math inline">\(CD\)</span>边才产生感应电动势。如图所示，假设此时线圈平面的法方向与垂直方向夹角为<span
+class="math inline">\(\theta\)</span>，那么<span
+class="math inline">\(AB\)</span>边中产生的感应电动势为 <span
+class="math display">\[
+\mathscr{E}_{AB} = \int_{A}^{B}\left(  \boldsymbol{v} \times
+\boldsymbol{B} \right)  \cdot \mathrm{d}  \boldsymbol{l} = Blv\cos
+\theta
+\]</span> 同理，<span
+class="math inline">\(CD\)</span>边中产生的感应电动势为 <span
+class="math display">\[
+\mathscr{E}_{CD} = \int_{C}^{D}\left(  \boldsymbol{v} \times
+\boldsymbol{B} \right)  \cdot \mathrm{d}  \boldsymbol{l} = Blv\cos
+\theta
+\]</span></p>
+<p>由于这两个电动势的方向相同，因此整个回路中的感应电动势为 <span
+class="math display">\[
+\mathscr{E} = \mathscr{E}_{AB} + \mathscr{E}_{CD} = 2blv\cos \theta
+\]</span> 假设线圈旋转的角速度为<span
+class="math inline">\(\omega\)</span>，那么电动势可表示为 <span
+class="math display">\[\begin{equation}
+\mathscr{E} = BS\omega \cos \omega t
+\end{equation}\]</span></p>
+<p>如果我们用Faraday电磁感应定律来计算，那么对于上图所展示的这一时刻，通过线圈的磁通量为
+<span class="math display">\[
+\varPhi = -BS\sin \omega t
+\]</span> 将磁通量_B 对时间求导可得 <span
+class="math display">\[\begin{equation}
+\mathscr{E} = -\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t} = BS\omega
+\cos \omega t
+\end{equation}\]</span>
+从计算的结果可以看出，感应电动势随时间变化的曲线是余弦函数，这种电动势被称为简谐交变电动势，简称为简谐交流电。当线圈旋转一周后，电动势完成了一次完全变化。因此，电动势做一次完全变化所需的时间被称为交流电的周期。</p>
+<h3 id="感生电动势涡旋电场">感生电动势、涡旋电场</h3>
+<p>Maxwell在分析了一些电磁感应现象后，认为即使不存在导体回路，变化的磁场周围也会激发出一种电场。这种电场被称为感应电场，或者涡旋电场。这种电场与静电场的不同之处在于，一方面其不是由电荷所激发出的场，而是由变化的磁场所激发；另一方面，描述涡旋电场的电场线是闭合的，即
+<span class="math display">\[
+\oint \boldsymbol{E}_{\mathrm{v}} \cdot \mathrm{d}  \boldsymbol{l} \neq
+0
+\]</span> 这使得其不是保守场。</p>
+<p>产生感生电动势的非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>正是上述的涡旋电场<span
+class="math inline">\(\boldsymbol{E}_{\mathrm{v}}\)</span>，这样就有
+<span class="math display">\[\begin{equation}
+\mathscr{E} = \oint \boldsymbol{E}_{\mbox{v}} \cdot
+\mathrm{d}  \boldsymbol{l} = -\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\end{equation}\]</span></p>
+<p>在一般的情形下，空间的总电场 是由静电场<span
+class="math inline">\(\boldsymbol{E}_{\mathrm{s}}\)</span>（这是一个保守场）与涡旋电场<span
+class="math inline">\(\boldsymbol{E}_{\mathrm{v}}\)</span>的叠加，即
+<span class="math display">\[
+\boldsymbol{E} = \boldsymbol{E}_{\mathrm{s}} +
+\boldsymbol{E}_{\mathrm{v}}
+\]</span> 由于<span class="math inline">\(\oint
+\boldsymbol{E}_{\mathrm{s}} \cdot \mathrm{d}  \boldsymbol{l} =
+0\)</span>，因此感生电动势也可写为 <span class="math display">\[
+\mathscr{E} = \oint \left(  \boldsymbol{E}_{\mathrm{s}} +
+\boldsymbol{E}_{\mathrm{v}} \right)  \cdot \mathrm{d}  \boldsymbol{l} =
+\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l}
+\]</span> 另一方面，由Faraday电磁感应定律可得 <span
+class="math display">\[
+\mathscr{E} = -\dfrac{\mathrm{d} }{\mathrm{d}  t} \iint_{S}
+\boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S}
+\]</span>
+当环路不变动时，可以将对时间的求导与积分运算的顺序调整，这样可得 <span
+class="math display">\[\begin{equation}
+\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = -\iint_{S}
+\dfrac{\partial \boldsymbol{B}}{\partial t} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span> 上式是电磁学基本方程之一。</p>
+<p>在恒定的条件下，一切物理量不随时间变化，此时<span
+class="math inline">\(\dfrac{\partial \boldsymbol{B}}{\partial t} =
+0\)</span>，上式即变为 <span class="math display">\[
+\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\]</span>
+这便是静电场环路定理。由此可见，前文所述电磁学基本方程是静电场环路定理在非恒定条件下的推广。</p>
+<p>最后应当指出，将感应电动势分为动生电动势与感生电动势只有相对的意义。随着参考系的变化，线圈中可能为感生电动势，也可能是动生电动势。</p>
+<h3 id="电子感应加速器">电子感应加速器</h3>
+<p>如图，阴影部分是电磁铁的两极，在其中有一环形真空室。电磁铁交变电流激发磁场，使两极键的磁感应强度
+不断变化。电子枪发射的电子进入环形室，它们在涡旋电场的作用下被加速，同时在磁场中受到Lorentz力的作用，沿圆形轨道运动。</p>
+在励磁电流交变的一个周期中，只有<span
+class="math inline">\(\dfrac{1}{4}\)</span>个周期能加速电子。下面我们将仔细分析这个问题。假如磁感应强度按照如图所示的方式变化，那么由于感生电动势
+与<span
+class="math inline">\(\dfrac{\mathrm{d}  \boldsymbol{B}}{\mathrm{d}  t}\)</span>有关，因此只有1和4两部分满足加速电子的需求。同时，由于Lorentz力必须指向圆心，因此只有1和2两部分满足要求。综上，我们只能利用第1个<span
+class="math inline">\(\dfrac{1}{4}\)</span>周期来加速电子。
+<p>电子感应加速器的另一个问题是，如何使电子维持在恒定的圆形轨道上进行加速。假设电子受到的磁感应强度大小为<span
+class="math inline">\(B_{R}\)</span>，那么有 <span
+class="math display">\[
+evB_{R} = \dfrac{mv^{2}}{R}
+\]</span> 由此可得 <span class="math display">\[\begin{equation}
+mv = eRB_{R}
+\end{equation}\]</span> 上式表明，电子动量应当与磁感应强度<span
+class="math inline">\(B_{R}\)</span>成比例增加，这样就可以保持电子运动的半径不变。为了了解如何实现这个条件，我们需要分析电子的加速过程。由式（10）可得
+<span class="math display">\[
+E = - \dfrac{1}{2\pi R} \dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\]</span> 由Newton第二定律<span class="math inline">\(F =
+\dfrac{\mathrm{d}  p}{\mathrm{d}  t}\)</span>可得 <span
+class="math display">\[
+\dfrac{\mathrm{d}  \left(  mv \right) }{\mathrm{d}  t} = -eE =
+\dfrac{e}{2\pi R} \dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
+\]</span> 这样就有 <span class="math display">\[
+\mathrm{d}  \left(  mv \right)  = \dfrac{e}{2\pi R} \mathrm{d}  \varPhi
+\]</span> 由之前的磁感应强度 变化曲线可得，在<span
+class="math inline">\(t = 0\)</span>时<span class="math inline">\(B =
+0\)</span>，即<span class="math inline">\(\varPhi =
+0\)</span>。对上式两边积分有 <span class="math display">\[
+mv = \dfrac{e}{2\pi R} \iint_{S} \boldsymbol{B} \cdot
+\mathrm{d}  \boldsymbol{S} = \dfrac{e}{2\pi R} \cdot \pi R^{2} \Bar{B}
+\]</span> 这样可以得到 <span class="math display">\[\begin{equation}
+B_{R} = \dfrac{1}{2} \Bar{B}
+\end{equation}\]</span> 这表明，只需要让轨道上的磁感应强度<span
+class="math inline">\(B_{R}\)</span>等于轨道内磁感应强度平均值<span
+class="math inline">\(\Bar{B}\)</span>的一半即可。</p>
+<h2 id="互感与自感">互感与自感</h2>
+<h3 id="互感系数">互感系数</h3>
+<p>如图所示，当线圈1中的电流变化时所激发的变化磁场，会在其临近的另一线圈2中产生感应电动势。这种现象被称为互感现象，产生的感应电动势被称为互感电动势。假设线圈1所激发的磁场通过线圈2的磁通链匝数为<span
+class="math inline">\(\varPsi_{12}\)</span>，那么由Biot-Savart定律有
+<span class="math display">\[\begin{equation}
+\varPsi_{12} = M_{12}I_{1}
+\end{equation}\]</span></p>
+<p>上式中<span
+class="math inline">\(M_{12}\)</span>是比例系数，由线圈的几何形状、大小、匝数以及线圈之间的相对位置等决定，与线圈中电流无关。</p>
+<p>当线圈1中电流<span
+class="math inline">\(I_{1}\)</span>改变时，通过线圈2的磁通链匝数将发生变化。此时由Faraday电磁感应定律有
+<span class="math display">\[\begin{equation}
+\mathscr{E}_{2} = -\dfrac{\mathrm{d}  \varPhi_{12}}{\mathrm{d}  t} =
+-M_{12}\dfrac{\mathrm{d}  I_{1}}{\mathrm{d}  t}
+\end{equation}\]</span> 由此可以看出，比例系数<span
+class="math inline">\(M_{12}\)</span>越大，互感电动势越大。因此<span
+class="math inline">\(M_{12}\)</span>被称为互感系数。</p>
+<p>理论与实验均证明，<span class="math inline">\(M_{12}\)</span>与<span
+class="math inline">\(M_{21}\)</span>相等，一般用<span
+class="math inline">\(M\)</span>表示，即 <span
+class="math display">\[\begin{equation}
+M_{12} = M_{21} = M
+\end{equation}\]</span></p>
+<h3 id="自感系数">自感系数</h3>
+<p>当一个线圈中的电流变化时，它所激发的磁场通过线圈自身的磁通链匝数<span
+class="math inline">\(\varPsi\)</span>也在发生变化，这使得线圈自身产生会产生感应电动势。这种因线圈中电流变化而引起的感应现象被称为自感现象，所产生的电动势被称为自感电动势。</p>
+<p>如图所示，在左边的情形中，灯泡<span
+class="math inline">\(EL_{1}\)</span>比<span
+class="math inline">\(EL_{2}\)</span>更慢变亮，而在右边的情形中，断开回路后灯泡会突然变亮，然后熄灭。</p>
+<p>下面我们讨论自感现象的规律。我们知道，线圈中的电流所激发的磁感应强度
+与电流强度成正比，因此通过线圈的磁通链匝数<span
+class="math inline">\(\varPsi\)</span>与线圈中的电流强度<span
+class="math inline">\(I\)</span>也成正比，即 <span
+class="math display">\[\begin{equation}
+\varPsi = LI
+\end{equation}\]</span> 上式中<span
+class="math inline">\(L\)</span>为比例系数，与线圈中电流无关。与互感相同，由Faraday电磁感应定律可得到
+<span class="math display">\[\begin{equation}
+\mathscr{E} = -L\dfrac{\mathrm{d}  I}{\mathrm{d}  t}
+\end{equation}\]</span>
+由此可以看出，对于相同的电流变化率，比例系数<span
+class="math inline">\(L\)</span>越大，产生的自感电动势越大。因此，我们将比例系数<span
+class="math inline">\(L\)</span>称为自感系数。</p>
+<p>两个线圈之间的互感系数与其各自的自感有一定的联系。当两个线圈中，每一个线圈所产生的磁通量对于每一匝来说都相等，并且全部穿过另一个线圈的每一匝时，这种情况被称为无漏磁。假设线圈1、2的匝数分别为<span
+class="math inline">\(N_{1}\)</span>、<span
+class="math inline">\(N_{2}\)</span>，所产生的磁通量分别为<span
+class="math inline">\(\varPhi_{1}\)</span>、<span
+class="math inline">\(\varPhi_{2}\)</span>，那么根据互感公式可得 <span
+class="math display">\[
+M = \dfrac{N_{1}\varPhi_{21}}{I_{2}} = \dfrac{N_{2}\varPhi_{12}}{I_{1}}
+\]</span> 而由自感公式可得 <span class="math display">\[
+L_{1} = \dfrac{N_{1}\varPhi_{1}}{I_{1}}\quad L_{2} =
+\dfrac{N_{2}\varPhi_{2}}{I_{2}}
+\]</span> 由于假定无漏磁，因此有<span class="math inline">\(\varPhi_{12}
+= \varPhi_{1}\)</span>、<span class="math inline">\(\varPhi_{21} =
+\varPhi_{2}\)</span>，由此可得 <span class="math display">\[
+M = \dfrac{N_{1}}{N_{2}}L_{2} = \dfrac{N_{2}}{N_{1}}L_{1}
+\]</span> 将互感系数的两种表达形式相乘可得 <span
+class="math display">\[\begin{equation}
+M = \sqrt{L_{1}L_{2}}
+\end{equation}\]</span> 在有漏磁的情况下，<span
+class="math inline">\(M\)</span>比<span
+class="math inline">\(\sqrt{L_{1}L_{2}}\)</span>小。</p>
+<h3 id="两个线圈串联的自感系数">两个线圈串联的自感系数</h3>
+<p>如果将两线圈串联起来，并将其视为一个线圈，那么其有一定的总自感。在一般情况下，总自感的数值并不等于这两个线圈各自自感之和，必须注意到两线圈之间的互感。如图，假设线圈1、2的自感分别为<span
+class="math inline">\(L_{1}\)</span>、<span
+class="math inline">\(L_{2}\)</span>，线圈之间的互感为<span
+class="math inline">\(M\)</span>。</p>
+<p>上图中（b）表示的是顺接情况，假设线圈中电流为I
+，并且电流随时间而增加。那么对于线圈1，有自感电动势<span
+class="math inline">\(\mathscr{E}_{1}\)</span>和线圈2对其的互感电动势<span
+class="math inline">\(\mathscr{E}_{21}\)</span>，这两个电动势方向相同，且均与电流的方向相反。这样，线圈1中的电动势为
+<span class="math display">\[
+\mathscr{E}_{1} + \mathscr{E}_{21} = -\left(  L_{1}
+\dfrac{\mathrm{d}  I}{\mathrm{d}  t} +
+M\dfrac{\mathrm{d}  I}{\mathrm{d}  t}\right)
+\]</span> 同理，对于线圈2有 <span class="math display">\[
+\mathscr{E}_{2} + \mathscr{E}_{12} = -\left(  L_{2}
+\dfrac{\mathrm{d}  I}{\mathrm{d}  t} +
+M\dfrac{\mathrm{d}  I}{\mathrm{d}  t}\right)
+\]</span> 由于$ <em>{1} + </em>{21}<span
+class="math inline">\(与\)</span> <em>{2} +
+</em>{12}$的方向相同，因此在串联线圈中的总感应电动势为 <span
+class="math display">\[\begin{equation}
+\mathscr{E} =  \mathscr{E}_{1} + \mathscr{E}_{21} +  \mathscr{E}_{2} +
+\mathscr{E}_{12} = -\left(  L_{1} + L_{2} + 2M
+\right)  \dfrac{\mathrm{d}  I}{\mathrm{d}  t}
+\end{equation}\]</span> 上式表明，顺接串联线圈的总自感为 <span
+class="math display">\[\begin{equation}
+L = L_{1} + L_{2} + 2M
+\end{equation}\]</span></p>
+<p>图（c）表示的是反接情况，同理可得此时总自感为 <span
+class="math display">\[\begin{equation}
+L = L_{1} + L_{2} - 2M
+\end{equation}\]</span></p>
+<h3 id="自感磁能与互感磁能">自感磁能与互感磁能</h3>
+<p>一个通电的线圈也会储存一定的能量，其所储存的磁能可以通过电流建立过程中抵抗感应电动势做功来计算。</p>
+<p>先考虑一个线圈的情况。当线圈与电源接通后，在电流变为恒定值<span
+class="math inline">\(I\)</span>的过程中，电路中电流在一直增大。由于自感现象的存在，因此外电源所做功不仅要转化为电能和Joule热，还要反抗自感电动势<span
+class="math inline">\(\mathscr{E}_{L}\)</span>做功。下面我们计算在建立起稳定电流<span
+class="math inline">\(I\)</span>之前，电源所做的额外功。在时间<span
+class="math inline">\(\mathrm{d}  t\)</span>内，电源反抗自感电动势所做功为
+<span class="math display">\[
+\mathrm{d}  A = -\mathscr{E}_{L} i \mathrm{d}  t
+\]</span> 上式中，<span
+class="math inline">\(i\)</span>为电流强度的瞬时值，而<span
+class="math inline">\(\mathscr{E}_{L}\)</span>为 <span
+class="math display">\[
+\mathscr{E}_{L} = -\dfrac{\mathrm{d}  i}{\mathrm{d}  t}
+\]</span> 因此 <span class="math display">\[
+\mathrm{d}  A = Li\mathrm{d}  i
+\]</span> 在建立电流的整个过程中，电源反抗自感电动势所做功为 <span
+class="math display">\[
+A = \int_{0}^{I} Li\mathrm{d}  i = \dfrac{LI^{2}}{2}
+\]</span>
+这部分功以能量的形式储存在线圈内。当切断电源后，电流从恒定值<span
+class="math inline">\(I\)</span>减少到0，线圈中产生与电流方向相同的感应电动势。此时感应电动势做功为
+<span class="math display">\[
+A = \int \mathscr{E}_{L} i\mathrm{d}  t = \dfrac{1}{2} LI^{2}
+\]</span> 这表明自感线圈能够储能，并且如果在一个自感为<span
+class="math inline">\(L\)</span>的线圈中建立电流I ，线圈中储存的能量为
+<span class="math display">\[\begin{equation}
+W_{\mbox{自}} = \dfrac{1}{2}LI^{2}
+\end{equation}\]</span> 这部分能量被称为自感磁能。</p>
+<p>下面我们用相似的方法计算互感磁能。如果有两个相邻的线圈1、2，其中分别有电流<span
+class="math inline">\(I_{1}\)</span>和<span
+class="math inline">\(I_{2}\)</span>，那么在建立电流的过程中，电源要额外抵抗互感电动势做功。因此，在两个线圈建立电流的过程中，抵抗互感电动势所做总功为
+<span class="math display">\[
+A = A_{1} + A_{2} = -\int_{0}^{\infty}
+\mathscr{E}_{21}i_{1}\mathrm{d}  t - \int_{0}^{\infty}
+\mathscr{E}_{12}i_{2}\mathrm{d}  t = \int_{0}^{\infty}
+\left(  M_{21}i_{1}\mathrm{d}  i_{2} + M_{12} i_{2}
+\mathrm{d}  i_{1}\right)  = M_{12}I_{1}I_{2}
+\]</span> 由此可见，当电流<span
+class="math inline">\(I_{1}\)</span>和<span
+class="math inline">\(I_{2}\)</span>分别建立起来后，它们之间除了储存有自感磁能，还储存有互感磁能
+<span class="math display">\[\begin{equation}
+W_{12} = M_{12}I_{1}I_{2}
+\end{equation}\]</span>
+需要注意的是，自感磁能不可能是负值，但互感磁能不一定。此时，对于相邻的两个线圈，其所储存的总磁能为
+<span class="math display">\[\begin{equation}
+W_{m} = \dfrac{1}{2}L_{1}I_{1}^{2} + \dfrac{1}{2}L_{2}I_{2}^{2} +
+\dfrac{1}{2} M_{12}I_{1}I_{2} + \dfrac{1}{2} M_{21}I_{2}I_{1}
+\end{equation}\]</span> 不难将其推广到有<span
+class="math inline">\(k\)</span>个线圈的更普遍情况： <span
+class="math display">\[\begin{equation}
+W_{m} = \dfrac{1}{2} \sum\limits_{i = 1}^{k} L_{i}I_{i}^{2} +
+\dfrac{1}{2}\sum_{\substack{i, j = 1\\ \left(  i\neq j \right) }}^{k}
+M_{ij}I_{i}I_{j}
+\end{equation}\]</span></p>
+<h2 id="暂态过程">暂态过程</h2>
+<h3 id="lr电路的暂态过程"><span
+class="math inline">\(LR\)</span>电路的暂态过程</h3>
+考虑如图所示的电路。当开关拨向1时，一个从0到<span
+class="math inline">\(\mathscr{E}\)</span>的阶跃电压作用在<span
+class="math inline">\(LR\)</span>电路上。由于自感现象的存在，电路中电流的变化使得电路中出现自感电动势
+<span class="math display">\[
+\mathscr{E}_{L} = -L\dfrac{\mathrm{d}  i}{\mathrm{d}  t}
+\]</span> 同时由Lenz定律可得，这个电动势是反抗电流增加的。
+<p>假设电源的电动势为 ，那么在接通电源后，电路中总电动势为 <span
+class="math display">\[
+\mathscr{E} + \mathscr{E}_{L} = \mathscr{E} -
+l\dfrac{\mathrm{d}  i}{\mathrm{d}  t}
+\]</span> 此时我们忽略电源内阻，那么由Ohms定律可得 <span
+class="math display">\[\begin{equation}
+L\dfrac{\mathrm{d}  i}{\mathrm{d}  t} + Ri = \mathscr{E}
+\end{equation}\]</span> 这就是电路中瞬时电流<span
+class="math inline">\(i\)</span>满足的微分方程，它是一个一阶线性常系数非齐次方程，下面用分离变量法求解。</p>
+<p>首先将其变形为 <span class="math display">\[
+\dfrac{\mathrm{d}  i}{i - \dfrac{\mathscr{E}}{R}} =
+-\dfrac{R}{L}\mathrm{d}  t
+\]</span> 同时积分，并变形即可得 <span
+class="math display">\[\begin{equation}
+i - \dfrac{\mathscr{E}}{R} = K_{1}e^{-\frac{R}{L}t}
+\end{equation}\]</span> 将<span class="math inline">\(t = 0, i_{0} =
+0\)</span>的条件带入即可得到</p>
+<p><span class="math display">\[\begin{equation}
+i = \dfrac{\mathscr{E}}{R}\left(  1 - e^{-\frac{R}{L}t} \right)
+\end{equation}\]</span></p>
+<p>设<span class="math inline">\(\tau =
+\dfrac{L}{R}\)</span>。此时不难看出，<span
+class="math inline">\(\tau\)</span>是决定<span
+class="math inline">\(LR\)</span>电路中暂态过程持续时间长短的特征量，我们将其称为<span
+class="math inline">\(LR\)</span>电路的时间常量。<span
+class="math inline">\(\tau\)</span>越大，电流增长的越慢。</p>
+<p>如果我们将开关从1拨向2，那么作用在<span
+class="math inline">\(LR\)</span>电路上的阶跃电压将从<span
+class="math inline">\(\mathscr{E}\)</span>变为0。电流产生的自感电动势将使电流延续一段时间。这时，按照Ohms定律，电流<span
+class="math inline">\(i\)</span>所满足的微分方程为 <span
+class="math display">\[\begin{equation}
+\mathscr{E} = -L\dfrac{\mathrm{d}  i}{\mathrm{d}  t} = iR
+\end{equation}\]</span> 用变量分离法不难解得 <span
+class="math display">\[\begin{equation}
+i = K_{2}e^{-\frac{R}{L}t}
+\end{equation}\]</span> 将<span class="math inline">\(t = 0, i_{0} =
+\dfrac{\mathscr{E}}{R}\)</span>带入可得 <span
+class="math display">\[\begin{equation}
+i = \dfrac{\mathscr{E}}{R}e^{-\frac{R}{L}t}
+\end{equation}\]</span> 不难看出，在前一种情况中得到的时间常量<span
+class="math inline">\(\tau = \dfrac{L}{R}\)</span>在此处依然适用。</p>
+<h3 id="rc电路的暂态过程"><span
+class="math inline">\(RC\)</span>电路的暂态过程</h3>
+<p><span class="math inline">\(RC\)</span>电路的暂态过程就是<span
+class="math inline">\(RC\)</span>电路的充放电过程。如图所示，将开关接到位置1，假设电路中瞬时电流为<span
+class="math inline">\(i\)</span>，那么此时满足 <span
+class="math display">\[\begin{equation}
+\mathscr{E} = \dfrac{q}{C} + iR
+\end{equation}\]</span></p>
+<p>当把开关接到位置2时，电容器<span
+class="math inline">\(C\)</span>通过电阻<span
+class="math inline">\(R\)</span>放电。此时电路中未接通电源，那么就有
+<span class="math display">\[\begin{equation}
+\dfrac{q}{C} + iR = 0
+\end{equation}\]</span></p>
+<p>将<span class="math inline">\(i =
+\dfrac{\mathrm{d}  q}{\mathrm{d}  t}\)</span>带入有</p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp;  R\dfrac{\mathrm{d}  q}{\mathrm{d}  t} + \dfrac{q}{C} =
+\mathscr{E} \\
+&amp;  R\dfrac{\mathrm{d}  q}{\mathrm{d}  t} + \dfrac{q}{C} = 0\\
+\end{aligned}
+\right.
+\]</span> 采用分离变量法，并将对应的边界条件带入可得 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp;\mbox{充电：} q = C\mathscr{E}\left(  1 - e^{-\frac{1}{RC}t}
+\right)  \\
+&amp;\mbox{放电：} q = C\mathscr{E} e^{-\frac{1}{RC}t} \\
+\end{aligned}
+\right.
+\]</span> 与<span
+class="math inline">\(LR\)</span>电路相似，我们可以将<span
+class="math inline">\(\tau = RC\)</span>定义为<span
+class="math inline">\(RC\)</span>电路的时间常量。</p>
+<h3 id="微分电路与积分电路">微分电路与积分电路*</h3>
+<p>待补充</p>
+<h3 id="lcr电路的暂态过程"><span
+class="math inline">\(LCR\)</span>电路的暂态过程</h3>
+<p>下面我们讨论<span
+class="math inline">\(LCR\)</span>电路的暂态过程。如图所示，与<span
+class="math inline">\(LR\)</span>和<span
+class="math inline">\(RC\)</span>电路类似，这个电路的微分方程为</p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp;  L\dfrac{\mathrm{d}  i}{\mathrm{d}  t} + iR + \dfrac{q}{C} =
+\mathscr{E} \\
+&amp;  L\dfrac{\mathrm{d}  i}{\mathrm{d}  t} + iR + \dfrac{q}{C} = 0\\
+\end{aligned}
+\right.
+\]</span> 将<span class="math inline">\(i =
+\dfrac{\mathrm{d}  q}{\mathrm{d}  t}\)</span>带入有 <span
+class="math display">\[
+\left \{
+\begin{aligned}
+&amp;  L\dfrac{\mathrm{d} ^{2} q}{\mathrm{d}  t^{2}} +
+R\dfrac{\mathrm{d}  q}{\mathrm{d}  t} + \dfrac{q}{C} = \mathscr{E} \\
+&amp;  L\dfrac{\mathrm{d} ^{2} q}{\mathrm{d}  t^{2}} +
+R\dfrac{\mathrm{d}  q}{\mathrm{d}  t} + \dfrac{q}{C} = 0\\
+\end{aligned}
+\right.
+\]</span></p>
+<p>显然，我们得到了两个二阶线性常系数微分方程，由附录可知，方程的解与阻尼度
+<span class="math display">\[
+\lambda = \dfrac{R}{2} \sqrt{\dfrac{C}{L}}
+\]</span> 有密切关系。下图分别展示出在充电、放电过程中，电荷量<span
+class="math inline">\(q\)</span>随时间<span
+class="math inline">\(t\)</span>变化的曲线。图中过阻尼、临界阻尼与阻尼振荡分别对应了<span
+class="math inline">\(\lambda &gt;1\)</span>、<span
+class="math inline">\(\lambda = 1\)</span>和<span
+class="math inline">\(\lambda &lt; 1\)</span>的情形。</p>
+<p>首先我们来看<span class="math inline">\(R =
+0\)</span>的情况，此时<span class="math inline">\(\lambda =
+0\)</span>。当放电过程开始时，显然电容器的电能只能转化为线圈中的磁能，而当电容器放电完成后，电流又会在自感电动势的作用下转换为电容器的电能。如此反复进行将会形成等幅振荡，振荡的频率<span
+class="math inline">\(f_{0}\)</span>与周期<span
+class="math inline">\(T_{0}\)</span>分别为 <span
+class="math display">\[\begin{equation}
+f_{0} = \dfrac{1}{2\pi \sqrt{LC}},\quad T_{0} = 2\pi \sqrt{LC}
+\end{equation}\]</span></p>
+<p>如果电路中<span class="math inline">\(\lambda &lt;
+1\)</span>，那么电流每通过一次电阻，就会消耗掉一部分能量，振荡的振幅会逐渐衰减，这便是阻尼振荡情况。此时振荡的频率<span
+class="math inline">\(f\)</span>与周期<span
+class="math inline">\(T\)</span>为 <span
+class="math display">\[\begin{equation}
+f = \dfrac{1}{2\pi} \sqrt{\dfrac{1}{LC} - \dfrac{R^{2}}{4L^{2}}}, \quad
+T = \dfrac{2\pi}{\sqrt{\dfrac{1}{LC} - \dfrac{R^{2}}{4L^{2}}}}
+\end{equation}\]</span> 当<span class="math inline">\(\lambda =
+1\)</span>时，带入上式可得周期为无穷大，表明衰减过程不具有周期性。这就是临界阻尼情况。</p>
+<h3 id="灵敏电流计和冲击电流计">灵敏电流计和冲击电流计</h3>
+<p>待补充</p>
+<h2 id="二阶线性常系数微分方程">二阶线性常系数微分方程</h2>
+<p>对于一般的二阶线性常系数微分方程 <span
+class="math display">\[\begin{equation}
+a\dfrac{\mathrm{d}  ^{2}x}{\mathrm{d}  t^{2}} +
+b\dfrac{\mathrm{d}  x}{\mathrm{d}  t} + cx = d
+\end{equation}\]</span>
+其解由两部分组成：非齐次方程的特解+对应的齐次方程的通解。我们先来求对应的齐次方程
+<span class="math display">\[\begin{equation}
+a\dfrac{\mathrm{d}  ^{2}x}{\mathrm{d}  t^{2}} +
+b\dfrac{\mathrm{d}  x}{\mathrm{d}  t} + cx = 0
+\end{equation}\]</span> 的通解。</p>
+<p>首先假设上式解的形式为 <span class="math display">\[
+x = e^{\gamma t}
+\]</span> 带入齐次方程可得 <span class="math display">\[
+a\gamma^{2} + b\gamma + c = 0
+\]</span> 解这个一元二次方程可得 <span class="math display">\[
+\gamma = -\alpha \pm \beta
+\]</span> 其中 <span class="math display">\[
+\alpha = \dfrac{b}{2a}, \quad \beta = \sqrt{\dfrac{b^{2}}{4a^{2}} -
+\dfrac{c}{a}}
+\]</span> 此时，设 <span class="math display">\[
+\lambda^{2} = \dfrac{b^{2}}{4ac}\ \mbox{或}\ \lambda =
+\dfrac{b}{2}\dfrac{1}{\sqrt{ac}}
+\]</span> 我们称<span
+class="math inline">\(\lambda\)</span>为阻尼度，下面按<span
+class="math inline">\(\lambda\)</span>的值的不同分三种情况讨论：</p>
+<h3 id="lambda-1"><span class="math inline">\(\lambda &gt;
+1\)</span></h3>
+<p>此时<span class="math inline">\(\beta \in
+\mathrm{R}\)</span>，于是方程有两个解 <span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \gamma_{1} = -\alpha + \beta \\
+&amp; \gamma_{2} = -\alpha - \beta \\
+\end{aligned}
+\right.
+\]</span> 因此通解为 <span class="math display">\[\begin{equation}
+x = Ae^{\gamma_{1} t} + Be^{\gamma_{2}t}
+\end{equation}\]</span></p>
+<h3 id="lambda-1-1"><span class="math inline">\(\lambda =
+1\)</span></h3>
+<p>此时两个解<span class="math inline">\(\gamma_{1}\)</span>和<span
+class="math inline">\(\gamma_{2}\)</span>满足 <span
+class="math display">\[
+\gamma_{1} = \gamma_{2} = -\alpha
+\]</span> 因此通解为 <span class="math display">\[\begin{equation}
+x = \left(  A + Bt \right)  e^{-\alpha t}
+\end{equation}\]</span></p>
+<h3 id="lambda-1-2"><span class="math inline">\(\lambda &lt;
+1\)</span></h3>
+<p>此时<span class="math inline">\(\beta \in
+\mathrm{C}\)</span>，假设<span class="math inline">\(\omega =
+\sqrt{\dfrac{c}{a} - \dfrac{b^{2}}{4a^{2}}}\)</span>，因此<span
+class="math inline">\(\beta = i\omega\)</span>。此时方程有两个复数解</p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; \gamma_{1} = -\alpha + i\omega \\
+&amp; \gamma_{2} = -\alpha - i\omega \\
+\end{aligned}
+\right.
+\]</span> 此时齐次方程的通解为 <span
+class="math display">\[\begin{equation}
+x = Ae^{\gamma_{1} t} + Be^{\gamma_{2} t}
+\end{equation}\]</span></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/30110ae4/" title="电磁感应与暂态过程">https://vasily-alexievich-korolev.github.io/posts/30110ae4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/2f05d78c/" rel="prev" title="恒定磁场">
+      <i class="fa fa-chevron-left"></i> 恒定磁场
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/3fca16e6/" rel="next" title="磁介质">
+      磁介质 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94%E4%B8%8E%E6%9A%82%E6%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">电磁感应与暂态过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">电磁感应定律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">电磁感应现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#faraday%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">Faraday定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lenz%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">Lenz定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%8B%E8%82%A4%E6%95%88%E5%BA%94"><span class="nav-number">1.1.4.</span> <span class="nav-text">趋肤效应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF%E4%B8%8E%E6%84%9F%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">动生电动势与感生电动势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">1.2.1.</span> <span class="nav-text">动生电动势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E5%8F%91%E7%94%B5%E6%9C%BA%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">交流发电机原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF%E6%B6%A1%E6%97%8B%E7%94%B5%E5%9C%BA"><span class="nav-number">1.2.3.</span> <span class="nav-text">感生电动势、涡旋电场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E6%84%9F%E5%BA%94%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">电子感应加速器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%92%E6%84%9F%E4%B8%8E%E8%87%AA%E6%84%9F"><span class="nav-number">1.3.</span> <span class="nav-text">互感与自感</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E6%84%9F%E7%B3%BB%E6%95%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">互感系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%84%9F%E7%B3%BB%E6%95%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">自感系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%BA%BF%E5%9C%88%E4%B8%B2%E8%81%94%E7%9A%84%E8%87%AA%E6%84%9F%E7%B3%BB%E6%95%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">两个线圈串联的自感系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%84%9F%E7%A3%81%E8%83%BD%E4%B8%8E%E4%BA%92%E6%84%9F%E7%A3%81%E8%83%BD"><span class="nav-number">1.3.4.</span> <span class="nav-text">自感磁能与互感磁能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9A%82%E6%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">暂态过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lr%E7%94%B5%E8%B7%AF%E7%9A%84%E6%9A%82%E6%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">\(LR\)电路的暂态过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rc%E7%94%B5%E8%B7%AF%E7%9A%84%E6%9A%82%E6%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">\(RC\)电路的暂态过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E7%94%B5%E8%B7%AF%E4%B8%8E%E7%A7%AF%E5%88%86%E7%94%B5%E8%B7%AF"><span class="nav-number">1.4.3.</span> <span class="nav-text">微分电路与积分电路*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lcr%E7%94%B5%E8%B7%AF%E7%9A%84%E6%9A%82%E6%80%81%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.4.</span> <span class="nav-text">\(LCR\)电路的暂态过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%B5%E6%95%8F%E7%94%B5%E6%B5%81%E8%AE%A1%E5%92%8C%E5%86%B2%E5%87%BB%E7%94%B5%E6%B5%81%E8%AE%A1"><span class="nav-number">1.4.5.</span> <span class="nav-text">灵敏电流计和冲击电流计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%98%B6%E7%BA%BF%E6%80%A7%E5%B8%B8%E7%B3%BB%E6%95%B0%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">二阶线性常系数微分方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">\(\lambda &gt;
+1\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda-1-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">\(\lambda &#x3D;
+1\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda-1-2"><span class="nav-number">1.5.3.</span> <span class="nav-text">\(\lambda &lt;
+1\)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

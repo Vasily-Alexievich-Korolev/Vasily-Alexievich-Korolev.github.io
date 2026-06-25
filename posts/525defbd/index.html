@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了恒定电流的基本规律，包括电流密度、欧姆定律、基尔霍夫定律等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恒定电流">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/525defbd/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了恒定电流的基本规律，包括电流密度、欧姆定律、基尔霍夫定律等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:43.860Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.861Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/525defbd/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>恒定电流 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/525defbd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          恒定电流
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>29 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了恒定电流的基本规律，包括电流密度、欧姆定律、基尔霍夫定律等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="恒定电流">恒定电流</h1>
+<h2 id="电流的恒定条件和导电规律">电流的恒定条件和导电规律</h2>
+<h3 id="电流电流密度矢量">电流、电流密度矢量</h3>
+<p>电流是电荷的定向流动。形成电流有以下两个条件：</p>
+<p>（1）存在可以自由移动的电荷（自由电荷）</p>
+<p>（2）存在电场</p>
+<p>在金属中，电流是由带负电的电子流动形成的，但在电解液与气态导体中，电流是由正、负离子与电子共同形成的。习惯上，将电流视为正电荷流动形成的，并且规定正电荷流动的方向为电流的方向。这样，在导体中电流总是沿着电场方向，从高电势处指向低电势处。</p>
+<p>为了衡量这种定向移动，我们定义单位时间内通过导体任一横截面的电荷量为电流，符号为<span
+class="math inline">\(I\)</span>，即 <span
+class="math display">\[\begin{equation}
+I = \lim\limits_{\Delta t \to 0} \dfrac{\Delta q}{\Delta t} =
+\dfrac{\mathrm{d}  q}{\mathrm{d}  t}
+\end{equation}\]</span></p>
+<p>电流的单位为安培，简称安，符号为A。同时电流虽然有方向，但仍然为标量。</p>
+<p>在通常的电路中，导体不同部分的电流大小可以认为相同。但在一些情况下（如导体体积很大或有趋肤效应），导体表面与导体内部的电流大小是不一样的。此时我们需要引入能够细致描述电流分布的物理量——电流密度。</p>
+<p>电流密度是矢量，其方向为该点电流的方向，大小等于通过该点的单位垂直截面的电流。加黑色在导体中取一个法向任意的面元<span
+class="math inline">\(\mathrm{d}  S\)</span>，假设面元的法向<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>与电流方向的夹角为<span
+class="math inline">\(\theta\)</span>，那么通过<span
+class="math inline">\(\mathrm{d}  S\)</span>的电流<span
+class="math inline">\(\mathrm{d}  I\)</span>与该点电流密度<span
+class="math inline">\(j\)</span>的关系为 <span class="math display">\[
+\mathrm{d}  I = j \mathrm{d}  S \cos \theta
+\]</span> 写为矢量形式即为 <span class="math display">\[\begin{equation}
+\mathrm{d}  \boldsymbol{I} = \boldsymbol{j} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span></p>
+<p>这样，电流密度就构成了一个矢量场，也就是电流场。像电场一样，我们也可以用电流线来描述电流场。同时，由上式可得，对于任意截面<span
+class="math inline">\(S\)</span>，电流<span
+class="math inline">\(I\)</span>与电流密度<span
+class="math inline">\(\boldsymbol{j}\)</span>之间的关系为 <span
+class="math display">\[\begin{equation}
+I = \iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span></p>
+<p>由此可见，电流<span class="math inline">\(I\)</span>即为电流密度
+的通量。</p>
+<h3 id="电流的连续方程恒定条件">电流的连续方程、恒定条件</h3>
+<p>电流的连续方程的本质是电荷守恒定律。假设在导体内部取一任意闭合曲面<span
+class="math inline">\(S\)</span>，那么由电荷守恒可得，在一段时间内电荷的净流出量必然等于面内电荷量的净变化，即
+<span class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+-\dfrac{\mathrm{d}  q}{\mathrm{d}  t}
+\end{equation}\]</span>
+上式表明，电流线是终止于或产生于电荷积累或消失的位置。譬如，假设<span
+class="math inline">\(\mathrm{d}  q &gt;
+0\)</span>，那么这说明面内正电荷是净增加的，即电流线最终终止于面内某处。</p>
+<p>恒定电流要求电流场不随时间变化，这就要求电荷的分布不随时间变化，因而此时的电场为静电场。由此可得，在恒定条件下，对任意闭合曲面<span
+class="math inline">\(S\)</span>，面内的电荷量净变化应为0，即 <span
+class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\end{equation}\]</span> 上式即为电流的恒定条件。</p>
+<p>由一束电流线围成的管状区域被称为电流管。显然，通过电流管任意截面的电流线数目相同，这表明电流管内各截面的电流均相等。可以证明，对于通常的电路而言，导线本身就是一个电流管。因此在没有分支的电路中，通过各截面的电流必定相等。此外，电流的恒定条件表明，电路必须是闭合的。</p>
+<h3 id="ohms定律电阻电阻率">Ohms定律、电阻、电阻率</h3>
+<h4 id="ohms定律电阻与电导">Ohms定律、电阻与电导</h4>
+<p>实验表明，在恒定条件下，通过一段导体的电流与导体两端的电势差成正比。这个结论被称为Ohms定律，表示为
+<span class="math display">\[\begin{equation}
+I = \dfrac{U}{R}
+\end{equation}\]</span>
+其中，等式的比例系数被称为导体的电阻。实验表明，Ohms不仅适用于金属导体，还对电解液也适用。</p>
+<p>以电势差<span class="math inline">\(U\)</span>为横坐标，电流<span
+class="math inline">\(I\)</span>为纵坐标画出的曲线叫做该导体的伏安特性曲线。如果某元器件的该曲线是一条通过原点的直线，那么称这种元器件为线性元件。</p>
+<p>电阻的倒数被称为电导<span class="math inline">\(G\)</span>，即 <span
+class="math display">\[\begin{equation}
+G = \dfrac{1}{R}
+\end{equation}\]</span></p>
+<h4 id="电阻率与电导率">电阻率与电导率</h4>
+<p>实验表明，对于由一定材料制成的横截面均匀的导体，其电阻R
+与导体的长度<span
+class="math inline">\(l\)</span>成正比，与横截面积<span
+class="math inline">\(S\)</span>成反比，即 <span
+class="math display">\[\begin{equation}
+R = \rho \dfrac{l}{S}
+\end{equation}\]</span> 其中，比例系数<span
+class="math inline">\(\rho\)</span>被称为材料的电阻率。</p>
+<p>当导线的截面积<span class="math inline">\(S\)</span>或电阻率<span
+class="math inline">\(\rho\)</span>不均匀时，上式应当写为 <span
+class="math display">\[\begin{equation}
+R = \int \dfrac{\rho}{S}\mathrm{d}  l
+\end{equation}\]</span></p>
+<p>电阻率的倒数被称为电导率<span
+class="math inline">\(\sigma\)</span>，即 <span
+class="math display">\[\begin{equation}
+\sigma = \dfrac{1}{\rho}
+\end{equation}\]</span></p>
+<p>各种材料的电导率都随着温度变化。实验表明，纯金属的电阻率<span
+class="math inline">\(\rho\)</span>随温度<span
+class="math inline">\(t\)</span>变化很比较规则。当温度的变化范围不大时，近似有以下关系
+<span class="math display">\[\begin{equation}
+\rho = \rho_{0}(1 + \alpha t)
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\rho_{0}\)</span>表示温度为0{}^
+时的电阻率，而<span
+class="math inline">\(\alpha\)</span>被称为电阻的温度系数。由于随着温度变化，导体电阻率的变化比其长度变化程度大很多，因此在温度变化不大时，可以只考虑金属电阻率的变化，即
+<span class="math display">\[\begin{equation}
+R = R_{0}(1 + \alpha t)
+\end{equation}\]</span> 其中，<span
+class="math inline">\(R_{0}\)</span>表示0{}^ 时的电阻。这样，导体电阻R
+在一定温度范围内与温度呈线性关系，由此可以通过测量导体的电阻来测量温度。</p>
+<p>金属材料的电阻率<span
+class="math inline">\(\rho\)</span>在一定温度范围内与温度近似为线性关系，但在降低至某一特定温度<span
+class="math inline">\(T_{\mathrm{c}}\)</span>后，电阻率<span
+class="math inline">\(\rho\)</span>会降低到无法测量的程度。这种现象被称为超导现象，上述温度<span
+class="math inline">\(T_{\mathrm{c}}\)</span>被称为正常状态和超导态之间的转变温度。</p>
+<h4 id="ohms定律的微分形式">Ohms定律的微分形式</h4>
+<p>假设在导体的电流场中取一小段电流管，假设其长度为<span
+class="math inline">\(\mathrm{d}  l\)</span>，垂直截面积为<span
+class="math inline">\(\mathrm{d}  S\)</span>。由Ohms定律有 <span
+class="math display">\[
+\mathrm{d}  I = \dfrac{\mathrm{d}  U}{R}
+\]</span> 结合 <span class="math display">\[
+\mathrm{d}  U = E\mathrm{d}  l
+\]</span> 与 <span class="math display">\[
+\mathrm{d}  I = j\mathrm{d}  S
+\]</span> 可得 <span class="math display">\[
+\dfrac{\mathrm{d}  U}{\mathrm{d}  I}  =
+\dfrac{E\mathrm{d}  l}{j\mathrm{d}  S} = R = \dfrac{1}{\sigma}
+\dfrac{\mathrm{d}  l}{\mathrm{d}  S}
+\]</span> 其中，<span
+class="math inline">\(\sigma\)</span>是导体此处的电导率。结合<span
+class="math inline">\(\boldsymbol{j}\)</span>和 的方向一致，可得 <span
+class="math display">\[\begin{equation}
+\boldsymbol{j} = \sigma \boldsymbol{E}
+\end{equation}\]</span> 上式被称为Ohms定律的微分形式，它表明<span
+class="math inline">\(\boldsymbol{j}\)</span>和
+的方向一致，大小上成比例。</p>
+<p>由于<span class="math inline">\(U = \int \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l}\)</span>，以及<span class="math inline">\(I =
+\iint \boldsymbol{j} \cdot
+\mathrm{d}  \boldsymbol{S}\)</span>均为积分量，因此 <span
+class="math display">\[
+I = \dfrac{U}{R}
+\]</span>
+被称为Ohms定律的积分形式。需要注意的是，虽然Ohms定律的微分形式是由恒定条件推导出来的，但是在变化不快时，其对于非恒定情况也适用。</p>
+<h3 id="电功率joule定律">电功率、Joule定律</h3>
+<p>由电势差U 的定义可知，当电荷量为<span
+class="math inline">\(q\)</span>的电荷通过电势差为U
+的电路时，电场力所做功为 <span class="math display">\[
+A = qU = UIt
+\]</span> 由此可得电场力的功率，即电功率<span
+class="math inline">\(P\)</span>为 <span
+class="math display">\[\begin{equation}
+P = \dfrac{A}{t} = UI
+\end{equation}\]</span></p>
+<p>如果在一段电路中，电场力所做功只转化为热能（也就是只有电阻，无电动机、电解槽等元件），那么有
+<span class="math display">\[
+Q = A = UIt
+\]</span></p>
+<p>由Ohms定律可转化为 <span class="math display">\[\begin{equation}
+Q = I^{2}Rt
+\end{equation}\]</span>
+由于上式最初是由Joule根据实验结果确定的，因此被称为Joule定律。此时，因为<span
+class="math inline">\(A = Q\)</span>，因此有 <span
+class="math display">\[\begin{equation}
+P = I^{2}R = \dfrac{U^{2}}{R}
+\end{equation}\]</span> 需要注意的是，<span class="math inline">\(P =
+UI\)</span>代表的是总电功率，而<span class="math inline">\(P = I^{2}R =
+\dfrac{U^{2}}{R}\)</span>代表的是电流的热功率。这二者并不一定相等。</p>
+<p>导体中单位体积的热功率，被称为热功率密度<span
+class="math inline">\(p\)</span>。与推导Ohms定律的微分形式类似，Joule定律也可以被写为以下的微分形式
+<span class="math display">\[\begin{equation}
+p = \dfrac{j^{2}}{\sigma} = \sigma E
+\end{equation}\]</span></p>
+<h3 id="金属导电的经典微观解释">金属导电的经典微观解释</h3>
+<p>首先对金属导电的微观图像进行定性描述。</p>
+<p>当导体内部没有电场时，从微观角度上看，金属内的自由电子在不停地做无规则热运动。这样，对于同一截面而言，一段时间内向两个方向穿过的电子数量相等。因此在宏观上，此时没有电流产生。自由电子在做热运动时，还不停地与晶格上的原子实碰撞，所以电子的运动轨迹时一条迂回曲折的折线（由于此处是经典解释，因此这里显然没有考虑量子力学的因素）。</p>
+<p>如果在导体中外加电场，那么此时自由电子的总速度是其热运动速度与因电场而产生的附加定向速度之和。前者的矢量平均仍然为
+，后者的平均则被称为漂移速度<span
+class="math inline">\(\boldsymbol{u}\)</span>。正是这种漂移运动在宏观上形成了电流。</p>
+<p>自由电子在电场中获得的加速度为 <span class="math display">\[
+\boldsymbol{a} = -\dfrac{e}{m} \boldsymbol{E}
+\]</span>
+但由于电子会与晶格产生碰撞，因此自由电子定向速度增加受到了限制。由于碰撞后电子运动方向具有偶然性，因此我们可以假设，电子碰撞后速度沿各个方向的概率相等。我们可以将同一时刻完成碰撞的电子视为“一批电子”，那么此时它们的平均定向速度<span
+class="math inline">\(\boldsymbol{u}_{0} =
+\boldsymbol{0}\)</span>。假设$ <span
+class="math inline">\(为两次碰撞之间的平均自由飞行时间，那么由匀加速运动可知，在下次碰撞之前这批电子的定向速度为\)</span>$
+_{1} = = - <span class="math display">\[
+那么，在一个平均自由程中电子的漂移速度即为始、末速度的平均值，即
+\]</span> = = - <span class="math display">\[
+与气体分子运动论中一样，电子的平均自由飞行时间$\overline{\tau }
+$与其平均自由程$\overline{\lambda}$以及平均热运动速率$\overline{v}$之间有以下关系
+\]</span> = $$ 所以有 <span class="math display">\[\begin{equation}
+\boldsymbol{u} = -\dfrac{e}{2m} \dfrac{\overline{\lambda}}{\overline{v}}
+\boldsymbol{E}
+\end{equation}\]</span> 由于<span
+class="math inline">\(e\)</span>、<span
+class="math inline">\(m\)</span>、<span
+class="math inline">\(\overline{\lambda}\)</span>与<span
+class="math inline">\(\overline{v}\)</span>均与场强
+无关，因此上式说明自由电子的漂移速度<span
+class="math inline">\(\boldsymbol{u}\)</span>与<span
+class="math inline">\(-\boldsymbol{E}\)</span>成正比。</p>
+<p>下面我们将设法把电流密度 与自由电子密度<span
+class="math inline">\(n\)</span>、漂移速度<span
+class="math inline">\(\boldsymbol{u}\)</span>联系起来。为此我们在金属中取一垂直于电流线的面元<span
+class="math inline">\(\mathrm{d}  S\)</span>。由于漂移速度<span
+class="math inline">\(\boldsymbol{u}\)</span>本身是平均得到的，因此可以认为此时面元附近电子均以速度<span
+class="math inline">\(\boldsymbol{u}\)</span>移动。经过<span
+class="math inline">\(\mathrm{d}  t\)</span>时间后，电子移动的体积应为
+<span class="math display">\[
+\mathrm{d}  V = n\cdot \mathrm{d}  S \cdot u\mathrm{d}  t
+\]</span> 从而在<span
+class="math inline">\(\mathrm{d}  t\)</span>内通过<span
+class="math inline">\(\mathrm{d}  S\)</span>的电荷量为 <span
+class="math display">\[
+\mathrm{d}  q = neu\mathrm{d}  t\mathrm{d}  S
+\]</span> 因此此处电流<span
+class="math inline">\(\mathrm{d}  I\)</span>可表示为 <span
+class="math display">\[
+\mathrm{d}  I = \dfrac{\mathrm{d}  q}{\mathrm{d}  t} = neu\mathrm{d}  S
+= -ne\boldsymbol{u}\cdot \mathrm{d}  \boldsymbol{S}
+\]</span> 从而电流密度 可表示为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{j} = -ne\boldsymbol{u}
+\end{equation}\]</span> 代入<span class="math inline">\(\boldsymbol{u} =
+-\dfrac{e}{2m} \dfrac{\overline{\lambda}}{\overline{v}}
+\boldsymbol{E}\)</span>可得 <span
+class="math display">\[\begin{equation}
+\boldsymbol{j} = \dfrac{ne^{2}}{2m}
+\dfrac{\overline{\lambda}}{\overline{v}} \boldsymbol{E}
+\end{equation}\]</span> 通过与式（13）<span
+class="math inline">\(\boldsymbol{j} = \sigma
+\boldsymbol{E}\)</span>对比可得 <span
+class="math display">\[\begin{equation}
+\sigma = \dfrac{ne^{2}\overline{\lambda}}{2m\overline{v}}
+\end{equation}\]</span>
+这样，我们就用经典电子理论解释了Ohms定律，并且推导出了电导率<span
+class="math inline">\(\sigma\)</span>与微观量平均值之间的关系。上式同时也可以说明电阻率<span
+class="math inline">\(\rho \propto
+\sqrt{T}\)</span>，解释了随着温度的升高，电阻率逐渐增加的现象。</p>
+<p>同样，解释电流热效应也很简单。在经典理论看来，电阻实际上反应的是自由电子与晶格上原子实发生碰撞，从而对电子定向移动破坏的宏观表现。那么热效应就是通过电子与原子实之间的碰撞，原子实的热震动加剧的宏观表现。</p>
+<p>平常我们所说的“电”的传播速度快，实际上并不是指电子在电场作用下的漂移速度<span
+class="math inline">\(\boldsymbol{u}\)</span>，而是电场的传播速度，此速度接近<span
+class="math inline">\(3\times 10^{8}\ \mathrm{m\cdot
+s^{-1}}\)</span>。</p>
+<h2 id="电源及其电动势">电源及其电动势</h2>
+<h3 id="非静电力">非静电力</h3>
+<p>上文提到，恒定电流线必然是闭合的。同时，我们知道静电场有以下的重要性质：
+<span class="math display">\[
+\oint_{L} \boldsymbol{E}\cdot \boldsymbol{l} = 0
+\]</span>
+这说明，沿闭合回路移动电荷，在电场力作用下做功为0。然而，电流的热效应是不可避免的，这使得电能不断转化为内能。这说明，仅有静电场不可能实现恒定电流，要维持恒定电流必须有非静电力做功。</p>
+<p>提供非静电力的装置被称为电源。我们用<span
+class="math inline">\(\boldsymbol{K}\)</span>表示作用在单位正电荷上面的非静电力。在电源内部，除了有静电场
+之外，还有非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>。因此，普遍的Ohms定律应写为
+<span class="math display">\[\begin{equation}
+\boldsymbol{j} = \sigma \left(  \boldsymbol{K} + \boldsymbol{E} \right)
+\end{equation}\]</span></p>
+<p>电源一般都有两个电极，其中电势较高的为正极，电势较低的为负极。此时，非静电力从负极指向正极。</p>
+<h3 id="电动势">电动势</h3>
+<p>一个电源的电动势<span
+class="math inline">\(\mathscr{E}\)</span>被定义为把单位正电荷从负极通过电源内部移动到正极时，非静电力所做的功，即
+<span class="math display">\[\begin{equation}
+\mathscr{E} = \int_{-}^{+}\boldsymbol{K} \cdot
+\mathrm{d}  \boldsymbol{l}
+\end{equation}\]</span>
+电源电动势反映了电源中非静电力做功的能力，是表征电源本身的特征量。电动势是标量，单位为V。</p>
+<p>如果在整个闭合回路内均有非静电力，那么此时无法区分电源内部与外部，我们就认为整个闭合回路的电动势为
+<span class="math display">\[\begin{equation}
+\mathscr{E} = \oint \boldsymbol{K} \cdot \mathrm{d}  \boldsymbol{l}
+\end{equation}\]</span></p>
+<h3 id="电源的路端电压">电源的路端电压</h3>
+<p>下面计算电源的端电压，也就是在静电场力作用下，单位正电荷从正极移到负极所做的功，即
+<span class="math display">\[
+U = \int_{+}^{-}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l}
+\]</span>
+由于此处路径是任意的，因此我们可以选择通过电源内部的路径，此时<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>的方向为在电源内部从负极指向正极。由Ohms定律有
+<span class="math display">\[
+\boldsymbol{E} = -\boldsymbol{K} + \dfrac{\boldsymbol{j}}{\sigma}
+\]</span> 代入可得 <span class="math display">\[
+U = -\int_{+}^{-}\boldsymbol{K} \cdot \mathrm{d}  \boldsymbol{l}
++\int_{+}^{-}\dfrac{1}{\sigma}\boldsymbol{j} \cdot
+\mathrm{d}  \boldsymbol{l}
+\]</span> 化简可得 <span class="math display">\[
+U = \mathscr{E} - I\int_{-}^{+}\dfrac{\rho \mathrm{d}  l}{S} \cos \theta
+= \mathscr{E} \mp Ir
+\]</span> 其中，<span class="math inline">\(\theta\)</span>是电流密度
+与<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>之间的夹角。对于放电情况而言，电源内
+的方向为从负到正，此时<span class="math inline">\(\theta
+=1\)</span>，电压为<span class="math inline">\(U = \mathscr{E}
+-Ir\)</span>。反之，对于充电情况而言，电压为<span
+class="math inline">\(U = \mathscr{E} +Ir\)</span>。可总结为 <span
+class="math display">\[
+U= \left \{
+\begin{aligned}
+&amp; \mathscr{E} - Ir \mbox{,放电}\\
+&amp; \mathscr{E} + Ir \mbox{,充电}\\
+\end{aligned}
+\right.
+\]</span> 如果电源内阻<span class="math inline">\(r =
+0\)</span>，那么无论充电还是放电，端电压<span
+class="math inline">\(U\)</span>恒为<span
+class="math inline">\(\mathscr{E}\)</span>，即电压为恒定的。这样的电源被称为理想电压源。可以看出，实际的电源等效于一个电动势为
+的理想电压源和一个阻值为<span
+class="math inline">\(r\)</span>的电阻串联。</p>
+<p>同时，由上述电压U 与电流I 之间的关系可得以下功率转换公式 <span
+class="math display">\[
+UI= \left \{
+\begin{aligned}
+&amp; \mathscr{E}I - I^{2}r \mbox{,放电}\\
+&amp; \mathscr{E}I + I^{2}r \mbox{,充电}\\
+\end{aligned}
+\right.
+\]</span> 这表明，非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>的功率<span
+class="math inline">\(\mathscr{E}I\)</span>等于内阻的热功率<span
+class="math inline">\(I^{2}r\)</span>与外电路的电功率<span
+class="math inline">\(UI\)</span>之和。</p>
+<h3 id="闭合回路的电流与输出功率">闭合回路的电流与输出功率</h3>
+<p>显然，根据Ohms定律有以下关系成立 <span
+class="math display">\[\begin{equation}
+I = \dfrac{\mathscr{E}}{R + r}
+\end{equation}\]</span> 此时电源向负载提供的功率为 <span
+class="math display">\[\begin{equation}
+P_{\mathrm{out}} = \dfrac{\mathscr{E}^{2}R}{\left(  R + r \right)  ^{2}}
+\end{equation}\]</span> 对上式微分可得 <span class="math display">\[
+\mathrm{d}  P_{\mathrm{out}} = \dfrac{\mathscr{E}^{2}\left(  r - R
+\right) }{\left(  R + r \right)  ^{3}} \mathrm{d}  R
+\]</span> 即 <span class="math display">\[
+\dfrac{\mathrm{d}  P_{\mathrm{out}}}{\mathrm{d}  R} =
+\dfrac{\mathscr{E}^{2}\left(  r - R \right) }{\left(  R + r
+\right)  ^{3}}
+\]</span> 当导数<span
+class="math inline">\(\dfrac{\mathrm{d}  P_{\mathrm{out}}}{\mathrm{d}  R}
+= 0\)</span>时，经验证可取得最大值，此时满足 <span
+class="math display">\[\begin{equation}
+R = r
+\end{equation}\]</span></p>
+<h3 id="恒定电路中电荷和静电场的作用">恒定电路中电荷和静电场的作用</h3>
+<p>下面我们来讨论静电场在恒定电路中的作用。</p>
+<p>在恒定电路中只有静电力作用的地方，由式（5）和式（13）可得 <span
+class="math display">\[
+\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+\varoiint_{S} \sigma \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\]</span> 假如此时导体的电荷密度<span
+class="math inline">\(\sigma\)</span>均匀分布，那么可得 <span
+class="math display">\[\begin{equation}
+\varoiint_{S} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\end{equation}\]</span> 结合Gauss定律<span
+class="math inline">\(\displaystyle\varoiint_{S} \boldsymbol{E}
+\cdot  \mathrm{d}  \boldsymbol{S}=\sum\limits_{i = 1}^{n}
+\dfrac{q_{i}}{\varepsilon_{0}}\)</span>以及闭合面<span
+class="math inline">\(S\)</span>的任意性可得，在恒定电流的条件下，均匀导体内部没有净电荷。此时，电荷只分布在导体的非均匀处或分界面上。</p>
+<h2 id="简单电路">简单电路</h2>
+<h3 id="串联和并联电路">串联和并联电路</h3>
+<h4 id="串联电路">串联电路</h4>
+<p>串联电路的基本特征是通过各元器件的电流I
+相同。此外，在串联电路中，两端的总电压与各元器件之间的电压满足： <span
+class="math display">\[\begin{equation}
+U = \sum\limits_{i = 1}^{n}U_{i}
+\end{equation}\]</span></p>
+<p>由此不难看出，串联电路的等效电阻<span
+class="math inline">\(R\)</span>为 <span
+class="math display">\[\begin{equation}
+R =  \sum\limits_{i = 1}^{n}R_{i}
+\end{equation}\]</span> 也就是说，串联电路的电阻<span
+class="math inline">\(R\)</span>等于电路中各电阻阻值<span
+class="math inline">\(R_{i}\)</span>之和。</p>
+<h4 id="并联电路">并联电路</h4>
+<p>并联电路的基本特征是各元器件两端具有相同的电压U
+。此外，在并联电路中，通过电路的总电流与各支路电流之间满足： <span
+class="math display">\[\begin{equation}
+I = \sum\limits_{i = 1}^{n}I_{i}
+\end{equation}\]</span></p>
+<p>由此不难看出，并联电路的等效电阻<span
+class="math inline">\(R\)</span>满足 <span
+class="math display">\[\begin{equation}
+\dfrac{1}{R} = \sum\limits_{i = 1}^{n}\dfrac{1}{R_{i}}
+\end{equation}\]</span> 也就是说，并联电路中等效电阻<span
+class="math inline">\(R\)</span>的倒数等于各电阻阻值<span
+class="math inline">\(R_{i}\)</span>的倒数之和。</p>
+<h3 id="平衡电桥">平衡电桥</h3>
+电桥的主要用途是精确测量电阻。最简单的直流电桥如下图所示
+<p>当<span class="math inline">\(B\)</span>、<span
+class="math inline">\(D\)</span>两点的电势相等，即检流计<span
+class="math inline">\(G\)</span>的示数为0时，我们称这种状态为电桥平衡。显然，电桥平衡时，存在以下关系
+<span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; U_{AB} = U_{AD}\\
+&amp; U_{BC} = U_{DC}\\
+\end{aligned}
+\right.
+\]</span></p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; I_{AB} = I_{BC} = I_{1}\\
+&amp; I_{AD} = I_{DC} = I_{2}\\
+\end{aligned}
+\right.
+\]</span> 由此可得 <span class="math display">\[
+I_{1}R_{1} = I_{2}R_{3}
+\]</span></p>
+<p><span class="math display">\[
+I_{1}R_{2} = I_{2}R_{4}
+\]</span> 两式相除即可得到 <span class="math display">\[\begin{equation}
+\dfrac{R_{1}}{R_{2}} = \dfrac{R_{3}}{R_{4}}
+\end{equation}\]</span></p>
+<h3 id="电势差计">电势差计</h3>
+<p>电势差计是用来准确测量电源电动势的仪器。由于电源内阻的存在，用电压表所测量的实际上只是路端电压。要想准确测量电动势，必须在没有电流的条件下进行，解决这一问题的办法之一被称为“补偿法”，其原理如下。</p>
+<p>如图所示，我们在一个电路中反向接入两个电源，并在电路中接入一检流计。其中，<span
+class="math inline">\(\mathscr{E}_{0}\)</span>为可调节电源的电动势，而<span
+class="math inline">\(\mathscr{E}_{\mathrm{x}}\)</span>为待测电源的电动势。通过调节<span
+class="math inline">\(\mathscr{E}_{0}\)</span>，可使得检流计的指针不发生偏转，我们称这种状态为平衡状态。此时有
+<span class="math display">\[
+\mathscr{E}_{0} = \mathscr{E}_{\mathrm{x}}
+\]</span></p>
+<p>实际测量时，通常并不会使用上述电路，而是使用分压电路代替可调节电源，如下图所示。</p>
+<h2 id="复杂电路">复杂电路</h2>
+<p>我们把电源和（或）电阻串联形成的通路叫做“支路”，在各支路中电流I
+相等。三条及以上支路的连接点被称为“节点”，而几条支路构成的闭合通路被称为“回路”。解决复杂电路计算的基本公式是Kirchhoff方程组，原则上它可以用来计算任何复杂电路中每一支路中的电流。</p>
+<h3 id="kirchhoff方程组">Kirchhoff方程组</h3>
+<h4 id="kirchhoff第一方程组">Kirchhoff第一方程组</h4>
+<p>Kirchhoff第一方程组又被称为节点电流方程组，它建立在电流的恒定条件的基础上。由于电流强度本身大于0。因此我们规定，流出节点的电流强度I
+符号为正，流入节点的电流强度I
+符号为负。在这一定义下，显然各汇聚在各节点的各支路电流的代数和为0。譬如，对于下面这个节点，有
+<span class="math display">\[
+-I_{1} - I_{2}+I_{3} = 0
+\]</span></p>
+<p>显然，对于电路中每一个节点，按上述方法均可写出一个方程。容易证明，对于<span
+class="math inline">\(n\)</span>个节点的电路，只有<span
+class="math inline">\(n-1\)</span>个方程是独立的。这<span
+class="math inline">\(n-1\)</span>个方程组成了Kirchhoff第一方程组。</p>
+<h4 id="kirchhoff第二方程组">Kirchhoff第二方程组</h4>
+<p>Kirchhoff第二方程组又被称为回路电压方程组，它的基础是恒定电场的环路定理<span
+class="math inline">\(\oint_{L}\boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l} =
+0\)</span>。我们将沿环路绕行时的电势变化过程统称为“电势降落”，并规定从高电势向低电势的电势降落为正，反之为负。那么，由环路定理可得绕行一周后，电势降落的代数和为0。譬如，对于下面这个环路，有
+<span class="math display">\[
+-\mathscr{E}_{1} + I_{1}r_{1} +I_{2}R + \mathscr{E}_{2} +
+I_{3}\left(  r_{2} + R_{3} \right)  -I_{4}R_{1} = 0
+\]</span></p>
+<p>显然，对于每一个回路，都可以按照相似的方式写出方程式。但我们需要注意的是，并非所有回路写出的方程都是独立的。这要求我们判断独立回路的个数。</p>
+<p>此刻我们先考虑平面电路，即所有的节点和支路都在一个平面上，不存在支路相互跨越的情况。在这种情况下，不难想到，电路中的独立回路数与电路中“孔洞”的数目相同。</p>
+<p>如果电路中存在支路互相跨越的情形，我们应当使用树图来建立独立回路的判据。我们在此直接将结论给出，感兴趣的读者可自行阅读图论相关著作。对于一个有<span
+class="math inline">\(n\)</span>个节点、<span
+class="math inline">\(p\)</span>个支路的电路，独立回路的个数为 <span
+class="math display">\[
+p - n + 1
+\]</span></p>
+<p>这样，我们可以由Kirchhoff第一方程组得到<span
+class="math inline">\(n-1\)</span>个方程，由Kirchhoff第二方程组得到<span
+class="math inline">\(p-n+1\)</span>个方程。由于支路只有<span
+class="math inline">\(p\)</span>条，因此将Kirchhoff第一方程组与第二方程组结合即可得到电路中各支路电流的唯一解。</p>
+<h4 id="kirchhoff方程组的符号问题">Kirchhoff方程组的符号问题</h4>
+<p>（1）电流I 与电压U 本身取正值还是负值的问题</p>
+<p>在我们使用Kirchhoff方程组的时候，无论是电流I 还是电压U
+，本身都是正负均可的。在物理学中，物理量的正负性通常是和预先规定的方向有关。也就是说，规定方向与实际方向不一定相同。因此，我们使用Kirchhoff方程组应按照如下步骤进行：</p>
+<p>（i）给每段支路给出电流的标定方向，同时给每个闭合回路规定绕行方向。</p>
+<p>（ii）求解Kirchhoff方程组</p>
+<p>（iii）判断实际电流方向。此时<span class="math inline">\(I &gt;
+0\)</span>表示实际电流方向与我们开始所给出的标定方向相同，反之亦然。
+ \</p>
+<p>（2）方程式各项前的符号问题</p>
+<p>在Kirchhoff第一方程组中我们规定：流入某节点的电流前为负号，流出某节点的电流前为正号。</p>
+<p>在Kirchhoff第二方程组中我们规定：</p>
+<p>（i）当回路绕行方向与电流标定方向相同时，电阻R 的电势降落前为正号</p>
+<p>（ii）当回路绕行方向与某电源正极指向负极的方向相同时，该电源的电动势前为正号。</p>
+<h3 id="电压源与电流源等效电源定理">电压源与电流源、等效电源定理*</h3>
+<h4 id="电压源与电流源">电压源与电流源</h4>
+<p>前文讲过，一个实际电源可以看成是电动势为<span
+class="math inline">\(\mathscr{E}\)</span>，内阻为<span
+class="math inline">\(0\)</span>的理性电源与内阻<span
+class="math inline">\(r\)</span>的串联。在理想情况下，上述内阻<span
+class="math inline">\(r= 0\)</span>，因此电源提供的电压U
+为定值，此时电源被称为恒压源。在非理想情况下，<span
+class="math inline">\(r \neq 0\)</span>，此时电源被称为恒压源。</p>
+<p>我们也可以设想这样一种理想电源，即提供的电流为定值<span
+class="math inline">\(I_{0}\)</span>，这样的理想电源被称为恒流源。在非理想情况下，这种电源被称为电流源，此电源相当于恒流源与一定的内阻<span
+class="math inline">\(r_{0}\)</span>并联。</p>
+<p>实际电源既可以被视为电压源，也可以被视为电流源。这也就是说，电压源与电流源是等效的。对于同样的电阻R
+，电压源提供的电流为 <span class="math display">\[
+I_{\mbox{电压}} = \dfrac{\mathscr{E}}{R + r} = \dfrac{\mathscr{E}}{r}
+\dfrac{r}{R + r}
+\]</span> 而电流源所提供的电流为 <span class="math display">\[
+I_{\mbox{电流}} = I_{0}\dfrac{r_{0}}{R + r_{0}}
+\]</span> 观察可得，当满足 <span class="math display">\[\begin{equation}
+I_{0} = \dfrac{\mathscr{E}}{r} \quad \mbox{且}\quad  r = r_{0}
+\end{equation}\]</span> 时，有<span
+class="math inline">\(I_{\mbox{电压}} =
+I_{\mbox{电流}}\)</span>。也就是说，在满足<span
+class="math inline">\(I_{0} = \dfrac{\mathscr{E}}{r} \mbox{且}  r =
+r_{0}\)</span>的前提下，电压源与电流源等效。</p>
+<h4 id="等效电源定理">等效电源定理</h4>
+<p>等效电源定理可分为等效电压源定理与等效电流源定理，下面分别介绍这两个定理。</p>
+<p>等效电压源定理又被称为Thevenin定理，其表述为：两端有源网络可等效于一个电压源，其电动势
+等于网络的开路端电压，内阻<span
+class="math inline">\(r\)</span>等于从网络两端看除去源以外（即将电动势短路）网络的电阻。</p>
+<p>由于电压源与电流源具有等效性，因此我们可以得到类似的等效电流源定理，又被称为Norton定理。其表述为：两端有源网络可等效为一个电流源，其中电流源的<span
+class="math inline">\(I_{0}\)</span>等于网络两端短路时流经两端点的电流，内阻<span
+class="math inline">\(r\)</span>等于从网络两端看除去源以外（即将电动势短路）网络的电阻。</p>
+<h3 id="叠加定理">叠加定理*</h3>
+<p>叠加定理可表述为：若电路中有多个电源，则通过电路中任一支路的电流等于各个电动势单独存在时，在该支路产生的电流之和。需要注意的是，使用叠加定理前要先像Kirchhoff第一方程组一样，规定每条支路的标定方向。</p>
+<h3 id="y型电路与bigtriangleup型电路的等效变换">Y型电路与<span
+class="math inline">\(\bigtriangleup\)</span>型电路的等效变换*</h3>
+<p>所谓等效变换，指的是这两种电路形式不影响电路中其他部分，即Y型与<span
+class="math inline">\(\bigtriangleup\)</span>型的三个端点的电势与电流I
+相同。</p>
+<p>可以证明，从Y型变为<span
+class="math inline">\(\bigtriangleup\)</span>型，各电阻之间的关系为</p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; R_{12} = \dfrac{R_{1}R_{2} + R_{2}R_{3} + R_{3}R_{1}}{R_{3}}\\
+&amp; R_{23} = \dfrac{R_{1}R_{2} + R_{2}R_{3} + R_{3}R_{1}}{R_{1}}\\
+&amp; R_{31} = \dfrac{R_{1}R_{2} + R_{2}R_{3} + R_{3}R_{1}}{R_{2}}\\
+\end{aligned}
+\right.
+\]</span></p>
+<p>同理可得，从<span
+class="math inline">\(\bigtriangleup\)</span>型变为Y型，各电阻之间的关系为</p>
+<p><span class="math display">\[
+\left \{
+\begin{aligned}
+&amp; R_{1} = \dfrac{R_{31}R_{12}}{R_{12}+R_{23}+R_{31}}\\
+&amp; R_{2} = \dfrac{R_{12}R_{23}}{R_{12}+R_{23}+R_{31}}\\
+&amp; R_{3} = \dfrac{R_{23}R_{31}}{R_{12}+R_{23}+R_{31}}\\
+\end{aligned}
+\right.
+\]</span></p>
+<p>由以上规律可看出，当Y型电路中三电阻阻值相同时，等效的<span
+class="math inline">\(\bigtriangleup\)</span>型电路中三电阻阻值也相同，并且阻值时Y型中电阻的三倍。</p>
+<h2 id="温差电现象">温差电现象</h2>
+<h3 id="thomson效应">Thomson效应</h3>
+<p>如果我们将以金属棒的两端维持在不等的温度<span
+class="math inline">\(T_{1}\)</span>与<span
+class="math inline">\(T_{2}\)</span>上，并外加一电流通过此棒，则在此棒中除了会产生电流热效应外，此棒还会吸收或放出一定热量。这种效应被称为Thomson效应，同时由此吸收或放出的热量被称为Thomson热。吸收或放出热量与电流方向和热传导方向有关。</p>
+<p>从经典电子理论的角度来看，Thomson效应可解释为：一端温度上升导致电子动能增加，这使得“高能”电子有着通过碰撞提高周围电子动能的趋势。这种趋势可看作是一种非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>，其在导体内部形成了一定的电动势。同时，电子在电场的作用下做定向运动。此时，若非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>与电场
+方向一致，则使得电子的动能增加，温度升高并吸收热量。反之亦然。</p>
+<p>实验表明，在Thomson效应中，作用在单位正电荷上的等效非静电力<span
+class="math inline">\(\boldsymbol{K}\)</span>的大小与温度梯度<span
+class="math inline">\(\dfrac{\mathrm{d}  T}{\mathrm{d}  l}\)</span>，即
+<span class="math display">\[\begin{equation}
+K = \sigma\left(  T \right)  \dfrac{\mathrm{d}  T}{\mathrm{d}  l}
+\end{equation}\]</span> 其中，系数$( T )
+$被称为金属材料的Thomson系数。Thomson系数很小，如Bi的Thomson系数在室温下只有<span
+class="math inline">\(10^{-5} \mathrm{V/K}\)</span>的数量级。</p>
+<p>这样，对于两端温度分别为<span
+class="math inline">\(T_{1}\)</span>与<span
+class="math inline">\(T_{2}\)</span>的导体棒，其Thomson电动势为 <span
+class="math display">\[
+\mathscr{E}\left(  T_{1}, T_{2} \right)  = \int_{0}^{l} \boldsymbol{K}
+\cdot \mathrm{d}  \boldsymbol{l}
+\]</span> 带入上式可得 <span class="math display">\[\begin{equation}
+\mathscr{E}\left(  T_{1}, T_{2} \right)  =
+\int_{T_{1}}^{T_{2}}\sigma\left(  T \right)  \mathrm{d}  T
+\end{equation}\]</span></p>
+<h3 id="peltier效应">Peltier效应</h3>
+<p>当外加电流通过两种不同金属A和B的接触面时，也会有吸、放热的现象产生。这种效应被称为Peltier效应，由此产生的热量变化被称为Peltier热。</p>
+<p>按照经典电子理论，Peltier效应可以由不同金属材料中不同的自由电子数密度<span
+class="math inline">\(n_{\mathrm{A}}\)</span>、<span
+class="math inline">\(n_{\mathrm{B}}\)</span>来解释。由于自由电子数密度不同，当两种金属接触时，自由电子将发生扩散。这种扩散作用也可等效为一种非静电力，由此在接触面上可以形成Peltier电动势。与Thomson效应类似，Peltier效应吸、放热与相对方向有关。</p>
+<p>Peltier电动势一般用$ _{(T)}$表示，其数量级一般在<span
+class="math inline">\(10^{-3}-10^{-2}V\)</span>。对于Peltier电动势，显然有
+<span class="math display">\[
+\varPi_{\mathrm{AB}} = -\varPi_{\mathrm{BA}}
+\]</span>
+而实验表明，对于多种金属组成的回路，在各接触点温度相同的条件下，A、B间，B、C间以及C、D间的Peltier电动势的代数和等于A、D之间的Peltier电动势，即
+<span class="math display">\[
+\varPi_{\mathrm{AB}} + \varPi_{\mathrm{BC}} + \varPi_{\mathrm{CD}} =
+\varPi_{\mathrm{AD}}
+\]</span> 由此显然可以得到 <span class="math display">\[\begin{equation}
+\varPi_{\mathrm{AB}} + \varPi_{\mathrm{BC}} + \varPi_{\mathrm{CD}} +
+\varPi_{\mathrm{DA}} = 0
+\end{equation}\]</span>
+这也就是说，如果组成闭合回路的几种金属接触点处的温度相同，那么闭合电路中电动势为0，无法形成恒定电流。</p>
+<h3 id="温差电效应及其应用">温差电效应及其应用</h3>
+<p>如图我们将A、B两种金属所做导线串联起来，并使其两个接触点的温度不同。此时两根导线中有Thomson电动势
+<span class="math display">\[
+\mathscr{E}_{\mathrm{A\ or\ B}} \left(  T_{1}, T_{2} \right)  =
+\int_{T_{1}}^{T_{2}} \sigma_{\mathrm{A\ or\ B}}\left(  T
+\right)  \mathrm{d}  T
+\]</span> 结合两接触点的Peltier电动势，可得整个闭合回路内的电动势 为
+<span class="math display">\[\begin{equation}
+\mathscr{E} = \varPi_{\mathrm{AB}}(T_{1}) + \varPi_{\mathrm{BA}}(T_{2})
++ \int_{T_{1}}^{T_{2}} \sigma_{\mathrm{A}}\left(  T
+\right)  \mathrm{d}  T + \int_{T_{2}}^{T_{1}}
+\sigma_{\mathrm{B}}\left(  T \right)  \mathrm{d}  T
+\end{equation}\]</span></p>
+<p>由此产生的电动势被称为Seebeck电动势，也被称为温差电动势。上式表明，温差电动势是由Thomson电动势与Peltier电动势联合组成的。</p>
+<p>从能量转化的角度来看，维持恒定电流所需电能来自电路上吸放热的差值。</p>
+<p>上述的由两种金属组成的，接触点在不同温度下的回路被称为温差电偶。可以证明，在上述金属A、B中插入任一一种金属C，只要其与A、B的接触点在同一温度，那么这个回路的温差电动势就与只由A、B组成的回路一样。</p>
+<h2 id="电子发射与气体导电">电子发射与气体导电</h2>
+<h3 id="逸出功与电子发射">逸出功与电子发射</h3>
+<p>金属的逸出功是指为了使电子从金属中挣脱出来所做的功。当金属温度升高时，动能超过逸出功的电子数目急剧增加，这种过程被称为热电子发射。</p>
+<p>实验所得的伏安特性曲线如下图所示，可以看到，对于不同的温度，其热电流是有上限的，这时电流被称为饱和电流<span
+class="math inline">\(I_{\mathrm{s}}\)</span>。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/525defbd/" title="恒定电流">https://vasily-alexievich-korolev.github.io/posts/525defbd/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/53cc9fd7/" rel="prev" title="静电场中的导体与电介质">
+      <i class="fa fa-chevron-left"></i> 静电场中的导体与电介质
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/2f05d78c/" rel="next" title="恒定磁场">
+      恒定磁场 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%81%92%E5%AE%9A%E7%94%B5%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">恒定电流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%B5%81%E7%9A%84%E6%81%92%E5%AE%9A%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%AF%BC%E7%94%B5%E8%A7%84%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">电流的恒定条件和导电规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%B5%81%E7%94%B5%E6%B5%81%E5%AF%86%E5%BA%A6%E7%9F%A2%E9%87%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">电流、电流密度矢量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%B5%81%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%96%B9%E7%A8%8B%E6%81%92%E5%AE%9A%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">电流的连续方程、恒定条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ohms%E5%AE%9A%E5%BE%8B%E7%94%B5%E9%98%BB%E7%94%B5%E9%98%BB%E7%8E%87"><span class="nav-number">1.1.3.</span> <span class="nav-text">Ohms定律、电阻、电阻率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ohms%E5%AE%9A%E5%BE%8B%E7%94%B5%E9%98%BB%E4%B8%8E%E7%94%B5%E5%AF%BC"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Ohms定律、电阻与电导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E9%98%BB%E7%8E%87%E4%B8%8E%E7%94%B5%E5%AF%BC%E7%8E%87"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">电阻率与电导率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ohms%E5%AE%9A%E5%BE%8B%E7%9A%84%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">Ohms定律的微分形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9F%E7%8E%87joule%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">电功率、Joule定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%91%E5%B1%9E%E5%AF%BC%E7%94%B5%E7%9A%84%E7%BB%8F%E5%85%B8%E5%BE%AE%E8%A7%82%E8%A7%A3%E9%87%8A"><span class="nav-number">1.1.5.</span> <span class="nav-text">金属导电的经典微观解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%BA%90%E5%8F%8A%E5%85%B6%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">电源及其电动势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%9D%99%E7%94%B5%E5%8A%9B"><span class="nav-number">1.2.1.</span> <span class="nav-text">非静电力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">1.2.2.</span> <span class="nav-text">电动势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%BA%90%E7%9A%84%E8%B7%AF%E7%AB%AF%E7%94%B5%E5%8E%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">电源的路端电压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%90%88%E5%9B%9E%E8%B7%AF%E7%9A%84%E7%94%B5%E6%B5%81%E4%B8%8E%E8%BE%93%E5%87%BA%E5%8A%9F%E7%8E%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">闭合回路的电流与输出功率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%92%E5%AE%9A%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%94%B5%E8%8D%B7%E5%92%8C%E9%9D%99%E7%94%B5%E5%9C%BA%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.5.</span> <span class="nav-text">恒定电路中电荷和静电场的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">简单电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E5%92%8C%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">串联和并联电路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">串联电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">并联电路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E7%94%B5%E6%A1%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">平衡电桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E5%B7%AE%E8%AE%A1"><span class="nav-number">1.3.3.</span> <span class="nav-text">电势差计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E7%94%B5%E8%B7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">复杂电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">Kirchhoff方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E7%AC%AC%E4%B8%80%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Kirchhoff第一方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E7%AC%AC%E4%BA%8C%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Kirchhoff第二方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%AC%A6%E5%8F%B7%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">Kirchhoff方程组的符号问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8E%8B%E6%BA%90%E4%B8%8E%E7%94%B5%E6%B5%81%E6%BA%90%E7%AD%89%E6%95%88%E7%94%B5%E6%BA%90%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.2.</span> <span class="nav-text">电压源与电流源、等效电源定理*</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E5%8E%8B%E6%BA%90%E4%B8%8E%E7%94%B5%E6%B5%81%E6%BA%90"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">电压源与电流源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E7%94%B5%E6%BA%90%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">等效电源定理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A0%E5%8A%A0%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">叠加定理*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#y%E5%9E%8B%E7%94%B5%E8%B7%AF%E4%B8%8Ebigtriangleup%E5%9E%8B%E7%94%B5%E8%B7%AF%E7%9A%84%E7%AD%89%E6%95%88%E5%8F%98%E6%8D%A2"><span class="nav-number">1.4.4.</span> <span class="nav-text">Y型电路与\(\bigtriangleup\)型电路的等效变换*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%B7%AE%E7%94%B5%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.5.</span> <span class="nav-text">温差电现象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thomson%E6%95%88%E5%BA%94"><span class="nav-number">1.5.1.</span> <span class="nav-text">Thomson效应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#peltier%E6%95%88%E5%BA%94"><span class="nav-number">1.5.2.</span> <span class="nav-text">Peltier效应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%A9%E5%B7%AE%E7%94%B5%E6%95%88%E5%BA%94%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">温差电效应及其应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E5%8F%91%E5%B0%84%E4%B8%8E%E6%B0%94%E4%BD%93%E5%AF%BC%E7%94%B5"><span class="nav-number">1.6.</span> <span class="nav-text">电子发射与气体导电</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%B8%E5%87%BA%E5%8A%9F%E4%B8%8E%E7%94%B5%E5%AD%90%E5%8F%91%E5%B0%84"><span class="nav-number">1.6.1.</span> <span class="nav-text">逸出功与电子发射</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

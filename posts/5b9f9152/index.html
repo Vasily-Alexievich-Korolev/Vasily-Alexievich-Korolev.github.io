@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文介绍了静电学的基本概念和规律，包括Coulomb定律、电场强度、Gauss定理、电势、静电场中的导体与电介质等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静电场">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/5b9f9152/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文介绍了静电学的基本概念和规律，包括Coulomb定律、电场强度、Gauss定理、电势、静电场中的导体与电介质等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:22:33.173Z">
+<meta property="article:modified_time" content="2026-06-25T15:22:43.810Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Electromagnetics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/5b9f9152/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>静电场 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/5b9f9152/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          静电场
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-06-25 23:22:33 / 修改时间：23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:33+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Electromagnetics/" itemprop="url" rel="index"><span itemprop="name">Electromagnetics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>23 分钟</span>
+            </span>
+            <div class="post-description">本文介绍了静电学的基本概念和规律，包括Coulomb定律、电场强度、Gauss定理、电势、静电场中的导体与电介质等。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="静电场">静电场</h1>
+<h2 id="一些前提知识">一些前提知识</h2>
+<h3 id="两种电荷">两种电荷</h3>
+<p>自然界中只存在两种电荷，同种电荷相互吸引，异种电荷相互排斥。</p>
+<p>物体所带电荷数量多少被称为电荷量。</p>
+<p>正电荷：用丝绸摩擦过的玻璃棒所带电荷。</p>
+<p>负电荷：用毛皮摩擦过的硬橡胶棒所带电荷。</p>
+<h3 id="coulomb定律">Coulomb定律</h3>
+<p>Coulomb定律是Coulomb通过总结点电荷见相互作用得到的规律。点电荷即本身的几何线度相对其到其他带电体的距离可以忽略不记的带电体。</p>
+<p>令<span class="math inline">\(\boldsymbol{F_{12}}\)</span>表示<span
+class="math inline">\(q_{1}\)</span>给<span
+class="math inline">\(q_{2}\)</span>的力，<span
+class="math inline">\(\boldsymbol{e_{12}}\)</span>表示从<span
+class="math inline">\(q_{1}\)</span>到<span
+class="math inline">\(q_{2}\)</span>的单位矢量，则 <span
+class="math display">\[\begin{equation}
+\boldsymbol{F_{12}} = k\dfrac{q_{1}q_{2}}{r^{2}}\boldsymbol{e_{12}}
+\end{equation}\]</span> 无论<span
+class="math inline">\(q_{1}\)</span>、<span
+class="math inline">\(q_{2}\)</span>正负性如何，此式均适用。</p>
+<p>如果选用SI单位制，那么式（1）中的比例系数<span
+class="math inline">\(k\)</span>可表示为 <span
+class="math display">\[\begin{equation}
+k = \dfrac{1}{4\pi \varepsilon_{0}}
+\end{equation}\]</span> 其中<span
+class="math inline">\(\varepsilon_{0}\)</span>被称为真空介电常量，其满足<span
+class="math inline">\(\varepsilon_{0} = 8.854\times 10^{-12}\
+\mathrm{C^{2}\cdot N^{-1}\cdot m^{-2}}\)</span>。因此式（1）也可被表示为
+<span class="math display">\[\begin{equation}
+\boldsymbol{F_{12}} = \dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{q_{1}q_{2}}{r^{2}}\boldsymbol{e_{12}}
+\end{equation}\]</span></p>
+<h2 id="电场与电场强度">电场与电场强度</h2>
+<h3 id="电场强度boldsymbole">电场强度$\boldsymbol{E</h3>
+<p>某处的电场强度<span
+class="math inline">\(\boldsymbol{E}\)</span>的定义为：大小与单位电荷<span
+class="math inline">\(e_{0}\)</span>在电场中该处所受电场力<span
+class="math inline">\(\boldsymbol{F}\)</span>的大小相等，而方向与正电荷在此处所受电场力<span
+class="math inline">\(\boldsymbol{F}\)</span>的方向相同。对任意电荷<span
+class="math inline">\(q_{0}\)</span>即为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \dfrac{\boldsymbol{F}}{q_{0}}
+\end{equation}\]</span> 电场强度<span
+class="math inline">\(\boldsymbol{E}\)</span>的单位为<span
+class="math inline">\(\mathrm{N\cdot C^{-1}}\)</span>，也可写为<span
+class="math inline">\(\mathrm{V \cdot m^{-1}}\)</span>  \</p>
+<p>Example 1:求点电荷<span
+class="math inline">\(q\)</span>所产生的电场中各点的电场强度。</p>
+<p>Solution:以点电荷<span
+class="math inline">\(q\)</span>所在点为原点<span
+class="math inline">\(O\)</span>，另取一任意点<span
+class="math inline">\(P\)</span>，定义其距离<span
+class="math inline">\(\overline{OP} =
+r\)</span>。我们把一个正试探电荷<span
+class="math inline">\(q_{0}\)</span>放在<span
+class="math inline">\(P\)</span>点，那么根据Coulomb定律有 <span
+class="math display">\[
+\boldsymbol{F} = \dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{qq_{0}}{r^{2}}\boldsymbol{e_{r}}
+\]</span> 其中，<span
+class="math inline">\(\boldsymbol{e_{r}}\)</span>是由<span
+class="math inline">\(O\)</span>指向<span
+class="math inline">\(P\)</span>的单位矢量。由此可得<span
+class="math inline">\(P\)</span>点场强为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \dfrac{\boldsymbol{F}}{q_{0}} = \dfrac{1}{4\pi
+\varepsilon_{0}} \dfrac{q}{r^{2}}\boldsymbol{e_{r}}
+\end{equation}\]</span> 式（5）即为点电荷<span
+class="math inline">\(q\)</span>产生的电场在空间中的分布。</p>
+<h3 id="电场强度叠加原理">电场强度叠加原理</h3>
+<p>由于电场强度<span
+class="math inline">\(\boldsymbol{E}\)</span>为矢量，因此满足矢量叠加原理，即总场强<span
+class="math inline">\(\boldsymbol{E}\)</span>满足 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2} + ...
++\boldsymbol{E}_{k}
+\end{equation}\]</span></p>
+<p>Example 2:如图，一对等量异号点电荷<span class="math inline">\(\pm
+q\)</span>，其距离为<span
+class="math inline">\(l\)</span>，求电荷延长线上一点<span
+class="math inline">\(P\)</span>和中垂面上一点<span
+class="math inline">\(P^{&#39;}\)</span>的场强，其中<span
+class="math inline">\(P\)</span>和<span
+class="math inline">\(P^{&#39;}\)</span>距离电荷连线中点的距离均为<span
+class="math inline">\(r\)</span>。</p>
+<p>Solution:（1）求<span class="math inline">\(P\)</span>点场强为</p>
+<p>正负电荷在<span class="math inline">\(P\)</span>点产生场强分别为
+<span class="math display">\[
+\boldsymbol{E_{+}} = \dfrac{1}{4\pi \varepsilon_{0}} \dfrac{q}{\left(  r
+- \dfrac{1}{2}\right)  ^{2}}\boldsymbol{e}_{x}
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{E_{-}} = -\dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{q}{\left(  r + \dfrac{1}{2}\right)  ^{2}}\boldsymbol{e}_{x}
+\]</span> 因此，P 点总场强为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \boldsymbol{E_{+}} + \boldsymbol{E_{-}} =
+\dfrac{1}{4\pi \varepsilon_{0}} \left [\dfrac{q}{\left(  r -
+\dfrac{1}{2}\right)  ^{2}} - \dfrac{q}{\left(  r +
+\dfrac{1}{2}\right)  ^{2}}\right ]\boldsymbol{e}_{x}
+\end{equation}\]</span></p>
+<p>（2）求P' 点的场强 <span class="math display">\[
+\boldsymbol{E_{+}} = \dfrac{1}{4\pi \varepsilon_{0}} \dfrac{q}{r^{2} +
+\dfrac{l^{2}}{4}}(-\mathrm{cos}\theta \boldsymbol{e}_{x} +
+\mathrm{sin}\theta \boldsymbol{e}_{y})
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{E_{-}} = \dfrac{1}{4\pi \varepsilon_{0}} \dfrac{q}{r^{2} +
+\dfrac{l^{2}}{4}}(-\mathrm{cos}\theta \boldsymbol{e}_{x} -
+\mathrm{sin}\theta \boldsymbol{e}_{y})
+\]</span> 故总场强 为 <span class="math display">\[\begin{equation}
+\boldsymbol{E} = -2\mathrm{cos}\theta \dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{q}{r^{2} + \dfrac{l^{2}}{4}}\boldsymbol{e}_{x}
+\end{equation}\]</span> 由于 <span class="math display">\[
+\mathrm{cos}\theta = \dfrac{\dfrac{l}{2}}{\sqrt{r^{2} +
+\dfrac{l^{2}}{4}}}
+\]</span> 因此总场强 为 <span class="math display">\[\begin{equation}
+\boldsymbol{E} = - \dfrac{1}{4\pi \varepsilon_{0}}
+\dfrac{ql}{\left(  r^{2} +
+\dfrac{l^{2}}{4}\right)  ^{\frac{3}{2}}}\boldsymbol{e}_{x}
+\end{equation}\]</span></p>
+<p>当<span class="math inline">\(r \gg l\)</span>时， <span
+class="math display">\[
+\dfrac{1}{\left(  r - \dfrac{1}{2}\right)  ^{2}} - \dfrac{1}{\left(  r +
+\dfrac{1}{2}\right)  ^{2}} = \dfrac{2lr}{\left(  r^{2} -
+\dfrac{l^{2}}{4} \right)  ^{2}} \approx \dfrac{2l}{r^{3}}
+\]</span> <span class="math display">\[
+\left(  r^{2} + \dfrac{l^{2}}{4}\right)  ^{\frac{3}{2}} \approx
+\dfrac{l}{r^{3}}
+\]</span></p>
+<p>因此，在电偶极子延长线上，总场强 为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = \dfrac{1}{4\pi
+\varepsilon_{0}}\dfrac{2ql}{r^{3}}\boldsymbol{e}_{x}
+\end{equation}\]</span> 而在中垂面上，总场强 为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = -\dfrac{1}{4\pi
+\varepsilon_{0}}\dfrac{ql}{r^{3}}\boldsymbol{e}_{y}
+\end{equation}\]</span></p>
+<h3 id="电荷的连续分布">电荷的连续分布</h3>
+<h4 id="体分布">体分布</h4>
+<p>电荷的体密度<span
+class="math inline">\(\rho_{\mathrm{e}}\)</span>即为单位体积内的电荷量，定义为
+<span class="math display">\[\begin{equation}
+\rho_{\mathrm{e}} = \lim \limits_{\Delta V\rightarrow 0}\dfrac{\sum
+q}{\Delta V}
+\end{equation}\]</span></p>
+<h4 id="面分布">面分布</h4>
+<p>电荷的面密度<span
+class="math inline">\(\sigma_{\mathrm{e}}\)</span>即为单位面积内的电荷量，定义为
+<span class="math display">\[\begin{equation}
+\sigma_{\mathrm{e}} = \lim \limits_{\Delta S\rightarrow 0}\dfrac{\sum
+q}{\Delta S}
+\end{equation}\]</span></p>
+<h4 id="线分布">线分布</h4>
+<p>电荷的线密度<span
+class="math inline">\(\eta_{\mathrm{e}}\)</span>即为单位长度内的电荷量，定义为
+<span class="math display">\[\begin{equation}
+\eta_{\mathrm{e}} = \lim \limits_{\Delta l\rightarrow 0}\dfrac{\sum
+q}{\Delta l}
+\end{equation}\]</span></p>
+<p>一均匀带电细棒，设棒长为<span
+class="math inline">\(2l\)</span>，总带电量为<span
+class="math inline">\(q\)</span>，则其中垂面上的场强 分布为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{E} = 2k\eta_{\mathrm{e}}
+\dfrac{l}{r\sqrt{r^{2}+l^{2}}}\boldsymbol{i}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\boldsymbol{i}\)</span>为<span
+class="math inline">\(\overrightarrow{OP}\)</span>的单位向量。</p>
+<h3 id="带电体在电场中受力及其运动">带电体在电场中受力及其运动</h3>
+对于一对电偶极子<span class="math inline">\(\pm q\)</span>，设从<span
+class="math inline">\(-q\)</span>指向<span
+class="math inline">\(+q\)</span>的向量为<span
+class="math inline">\(\boldsymbol{l}\)</span>，则其在均匀电场
+中所受力矩<span class="math inline">\(\boldsymbol{L}\)</span>可表示为
+<span class="math display">\[\begin{equation}
+\boldsymbol{L} = q\boldsymbol{l} \times \boldsymbol{E} =
+-qlE\mathrm{sin}&lt;\boldsymbol{l}, \boldsymbol{E}&gt;\boldsymbol{e}_{z}
+\end{equation}\]</span>
+<p>我们在此定义一个矢量电偶极矩 ，其定义式为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{p} = q\boldsymbol{l}
+\end{equation}\]</span> 那么电偶极子所受力矩<span
+class="math inline">\(\boldsymbol{L}\)</span>可写为 <span
+class="math display">\[\begin{equation}
+\boldsymbol{L} = \boldsymbol{p} \times \boldsymbol{E}
+\end{equation}\]</span></p>
+<h3 id="矢量场的描述">矢量场的描述</h3>
+<p>对电场的描述可以通过对流量场的描述类比得到，我们先来考虑流量场。</p>
+<p>先考虑有关流量场的源（source）与汇（sink）的存在问题。如图所示，在流量场中做任意闭合曲面<span
+class="math inline">\(S\)</span>，考虑曲面上任意一小曲面元<span
+class="math inline">\(\mathrm{d}  S\)</span>，设<span
+class="math inline">\(\theta\)</span>为该处流速<span
+class="math inline">\(\boldsymbol{v}\)</span>与曲面元<span
+class="math inline">\(\mathrm{d}  S\)</span>法线的夹角，那么单位时间流过曲面元<span
+class="math inline">\(\mathrm{d}  S\)</span>的流体体积<span
+class="math inline">\(\mathrm{d}  V\)</span>可表示为 <span
+class="math display">\[
+\mathrm{d}  V = v\mathrm{cos}\theta\mathrm{d}  S
+\]</span> 那么单位时间流过闭合曲面<span
+class="math inline">\(S\)</span>的流量可表示为 <span
+class="math display">\[
+\varoiint_{S} v\mathrm{cos}\theta\mathrm{d}  S
+\]</span></p>
+<p>积分的正负不同有以下结果 <span class="math display">\[
+\varoiint_{S} v\mathrm{cos}\theta\mathrm{d}  S \left \{
+\begin{aligned}
+&amp; &gt;0, \mbox{当曲面$S$中有流体从中流出的源}\\
+&amp; &lt;0, \mbox{当曲面$S$中有流体从外流入的汇}\\
+&amp; =0, \mbox{当曲面$S$中既有源又有汇，或二者均无}\\
+\end{aligned}
+\right.
+\]</span></p>
+<p>然后考虑涡旋的存在问题。在流量场中去任意闭合曲线<span
+class="math inline">\(L\)</span>，考虑曲线上任意一小段曲线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>，令<span
+class="math inline">\(\theta\)</span>为流速<span
+class="math inline">\(\boldsymbol{v}\)</span>与曲线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>的夹角，那么流速<span
+class="math inline">\(\boldsymbol{v}\)</span>在曲线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>方向的分量可表示为
+<span class="math display">\[
+\boldsymbol{v} \cdot \mathrm{d}  \boldsymbol{l} = v\mathrm{cos} \theta
+\mathrm{d}  l
+\]</span> 而环流在此时可表示为 <span class="math display">\[
+\oint_{L} = v\mathrm{cos} \theta \mathrm{d}  l
+\]</span></p>
+<p>积分的正负不同有以下结果 <span class="math display">\[
+\oint_{S} v\mathrm{cos}\theta\mathrm{d}  S \left \{
+\begin{aligned}
+&amp; &gt;0, \mbox{存在与环路$L$绕行方向相同的涡线穿过环路}\\
+&amp; &lt;0, \mbox{存在与环路$L$绕行方向相反的涡线穿过环路}\\
+&amp; =0,
+\mbox{没有涡线穿过环路，或有强度相同而方向相反的涡线穿过环路}\\
+\end{aligned}
+\right.
+\]</span></p>
+<p>我们可以类比流量场，将电场对闭合曲面的面积分 <span
+class="math display">\[\varoiint_{S}
+v\mathrm{cos}\theta\mathrm{d}  S\]</span>
+称为通量，而将电场沿闭合曲线的线积分<span
+class="math display">\[\oint_{S}
+v\mathrm{cos}\theta\mathrm{d}  S\]</span> 称为环量</p>
+<h2 id="gauss定理">Gauss定理</h2>
+<h3 id="电场线及其数密度">电场线及其数密度</h3>
+<p>如果在电场中作出许多曲线，使这些曲线上每一点的切线方向均与该点场强
+方向一致，那么所有这样作出的曲线即为电场线。</p>
+<p>我们接下来引入电场线数密度的概念。在电场中，任一点取一小面元<span
+class="math inline">\(\mathrm{d}  S\)</span>，其与该点场强
+方向垂直。设穿过<span
+class="math inline">\(\mathrm{d}  S\)</span>的电场线数量为<span
+class="math inline">\(\mathrm{d}  N\)</span>，那么电场线数密度为$
+$。我们规定，电场中任一点的电场线数密度与该点场强大小成正比，即 <span
+class="math display">\[\begin{equation}
+E \propto \dfrac{\mathrm{d}  N}{\mathrm{d}  S}
+\end{equation}\]</span> 或 <span class="math display">\[\begin{equation}
+E = k\dfrac{\mathrm{d}  N}{\mathrm{d}  S}
+\end{equation}\]</span></p>
+<p>电场线的性质：</p>
+<p>（1）电场线自正电荷（或无穷远处）起始，到负电荷（或无穷远处）终止。电场线不会在没有电荷的地方中断。</p>
+<p>（2）两条电场线不会相交</p>
+<p>（3）静电场中的电场线不形成闭合线</p>
+<h3 id="电场强度通量">电场强度通量</h3>
+<p>我们规定，当场强 的方向与面元<span
+class="math inline">\(\mathrm{d}  S\)</span>垂直时，上式中比例系数<span
+class="math inline">\(k\)</span>为1，那么有 <span
+class="math display">\[\begin{equation}
+E = \dfrac{\mathrm{d}  N}{\mathrm{d}  S}
+\end{equation}\]</span></p>
+<p>当面元<span class="math inline">\(\mathrm{d}  S\)</span>与该点场强
+不垂直时，需要考虑面元<span
+class="math inline">\(\mathrm{d}  S\)</span>在垂直于场强
+方向上的投影面积<span
+class="math inline">\(\mathrm{d}  S^{&#39;}\)</span>。设<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>为面元<span
+class="math inline">\(\mathrm{d}  S\)</span>法线方向的单位向量，<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>与<span
+class="math inline">\(\boldsymbol{E}\)</span>的夹角为$<span
+class="math inline">\(，于是显然有\)</span>$ S^{'} = S <span
+class="math display">\[
+结合式（21）可得，通过面元$\mathrm{d}  S$的电场线数量为
+\]</span> N = E S^{'} = E S $$</p>
+<p>我们将一点的场强大小<span
+class="math inline">\(E\)</span>与该点附近面元<span
+class="math inline">\(\mathrm{d}  S\)</span>在垂直场强
+的方向上的投影面积的乘积称为该点的电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E}\)</span>，即 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \varPhi_{E} = E\mathrm{d}  S \mathrm{cos} \theta
+\end{equation}\]</span> 若设向量<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S} = \mathrm{d}  S
+\boldsymbol{e}_{n}\)</span>，则上式可表示为以下的向量形式 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \varPhi_{E} = \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span></p>
+<p>需要注意，电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E}\)</span>可以取负值。当<span
+class="math inline">\(\theta&lt;0\)</span>时，电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E}\)</span>即为负值。对曲面<span
+class="math inline">\(S\)</span>积分可得 <span
+class="math display">\[\begin{equation}
+\varPhi_{E} = \iint_{S} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S}
+= \iint_{S}E\mathrm{cos} \theta \mathrm{d}  S
+\end{equation}\]</span></p>
+<p>对于闭合曲面，我们取其向外指出的方向为法线的方向。此时若电场线进入曲面，则电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E} &lt;
+0\)</span>，而电场线若穿出曲面，则电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E} &gt; 0\)</span>。</p>
+<p>在平面上做一圆，则圆中平面角<span
+class="math inline">\(\varphi\)</span>可以表示为 <span
+class="math display">\[
+\varphi = \dfrac{s}{r}
+\]</span> 其中，<span class="math inline">\(s\)</span>为平面角<span
+class="math inline">\(\varphi\)</span>对应的弧长，而<span
+class="math inline">\(r\)</span>为圆的半径，此时平面角的单位为rad。</p>
+<p>同理，对于三维空间，我们可以将立体角表示为 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \varOmega = \dfrac{\mathrm{d}  S}{r^{2}}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\mathrm{d}  S\)</span>为在球面上取一面元的面积，<span
+class="math inline">\(r\)</span>为球的半径，此时立体角的单位为球面度（sr）。</p>
+<p>考虑到面元可以为矢量，那么在这种情况下，我们将立体角表示为 <span
+class="math display">\[\begin{equation}
+\mathrm{d}  \varOmega = \dfrac{\boldsymbol{e}_{r} \cdot
+\mathrm{d}  \boldsymbol{S}}{r^{2}}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\boldsymbol{e}_{r}\)</span>为立体角点到面元的单位径矢。不难看出，此时立体角可以为正值，也可以为负值。</p>
+<p>对于一个任意闭合曲面<span
+class="math inline">\(S\)</span>，可在其上取一面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>。那么对于曲面外点P
+而言，由此面元可以得到一个立体角<span
+class="math inline">\(\mathrm{d}  \varOmega\)</span>。我们可以在面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>与点P
+之间做一“椎体”，不难想到此时椎体内部任意截面的立体角大小均相等。因此，我们可以取一个在曲面<span
+class="math inline">\(S\)</span>上被面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>与P
+形成的椎体所截取的面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}&#39;\)</span>。显然，此时有
+<span class="math display">\[
+\mathrm{d}  \varOmega + \mathrm{d}  \varOmega&#39; = 0
+\]</span> 也就是说，曲面<span
+class="math inline">\(S\)</span>上每一个面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>，都能找到一个对应的面元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{S}&#39;\)</span>，使得二者的立体角之和为0。因此，对整个曲面积分可得，对于任意一个闭合曲面<span
+class="math inline">\(S\)</span>，其法向量取其外侧时，这个曲面对其外任意的一点所张的立体角为0。</p>
+<h3 id="gauss定理的表述及证明">Gauss定理的表述及证明</h3>
+<p>Gauss定理的表述如下：</p>
+<p>通过一个任意闭合曲面<span
+class="math inline">\(S\)</span>的电场强度通量<span
+class="math inline">\(\varPhi_{E}\)</span>等于该面所包围的所有电荷量的代数和<span
+class="math inline">\(\sum q\)</span>与真空介电常数<span
+class="math inline">\(\varepsilon_{0}\)</span>之比，与闭合面外的电荷无关。即
+<span class="math display">\[\begin{equation}
+\varPhi_{E} = \varoiint_{S}E \mathrm{cos} \theta\mathrm{d}  S =
+\dfrac{1}{\varepsilon_{0}}\sum\limits_{\mbox{内部}}q_{i}
+\end{equation}\]</span></p>
+<p>下面通过Coulomb定律与场强叠加原理证明Gauss定理。</p>
+<h4
+id="求通过包围任意点电荷q的球面的电场强度通量_e">求通过包围任意点电荷<span
+class="math inline">\(q\)</span>的球面的电场强度通量$_{E</h4>
+<p>由电场强度通量定义有 <span class="math display">\[
+\varPhi_{E} = \varoiint_{S}k\dfrac{q}{r^{2}}\mathrm{cos} \theta
+\mathrm{d}  S
+\]</span></p>
+<p>对球面而言<span class="math inline">\(\theta = 0\)</span>，而$ S =
+r^{2} <span class="math inline">\(，则\)</span>$ <em>{E} = kq </em>{S} =
+4kq = $$</p>
+<p>这也就是说，通过包围任意点电荷<span
+class="math inline">\(q\)</span>的电场强度通量<span
+class="math inline">\(\varPhi_{E}\)</span>恒为<span
+class="math inline">\(\dfrac{q}{\varepsilon_{0}}\)</span></p>
+<h4
+id="求通过包围任意点电荷q的任意闭合面s的电场强度通量_e">求通过包围任意点电荷<span
+class="math inline">\(q\)</span>的任意闭合面<span
+class="math inline">\(S\)</span>的电场强度通量$_{E</h4>
+<p>如图6（a）所示，在任意曲面<span
+class="math inline">\(S\)</span>内部做一以点电荷为球心的，半径小于点电荷到任意曲面<span
+class="math inline">\(S\)</span>的距离最小值的圆<span
+class="math inline">\(S^{&#39;&#39;}\)</span>。如果在任意曲面<span
+class="math inline">\(S\)</span>上取一面元<span
+class="math inline">\(\mathrm{d}  S\)</span>，连接面元<span
+class="math inline">\(\mathrm{d}  S\)</span>的边缘与点电荷，即可在球面<span
+class="math inline">\(S^{&#39;&#39;}\)</span>上截取一面元<span
+class="math inline">\(\mathrm{d}  S^{&#39;&#39;}\)</span>（图6（b））。</p>
+<p>由于通过包围任意点电荷<span
+class="math inline">\(q\)</span>的球面的电场强度通量<span
+class="math inline">\(\varPhi_{E}\)</span>均为<span
+class="math inline">\(\dfrac{q}{\varepsilon_{0}}\)</span>，结合球的对称性不难得出，对于任意立体角元<span
+class="math inline">\(\mathrm{d}  \varOmega\)</span>，其内部的电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E}\)</span>为<span
+class="math inline">\(\dfrac{\mathrm{d}  \varOmega}{4\pi}
+\dfrac{q}{\varepsilon_{0}}\)</span>。若此时我们设<span
+class="math inline">\(\mathrm{d}  S^{&#39;&#39;}\)</span>对应的立体角为<span
+class="math inline">\(\mathrm{d}  \varOmega\)</span>，则由电场强度通量的物理意义不难看出（用Coulomb定理亦可得到）
+<span class="math display">\[
+\mathrm{d}  \varPhi_{E, \mathrm{d}  S^{&#39;&#39;}} =
+\mathrm{d}  \varPhi_{E, \mathrm{d}  S} =
+\dfrac{\mathrm{d}  \varOmega}{4\pi} \dfrac{q}{\varepsilon_{0}}
+\]</span></p>
+<p>由于电场强度通量<span
+class="math inline">\(\varPhi_{E}\)</span>只与在场强<span
+class="math inline">\(\boldsymbol{E}\)</span>的方向上的投影面积有关，而对于点电荷来说，其场强<span
+class="math inline">\(\boldsymbol{E}\)</span>方向为均匀向外。因此不难想象，任意闭合面<span
+class="math inline">\(S\)</span>的投影面积必为球面，此时即可得出，通过包围任意点电荷<span
+class="math inline">\(q\)</span>的任意闭合面<span
+class="math inline">\(S\)</span>的电场强度通量<span
+class="math inline">\(\varPhi_{E} =
+\dfrac{q}{\varepsilon_{0}}\)</span></p>
+<h4
+id="求通过不包围点电荷的任意闭合面s的电场强度通量">求通过不包围点电荷的任意闭合面<span
+class="math inline">\(S\)</span>的电场强度通量</h4>
+<p>当闭合面<span
+class="math inline">\(S\)</span>内无点电荷时，容易想到电场线必从<span
+class="math inline">\(S\)</span>中穿过。此时我们可以在任意闭合面<span
+class="math inline">\(S\)</span>上取这样一对面元<span
+class="math inline">\(\mathrm{d}  S\)</span>和<span
+class="math inline">\(\mathrm{d}  S^{&#39;}\)</span>，通过面元<span
+class="math inline">\(\mathrm{d}  S\)</span>和面元<span
+class="math inline">\(\mathrm{d}  S^{&#39;}\)</span>的电场线相同。这样由电场强度通量的物理意义可得
+<span class="math display">\[
+\mathrm{d}  \varPhi_{E, \mathrm{d}  S} +\mathrm{d}  \varPhi_{E,
+\mathrm{d}  S^{&#39;}} = 0
+\]</span> 设电场线与曲面<span
+class="math inline">\(S\)</span>切平面的法线方向所成夹角<span
+class="math inline">\(\theta&lt;0\)</span> 的部分为<span
+class="math inline">\(S_{1}\)</span>，而<span
+class="math inline">\(\theta &gt; 0\)</span>的部分为<span
+class="math inline">\(S_{2}\)</span>，则通过曲面<span
+class="math inline">\(S\)</span>的电场强度通量为 <span
+class="math display">\[\begin{equation}
+\varPhi_{E} = \varoiint_{S} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S} = \iint_{S_{1}} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S} +\iint_{S_{2}} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S}
+\end{equation}\]</span> 显然，在面<span
+class="math inline">\(S_{1}\)</span>与面<span
+class="math inline">\(S_{2}\)</span>上均可找到对应的面元，因此有 <span
+class="math display">\[\begin{equation}
+\varPhi_{E} = 0
+\end{equation}\]</span> 也就是说，通过不包围点电荷的任意闭合面<span
+class="math inline">\(S\)</span>的电场强度通量恒为0。</p>
+<h4
+id="求通过包围多个点电荷的任意闭合面s的电场强度通量">求通过包围多个点电荷的任意闭合面<span
+class="math inline">\(S\)</span>的电场强度通量</h4>
+<p>由场强叠加原理有，面元<span
+class="math inline">\(\mathrm{d}  S\)</span>处的总场强 为 <span
+class="math display">\[
+\boldsymbol{E} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2} + ...
+\]</span> 其在面元<span
+class="math inline">\(\mathrm{d}  S\)</span>的法线方向<span
+class="math inline">\(\boldsymbol{e}_{n}\)</span>的投影为 <span
+class="math display">\[
+\boldsymbol{E}_{n} = \boldsymbol{E}_{n1} + \boldsymbol{E}_{n2}
++...=  E_{1} \mathrm{cos} \theta_{1}\boldsymbol{e}_{n}+ E_{2}
+\mathrm{cos} \theta_{2}\boldsymbol{e}_{n}+ ...
+\]</span> 因此面元<span
+class="math inline">\(\mathrm{d}  S\)</span>处的电场强度通量可以表示为
+<span class="math display">\[
+\mathrm{d}  \varPhi_{E} = \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{S} = E_{1} \mathrm{cos} \theta_{1}\mathrm{d}  S
++ E_{2} \mathrm{cos} \theta_{2}\mathrm{d}  S + ... =
+\mathrm{d}  \varPhi_{E_{1}} + \mathrm{d}  \varPhi_{E_{2}} + ...
+\]</span> 也就是说，我们可以把此处的电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E}\)</span>拆成各点电荷<span
+class="math inline">\(q_{i}\)</span>在此处产生的电场强度通量<span
+class="math inline">\(\mathrm{d}  \varPhi_{E_{i}}\)</span>之和，这样积分可得
+<span class="math display">\[
+\varPhi_{E} = \varoiint_{S} \mathrm{d}  \varPhi_{E_{1}} + \varoiint_{S}
+\mathrm{d}  \varPhi_{E_{2}} + ... = \varPhi_{E_{1}} + \varPhi_{E_{2}} +
+...
+\]</span> 由于通过包围单个点电荷<span
+class="math inline">\(q\)</span>的电场强度通量恒为<span
+class="math inline">\(\dfrac{q}{\varepsilon_{0}}\)</span>，因此若曲面内部有<span
+class="math inline">\(n\)</span>个点电荷，那么通过包围这些点电荷的任意闭合曲面<span
+class="math inline">\(S\)</span>的电场强度通量为 <span
+class="math display">\[\begin{equation}
+\varPhi_{E} = \varoiint_{S} \boldsymbol{E}
+\cdot  \mathrm{d}  \boldsymbol{S}=\sum\limits_{i = 1}^{n}
+\dfrac{q_{i}}{\varepsilon_{0}}
+\end{equation}\]</span></p>
+<p>式（29）即为Gauss定理。</p>
+<h2 id="电势及其梯度">电势及其梯度</h2>
+<h3 id="静电场力做功与路径无关">静电场力做功与路径无关</h3>
+<p>下面证明静电场力做功与路径无关。</p>
+<h4
+id="在单个点电荷产生的电场中电场力做功与路径无关">在单个点电荷产生的电场中，电场力做功与路径无关</h4>
+<p>如图，设试探电荷<span
+class="math inline">\(q_{0}\)</span>在点电荷<span
+class="math inline">\(+q\)</span>产生的电场中从<span
+class="math inline">\(P\)</span>移动至<span
+class="math inline">\(Q\)</span>。在轨迹上取一段线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>，则电场力做功<span
+class="math inline">\(\mathrm{d}  A\)</span>可以表示为 <span
+class="math display">\[
+\mathrm{d}  A = \boldsymbol{F} \cdot \mathrm{d}  \boldsymbol{l}
+\]</span> 由于线元<span
+class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>可近似看为直线，因此上式可以表示为
+<span class="math display">\[
+\mathrm{d}  A = F\mathrm{cos} &lt;\boldsymbol{F},
+\mathrm{d}  \boldsymbol{l}&gt;\mathrm{d}  l = F \mathrm{d}  r
+\]</span></p>
+因此，电场力做功只与点电荷的距离变化量<span
+class="math inline">\(\mathrm{d}  r\)</span>有关，与路径无关。
+<h4 id="任意带电体系产生的电场">任意带电体系产生的电场</h4>
+<p>可以将总场强 看成是各点电荷产生的场强之和，这样从P 到Q 电场力做功为
+<span class="math display">\[\begin{equation}
+A  = \int_{P}^{Q} \boldsymbol{F} \cdot \mathrm{d}  \boldsymbol{l} =
+q_{0}\left(  \int_{p}^{Q} \boldsymbol{E}_{1} \cdot
+\mathrm{d}  \boldsymbol{r} + \int_{p}^{Q} \boldsymbol{E}_{2} \cdot
+\mathrm{d}  \boldsymbol{r} + ...\right)
+\end{equation}\]</span>
+由此不难看出，任意带电体系产生的电场中，电场力做功与路径无关。</p>
+<p>上述结论还可表述为，在静电场中取一任意闭合曲线<span
+class="math inline">\(L\)</span>，并在其上取不重合两点P 和Q ，考虑场强
+沿此曲线的闭合环路积分可得（电场力与场强 可认为等价） <span
+class="math display">\[
+\oint_{L} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} =
+\mathop{\int_{P}^{Q}}\limits_{(L_{1})} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l} + \mathop{\int_{Q}^{P}}\limits_{(L_{2})}
+\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} =
+\mathop{\int_{P}^{Q}}\limits_{(L_{1})} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l} - \mathop{\int_{P}^{Q}}\limits_{(L_{2})}
+\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l}
+\]</span> 由于电场力做功与路径无关，因此 <span
+class="math display">\[\begin{equation}
+\oint_{L} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\end{equation}\]</span></p>
+<p>也就是说，静电场中场强 沿任意闭合环路<span
+class="math inline">\(L\)</span>的环路积分恒为0。</p>
+<h3 id="电势差与电势">电势差与电势</h3>
+<p>任何做功与路径无关的厂均可被称为保守力场，或势场。下面我们引入电势能的概念。</p>
+<p>设在电场中把一试探电荷从P 移至 Q ，则将电场力对其所做功<span
+class="math inline">\(A_{PQ}\)</span>定义为其电势能减少量<span
+class="math inline">\(W_{PQ}\)</span>，即 <span
+class="math display">\[\begin{equation}
+W_{PQ} = E_{Q} - E_{P} = A_{PQ} = q_{0} \int_{P}^{Q} \boldsymbol{E}
+\cdot \mathrm{d}  \boldsymbol{l}
+\end{equation}\]</span></p>
+<p>上式表明，比值<span
+class="math inline">\(\dfrac{W_{PQ}}{q_{0}}\)</span>应当是一个与试探电荷量无关的，反映电场本身性质的量。我们定义这个量为P
+、Q 两点之间的电势差<span class="math inline">\(U_{PQ}\)</span>，即
+<span class="math display">\[\begin{equation}
+U_{PQ} = \dfrac{W_{PQ}}{q_{0}} = \int_{P}^{Q} \boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l}
+\end{equation}\]</span></p>
+<p>我们通常选择无穷远点为参考点，即认为无穷远处电势为0。那么空间内任意一点P
+的电势即可表示为 <span class="math display">\[\begin{equation}
+\varphi_{P} = U_{P \infty} = \int_{P}^{\infty}\boldsymbol{E} \cdot
+\boldsymbol{l}
+\end{equation}\]</span> 而由于电场力做功与路径无关，因此有 <span
+class="math display">\[
+\int_{P}^{Q} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} =
+\int_{P}^{\infty} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} +
+\int_{\infty}^{Q} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} =
+\int_{P}^{\infty} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} -
+\int_{Q}^{\infty} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l}
+\]</span> 即 <span class="math display">\[\begin{equation}
+U_{PQ} = \int_{P}^{Q} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} =
+\varphi_{P} - \varphi_{Q}
+\end{equation}\]</span>
+电势差与电势的单位相同，均为J/C，或写为V，即“伏特”。</p>
+<h3 id="电势叠加原理">电势叠加原理</h3>
+<p>对由一组点电荷<span class="math inline">\(q_{1}\)</span>、<span
+class="math inline">\(q_{2}\)</span>...<span
+class="math inline">\(q_{k}\)</span>产生的电场，由电势定义与场强叠加原理，对电场中任意一点P
+有 <span class="math display">\[\begin{equation}
+\varphi_{P} = \int_{P}^{\infty}\boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l} = \sum_{i =
+1}^{k}\int_{P}^{\infty}\boldsymbol{E}_{i} \cdot
+\mathrm{d}  \boldsymbol{l} = \sum_{i = 1}^{k} \varphi_{i}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\varphi_{1}\)</span>、<span
+class="math inline">\(\varphi_{2}\)</span>...<span
+class="math inline">\(\varphi_{k}\)</span>为点电荷<span
+class="math inline">\(q_{1}\)</span>、<span
+class="math inline">\(q_{2}\)</span>...<span
+class="math inline">\(q_{k}\)</span>单独存在时的P
+点的电势。这也就是说，点电荷组的电场中某点电势为各点电荷单独存在时此点电势的代数和。</p>
+<h3 id="电势的梯度">电势的梯度</h3>
+<p>任何空间坐标的标量函数均可以被称之为标量场，因此电势也是标量场。</p>
+<p>在一对非常接近的等势面间取一个任意方向的长度为<span
+class="math inline">\(\Delta l\)</span>的线段，则有 <span
+class="math display">\[\begin{equation}
+\dfrac{\partial U}{\partial l} = \lim_{\Delta l \to 0}\dfrac{\Delta
+U}{\Delta l}
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\dfrac{\partial U}{\partial
+l}\)</span>被称为电势差<span class="math inline">\(U\)</span>沿<span
+class="math inline">\(l\)</span>方向的方向导数。</p>
+<p>在上述等势面之间取垂直方向增加的，长度为<span
+class="math inline">\(\Delta n\)</span>的线段，则有 <span
+class="math display">\[
+\dfrac{\partial U}{\partial n} = \lim_{\Delta n \to 0}\dfrac{\Delta
+U}{\Delta n}
+\]</span> 显然，设<span class="math inline">\(\Delta l\)</span>与<span
+class="math inline">\(\Delta n\)</span>之间的夹角为<span
+class="math inline">\(\theta\)</span>，则有<span
+class="math inline">\(\Delta n = \Delta l
+\mathrm{cos}\theta\)</span>，即有 <span class="math display">\[
+\dfrac{\partial U}{\partial l} = \dfrac{\partial U}{\partial n}
+\mathrm{cos}\theta
+\]</span> 这表明 <span class="math display">\[
+\dfrac{\partial U}{\partial l} \leq \dfrac{\partial U}{\partial n}
+\]</span></p>
+<p>因此，我们定义一个大小为<span class="math inline">\(\dfrac{\partial
+U}{\partial n}\)</span>，方向为<span class="math inline">\(\Delta
+\boldsymbol{n}\)</span>的向量（此向量指向增加的方向），称为电势差<span
+class="math inline">\(U\)</span>的梯度，表示为<span
+class="math inline">\(\nabla U\)</span>。</p>
+<p>当两个等势面十分接近时，显然有 <span class="math display">\[
+\left\lvert \Delta U \right\rvert  \approx E\Delta n
+\]</span> 那么取极限即可得到 <span
+class="math display">\[\begin{equation}
+E = \left\lvert \lim_{\Delta n \to 0}\dfrac{\Delta U}{\Delta
+n}\right\rvert  =\left\lvert \dfrac{\partial U}{\partial n}\right\rvert
+\end{equation}\]</span> 由于场强<span
+class="math inline">\(\boldsymbol{E}\)</span>总是指向电势减小的方向，因此与<span
+class="math inline">\(\Delta \boldsymbol{n}\)</span>方向相反，也就是
+<span class="math display">\[\begin{equation}
+\boldsymbol{E} = -\nabla U
+\end{equation}\]</span></p>
+<h2 id="带电体系的静电能">带电体系的静电能</h2>
+<h3 id="点电荷之间的相互作用能">点电荷之间的相互作用能</h3>
+<p>移动一个电场中的电荷，需要抵抗电荷之间的静电力做功<span
+class="math inline">\(\delta
+A^{&#39;}\)</span>，从而带点体系的静电能变化<span
+class="math inline">\(\delta W_{\mathrm{e}}\)</span>，二者之间的关系为
+<span class="math display">\[\begin{equation}
+\delta A^{&#39;} = \delta W_{\mathrm{e}}
+\end{equation}\]</span></p>
+<p>我们规定，当体系中电荷被分为无限多小部分，且这些部分彼此相距无限远时，体系的静电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>为0。那么此时，静电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>即为将各部分聚集为现有体系时抵抗静电力做功<span
+class="math inline">\(A^{&#39;}\)</span>。</p>
+<p>假设一个带电体系由多个带电体组成，那么体系的总静电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>可表示为 <span
+class="math display">\[
+W_{\mathrm{e}} = W_{\mbox{互}} + W_{\mbox{自}}
+\]</span> 其中，<span
+class="math inline">\(W_{\mbox{互}}\)</span>为各带电体之间的相互作用能，即把各带电体从无穷远处移动至目前位置所做功。而<span
+class="math inline">\(W_{\mbox{自}}\)</span>为带电体的自能，即把带电体上各部分电荷从彼此相距无穷远处聚集起来所做功。
+本节先讨论点电荷组成的体系中，各点电荷的相互作用能，然后再讨论有关连续带电体的情况。</p>
+<h4 id="两个点电荷的情况">两个点电荷的情况</h4>
+<p>设体系由两个点电荷<span class="math inline">\(q_{1}\)</span>与<span
+class="math inline">\(q_{2}\)</span>组成，其分别在P 与Q 处，距离为<span
+class="math inline">\(r_{12}\)</span>，假设将<span
+class="math inline">\(q_{2}\)</span>由无穷远处移至<span
+class="math inline">\(r_{12}\)</span>处，那么 <span
+class="math display">\[
+A^{&#39;}_{2} = \int_{\infty}^{r_{12}} - q_{2}\boldsymbol{E} \cdot
+\mathrm{d}  \boldsymbol{l} = q_{2} \int^{\infty}_{r_{12}} \boldsymbol{E}
+\cdot \mathrm{d}  \boldsymbol{l} = q_{2}\varphi_{P}
+\]</span> 其中，<span class="math inline">\(\varphi_{P}\)</span>为 <span
+class="math display">\[
+\varphi_{P} = \dfrac{kq_{1}}{r_{12}}
+\]</span> 由于两电荷是等价的，因此有 <span class="math display">\[
+A^{&#39;}_{1} = q_{2}\varphi_{Q} = \dfrac{kq_{1}q_{2}}{r_{12}}
+\]</span></p>
+<p>因此，这两个点电荷之间的相互作用能<span
+class="math inline">\(W_{\mbox{互}}\)</span>即为 <span
+class="math display">\[\begin{equation}
+W_{\mbox{互}} = \dfrac{1}{2} \left(  A^{&#39;}_{1} + A^{&#39;}_{2}
+\right)  = k\dfrac{q_{1}q_{2}}{r_{12}}
+\end{equation}\]</span></p>
+<h4 id="多个点电荷的情况">多个点电荷的情况</h4>
+<p>设点电荷有<span class="math inline">\(n\)</span>个，将这<span
+class="math inline">\(n\)</span>点电荷<span
+class="math inline">\(q_{1}\)</span>、<span
+class="math inline">\(q_{2}\)</span>...<span
+class="math inline">\(q_{n}\)</span>分别依次从无穷远处移动到<span
+class="math inline">\(P_{1}\)</span>、<span
+class="math inline">\(P_{2}\)</span>...<span
+class="math inline">\(P_{n}\)</span>。由电势叠加原理可得，移动的功分别为
+<span class="math display">\[
+A_{i}^{&#39;} = q_{i}\sum\limits_{j = 1}^{i - 1}\varphi_{j,P_{i}}
+\]</span> 其中， <span class="math display">\[
+\varphi_{j,P_{i}} = k\dfrac{q_{j}}{r_{ij}}
+\]</span> 代表由点电荷<span class="math inline">\(q_{j}\)</span>在<span
+class="math inline">\(P_{i}\)</span>处产生的电势。</p>
+<p>由此可得，建立由多个点电荷建立的带电体系总功为 <span
+class="math display">\[\begin{equation}
+A^{&#39;} = \sum\limits_{i=1}^{n}A_{i}^{&#39;} = \sum\limits_{i=1}^{n}
+q_{i}\sum\limits_{j = 1}^{i - 1}\varphi_{j,P_{i}} =
+k\sum\limits_{i=1}^{n}\sum\limits_{j = 1}^{i - 1}
+\dfrac{q_{i}q_{j}}{r_{ij}}
+\end{equation}\]</span></p>
+<p>由于电场的可叠加性，同时总功<span
+class="math inline">\(A^{&#39;}\)</span>与搬运电荷顺序无关，因此总功可以看成先选出某个特定的点电荷<span
+class="math inline">\(q_{i}\)</span>，求在其电场中搬运其他电荷的抵抗功，然后再对<span
+class="math inline">\(i\)</span>求和。由于此时每两个电荷之间的相互作用被计算了两次，因此最终结果只需除以2即可，也就是
+<span class="math display">\[\begin{equation}
+A^{&#39;} = \dfrac{1}{2} \sum\limits_{i = 1}^{n}q_{i}\varphi_{i}=
+\dfrac{k}{2}\sum\limits_{i=1}^{n}\sum\limits_{j = 1}^{n}
+\dfrac{q_{i}q_{j}}{r_{ij}} \quad \left(  i \neq j\right)
+\end{equation}\]</span> 其中，<span
+class="math inline">\(\varphi_{i}\)</span>指除了<span
+class="math inline">\(q_{i}\)</span>以外各点电荷在<span
+class="math inline">\(P_{i}\)</span>所产生的电势。</p>
+<p>总结起来，静电相互作用能<span
+class="math inline">\(W_{\mbox{互}}\)</span>可表示为 <span
+class="math display">\[
+W_{\mbox{互}} =  \left \{
+\begin{aligned}
+&amp; k\sum\limits_{i=1}^{n}\sum\limits_{j = 1}^{i - 1}
+\dfrac{q_{i}q_{j}}{r_{ij}} \\
+&amp; \dfrac{k}{2}\sum\limits_{i=1}^{n}\sum\limits_{j = 1}^{n}
+\dfrac{q_{i}q_{j}}{r_{ij}} \quad \left(  i \neq j\right)  \\
+&amp; \dfrac{1}{2} \sum\limits_{i = 1}^{n}q_{i}\varphi_{i} \\
+\end{aligned}
+\right.
+\]</span></p>
+<h4 id="电荷连续分布的情况">电荷连续分布的情况</h4>
+<p>取连续带电体上一体积元<span
+class="math inline">\(\mathrm{d}  V\)</span>，结合上节公式可得 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{e}} =
+\dfrac{1}{2}\iiint_{V}\rho_{\mathrm{e}}\varphi\mathrm{d}  V
+\end{equation}\]</span>
+由于此时电荷已经被无限分割，因此我们得到的是包括自能在内的总静电能<span
+class="math inline">\(W_{\mathrm{e}}\)</span>。</p>
+<p>对于线电荷分布也有相似结论 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{e}} =
+\dfrac{1}{2}\int_{l}\eta_{\mathrm{e}}\varphi\mathrm{d}  l
+\end{equation}\]</span></p>
+<p>对于面电荷分布也有相似结论 <span
+class="math display">\[\begin{equation}
+W_{\mathrm{e}} =
+\dfrac{1}{2}\iint_{S}\sigma_{\mathrm{e}}\varphi\mathrm{d}  S
+\end{equation}\]</span></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/5b9f9152/" title="静电场">https://vasily-alexievich-korolev.github.io/posts/5b9f9152/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Electromagnetics/" rel="tag"># Electromagnetics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/d9e45f82/" rel="prev" title="Hamilton-Jacobi方程——经典力学笔记5">
+      <i class="fa fa-chevron-left"></i> Hamilton-Jacobi方程——经典力学笔记5
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/53cc9fd7/" rel="next" title="静电场中的导体与电介质">
+      静电场中的导体与电介质 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">静电场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%89%8D%E6%8F%90%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">一些前提知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E7%94%B5%E8%8D%B7"><span class="nav-number">1.1.1.</span> <span class="nav-text">两种电荷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#coulomb%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">Coulomb定律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E4%B8%8E%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">电场与电场强度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6boldsymbole"><span class="nav-number">1.2.1.</span> <span class="nav-text">电场强度$\boldsymbol{E</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E5%8F%A0%E5%8A%A0%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">电场强度叠加原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E8%8D%B7%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">1.2.3.</span> <span class="nav-text">电荷的连续分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%93%E5%88%86%E5%B8%83"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">体分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%88%86%E5%B8%83"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">面分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E5%88%86%E5%B8%83"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">线分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E4%BD%93%E5%9C%A8%E7%94%B5%E5%9C%BA%E4%B8%AD%E5%8F%97%E5%8A%9B%E5%8F%8A%E5%85%B6%E8%BF%90%E5%8A%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">带电体在电场中受力及其运动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A2%E9%87%8F%E5%9C%BA%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">矢量场的描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauss%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">Gauss定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E7%BA%BF%E5%8F%8A%E5%85%B6%E6%95%B0%E5%AF%86%E5%BA%A6"><span class="nav-number">1.3.1.</span> <span class="nav-text">电场线及其数密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E9%80%9A%E9%87%8F"><span class="nav-number">1.3.2.</span> <span class="nav-text">电场强度通量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gauss%E5%AE%9A%E7%90%86%E7%9A%84%E8%A1%A8%E8%BF%B0%E5%8F%8A%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.3.</span> <span class="nav-text">Gauss定理的表述及证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E9%80%9A%E8%BF%87%E5%8C%85%E5%9B%B4%E4%BB%BB%E6%84%8F%E7%82%B9%E7%94%B5%E8%8D%B7q%E7%9A%84%E7%90%83%E9%9D%A2%E7%9A%84%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E9%80%9A%E9%87%8F_e"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">求通过包围任意点电荷\(q\)的球面的电场强度通量$_{E</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E9%80%9A%E8%BF%87%E5%8C%85%E5%9B%B4%E4%BB%BB%E6%84%8F%E7%82%B9%E7%94%B5%E8%8D%B7q%E7%9A%84%E4%BB%BB%E6%84%8F%E9%97%AD%E5%90%88%E9%9D%A2s%E7%9A%84%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E9%80%9A%E9%87%8F_e"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">求通过包围任意点电荷\(q\)的任意闭合面\(S\)的电场强度通量$_{E</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E9%80%9A%E8%BF%87%E4%B8%8D%E5%8C%85%E5%9B%B4%E7%82%B9%E7%94%B5%E8%8D%B7%E7%9A%84%E4%BB%BB%E6%84%8F%E9%97%AD%E5%90%88%E9%9D%A2s%E7%9A%84%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E9%80%9A%E9%87%8F"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">求通过不包围点电荷的任意闭合面\(S\)的电场强度通量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E9%80%9A%E8%BF%87%E5%8C%85%E5%9B%B4%E5%A4%9A%E4%B8%AA%E7%82%B9%E7%94%B5%E8%8D%B7%E7%9A%84%E4%BB%BB%E6%84%8F%E9%97%AD%E5%90%88%E9%9D%A2s%E7%9A%84%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E9%80%9A%E9%87%8F"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">求通过包围多个点电荷的任意闭合面\(S\)的电场强度通量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E5%8F%8A%E5%85%B6%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text">电势及其梯度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BA%E5%8A%9B%E5%81%9A%E5%8A%9F%E4%B8%8E%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3"><span class="nav-number">1.4.1.</span> <span class="nav-text">静电场力做功与路径无关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%8D%95%E4%B8%AA%E7%82%B9%E7%94%B5%E8%8D%B7%E4%BA%A7%E7%94%9F%E7%9A%84%E7%94%B5%E5%9C%BA%E4%B8%AD%E7%94%B5%E5%9C%BA%E5%8A%9B%E5%81%9A%E5%8A%9F%E4%B8%8E%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">在单个点电荷产生的电场中，电场力做功与路径无关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E5%B8%A6%E7%94%B5%E4%BD%93%E7%B3%BB%E4%BA%A7%E7%94%9F%E7%9A%84%E7%94%B5%E5%9C%BA"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">任意带电体系产生的电场</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E5%B7%AE%E4%B8%8E%E7%94%B5%E5%8A%BF"><span class="nav-number">1.4.2.</span> <span class="nav-text">电势差与电势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E5%8F%A0%E5%8A%A0%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">电势叠加原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E7%9A%84%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.4.4.</span> <span class="nav-text">电势的梯度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E9%9D%99%E7%94%B5%E8%83%BD"><span class="nav-number">1.5.</span> <span class="nav-text">带电体系的静电能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E7%94%B5%E8%8D%B7%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8%E8%83%BD"><span class="nav-number">1.5.1.</span> <span class="nav-text">点电荷之间的相互作用能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%82%B9%E7%94%B5%E8%8D%B7%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">两个点电荷的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E7%82%B9%E7%94%B5%E8%8D%B7%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">多个点电荷的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E8%8D%B7%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">电荷连续分布的情况</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

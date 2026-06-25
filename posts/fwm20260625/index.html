@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子化世界模型：一次彻底的失败">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T13:22:58.480Z">
+<meta property="article:modified_time" content="2026-06-25T13:22:58.492Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Quant">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Trading">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>因子化世界模型：一次彻底的失败 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          因子化世界模型：一次彻底的失败
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 21:22:58" itemprop="dateCreated datePublished" datetime="2026-06-25T21:22:58+08:00">2026-06-25</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="缘起">缘起</h2>
+<p>2025年底读到一篇论文，讲的是将图像分解为"语义token"和"细节token"进行分治建模。我觉得这个思路可以迁移到金融时间序列上：</p>
+<p>价格运动可以被分解为两个物理过程——</p>
+<ol type="1">
+<li><strong>趋势延续（Trend
+Continuation）</strong>：价格沿着已形成的趋势惯性运行，这应该是一个低频、近乎确定性的过程。</li>
+<li><strong>均值回归（Mean
+Reversion）</strong>：价格因短期过度偏离而出现向长期均值回归的倾向，这是一个高频、类似弹性恢复的过程。</li>
+</ol>
+<p>传统的端到端模型试图同时逼近两个不同物理过程的复合。如果能拆开分别建模再组合，理论上应该更高效。</p>
+<p>于是有了<strong>因子化世界模型（Factorized World Model,
+FWM）</strong>。</p>
+<h2 id="架构设计">架构设计</h2>
+<h3 id="状态分解">状态分解</h3>
+<p>从原始 OHLCV 数据中提取趋势状态序列和回归残差序列：</p>
+<ol type="1">
+<li><p><strong>HP滤波</strong>：用 Hodrick-Prescott
+滤波从收盘价中提取一条平滑的趋势线 <span
+class="math inline">\(\tau_t\)</span>。参数 <span
+class="math inline">\(\lambda = 5000\)</span>
+控制了趋势的光滑程度。</p></li>
+<li><p><strong>趋势Token</strong>：计算趋势线的滑动斜率，做 z-score
+标准化后离散化为 5 类
+Token——强下降、弱下降、横盘、弱上升、强上升。阈值用 <span
+class="math inline">\(\pm 0.3\sigma\)</span> 和 <span
+class="math inline">\(\pm 1.0\sigma\)</span>。</p></li>
+<li><p><strong>残差特征</strong>：定义残差 <span
+class="math inline">\(r_t = p_t - \tau_t\)</span>，提取 8
+维特征向量：标准化残差、RSI(14)、布林带 %B 位置、ATR
+比率、成交量比率、K线振幅比率、斜率 z-score、EMA20 偏离比率。</p></li>
+<li><p><strong>均值回归标签</strong>：当标准化残差超过 <span
+class="math inline">\(2\sigma\)</span> 且未来 <span
+class="math inline">\(K\)</span> 根 K
+线内价格向趋势线方向回归超过一定阈值，标记为回归触发点。注意这是一个前视标签，仅用于训练。</p></li>
+</ol>
+<h3 id="模型">模型</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: 趋势Token + 8维残差特征</span><br><span class="line">  ↓</span><br><span class="line">Token嵌入(5→d) + 残差投影(8→d) → 逐元素相加 → 可学习位置编码</span><br><span class="line">  ↓</span><br><span class="line">4层Transformer Decoder (因果掩码, d=192, 6头)</span><br><span class="line">  ↓</span><br><span class="line">趋势预测头: Linear(d, 5) → softmax → 下一时刻趋势状态分布</span><br><span class="line">回归信号头: Linear(d, 128) → GELU → Linear(128, 1) → sigmoid → MR概率</span><br></pre></td></tr></table></figure>
+<h3 id="决策映射">决策映射</h3>
+<p>将趋势概率分布与 MR 概率结合生成交易信号：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">最大概率趋势</th>
+<th style="text-align: center;">MR &lt; 30%</th>
+<th style="text-align: center;">MR &gt; 70%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">上升</td>
+<td style="text-align: center;">做多 (+1)</td>
+<td style="text-align: center;">平仓 (0)</td>
+</tr>
+<tr>
+<td style="text-align: center;">横盘</td>
+<td style="text-align: center;">观望 (0)</td>
+<td style="text-align: center;">观望 (0)</td>
+</tr>
+<tr>
+<td style="text-align: center;">下降</td>
+<td style="text-align: center;">做空 (-1)</td>
+<td style="text-align: center;">平仓 (0)</td>
+</tr>
+</tbody>
+</table>
+<p>趋势概率分布的熵用作不确定性度量，熵过高时强制平仓。</p>
+<h2 id="实现">实现</h2>
+<p>代码约 900 行，包括：</p>
+<ul>
+<li><code>factorized_world_model.py</code> —
+核心模型：StateDecomposer、FactorizedEncoder、TemporalWorldModel（Transformer）、DecisionInterpreter</li>
+<li><code>train_factorized_world_model.py</code> — CLI
+驱动的完整流水线：数据加载 → 状态分解 → 训练 → 回测 → 报告</li>
+</ul>
+<p>训练过程中修了三个 Bug：</p>
+<ol type="1">
+<li><strong>HP滤波内存溢出</strong>：<span class="math inline">\(48,000
+\times 48,000\)</span> 的稠密矩阵需要 17GB，改用 scipy.sparse
+五对角矩阵</li>
+<li><strong>斜率z-score的O(T²)循环</strong>：<code>_compute_slope_z</code>
+对每个时间步都重算所有历史斜率，全量数据需要 <span
+class="math inline">\(\sum_{t=24}^{47999} (t-12) \approx 1.15\times
+10^9\)</span> 次
+polyfit，预计运行数小时。改为一次卷积预计算所有斜率</li>
+<li><strong>回测索引越界</strong>：最后一个 bar 没有下一个 K 线数据</li>
+</ol>
+<p>修复后全量 48,000 根 K 线的状态分解从数小时降至 19.6 秒。</p>
+<h2 id="初试单次分割的假象">初试：单次分割的假象</h2>
+<p>第一次训练用标准的 70/15/15 时序分割，结果看起来非常漂亮：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">趋势准确率: 96.0%</span><br><span class="line">Cohen&#x27;s Kappa: 0.95</span><br><span class="line">MR AUC: 0.89</span><br><span class="line"></span><br><span class="line">回测（测试期 2025.08-2026.05，BTC跌了35%）：</span><br><span class="line">  完整模型: +904%  夏普 8.26</span><br><span class="line">  趋势跟随: +4579% 夏普 12.11</span><br><span class="line">  买入持有: -35%</span><br></pre></td></tr></table></figure>
+<p>当时差点就被骗了。"夏普 12"
+在真实市场中不存在。文艺复兴大奖章基金的历史最佳也才 3-4
+的水平。这个数字完美得不像真的——因为它就是假的。</p>
+<p><strong>问题</strong>：单次分割只测了最后 15% 的数据，而那段时间 BTC
+处于单边下跌。模型只要无脑做空就能赚钱。MR 预警全程负贡献：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">趋势跟随（无MR）: +4579%</span><br><span class="line">完整模型（有MR）: +904%  ← MR信号全错了</span><br></pre></td></tr></table></figure>
+<p>在 BTC 1h 上，均值回归预警的所有触发都是错误的。</p>
+<h2 id="滚动训练真相大白">滚动训练：真相大白</h2>
+<p>构建了累积窗口的 walk-forward 训练模式，18 个窗口覆盖 2022-2026
+全年：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">窗口1: 训练 [0-10000]  测试 [10000-12000]  → -37.7%</span><br><span class="line">窗口2: 训练 [0-12000]  测试 [12000-14000]  → -15.6%</span><br><span class="line">窗口3: 训练 [0-14000]  测试 [14000-16000]  → -12.7%</span><br><span class="line">窗口4: 训练 [0-16000]  测试 [16000-18000]  → -43.9%</span><br><span class="line">...</span><br><span class="line">窗口18: 训练 [0-44000] 测试 [44000-46000] → -48.5%</span><br><span class="line">累计: -99.9%</span><br></pre></td></tr></table></figure>
+<p><strong>18 个窗口，全部亏损，无一例外。</strong></p>
+<p>这不是运气问题，这是系统性问题。在上涨的窗口、下跌的窗口、震荡的窗口——模型都在稳定亏钱。</p>
+<h2 id="换成山寨币试试">换成山寨币试试</h2>
+<p>也许只是 BTC
+太有效了？我用同样的配置测了三个波动等级不同的山寨币：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">币种</th>
+<th style="text-align: center;">等级</th>
+<th style="text-align: center;">累计收益</th>
+<th style="text-align: center;">平均夏普</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">SOLUSDT</td>
+<td style="text-align: center;">高波主流</td>
+<td style="text-align: center;">-100.0%</td>
+<td style="text-align: center;">-2.28</td>
+</tr>
+<tr>
+<td style="text-align: center;">DOGEUSDT</td>
+<td style="text-align: center;">中高波meme</td>
+<td style="text-align: center;">-100.0%</td>
+<td style="text-align: center;">-4.07</td>
+</tr>
+<tr>
+<td style="text-align: center;">ZECUSDT</td>
+<td style="text-align: center;">中波老币</td>
+<td style="text-align: center;">-100.0%</td>
+<td style="text-align: center;">-2.18</td>
+</tr>
+</tbody>
+</table>
+<p>结果完全一致。全部 -100%，无一幸免。</p>
+<h2 id="独立实验的交叉验证">独立实验的交叉验证</h2>
+<p>FWM 的失败不是孤立的。在之前的项目中：</p>
+<ul>
+<li><strong>DeepSeek-LLM 交易回测</strong>：从 1h K 线挖掘 50+
+技术指标，通过 LLM 获取交易决策。方向预测准确率 44%，接近随机。</li>
+<li><strong>XGBoost/随机森林</strong>：在 BTC 1h
+上反复尝试，无法产生稳定正收益。</li>
+<li><strong>LSTM
+集成模型</strong>：三个模型的集成，同样没有正预期。</li>
+</ul>
+<p>这些独立实验用完全不同的方法得出了一致结论：<strong>BTC 1h
+的价格变化在统计意义上接近随机游走</strong>。</p>
+<h2 id="失败的根本原因">失败的根本原因</h2>
+<p>现在复盘，有两个致命的设计错误：</p>
+<h3 id="hp-滤波的前视偏差">1. HP 滤波的前视偏差</h3>
+<p>StateDecomposer 对整个训练集做了一次性双向 HP 滤波：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trend = spsolve(A, series)  <span class="comment"># 一次性求解整个序列</span></span><br></pre></td></tr></table></figure>
+<p>这意味着训练集里时间 <span class="math inline">\(t\)</span>
+的趋势是拿 <span class="math inline">\(t\)</span>
+以后的数据算出来的。模型学到的"规律"本质上包含了未来信息，到真没见过的新数据上自然崩溃。</p>
+<p>这解释了为什么单次分割（70/15/15）的测试结果看起来那么漂亮——验证集和测试集的数据也被同样方式分解了，信息泄漏是一体的。</p>
+<h3 id="ohlcv-的单向预测信噪比太低">2. OHLCV 的单向预测信噪比太低</h3>
+<p>本质上我在做的是：用 <span class="math inline">\([t-47, t]\)</span>
+的 OHLCV 数据预测 <span class="math inline">\(t+1\)</span>
+时刻的方向。这个任务的信噪比在加密货币 1h
+级别上极低。无论是浅层模型（XGBoost）、深层模型（LSTM）、还是大型模型（Transformer/LLM），都无法从中提取出能稳定盈利的信号。</p>
+<hr />
+<h2 id="教训">教训</h2>
+<h3 id="好的教训">好的教训</h3>
+<ul>
+<li><strong>Walk-forward 测试是必需的</strong>：单次分割的夏普 12
+是假象，滚动训练的 -99.9% 是真相。</li>
+<li><strong>M
+个独立实验得到同样的负结论，这个结论值得信任</strong>：LLM、XGBoost、LSTM、Transformer
+都不行，那就是这条路行不通。</li>
+<li><strong>在开始之前先估计上限</strong>：如果 <span
+class="math inline">\(R^2\)</span> 的天花板是
+0.01，任何模型都不可能赚钱。</li>
+</ul>
+<h3 id="坏的教训">坏的教训</h3>
+<p>花了整整一天，写了 900 行代码，跑了几小时的 GPU
+训练，得到了一个字：不行。</p>
+<p>但其实这个结果的价值比一次"成功的回测"更大——它排除了一个看起来很有前景的方向，让精力可以集中在真正有效的事情上。</p>
+<h2 id="代码归档">代码归档</h2>
+<p>FWM 项目代码留在仓库中，作为一次诚实的失败记录：</p>
+<ul>
+<li><code>ml_models/factorized_world_model.py</code></li>
+<li><code>ml_models/train_factorized_world_model.py</code></li>
+<li><code>notes/factorized_world_model_TECH.md</code></li>
+</ul>
+<p>之前验证有效的策略（低波山寨币暴跌抄底，胜率 57.5%，夏普
+4.01）继续实盘模拟。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/" title="因子化世界模型：一次彻底的失败">https://vasily-alexievich-korolev.github.io/posts/fwm20260625/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Quant/" rel="tag"># Quant</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+              <a href="/tags/Trading/" rel="tag"># Trading</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/623f8d06/" rel="prev" title="Lagrange动力学——经典力学笔记2">
+      <i class="fa fa-chevron-left"></i> Lagrange动力学——经典力学笔记2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">状态分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%98%A0%E5%B0%84"><span class="nav-number">2.3.</span> <span class="nav-text">决策映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%AF%95%E5%8D%95%E6%AC%A1%E5%88%86%E5%89%B2%E7%9A%84%E5%81%87%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">初试：单次分割的假象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E8%AE%AD%E7%BB%83%E7%9C%9F%E7%9B%B8%E5%A4%A7%E7%99%BD"><span class="nav-number">5.</span> <span class="nav-text">滚动训练：真相大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E6%88%90%E5%B1%B1%E5%AF%A8%E5%B8%81%E8%AF%95%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">换成山寨币试试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E5%AE%9E%E9%AA%8C%E7%9A%84%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">7.</span> <span class="nav-text">独立实验的交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0"><span class="nav-number">8.</span> <span class="nav-text">失败的根本原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hp-%E6%BB%A4%E6%B3%A2%E7%9A%84%E5%89%8D%E8%A7%86%E5%81%8F%E5%B7%AE"><span class="nav-number">8.1.</span> <span class="nav-text">1. HP 滤波的前视偏差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ohlcv-%E7%9A%84%E5%8D%95%E5%90%91%E9%A2%84%E6%B5%8B%E4%BF%A1%E5%99%AA%E6%AF%94%E5%A4%AA%E4%BD%8E"><span class="nav-number">8.2.</span> <span class="nav-text">2. OHLCV 的单向预测信噪比太低</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E8%AE%AD"><span class="nav-number">9.</span> <span class="nav-text">教训</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%BD%E7%9A%84%E6%95%99%E8%AE%AD"><span class="nav-number">9.1.</span> <span class="nav-text">好的教训</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E7%9A%84%E6%95%99%E8%AE%AD"><span class="nav-number">9.2.</span> <span class="nav-text">坏的教训</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%BD%92%E6%A1%A3"><span class="nav-number">10.</span> <span class="nav-text">代码归档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">74k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:08</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文主要介绍了理论力学中有关力学变分原理的相关内容，包括变分法与Euler方程、位形空间与相空间的Hamilton原理、最小作用量原理及其与Hamilton原理的区别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="力学变分原理——经典力学笔记4">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文主要介绍了理论力学中有关力学变分原理的相关内容，包括变分法与Euler方程、位形空间与相空间的Hamilton原理、最小作用量原理及其与Hamilton原理的区别。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:13:13.765Z">
+<meta property="article:modified_time" content="2026-06-25T15:13:13.794Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Classical Mechanics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>力学变分原理——经典力学笔记4 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          力学变分原理——经典力学笔记4
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-25 23:13:13" itemprop="dateCreated datePublished" datetime="2026-06-25T23:13:13+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Classical-Mechanics/" itemprop="url" rel="index"><span itemprop="name">Classical Mechanics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+            <div class="post-description">本文主要介绍了理论力学中有关力学变分原理的相关内容，包括变分法与Euler方程、位形空间与相空间的Hamilton原理、最小作用量原理及其与Hamilton原理的区别。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="力学变分原理">力学变分原理</h1>
+<h2 id="变分法">变分法</h2>
+<p>要讨论变分法，需要先给出一个概念的定义</p>
+<div class="definition">
+<p>对于集合<span class="math inline">\(D\)</span>和<span
+class="math inline">\(I\)</span>，如果存在对应关系<span
+class="math inline">\(J:D\to I\)</span>，使得<span
+class="math inline">\(\forall f(x) \in D\)</span>，都有<span
+class="math inline">\(y \in I\)</span>与之对应，其中<span
+class="math inline">\(f(x)\)</span>为函数，<span
+class="math inline">\(x,\ y\)</span>为变量，那么我们称<span
+class="math inline">\(J[y]\)</span>称为<span class="math inline">\(y =
+f(x)\)</span>的泛函。</p>
+</div>
+<h3 id="euler方程">Euler方程</h3>
+<h4 id="泛函的变分">泛函的变分</h4>
+<p>我们先来考虑一种比较简单的情况。假设泛函<span
+class="math inline">\(J\)</span>为 <span class="math display">\[J[y] =
+\int_{a}^{b}F(x, y, y&#39;)\mathrm{d}x\]</span>
+我们现在考虑这样一种情况：如果函数关系<span class="math inline">\(y =
+f(x)\)</span>发生一点微小变动，那么我们仿照微分的定义，将函数的这种变化记为
+<span class="math display">\[y \to y + \delta y\]</span> 并将<span
+class="math inline">\(\delta
+y\)</span>称为函数的变分，那么泛函的变化量<span
+class="math inline">\(\delta J[y]\)</span>为 <span
+class="math display">\[\begin{aligned}
+            \delta J[y] &amp; = J[y + \delta y] - J[y] \\
+            &amp; = \int_{a}^{b}[F(x, y + \delta y, y&#39; + \delta
+y&#39;) - F(x, y, y&#39;)] \mathrm{d}x \\
+            &amp; \approx \int_{a}^{b} \left[\dfrac{\partial F}{\partial
+y}\delta y + \dfrac{\partial F}{\partial y&#39;}\delta y&#39;
+\right]\mathrm{d}x
+        \end{aligned}\]</span>
+其中，上式结果的表达式是仿照函数的微分写出的。</p>
+<h4 id="简单情况的euler方程">简单情况的Euler方程</h4>
+<p>由于泛函的结果为数，因此就如同函数存在极值一样，泛函也存在极值。假设上述泛函取极值时，函数关系为
+<span class="math display">\[y = f(x)\]</span> 在此基础上，泛函<span
+class="math inline">\(J[y]\)</span>在<span class="math inline">\(y =
+f(x)\)</span>处取极值的必要条件为</p>
+<div class="theorem">
+<p>泛函<span class="math inline">\(\displaystyle J[y] = \int_{a}^{b}F(x,
+y, y&#39;)\mathrm{d}x\)</span>在<span class="math inline">\(y =
+f(x)\)</span>处取极值的必要条件为 <span
+class="math display">\[\dfrac{\partial F}{\partial y} -
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial F}{\partial y&#39;}
+\right)= 0\]</span> 如果<span class="math inline">\(F(x, y, y&#39;) =
+C\)</span>，那么我们有 <span class="math display">\[F -
+y&#39;\dfrac{\partial F}{\partial y&#39;} = C\]</span>
+上面的两个方程分别为Euler方程的第一形式和第二形式。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 假设泛函<span class="math inline">\(\displaystyle
+J[y] = \int_{a}^{b}F(x, y, y&#39;)\mathrm{d}x\)</span>在<span
+class="math inline">\(y =
+f(x)\)</span>处取极值。为了研究极值附近的情况，设想<span
+class="math inline">\(y\)</span>变为<span class="math inline">\(y +
+\delta y\)</span>。如果我们将变分从<span class="math inline">\(y +
+\delta y\)</span>变为<span class="math inline">\(y + \varepsilon
+\eta(x)\)</span>，其中<span
+class="math inline">\(\varepsilon\)</span>是一个小参数，那么不难看出，当<span
+class="math inline">\(\varepsilon = 0\)</span>时，<span
+class="math inline">\(f(x) + \varepsilon\eta(x) =
+f(x)\)</span>，由此仿照函数取极值的条件，我们将泛函取极值的条件表示为
+<span class="math display">\[\begin{aligned}
+            \dfrac{\partial J[y + \varepsilon\eta]}{\partial\varepsilon}
+\Bigg|_{\varepsilon = 0} &amp; = \int_{a}^{b} \left[\dfrac{\partial
+F}{\partial y} \eta + \dfrac{\partial F}{\partial y&#39;}\eta&#39;
+\right]\mathrm{d}x \\
+            &amp; = 0
+        \end{aligned}\]</span> 由此不难看出，<span
+class="math inline">\(y = f(x)\)</span>为泛函取极值时的函数的必要条件为
+<span class="math display">\[\begin{aligned}
+            \delta J[y] &amp; = \int_{a}^{b} \left[\dfrac{\partial
+F}{\partial y}\delta y + \dfrac{\partial F}{\partial y&#39;}\delta
+y&#39; \right]\mathrm{d}x \\
+            &amp; = 0
+        \end{aligned}\]</span></p>
+<p>利用分部积分法，我们可以得到 <span
+class="math display">\[\begin{aligned}
+            \int_{a}^{b} \dfrac{\partial F}{\partial y&#39;}\delta
+y&#39; \mathrm{d}x &amp; = \int_{a}^{b}\dfrac{\partial F}{\partial
+y&#39;} \dfrac{\mathrm{d}}{\mathrm{d}x}(\delta y)\mathrm{d}x\\
+            &amp; = \int_{a}^{b}\dfrac{\partial F}{\partial
+y&#39;}\mathrm{d}(\delta y) \\
+            &amp; =  \dfrac{\partial F}{\partial y&#39;}\delta y
+\Big|_{a}^{b} -
+\int_{a}^{b}\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial
+F}{\partial y&#39;} \right)\delta y\mathrm{d}x
+        \end{aligned}\]</span>
+由于在一般的变分问题中，端点是固定的，因此端点处的变分为0。这样 <span
+class="math display">\[\dfrac{\partial F}{\partial y&#39;}\delta y
+\Big|_{a}^{b} = 0\]</span> 从而 <span
+class="math display">\[\begin{aligned}
+            \delta J[y] &amp; = \int_{a}^{b} \left[\dfrac{\partial
+F}{\partial y} - \dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial
+F}{\partial y&#39;} \right)\right]\delta y \mathrm{d}x \\
+            &amp; = 0
+        \end{aligned}\]</span> 由于上式对于任何的变分<span
+class="math inline">\(\delta y\)</span>都成立，因此 <span
+class="math display">\[\dfrac{\partial F}{\partial y} -
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial F}{\partial y&#39;}
+\right)= 0\]</span>
+我们将上式称为Euler方程的第一种形式。在一些情况下，被积函数<span
+class="math inline">\(F = F(y, y&#39;)\)</span>不显式含<span
+class="math inline">\(x\)</span>，即<span
+class="math inline">\(\dfrac{\partial F}{\partial x} =
+0\)</span>，为了利用这一条件，注意到原来的Euler方程为 <span
+class="math display">\[\dfrac{\partial F}{\partial y} -
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial F}{\partial y&#39;}
+\right)= 0\]</span> 因此如果我们能够凑出如下形式 <span
+class="math display">\[\dfrac{\partial F}{\partial x} +
+\dfrac{\mathrm{d}}{\mathrm{d}x}(\text{某个表达式}) = 0\]</span>
+那么可以得到 <span class="math display">\[\text{某个表达式} =
+0\]</span></p>
+<p>由于<span class="math inline">\(F(x, y, y&#39;)\)</span>的全导数为
+<span class="math display">\[\dfrac{\mathrm{d}F}{\mathrm{d}x} =
+\dfrac{\partial F}{\partial x} + \dfrac{\partial F}{\partial y}
+\dfrac{\mathrm{d}y}{\mathrm{d}x} + \dfrac{\partial F}{\partial y&#39;}
+\dfrac{\mathrm{d}y&#39;}{\mathrm{d}x}\]</span> 因此 <span
+class="math display">\[\begin{aligned}
+            \dfrac{\partial F}{\partial x} &amp; =
+\dfrac{\mathrm{d}F}{\mathrm{d}x} - \dfrac{\partial F}{\partial y}
+\dfrac{\mathrm{d}y}{\mathrm{d}x} - \dfrac{\partial F}{\partial y&#39;}
+\dfrac{\mathrm{d}y&#39;}{\mathrm{d}x} \\
+            &amp; = \dfrac{\mathrm{d}}{\mathrm{d}x}\left(F -
+y&#39;\dfrac{\partial F}{\partial y&#39;} \right)-
+y&#39;\left[\dfrac{\partial F}{\partial y} -
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial F}{\partial y&#39;}
+\right)\right]
+        \end{aligned}\]</span>
+由Euler方程的第一种形式可得，上式的后一部分为0，从而 <span
+class="math display">\[\dfrac{\partial F}{\partial x} =
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(F - y&#39;\dfrac{\partial
+F}{\partial y&#39;} \right)\]</span> 如果<span
+class="math inline">\(F(y, y&#39;)\)</span>不显式含<span
+class="math inline">\(x\)</span>，那么我们有 <span
+class="math display">\[F - y&#39;\dfrac{\partial F}{\partial y&#39;} =
+C\]</span> ◻</p>
+</div>
+<h4 id="复杂情况的euler方程">复杂情况的Euler方程</h4>
+<p>对于较为复杂的情况，我们也可通过类似的操作得到Euler方程。在此我们直接给出结果</p>
+<div class="theorem">
+<ul>
+<li><p>如果泛函<span class="math inline">\(J\)</span>取决于变量<span
+class="math inline">\(x\)</span>，<span
+class="math inline">\(s\)</span>个独立的函数<span
+class="math inline">\(y_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>以及这些函数的一阶导数<span
+class="math inline">\(y_{\alpha}&#39;,\ \alpha = 1, 2, \dots, s\)</span>
+<span class="math display">\[J[y_{1}, y_{2}, \dots, y_{s}] =
+\int_{a}^{b}F(x, y_{1}, y_{2}, \dots, y_{s}, y_{1}&#39;, y_{2}&#39;,
+\dots, y_{s}&#39;) \mathrm{d}x\]</span>
+并且边界是固定的，那么Euler方程为 <span
+class="math display">\[\dfrac{\partial F}{\partial y_{\alpha}} -
+\dfrac{\mathrm{d}}{\mathrm{d}x} \left(\dfrac{\partial F}{\partial
+y_{\alpha}&#39;} \right)= 0,\quad \alpha = 1, 2, \dots,
+s\]</span></p></li>
+<li><p>如果泛函<span class="math inline">\(J\)</span>取决于变量<span
+class="math inline">\(x\)</span>，函数<span
+class="math inline">\(y\)</span>以及其高阶导数<span
+class="math inline">\(y&#39;, y&#39;&#39;, y&#39;&#39;&#39;\)</span>
+<span class="math display">\[J[y, y&#39;, y&#39;&#39;, y&#39;&#39;&#39;]
+= \int_{a}^{b}F(x, y, y&#39;, y&#39;&#39;, y&#39;&#39;&#39;)
+\mathrm{d}x\]</span> 并且边界是固定的，那么Euler方程为 <span
+class="math display">\[\dfrac{\partial F}{\partial y} -
+\dfrac{\mathrm{d}}{\mathrm{d}x} \left(\dfrac{\partial F}{\partial
+y&#39;}
+\right)+\dfrac{\mathrm{d}^{2}}{\mathrm{d}x^{2}}\left(\dfrac{\partial
+F}{\partial y&#39;&#39;} \right)-
+\dfrac{\mathrm{d}^{3}}{\mathrm{d}x^{3}}\left(\dfrac{\partial F}{\partial
+y&#39;&#39;&#39;} \right)= 0\]</span></p></li>
+<li><p>如果泛函<span class="math inline">\(J\)</span>取决于两个变量<span
+class="math inline">\(x,\ y\)</span>，函数<span
+class="math inline">\(u(x, y)\)</span>以及其偏导数<span
+class="math inline">\(\dfrac{\partial u}{\partial x}, \dfrac{\partial
+u}{\partial y}\)</span> <span class="math display">\[J[u] =
+\int_{a}^{b}F\left(x, y, u, \dfrac{\partial u}{\partial x},
+\dfrac{\partial u}{\partial y} \right)\mathrm{d}x \mathrm{d}y\]</span>
+并且边界是固定的，那么Euler方程为 <span
+class="math display">\[\dfrac{\partial F}{\partial u} -
+\dfrac{\mathrm{d}}{\mathrm{d}x} \left[\dfrac{\partial F}{\partial u_{x}}
+\right]- \dfrac{\mathrm{d}}{\mathrm{d}x}\left[\dfrac{\partial
+F}{\partial u_{y}} \right]= 0\]</span> 其中，<span
+class="math inline">\(u_{x} = \dfrac{\partial u}{\partial
+x}\)</span>，<span class="math inline">\(u_{y} = \dfrac{\partial
+u}{\partial y}\)</span></p></li>
+</ul>
+</div>
+<h4 id="约束条件下的变分问题">约束条件下的变分问题</h4>
+<div class="theorem">
+<p>如果泛函<span class="math inline">\(J\)</span>取决于变量<span
+class="math inline">\(x\)</span>，<span
+class="math inline">\(s\)</span>个的函数<span
+class="math inline">\(y_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>以及这些函数的一阶导数<span
+class="math inline">\(y_{\alpha}&#39;,\ \alpha = 1, 2, \dots, s\)</span>
+<span class="math display">\[J[y_{1}, y_{2}, \dots, y_{s}] =
+\int_{a}^{b}F(x, y_{1}, y_{2}, \dots, y_{s}, y_{1}&#39;, y_{2}&#39;,
+\dots, y_{s}&#39;) \mathrm{d}x\]</span> 并且边界是固定的，但是存在<span
+class="math inline">\(k(k &lt; s)\)</span>个如下形式的约束条件 <span
+class="math display">\[c_{j} = \int_{a}^{b}G_{j}(x, y_{1}, y_{2}, \dots,
+y_{s}, y_{1}&#39;, y_{2}&#39;, \dots, y_{s}&#39;) \mathrm{d}x, \quad j =
+1, 2, \dots, k\]</span> 其中，<span
+class="math inline">\(c_{j}\)</span>为常数。那么Euler方程变为 <span
+class="math display">\[\dfrac{\partial}{\partial y_{\alpha}}\left[F +
+\sum\limits_{j = 1}^{k}\lambda_{j}G_{j}\right]-
+\dfrac{\mathrm{d}}{\mathrm{d}x}\dfrac{\partial}{\partial
+y_{\alpha}&#39;}\left[F + \sum\limits_{j =
+1}^{\lambda}\lambda_{j}G_{j}\right]= 0,\quad \alpha = 1, 2, \dots,
+s\]</span> 其中<span
+class="math inline">\(\lambda_{j}\)</span>为常数。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 看起来我们依然可以得到 <span
+class="math display">\[\int_{a}^{b} \sum\limits_{\alpha = 1}^{s}
+\left[\dfrac{\partial F}{\partial y_{\alpha}} -
+\dfrac{\mathrm{d}}{\mathrm{d}x} \left(\dfrac{\partial F}{\partial
+y_{\alpha}&#39;} \right)\right]\delta y_{\alpha}\mathrm{d}x = 0,\quad
+\alpha = 1, 2, \dots, s\]</span> 但此时<span
+class="math inline">\(\delta
+y_{\alpha}\)</span>并不独立，因此我们不能直接得出上一节的Euler方程。为了解决这一问题，我们使用Lagrange乘数法。由于约束条件为
+<span class="math display">\[K_{j}[y_{1}, y_{2}, \dots, y_{s}] =
+\int_{a}^{b}G_{j}(x, y_{1}, y_{2}, \dots, y_{s}, y_{1}&#39;, y_{2}&#39;,
+\dots, y_{s}&#39;) \mathrm{d}x = c_{j}\]</span> 因此<span
+class="math inline">\(\delta K[y_{1}, y_{2}, \dots, y_{s}] =
+0\)</span>，从而我们可以仿照推导Euler方程的过程得到 <span
+class="math display">\[\int_{a}^{b} \sum\limits_{\alpha = 1}^{s}
+\left[\dfrac{\partial G_{j}}{\partial y_{\alpha}} -
+\dfrac{\mathrm{d}}{\mathrm{d}x} \left(\dfrac{\partial G_{j}}{\partial
+y_{\alpha}&#39;} \right)\right]\delta y_{\alpha}\mathrm{d}x = 0,\quad j
+= 1, 2, \dots, \alpha\]</span> 由Lagrange乘数法可得，泛函 <span
+class="math display">\[L = J[y_{1}, y_{2}, \dots, y_{s}]  +
+\sum\limits_{j = 1}^{k}\lambda_{j}K_{j}[y_{1}, y_{2}, \dots,
+y_{s}]\]</span> 的极值满足 <span class="math display">\[\int_{a}^{b}
+\sum\limits_{\alpha = 1}^{s}\left\{\dfrac{\partial F}{\partial
+y_{\alpha}} - \dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial
+F}{\partial y_{\alpha}&#39;} \right)+ \sum\limits_{j =
+1}^{k}\lambda_{j}\left[\dfrac{\partial G_{j}}{\partial y_{\alpha}} -
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left(\dfrac{\partial G_{j}}{\partial
+y_{\alpha}&#39;} \right)\right]\right\}\delta y_{\alpha} \mathrm{d}x =
+0\]</span> 由此可得 <span
+class="math display">\[\dfrac{\partial}{\partial y_{\alpha}}\left[F +
+\sum\limits_{j = 1}^{k}\lambda_{j}G_{j}\right]-
+\dfrac{\mathrm{d}}{\mathrm{d}x}\dfrac{\partial}{\partial
+y_{\alpha}&#39;}\left[F + \sum\limits_{j =
+1}^{\lambda}\lambda_{j}G_{j}\right]= 0,\quad \alpha = 1, 2, \dots,
+s\]</span> ◻</p>
+</div>
+<h2 id="hamilton原理">Hamilton原理</h2>
+<h3 id="位形空间的hamilton原理">位形空间的Hamilton原理</h3>
+<p>在Lagrange动力学中，我们得到过Lagrange方程 <span
+class="math display">\[\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial
+L}{\partial \dot{q}_{\alpha}} \right)- \dfrac{\partial L}{\partial
+q_{\alpha}} = 0\]</span>
+不难看出，其形式与Euler方程相同。因此我们我们可以将Lagrange方程视为如下泛函取极值时需要满足的Euler方程
+<span class="math display">\[S[q_{1}, q_{2}, \dots, q_{s}] =
+\int_{t_{1}}^{t_{2}} L(t, q_{1}, q_{2}, \dots, q_{s}, \dot{q}_{1},
+\dot{q}_{2}, \dots, \dot{q}_{s})\mathrm{d}t\]</span></p>
+<p>由此，我们可以将原本的Lagrange动力学总结为如下原理</p>
+<div class="theorem">
+<p>在位形空间的力学系统从<span
+class="math inline">\(t_{1}\)</span>到<span
+class="math inline">\(t_{2}\)</span>的所有可能运动中，使Hamilton作用量
+<span class="math display">\[S[q_{1}, q_{2}, \dots, q_{s}] =
+\int_{t_{1}}^{t_{2}} L(t, q_{1}, q_{2}, \dots, q_{s}, \dot{q}_{1},
+\dot{q}_{2}, \dots, \dot{q}_{s})\mathrm{d}t\]</span>
+取极值的运动是实际发生的运动，也就是有下式成立 <span
+class="math display">\[\delta \int_{t_{1}}^{t_{2}} L(t, q_{1}, q_{2},
+\dots, q_{s}, \dot{q}_{1}, \dot{q}_{2}, \dots, \dot{q}_{s})\mathrm{d}t =
+0\]</span></p>
+</div>
+<h3 id="相空间的hamilton原理">相空间的Hamilton原理</h3>
+<div class="theorem">
+<p>在相空间的力学系统从<span class="math inline">\(t_{1}\)</span>到<span
+class="math inline">\(t_{2}\)</span>的所有可能运动中，满足 <span
+class="math display">\[\left\{\begin{aligned}
+                \dot{q}_{\alpha} &amp; = \dfrac{\partial H}{\partial
+p_{\alpha}} \\
+                \dot{p}_{\alpha} &amp; = -\dfrac{\partial H}{\partial
+q_{\alpha}} \\
+            \end{aligned}\right.\]</span> 的运动是实际发生的运动。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 由于Hamilton函数为 <span class="math display">\[H =
+\sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - L\]</span>
+因此我们可以将Lagrange函数表示为 <span class="math display">\[L =
+\sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - H\]</span>
+将其带入位形空间的Hamilton原理中可得，取极值时有 <span
+class="math display">\[\begin{aligned}
+                \delta \int_{t_{1}}^{t_{2}} \left(\sum\limits_{\alpha =
+1}^{s} p_{\alpha}\dot{q}_{\alpha} - H \right)\mathrm{d}t &amp; =
+\int_{t_{1}}^{t_{2}}\left(\sum\limits_{\alpha = 1}^{s}
+\dot{q}_{\alpha}\delta p_{\alpha} + p_{\alpha}\delta\dot{q}_{\alpha} -
+\dfrac{\partial H}{\partial p_{\alpha}}\delta p_{\alpha} -
+\dfrac{\partial H}{\partial q_{\alpha}}\delta q_{\alpha}
+\right)\mathrm{d}t \\
+                &amp; = 0 \\
+            \end{aligned}\]</span>
+回忆一下之前推导Euler方程组时的思路，在无约束的情况下，函数<span
+class="math inline">\(y_{1}, y_{2}, \dots,
+y_{s}\)</span>是相互独立的。由此我们可以直接使用<span
+class="math inline">\(\delta y_{1}, \delta y_{2}, \dots, \delta
+y_{n}\)</span>之间相互独立得到每一项得到Euler方程组。由于我们考虑的是位形空间，因此需要将<span
+class="math inline">\(\delta \dot{q}_{\alpha}\)</span>替换为<span
+class="math inline">\(\delta
+q_{\alpha}\)</span>，从而使用独立性得到方程。这里有一个常见的变换关系
+<span class="math display">\[f(x)\dfrac{\mathrm{d}g(x)}{\mathrm{d}x} =
+\dfrac{\mathrm{d}}{\mathrm{d}x}\left[f(x)g(x) \right]-
+g(x)\dfrac{\mathrm{d}f(x)}{\mathrm{d}x}\]</span> 由此可得 <span
+class="math display">\[\begin{aligned}
+                \int_{t_{1}}^{t_{2}}p_{\alpha} \delta \dot{q}_{\alpha}
+\mathrm{d}t &amp; = \int_{t_{1}}^{t_{2}}
+\left[\dfrac{\mathrm{d}}{\mathrm{d}t}\left(p_{\alpha} \delta q_{\alpha}
+\right)- \dot{p}_{\alpha}\delta q_{\alpha} \right]\mathrm{d}t \\
+                &amp; = \left(p_{\alpha}\delta q_{\alpha}
+\right)\big|_{t_{1}}^{t_{2}} -
+\int_{t_{1}}^{t_{2}}\dot{p}_{\alpha}\delta q_{\alpha} \mathrm{d}t \\
+            \end{aligned}\]</span>
+由于力学系统的初始位形和最终位形一般是给定的，因此<span
+class="math inline">\(\delta q_{\alpha}|_{t_{1}} = \delta
+q_{\alpha}|_{t_{2}} = 0\)</span>，这样 <span
+class="math display">\[\int_{t_{1}}^{t_{2}}p_{\alpha} \delta
+\dot{q}_{\alpha} \mathrm{d}t =
+-\int_{t_{1}}^{t_{2}}\dot{p}_{\alpha}\delta q_{\alpha}
+\mathrm{d}t\]</span> 从而原等式变为 <span
+class="math display">\[\begin{aligned}
+                \int_{t_{1}}^{t_{2}}\left(\sum\limits_{\alpha = 1}^{s}
+\dot{q}_{\alpha}\delta p_{\alpha} -\dot{p}_{\alpha}\delta q_{\alpha} -
+\dfrac{\partial H}{\partial p_{\alpha}}\delta p_{\alpha} -
+\dfrac{\partial H}{\partial q_{\alpha}}\delta q_{\alpha}
+\right)\mathrm{d}t &amp; = \int_{t_{1}}^{t_{2}} \sum\limits_{\alpha =
+1}^{s} \left[\left(\dot{q}_{\alpha} - \dfrac{\partial H}{\partial
+p_{\alpha}} \right)\delta p_{\alpha} - \left(\dot{p}_{\alpha} +
+\dfrac{\partial H}{\partial q_{\alpha}}\right)\delta q_{\alpha}
+\right]\mathrm{d}t
+            \end{aligned}\]</span>
+由于坐标是相互独立的，因此不难得到结果。 ◻</p>
+</div>
+<h3 id="位形世界的hamilton原理">位形世界的Hamilton原理</h3>
+<p>在位形世界中，我们将时间<span
+class="math inline">\(t\)</span>视为与广义坐标地位相同的变量，也就是说<span
+class="math inline">\(t\)</span>相当于第<span class="math inline">\(s +
+1\)</span>个广义坐标。此时我们将这<span class="math inline">\(s +
+1\)</span>个广义变量记为参数<span
+class="math inline">\(\tau\)</span>的参数方程形式 <span
+class="math display">\[\left\{\begin{aligned}
+            q_{\alpha} &amp; = q_{\alpha}(\tau) \\
+            t &amp; = t(\tau) \\
+        \end{aligned}\right.\]</span> 由于 <span
+class="math display">\[\begin{aligned}
+            \dfrac{\mathrm{d}q_{\alpha}}{\mathrm{d}t} &amp; =
+\dfrac{\mathrm{d}q_{\alpha}}{\mathrm{d}\tau}
+\dfrac{\mathrm{d}\tau}{\mathrm{d}t} \\
+            &amp; = \dfrac{q_{\alpha}&#39;}{t&#39;}
+        \end{aligned}\]</span> 因此Hamilton作用量为 <span
+class="math display">\[\begin{aligned}
+            S &amp; = \int L\left(q_{1}, q_{2}, \dots, q_{s}, t,
+\dfrac{q_{1}&#39;}{t&#39;}, \dfrac{q_{2}&#39;}{t&#39;}, \dots,
+\dfrac{q_{s}&#39;}{t&#39;}\right)t&#39; \mathrm{d}\tau \\
+            &amp; = \int \varLambda \mathrm{d}\tau
+        \end{aligned}\]</span> 其中，<span
+class="math inline">\(\varLambda = L(q, t,
+\dfrac{q&#39;}{t})t&#39;\)</span>。由此我们有</p>
+<div class="theorem">
+<p>在位形世界的力学系统的所有可能运动中，满足 <span
+class="math display">\[\delta \int \varLambda \mathrm{d}\tau =
+0\]</span> 也就是如下Euler方程 <span
+class="math display">\[\left\{\begin{aligned}
+                \dfrac{\mathrm{d}}{\mathrm{d}\tau} \left(\dfrac{\partial
+\varLambda}{\partial q_{\alpha}&#39;} \right)- \dfrac{\partial
+\varLambda}{\partial q_{\alpha}} &amp;= 0,\quad \alpha = 1, 2, \dots, s
+\\
+                \dfrac{\mathrm{d}}{\mathrm{d}\tau}\left(\dfrac{\partial
+\varLambda}{\partial t&#39;} \right)- \dfrac{\partial
+\varLambda}{\partial t} &amp; =0
+            \end{aligned}\right.\]</span> 的运动是实际运动。</p>
+</div>
+<p>此时，广义动量的定义变化为 <span
+class="math display">\[\begin{aligned}
+            p_{\alpha} &amp; = \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \\
+            &amp; = \dfrac{\partial \varLambda}{\partial
+q_{\alpha}&#39;}
+        \end{aligned}\]</span> 这样时间<span
+class="math inline">\(t\)</span>对应的广义动量为 <span
+class="math display">\[\begin{aligned}
+            p_{t} &amp; = \dfrac{\partial \varLambda}{\partial t&#39;}
+\\
+            &amp; = \dfrac{\partial }{\partial t&#39;} \left[L(q, t,
+\dfrac{q&#39;}{t&#39;})t&#39; \right]\\
+            &amp; = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial
+L}{\partial \dot{q}_{\alpha}}\dfrac{\partial}{\partial
+t&#39;}\left(\dfrac{q_{\alpha}&#39;}{t&#39;} \right)t&#39; + L \\
+            &amp; = L -\sum\limits_{\alpha = 1}^{s}\dfrac{\partial
+L}{\partial \dot{q}_{\alpha}}\dfrac{q_{\alpha}&#39;}{t&#39;^{2}}t&#39;
+\\
+            &amp; = L - \sum\limits_{\alpha = 1}^{s}
+p_{\alpha}\dot{q}_{\alpha} \\
+            &amp; = -H \\
+        \end{aligned}\]</span></p>
+<h2 id="最小作用量原理">最小作用量原理</h2>
+<h3 id="可遗坐标与hamilton原理">可遗坐标与Hamilton原理</h3>
+<p>在存在可遗坐标的情况下，Lagrange函数的形式需要发生变化。为了推导最小作用量原理，我们先给出以下引理</p>
+<div class="lemma">
+<p>如果Lagrange函数<span
+class="math inline">\(L\)</span>中不显式含有广义坐标<span
+class="math inline">\(q_{1}\)</span>，那么如果我们想要不考虑该广义坐标与广义动量的影响，那么需要将原本的Hamilton原理修改为
+<span class="math display">\[\delta \int_{t_{1}}^{t_{2}} \left(L -
+p_{1}\dot{q}_{1} \right)\mathrm{d}t = 0\]</span></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 我们已知如果<span
+class="math inline">\(q_{1}\)</span>是可遗坐标，那么<span
+class="math inline">\(p_{1}\)</span>是守恒的。这样通过 <span
+class="math display">\[p_{1} = \dfrac{\partial }{\partial \dot{q}_{1}}
+L(q_{2}, \dots, q_{s}, \dot{q}_{1}, \dot{q}_{2}, \dots, \dot{q}_{s},
+t)\]</span> 可以解出<span
+class="math inline">\(\dot{q}_{1}\)</span>，也就是得到使用<span
+class="math inline">\(\alpha \neq 1\)</span>的<span
+class="math inline">\(q_{\alpha}\)</span>和<span
+class="math inline">\(\dot{q}_{\alpha}\)</span>以及<span
+class="math inline">\(p_{1}\)</span>来表示<span
+class="math inline">\(\dot{q}_{1}\)</span>的表达式 <span
+class="math display">\[\dot{q}_{1} = \dot{q}_{1}(q_{2}, \dots, q_{s},
+p_{1}, \dot{q}_{2}, \dots, \dot{q}_{s})\]</span></p>
+<p>看起来，既然我们已经从Lagrange函数中消除了<span
+class="math inline">\(\alpha =
+1\)</span>的自由度的影响，那么我们好像不需要进行修改，直接将原本的Hamilton原理套过来即可。但实际上，由于此时<span
+class="math inline">\(q_{1}\)</span>是由其他变量的函数，因此<span
+class="math inline">\(\delta
+q_{1}\)</span>并不是一个独立的变分，从而<span
+class="math inline">\(\delta q_{1}|_{t_{1}}\)</span>和<span
+class="math inline">\(\delta
+q_{1}|_{t_{2}}\)</span>并不一定为0。这似乎有点类似在非完整约束条件下力学问题，但我们在此时不能使用Lagrange乘数法来解决这一问题。一方面，不同于一般的约束条件，此时的广义动量守恒是系统的內禀性质，因此无需引入一个外部的约束；另一方面，要想使用Lagrange乘数法，约束一般需要是一个静态的条件，比如
+<span class="math display">\[c_{j} = \int_{a}^{b}G_{j}(x, y_{1}, y_{2},
+\dots, y_{s}, y_{1}&#39;, y_{2}&#39;, \dots, y_{s}&#39;) \mathrm{d}x,
+\quad j = 1, 2, \dots, k\]</span> 这样我们才有<span
+class="math inline">\(\displaystyle\delta \int_{t_{1}}^{t_{2}}G(x, y,
+y&#39;) =
+0\)</span>，从而能够使用Lagrange乘数法。而此时的条件为一个微分方程<span
+class="math inline">\(\dfrac{\partial L}{\partial \dot{q}_{1}} =
+p_{1}\)</span>，不太适合使用Lagrange乘数法。</p>
+<p>为了消除这一自由度的影响，我们考虑计算变分 <span
+class="math display">\[\begin{aligned}
+                \delta \int_{t_{1}}^{t_{2}} L \mathrm{d}t &amp; =
+\int_{t_{1}}^{t_{2}} \sum\limits_{\alpha = 1}^{s} \left[\dfrac{\partial
+L}{\partial q_{\alpha}}\delta q_{\alpha} + \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}}\delta \dot{q}_{\alpha}\right]\mathrm{d}t \\
+                &amp; = \int_{t_{1}}^{t_{2}}\sum\limits_{\alpha = 1}^{s}
+\left[\dfrac{\partial L}{\partial q_{\alpha}} \delta q_{\alpha} +
+\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \delta q_{\alpha}
+\right)-\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} \right)\delta q_{\alpha} \right]\mathrm{d}t \\
+                &amp; = \sum\limits_{\alpha = 1}^{s}
+\int_{t_{1}}^{t_{2}} \left[\dfrac{\partial L}{\partial q_{\alpha}} -
+\dfrac{\mathrm{d}}{\mathrm{d}t}\left(\dfrac{\partial
+L}{\partial\dot{q}_{\alpha}} \right)\right]\delta q_{\alpha}\mathrm{d}t
++ \sum\limits_{\alpha =
+1}^{s}\int_{t_{1}}^{t_{2}}\mathrm{d}\left(\dfrac{\partial L}{\partial
+\dot{q}_{\alpha}}\delta q_{\alpha} \right)\\
+                &amp; = \sum\limits_{\alpha = 1}^{s}
+\left(\dfrac{\partial L}{\partial \dot{q}_{\alpha}} \delta q_{\alpha}
+\right)\Bigg|_{t_{1}}^{t_{2}} \\
+                &amp; = (p_{1}\delta q_{1})|_{t_{1}}^{t_{2}} \\
+            \end{aligned}\]</span> 考虑到广义动量<span
+class="math inline">\(p_{1}\)</span>守恒，我们有 <span
+class="math display">\[\delta(p_{1}q_{1})|_{t_{1}}^{t_{2}} =
+(p_{1}\delta q_{1})|_{t_{1}}^{t_{2}}\]</span> 从而 <span
+class="math display">\[\delta \int_{t_{1}}^{t_{2}} \left(L -
+p_{1}\dot{q}_{1} \right)\mathrm{d}t = 0\]</span> ◻</p>
+</div>
+<p>不难看出，此时被积函数 <span class="math display">\[L -
+p_{1}\dot{q}_{1}\]</span>
+似乎是一种介于Lagrange函数与Hamilton函数之间的函数，我们可以将其称为修正的Lagrange函数。</p>
+<h3 id="jacobi最小作用量原理">Jacobi最小作用量原理</h3>
+<p>在位形世界中，<span
+class="math inline">\(t\)</span>也变成了一个广义坐标。由前所述，时间<span
+class="math inline">\(t\)</span>对应的广义动量为 <span
+class="math display">\[p_{t} = - H\]</span>
+当Lagrange函数不显式含时<span
+class="math inline">\(t\)</span>时，Hamilton函数<span
+class="math inline">\(H\)</span>是守恒的。这样在位形世界中，此时<span
+class="math inline">\(t\)</span>变成了可遗坐标，从而位形世界的Lagrange函数应当被修正为
+<span class="math display">\[\begin{aligned}
+            \varLambda - p_{t}t&#39; &amp; = (L - p_{t})t&#39; \\
+            &amp; = (L + H)t&#39; \\
+            &amp; = \sum\limits_{\alpha =
+1}^{s}p_{\alpha}\dot{q}_{\alpha} t&#39;
+        \end{aligned}\]</span> 由此我们定义一个新的量</p>
+<div class="definition">
+<p>在位形世界中，我们将Jacobi作用量定义为 <span class="math display">\[W
+= \int \sum\limits_{\alpha = 1}^{s} p_{\alpha} \dot{q}_{\alpha} t&#39;
+\mathrm{d}\tau\]</span> 其中，<span
+class="math inline">\(q_{\alpha}\)</span>和<span
+class="math inline">\(t\)</span>可以表示为<span
+class="math inline">\(\tau\)</span>的函数。</p>
+</div>
+<p>这样我们可以得到如下定理</p>
+<div class="theorem">
+<p><span class="math display">\[\Delta \int \sum\limits_{\alpha =
+1}^{s}p_{\alpha} \dot{q}_{\alpha} \mathrm{d}t = 0\]</span> 其中，<span
+class="math inline">\(\Delta\)</span>为全变分。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 由于在位形世界中，Hamilton原理表示为 <span
+class="math display">\[\delta \int \varLambda \mathrm{d}\tau =
+0\]</span> 这样由于此时<span
+class="math inline">\(\varLambda\)</span>被修正了，因此Hamilton原理变为
+<span class="math display">\[\begin{aligned}
+                \Delta W &amp; = \Delta \int_{\tau_{1}}^{\tau_{2}}
+\sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha}t&#39;
+\mathrm{d}\tau \\
+                &amp; = 0 \\
+            \end{aligned}\]</span> 此处<span
+class="math inline">\(\Delta\)</span>表示包括时间变分在内的全变分，其可以表示为
+<span class="math display">\[\Delta q_{\alpha} = \delta q_{\alpha} +
+\dot{q}_{\alpha}\Delta t\]</span> 上面给出的Hamilton原理也可以表示为
+<span class="math display">\[\Delta \int \sum\limits_{\alpha = 1}^{s}
+p_{\alpha}\dot{q}_{\alpha} \mathrm{d}t = 0\]</span> ◻</p>
+</div>
+<h2
+id="hamilton原理和最小作用量原理的区别">Hamilton原理和最小作用量原理的区别</h2>
+<table>
+<caption>Hamilton原理和最小作用量原理的区别</caption>
+<thead>
+<tr>
+<th style="text-align: center;">比较项目</th>
+<th style="text-align: center;">Hamilton原理</th>
+<th style="text-align: center;">最小作用量原理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">作用量</td>
+<td style="text-align: center;">Hamilton函数</td>
+<td style="text-align: center;">Jacobi作用量</td>
+</tr>
+<tr>
+<td style="text-align: center;">变分类型</td>
+<td style="text-align: center;">等式变分</td>
+<td style="text-align: center;">全变分</td>
+</tr>
+<tr>
+<td style="text-align: center;">可能的运动类型</td>
+<td style="text-align: center;">等能而不等时</td>
+<td style="text-align: center;">等时而不等能</td>
+</tr>
+<tr>
+<td style="text-align: center;">适用的体系</td>
+<td style="text-align: center;">理想有势系统</td>
+<td style="text-align: center;">保守系统</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/" title="力学变分原理——经典力学笔记4">https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Classical-Mechanics/" rel="tag"># Classical Mechanics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/4f8a2c71/" rel="prev" title="Hamilton力学——经典力学笔记3">
+      <i class="fa fa-chevron-left"></i> Hamilton力学——经典力学笔记3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/d9e45f82/" rel="next" title="Hamilton-Jacobi方程——经典力学笔记5">
+      Hamilton-Jacobi方程——经典力学笔记5 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9B%E5%AD%A6%E5%8F%98%E5%88%86%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">力学变分原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E5%88%86%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">变分法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#euler%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">Euler方程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%9B%E5%87%BD%E7%9A%84%E5%8F%98%E5%88%86"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">泛函的变分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%83%85%E5%86%B5%E7%9A%84euler%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">简单情况的Euler方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%83%85%E5%86%B5%E7%9A%84euler%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">复杂情况的Euler方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%8F%98%E5%88%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">约束条件下的变分问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hamilton%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">Hamilton原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%BD%A2%E7%A9%BA%E9%97%B4%E7%9A%84hamilton%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">位形空间的Hamilton原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E7%A9%BA%E9%97%B4%E7%9A%84hamilton%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">相空间的Hamilton原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%BD%A2%E4%B8%96%E7%95%8C%E7%9A%84hamilton%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.3.</span> <span class="nav-text">位形世界的Hamilton原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">最小作用量原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%81%97%E5%9D%90%E6%A0%87%E4%B8%8Ehamilton%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">可遗坐标与Hamilton原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jacobi%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">Jacobi最小作用量原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hamilton%E5%8E%9F%E7%90%86%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8E%9F%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">Hamilton原理和最小作用量原理的区别</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">95k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:16</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

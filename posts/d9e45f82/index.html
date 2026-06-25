@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文主要介绍了理论力学中有关Hamilton-Jacobi方程的相关内容，包括正则变换与母函数、Possion括号的不变性、Hamilton主函数与Hamilton特征函数以及可分离系统与作用量变量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hamilton-Jacobi方程——经典力学笔记5">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/d9e45f82/index.html">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="本文主要介绍了理论力学中有关Hamilton-Jacobi方程的相关内容，包括正则变换与母函数、Possion括号的不变性、Hamilton主函数与Hamilton特征函数以及可分离系统与作用量变量。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T15:14:35.912Z">
+<meta property="article:modified_time" content="2026-06-25T15:14:38.965Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Classical Mechanics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/d9e45f82/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hamilton-Jacobi方程——经典力学笔记5 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/d9e45f82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hamilton-Jacobi方程——经典力学笔记5
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-06-25 23:14:35 / 修改时间：23:14:38" itemprop="dateCreated datePublished" datetime="2026-06-25T23:14:35+08:00">2026-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/" itemprop="url" rel="index"><span itemprop="name">Physics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Physics/Classical-Mechanics/" itemprop="url" rel="index"><span itemprop="name">Classical Mechanics</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>26 分钟</span>
+            </span>
+            <div class="post-description">本文主要介绍了理论力学中有关Hamilton-Jacobi方程的相关内容，包括正则变换与母函数、Possion括号的不变性、Hamilton主函数与Hamilton特征函数以及可分离系统与作用量变量。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="hamilton-jacobi方程">Hamilton-Jacobi方程</h1>
+<h2 id="正则变换">正则变换</h2>
+<h3 id="正则变换的条件">正则变换的条件</h3>
+<p>在Lagrange动力学中，广义坐标之间的变换被称为点变换。我们之所以要研究这种变换，是因为如果通过变换能够得到可遗坐标，那么对于运动过程的分析就能得到简化。由于在Hamilton动力学中，广义坐标和广义动量处于相同地位的，因此我们可以考虑更加广义的变化。由此我们将正则变换定义为</p>
+<div class="definition">
+<p>在Hamilton动力学中，如果变换 <span
+class="math display">\[\left\{\begin{aligned}
+            P_{\alpha} &amp; = P_{\alpha}(q, p, t) \\
+            Q_{\alpha} &amp; = Q_{\alpha}(q, p, t) \\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+满足Hamilton正则方程，那么我们将这种变换称为正则变换。</p>
+</div>
+<p>变换后的两组变量<span
+class="math inline">\(P_{\alpha}\)</span>和<span
+class="math inline">\(Q_{\alpha}\)</span>完全是等价的，因此我们没有必要再将其区分为"广义坐标"和"广义动量"。根据定义，我们可以得到一个变换是正则变换的必要条件</p>
+<div class="theorem">
+<p>如果变换前后的变量满足 <span
+class="math display">\[\sum\limits_{\alpha = 1}^{s}p_{\alpha}
+\mathrm{d}q_{\alpha} - \sum\limits_{\alpha = 1}^{s}P_{\alpha}
+\mathrm{d}Q_{\alpha} + (K - H)\mathrm{d}t = \mathrm{d}U\]</span>
+那么这样的变换为正则变换。其中，<span
+class="math inline">\(K\)</span>表示变换后的Hamilton函数。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em>
+由于变换后的变量也满足Hamilton正则方程，因此有如下关系式成立 <span
+class="math display">\[\delta \int_{t_{1}}^{t_{2}}
+\left[\sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} - H(q, p,
+t) \right]\mathrm{d}t = \delta \int_{t_{1}}^{t_{2}}
+\left[\sum\limits_{\alpha = 1}^{s}P_{\alpha}\dot{Q}_{\alpha} - K(Q, P,
+t) \right]\mathrm{d}t = 0\]</span></p>
+<p>在此我们先中断推导，考虑将某个函数<span
+class="math inline">\(U\)</span>对于时间的全导数<span
+class="math inline">\(\dfrac{\mathrm{d}U}{\mathrm{d}t}\)</span>对时间积分后再变分
+<span class="math display">\[\delta
+\int_{t_{1}}^{t_{2}}\dfrac{\mathrm{d}U}{\mathrm{d}t} \mathrm{d}t  =
+\delta U \bigg|_{t_{1}}^{t_{2}}\]</span>
+一般情况下，力学系统的始末状态都是给定的，因此有 <span
+class="math display">\[\delta
+\int_{t_{1}}^{t_{2}}\dfrac{\mathrm{d}U}{\mathrm{d}t} \mathrm{d}t  =
+0\]</span></p>
+<p>回到原来的问题，我们将上面推导结果中的右边改写为包含某个函数<span
+class="math inline">\(U\)</span>的变分，这样有 <span
+class="math display">\[\delta \int_{t_{1}}^{t_{2}}
+\left[\left(\sum\limits_{\alpha = 1}^{s} p_{\alpha}\dot{q}_{\alpha} -
+H(q, p, t) \right)- \left(\sum\limits_{\alpha =
+1}^{s}P_{\alpha}\dot{Q}_{\alpha} - K(Q, P, t) \right)\right]\mathrm{d}t
+= \delta \int_{t_{1}}^{t_{2}}
+\dfrac{\mathrm{d}U}{\mathrm{d}t}\mathrm{d}t\]</span> 从而 <span
+class="math display">\[\left(\sum\limits_{\alpha = 1}^{s}
+p_{\alpha}\dot{q}_{\alpha} - H(q, p, t) \right)-
+\left(\sum\limits_{\alpha = 1}^{s}P_{\alpha}\dot{Q}_{\alpha} - K(Q, P,
+t) \right)= \dfrac{\mathrm{d}U}{\mathrm{d}t}\]</span> 从而可以得到结果。
+◻</p>
+</div>
+<h3 id="母函数">母函数</h3>
+<div class="definition">
+<p>我们将正则变换的必要条件 <span
+class="math display">\[\sum\limits_{\alpha = 1}^{s}p_{\alpha}
+\mathrm{d}q_{\alpha} - \sum\limits_{\alpha = 1}^{s}P_{\alpha}
+\mathrm{d}Q_{\alpha} + (K - H)\mathrm{d}t = \mathrm{d}U\]</span>
+中包含的函数<span
+class="math inline">\(U\)</span>称为正则变换的母函数。</p>
+</div>
+<p>由定义中的表达式，我们可以将<span
+class="math inline">\(U\)</span>表示为 <span
+class="math display">\[U_{1} = U_{1}(q, Q, t)\]</span>
+这样由母函数定义式不难得到 <span
+class="math display">\[\left\{\begin{aligned}
+        K - H &amp; = \dfrac{\partial U_{1}}{\partial t} \\
+        p_{\alpha} &amp; = \dfrac{\partial U_{1}}{\partial q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        P_{\alpha} &amp; = -\dfrac{\partial U_{1}}{\partial Q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span>
+上面的三个表达式与正则变换关系是等价的。通过上面的变换关系我们可以求解出正则变换关系。</p>
+<p>在介绍下面的内容前，我们需要先介绍一个数学概念</p>
+<div class="definition">
+<p>对于凸函数<span
+class="math inline">\(f(x)\)</span>，我们对其进行Legendre变换后的函数<span
+class="math inline">\(\tilde{f}(u)\)</span>定义为 <span
+class="math display">\[\tilde{f}(u) = ux(u) - f(x(u))\]</span>
+其中，<span class="math inline">\(u = f(x)&#39;\)</span>，并且<span
+class="math inline">\(x = [f&#39;]^{-1}(u)\)</span></p>
+</div>
+<p>例如，如果我们对Lagrange函数使用Legendre变换，那么此时<span
+class="math inline">\(u_{\alpha} = \dfrac{\partial L}{\partial
+\dot{q}_{\alpha}} = p_{\alpha}\)</span>，从而 <span
+class="math display">\[H(q, p, t) = \sum\limits_{\alpha = 1}^{s}
+p_{\alpha} q_{\alpha} - L(q, \dot{q}, t)\]</span></p>
+<p>由此，我们可以对母函数进行如下三种Legendre变换</p>
+<h4 id="使用p-q-t作为自变量">使用<span class="math inline">\(p, Q,
+t\)</span>作为自变量</h4>
+<p>由于 <span class="math display">\[\sum\limits_{\alpha =
+1}^{s}p_{\alpha} \mathrm{d}q_{\alpha} - \sum\limits_{\alpha =
+1}^{s}P_{\alpha} \mathrm{d}Q_{\alpha} + (K - H)\mathrm{d}t =
+\mathrm{d}U_{1}\]</span> 因此 <span
+class="math display">\[\dfrac{\partial U_{1}}{\partial q_{\alpha}} =
+p_{\alpha}\]</span> 此时由Legendre变换可得 <span
+class="math display">\[U_{2}(p, Q, t) = U_{1}(q, Q, t) - \sum\limits_{s
+= 1}^{\alpha}p_{\alpha}q_{\alpha}\]</span> 从而 <span
+class="math display">\[\begin{aligned}
+            \mathrm{d}U_{2} &amp; = \mathrm{d}U_{1} -
+\sum\limits_{\alpha = 1}^{s}p_{\alpha} \mathrm{d}q_{\alpha} -
+\sum\limits_{\alpha = 1}^{s} q_{\alpha} \mathrm{d}p_{\alpha} \\
+            &amp; = -\sum\limits_{\alpha = 1}^{s}q_{\alpha}
+\mathrm{d}p_{\alpha} - \sum\limits_{\alpha  =1}^{s}P_{\alpha}
+\mathrm{d}Q_{\alpha} + (K - H) \mathrm{d}t
+        \end{aligned}\]</span> 由此 <span
+class="math display">\[\left\{\begin{aligned}
+        K - H &amp; = \dfrac{\partial U_{2}}{\partial t} \\
+        q_{\alpha} &amp; = -\dfrac{\partial U_{2}}{\partial p_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        P_{\alpha} &amp; = -\dfrac{\partial U_{2}}{\partial Q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span></p>
+<p>这里存在一个问题，那就是为什么我们通过Legendre变换得到的结果是<span
+class="math inline">\(\displaystyle U_{2}(p, Q, t) = U_{1}(q, Q, t) -
+\sum\limits_{s =
+1}^{\alpha}p_{\alpha}q_{\alpha}\)</span>而非更加符合数学形式的<span
+class="math inline">\(\displaystyle U_{2}(p, Q, t) = \sum\limits_{\alpha
+= 1}^{s}p_{\alpha}q_{\alpha} - U_{1}(q, Q,
+t)\)</span>。一种可能的解释是，Legendre变换需要保持辛结构，也就是使Possion括号不变。这一点在后面讨论时会看到。</p>
+<h4 id="使用q-p-t作为自变量">使用<span class="math inline">\(q, P,
+t\)</span>作为自变量</h4>
+<p>由于 <span class="math display">\[\sum\limits_{\alpha =
+1}^{s}p_{\alpha} \mathrm{d}q_{\alpha} - \sum\limits_{\alpha =
+1}^{s}P_{\alpha} \mathrm{d}Q_{\alpha} + (K - H)\mathrm{d}t =
+\mathrm{d}U_{1}\]</span> 因此 <span
+class="math display">\[\dfrac{\partial U_{1}}{\partial Q_{\alpha}} = -
+P_{\alpha}\]</span> 此时由Legendre变换可得 <span
+class="math display">\[U_{3}(q, P, t) = U_{1}(q, Q, t) + \sum\limits_{s
+= 1}^{\alpha}P_{\alpha}Q_{\alpha}\]</span> 从而 <span
+class="math display">\[\begin{aligned}
+            \mathrm{d}U_{3} &amp; = \mathrm{d}U_{1} +
+\sum\limits_{\alpha = 1}^{s}P_{\alpha} \mathrm{d}Q_{\alpha} +
+\sum\limits_{\alpha = 1}^{s} Q_{\alpha} \mathrm{d}P_{\alpha} \\
+            &amp; = \sum\limits_{\alpha = 1}^{s}q_{\alpha}
+\mathrm{d}p_{\alpha} + \sum\limits_{\alpha  =1}^{s}Q_{\alpha}
+\mathrm{d}P_{\alpha} + (K - H) \mathrm{d}t
+        \end{aligned}\]</span> 由此 <span
+class="math display">\[\left\{\begin{aligned}
+        K - H &amp; = \dfrac{\partial U_{3}}{\partial t} \\
+        p_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        Q_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial P_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span></p>
+<h4 id="使用p-p-t作为自变量">使用<span class="math inline">\(p, P,
+t\)</span>作为自变量</h4>
+<p>由于 <span class="math display">\[\sum\limits_{\alpha =
+1}^{s}p_{\alpha} \mathrm{d}q_{\alpha} - \sum\limits_{\alpha =
+1}^{s}P_{\alpha} \mathrm{d}Q_{\alpha} + (K - H)\mathrm{d}t =
+\mathrm{d}U_{1}\]</span> 因此 <span
+class="math display">\[\left\{\begin{aligned}
+            \dfrac{\partial U_{1}}{\partial q_{\alpha}} &amp; =
+p_{\alpha} \\
+            \dfrac{\partial U_{1}}{\partial Q_{\alpha}} &amp; =
+-P_{\alpha}
+        \end{aligned}\right.\]</span> 此时由Legendre变换可得 <span
+class="math display">\[U_{4}(p, P, t) = U_{1}(q, Q, t) - \sum\limits_{s
+= 1}^{\alpha}p_{\alpha}q_{\alpha} + \sum\limits_{s = 1}^{\alpha}
+P_{\alpha}Q_{\alpha}\]</span> 从而 <span
+class="math display">\[\begin{aligned}
+            \mathrm{d}U_{4} &amp; = \mathrm{d}U_{1} -
+\sum\limits_{\alpha = 1}^{s}p_{\alpha} \mathrm{d}q_{\alpha} -
+\sum\limits_{\alpha = 1}^{s} q_{\alpha} \mathrm{d}p_{\alpha} +
+\sum\limits_{\alpha = 1}^{s}P_{\alpha}\mathrm{d}Q_{\alpha} +
+\sum\limits_{\alpha = 1}^{s}Q_{\alpha}\mathrm{d}P_{\alpha} \\
+            &amp; = -\sum\limits_{\alpha = 1}^{s}q_{\alpha}
+\mathrm{d}p_{\alpha} + \sum\limits_{\alpha = 1}^{s}Q_{\alpha}
+\mathrm{d}P_{\alpha} + (K - H) \mathrm{d}t
+        \end{aligned}\]</span> 由此 <span
+class="math display">\[\left\{\begin{aligned}
+        K - H &amp; = \dfrac{\partial U_{4}}{\partial t} \\
+        q_{\alpha} &amp; = -\dfrac{\partial U_{4}}{\partial p_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        Q_{\alpha} &amp; = \dfrac{\partial U_{4}}{\partial P_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span></p>
+<h3 id="possion括号的不变性">Possion括号的不变性</h3>
+<p>Possion括号的一个重要性质为其在正则变换下不变，即</p>
+<div class="theorem">
+<p>如果我们将正则变换前的正则变量记为<span
+class="math inline">\(p_{\alpha}\)</span>和<span
+class="math inline">\(q_{\alpha}\)</span>，将变换后的变量记为<span
+class="math inline">\(P_{\alpha}\)</span>和<span
+class="math inline">\(Q_{\alpha}\)</span>，并将变换前的Possion括号记为<span
+class="math inline">\([\varphi,
+\psi]_{pq}\)</span>，将变换后的Possion括号记为<span
+class="math inline">\([\varphi, \psi]_{PQ}\)</span>，那么有 <span
+class="math display">\[[\varphi, \psi]_{pq} = [\varphi,
+\psi]_{PQ}\]</span></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 我们按照<span class="math inline">\(q, P,
+t\)</span>作为母函数的自变量，这样可以得到正则变换关系为 <span
+class="math display">\[\left\{\begin{aligned}
+        p_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        Q_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial P_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span> 对于任意一个力学量<span
+class="math inline">\(f\)</span>，我们总是可以将其表示为<span
+class="math inline">\(f = F(q, p(q, P), t)\)</span>或<span
+class="math inline">\(f = F(Q(q, P), P,
+T)\)</span>，这样使用两种形式分别对<span
+class="math inline">\(q_{\alpha}\)</span>求偏导时有 <span
+class="math display">\[\begin{aligned}
+                \dfrac{\partial f}{\partial q_{\alpha}} &amp; =
+\dfrac{\partial F}{\partial q_{\alpha}} + \sum\limits_{\beta =
+1}^{s}\dfrac{\partial F}{\partial p_{\beta}} \dfrac{\partial
+p_{\beta}}{\partial q_{\alpha}} \\
+                &amp; = \sum\limits_{\beta = 1}^{s}\dfrac{\partial
+F}{\partial Q_{\beta}} \dfrac{\partial Q_{\beta}}{\partial q_{\alpha}}
+            \end{aligned}\]</span> 由此可得 <span
+class="math display">\[\dfrac{\partial }{\partial q_{\alpha}} =
+\sum\limits_{\beta = 1}^{s} \left(-\dfrac{\partial p_{\beta}}{\partial
+q_{\alpha}}\dfrac{\partial }{\partial p_{\beta}} + \dfrac{\partial
+Q_{\beta}}{\partial q_{\alpha}} \dfrac{\partial}{\partial Q_{\beta}}
+\right)\]</span> 从而 <span class="math display">\[\begin{aligned}
+                \relax [\varphi, \psi]_{pq} &amp; = \sum\limits_{\alpha
+= 1}^{s} \left[\dfrac{\partial \varphi}{\partial q_{\alpha}}
+\dfrac{\partial \psi}{\partial p_{\alpha}} - \dfrac{\partial
+\varphi}{\partial p_{\alpha}}\dfrac{\partial \psi}{\partial
+q_{\alpha}}\right]\\
+                &amp; = \sum\limits_{\alpha =
+1}^{s}\left[\sum\limits_{\beta = 1}^{s} \left(-\dfrac{\partial
+p_{\beta}}{\partial q_{\alpha}}\dfrac{\partial \varphi}{\partial
+p_{\beta}} + \dfrac{\partial Q_{\beta}}{\partial q_{\alpha}}
+\dfrac{\partial \varphi}{\partial Q_{\beta}} \right)\dfrac{\partial
+\psi}{\partial p_{\alpha}} - \sum\limits_{\beta = 1}^{s}
+\left(-\dfrac{\partial p_{\beta}}{\partial q_{\alpha}}\dfrac{\partial
+\psi}{\partial p_{\beta}} + \dfrac{\partial Q_{\beta}}{\partial
+q_{\alpha}} \dfrac{\partial \psi}{\partial Q_{\beta}}
+\right)\dfrac{\partial \varphi}{\partial p_{\alpha}}\right]\\
+                &amp; = \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s} \dfrac{\partial Q_{\beta}}{\partial q_{\alpha}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\beta}} \dfrac{\partial
+\psi}{\partial p_{\alpha}} - \dfrac{\partial \varphi}{\partial
+p_{\alpha}}\dfrac{\partial \psi}{\partial Q_{\beta}}\right)-
+\sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta = 1}^{s}\dfrac{\partial
+p_{\beta}}{\partial q_{\alpha}} \left(\dfrac{\partial \varphi}{\partial
+p_{\beta}}\dfrac{\partial \psi}{\partial p_{\alpha}} - \dfrac{\partial
+\varphi}{\partial p_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}}
+\right)\\
+                &amp; = \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s} \dfrac{\partial^{2} U}{\partial q_{\alpha}\partial P_{\beta}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\beta}} \dfrac{\partial
+\psi}{\partial p_{\alpha}} - \dfrac{\partial \varphi}{\partial
+p_{\alpha}}\dfrac{\partial \psi}{\partial Q_{\beta}}\right)-
+\sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s}\dfrac{\partial^{2} U}{\partial q_{\alpha}\partial q_{\beta}}
+\left(\dfrac{\partial \varphi}{\partial p_{\beta}}\dfrac{\partial
+\psi}{\partial p_{\alpha}} - \dfrac{\partial \varphi}{\partial
+p_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}} \right)\\
+            \end{aligned}\]</span>
+仔细观察上式结果中的第二部分，由于其中<span
+class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>都是求和指标，因此其顺序可以交换，从而
+<span class="math display">\[\sum\limits_{\alpha =
+1}^{s}\sum\limits_{\beta = 1}^{s}\dfrac{\partial^{2} U}{\partial
+q_{\alpha}\partial q_{\beta}} \left(\dfrac{\partial \varphi}{\partial
+p_{\beta}}\dfrac{\partial \psi}{\partial p_{\alpha}} - \dfrac{\partial
+\varphi}{\partial p_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}}
+\right)= \sum\limits_{\beta = 1}^{s}\sum\limits_{\alpha =
+1}^{s}\dfrac{\partial^{2} U}{\partial q_{\beta}\partial q_{\alpha}}
+\left(- \dfrac{\partial \varphi}{\partial p_{\beta}}\dfrac{\partial
+\psi}{\partial p_{\alpha}} + \dfrac{\partial \varphi}{\partial
+p_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}} \right)\]</span>
+由此可以看出，这一项与其自身负数相等，从而该项的结果等于0。由此可得
+<span class="math display">\[[\varphi, \psi]_{pq} = \sum\limits_{\alpha
+= 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{\partial^{2} U}{\partial
+q_{\alpha}\partial P_{\beta}} \left(\dfrac{\partial \varphi}{\partial
+Q_{\beta}} \dfrac{\partial \psi}{\partial p_{\alpha}} - \dfrac{\partial
+\varphi}{\partial p_{\alpha}}\dfrac{\partial \psi}{\partial
+Q_{\beta}}\right)\]</span></p>
+<p>再看<span class="math inline">\([\varphi,
+\psi]_{PQ}\)</span>，同样地，对于任意一个力学量<span
+class="math inline">\(f\)</span>，我们总是可以将其表示为<span
+class="math inline">\(f = F(q, p(q, P), t)\)</span>或<span
+class="math inline">\(f = F(Q(q, P), P,
+T)\)</span>，这样使用两种形式分别对<span
+class="math inline">\(P_{\alpha}\)</span>求偏导时有 <span
+class="math display">\[\begin{aligned}
+                \dfrac{\partial f}{\partial P_{\alpha}} &amp; =
+\sum\limits_{\beta = 1}^{s}\dfrac{\partial F}{\partial p_{\beta}}
+\dfrac{\partial p_{\beta}}{\partial P_{\alpha}} \\
+                &amp; = \sum\limits_{\beta = 1}^{s} \dfrac{\partial
+F}{\partial Q_{\beta}} \dfrac{\partial Q_{\beta}}{\partial P_{\alpha}} +
+\dfrac{\partial F}{\partial P_{\alpha}}
+            \end{aligned}\]</span> 这样有 <span
+class="math display">\[\dfrac{\partial }{\partial P_{\alpha}} =
+\sum\limits_{\beta = 1}^{s} \left(\dfrac{\partial p_{\beta}}{\partial
+P_{\alpha}} \dfrac{\partial}{\partial p_{\beta}} - \dfrac{\partial
+Q_{\beta}}{\partial P_{\alpha}} \dfrac{\partial}{\partial Q_{\beta}}
+\right)\]</span> 从而 <span class="math display">\[\begin{aligned}
+                \relax [\varphi, \psi]_{PQ} &amp; = \sum\limits_{\alpha
+= 1}^{s} \left[\dfrac{\partial \varphi}{\partial Q_{\alpha}}
+\dfrac{\partial \psi}{\partial P_{\alpha}} - \dfrac{\partial
+\varphi}{\partial P_{\alpha}}\dfrac{\partial \psi}{\partial
+Q_{\alpha}}\right]\\
+                &amp; = \sum\limits_{\alpha =
+1}^{s}\left[\sum\limits_{\beta = 1}^{s} \left(\dfrac{\partial
+p_{\beta}}{\partial P_{\alpha}} \dfrac{\partial \psi}{\partial
+p_{\beta}} - \dfrac{\partial Q_{\beta}}{\partial P_{\alpha}}
+\dfrac{\partial \psi}{\partial Q_{\beta}} \right)\dfrac{\partial
+\varphi}{\partial Q_{\alpha}} - \sum\limits_{\beta = 1}^{s}
+\left(\dfrac{\partial p_{\beta}}{\partial P_{\alpha}} \dfrac{\partial
+\varphi}{\partial p_{\beta}} - \dfrac{\partial Q_{\beta}}{\partial
+P_{\alpha}} \dfrac{\partial\varphi}{\partial Q_{\beta}}
+\right)\dfrac{\partial \psi}{\partial Q_{\alpha}}\right]\\
+                &amp; = \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s} \dfrac{\partial Q_{\beta}}{\partial P_{\alpha}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\beta}} \dfrac{\partial
+\psi}{\partial Q_{\alpha}} - \dfrac{\partial \varphi}{\partial
+Q_{\alpha}}\dfrac{\partial \psi}{\partial Q_{\beta}}\right)+
+\sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta = 1}^{s}\dfrac{\partial
+p_{\beta}}{\partial P_{\alpha}} \left(\dfrac{\partial \varphi}{\partial
+Q_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}} - \dfrac{\partial
+\varphi}{\partial p_{\beta}}\dfrac{\partial \psi}{\partial Q_{\alpha}}
+\right)\\
+                &amp; = \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s} \dfrac{\partial^{2} U}{\partial P_{\alpha}\partial P_{\beta}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\beta}} \dfrac{\partial
+\psi}{\partial Q_{\alpha}} - \dfrac{\partial \varphi}{\partial
+Q_{\alpha}}\dfrac{\partial \psi}{\partial Q_{\beta}}\right)+
+\sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta =
+1}^{s}\dfrac{\partial^{2} U}{\partial q_{\beta}\partial P_{\alpha}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\alpha}}\dfrac{\partial
+\psi}{\partial p_{\beta}} - \dfrac{\partial \varphi}{\partial
+p_{\beta}}\dfrac{\partial \psi}{\partial Q_{\alpha}} \right)\\
+            \end{aligned}\]</span>
+同样地，我们可以得到上式结果的第一项为0，从而结果为 <span
+class="math display">\[\begin{aligned}
+                \relax [\varphi, \psi]_{PQ} &amp; = \sum\limits_{\alpha
+= 1}^{s}\sum\limits_{\beta = 1}^{s}\dfrac{\partial^{2} U}{\partial
+q_{\beta}\partial P_{\alpha}} \left(\dfrac{\partial \varphi}{\partial
+Q_{\alpha}}\dfrac{\partial \psi}{\partial p_{\beta}} - \dfrac{\partial
+\varphi}{\partial p_{\beta}}\dfrac{\partial \psi}{\partial Q_{\alpha}}
+\right)\\
+                &amp; = \sum\limits_{\beta = 1}^{s}\sum\limits_{\alpha =
+1}^{s}\dfrac{\partial^{2} U}{\partial q_{\alpha}\partial P_{\beta}}
+\left(\dfrac{\partial \varphi}{\partial Q_{\beta}}\dfrac{\partial
+\psi}{\partial p_{\alpha}} - \dfrac{\partial \varphi}{\partial
+p_{\alpha}}\dfrac{\partial \psi}{\partial Q_{\beta}} \right)\\
+            \end{aligned}\]</span> 由此可以看出 <span
+class="math display">\[[\varphi, \psi]_{pq} = [\varphi,
+\psi]_{PQ}\]</span> ◻</p>
+</div>
+<p>由Possion括号的定义，我们可以直接得到如下结果</p>
+<div class="corollary">
+<p>假设<span class="math inline">\(Q_{\alpha}\)</span>和<span
+class="math inline">\(P_{\alpha}\)</span>是变量<span
+class="math inline">\(q\)</span>和<span
+class="math inline">\(p\)</span>通过正则变换得到的结果，那么有 <span
+class="math display">\[\left\{\begin{aligned}
+            \relax [P_{\alpha}, P_{\beta}]_{PQ} &amp; = [P_{\alpha},
+P_{\beta}]_{pq} = 0 \\
+            [Q_{\alpha}, Q_{\beta}]_{PQ} &amp; = [Q_{\alpha},
+Q_{\beta}]_{pq} = 0 \\
+            [Q_{\alpha}, P_{\beta}]_{PQ} &amp; = [Q_{\alpha},
+P_{\beta}]_{pq} = \delta_{\alpha\beta}
+        \end{aligned}\right.\]</span></p>
+</div>
+<p>利用上式我们可以验证变换关系是否正则变换</p>
+<h3 id="无限小正则变换">无限小正则变换</h3>
+<p>如果我们将母函数定义为 <span class="math display">\[U_{3} =
+\sum\limits_{\alpha = 1}^{s}q_{\alpha}P_{\alpha} + \varepsilon G(q,
+P)\]</span> 其中，<span
+class="math inline">\(\varepsilon\)</span>为某个无限小参数。那么我们由正则变换公式不难得到
+<span class="math display">\[\left\{\begin{aligned}
+        p_{\alpha} &amp; = P_{\alpha} + \varepsilon\dfrac{\partial
+G}{\partial q_{\alpha}} \\
+        Q_{\alpha} &amp; = q_{\alpha} + \varepsilon\dfrac{\partial
+G}{\partial P_{\alpha}} \\
+        \end{aligned}\right.\]</span> 从而得到 <span
+class="math display">\[\left\{\begin{aligned}
+        P_{\alpha} &amp; = p_{\alpha} - \varepsilon\dfrac{\partial
+G}{\partial q_{\alpha}} \\
+        Q_{\alpha} &amp; = q_{\alpha} + \varepsilon\dfrac{\partial
+G}{\partial P_{\alpha}} \\
+        \end{aligned}\right.\]</span> 由此我们给出如下定义</p>
+<div class="definition">
+<p>如果正则变换关系为 <span
+class="math display">\[\left\{\begin{aligned}
+        P_{\alpha} &amp; = p_{\alpha} - \varepsilon\dfrac{\partial
+G}{\partial q_{\alpha}} \\
+        Q_{\alpha} &amp; = q_{\alpha} + \varepsilon\dfrac{\partial
+G}{\partial P_{\alpha}} \\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+其中，<span
+class="math inline">\(\varepsilon\)</span>为某个无限小参数，那么我们将这种正则变换关系称为无限小正则变换。</p>
+</div>
+<p>注意到在变换中，<span class="math inline">\(P_{\alpha} = p_{\alpha} -
+\varepsilon \dfrac{\partial G}{\partial
+q_{\alpha}}\)</span>，因此如果我们想把<span class="math inline">\(G(q,
+P)\)</span>变为<span class="math inline">\(G(q, p)\)</span>那么 <span
+class="math display">\[\begin{aligned}
+            \dfrac{\partial G(q, p)}{\partial p_{\alpha}} &amp; =
+\sum\limits_{\beta = 1}^{s} \dfrac{\partial G(q, P)}{\partial P_{\beta}}
+\dfrac{\partial P_{\beta}}{\partial p_{\alpha}} \\
+            &amp; = \sum\limits_{\beta = 1}^{s}\dfrac{\partial G(q,
+P)}{\partial P_{\beta}} \left(\delta_{\beta\alpha} - \varepsilon
+\dfrac{\partial^{2}G(q, P)}{\partial q_{\alpha} \partial p_{\alpha}}
+\right)\\
+            &amp; \approx \dfrac{\partial G(q, P)}{\partial P_{\alpha}}
+        \end{aligned}\]</span> 由此我们可以用<span
+class="math inline">\(\dfrac{\partial G(q, p)}{\partial
+p_{\alpha}}\)</span>近似代替<span class="math inline">\(\dfrac{\partial
+G(q, P)}{\partial P_{\alpha}}\)</span>，从而有</p>
+<div class="definition">
+<p>如果正则变换关系为 <span
+class="math display">\[\left\{\begin{aligned}
+        P_{\alpha} &amp; = p_{\alpha} - \varepsilon\dfrac{\partial
+G}{\partial q_{\alpha}} \\
+        Q_{\alpha} &amp; = q_{\alpha} + \varepsilon\dfrac{\partial
+G}{\partial p_{\alpha}} \\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+其中，<span
+class="math inline">\(\varepsilon\)</span>为某个无限小参数，那么我们也将这种正则变换关系称为无限小正则变换。</p>
+</div>
+<p>如果我们将变换前后的正则变量视为相空间中一段移动过程的始末状态的坐标，那么无限小正则变换即为相空间的无限小移动，从而
+<span class="math display">\[\left\{\begin{aligned}
+        \mathrm{d}p_{\alpha} &amp; = - \varepsilon\dfrac{\partial
+G}{\partial q_{\alpha}} \\
+        \mathrm{d}q_{\alpha} &amp; = \varepsilon\dfrac{\partial
+G}{\partial p_{\alpha}} \\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+从定义上讲，只有<span class="math inline">\(U_{3} = \sum\limits_{\alpha
+= 1}^{s}q_{\alpha}P_{\alpha} + \varepsilon G(q,
+P)\)</span>才是母函数，但通常也将<span class="math inline">\(G(q,
+p)\)</span>称为母函数。</p>
+<div class="example">
+<p>如果母函数<span class="math inline">\(G\)</span>为 <span
+class="math display">\[G = H(q, p, t)\]</span> 那么无限小正则变换为
+<span class="math display">\[\left\{\begin{aligned}
+        \mathrm{d}p_{\alpha} &amp; = - \mathrm{d}t\dfrac{\partial
+H}{\partial q_{\alpha}} \\
+        \mathrm{d}q_{\alpha} &amp; = \mathrm{d}t\dfrac{\partial
+H}{\partial p_{\alpha}} \\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+其中，<span class="math inline">\(\varepsilon =
+\mathrm{d}t\)</span>，也就是表示一个无限小参数。从而有 <span
+class="math display">\[\left\{\begin{aligned}
+        \dot{p}_{\alpha} &amp; = - \dfrac{\partial H}{\partial
+q_{\alpha}} \\
+        \dot{q}_{\alpha} &amp; = \dfrac{\partial H}{\partial p_{\alpha}}
+\\
+        \end{aligned}\right.,\quad \alpha = 1, 2, \dots, s\]</span>
+这样我们就得到了Hamilton正则方程。同时这表明，无限小正则变换可以表示力学系统在<span
+class="math inline">\(\mathrm{d}t\)</span>内的演变。</p>
+</div>
+<p>由于多个无限小正则变换的叠加可以视为一个正则变换<a href="#fn1"
+class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>，因此根据上面的例子，我们可以直接得到如下推论</p>
+<div class="corollary">
+<p>力学系统在一段时间内的演变可以通过初始状态进行正则变换得到。</p>
+</div>
+<div class="example">
+<p>由于无限小正则变换表示力学系统在相空间中的移动，因此任意一个力学量<span
+class="math inline">\(u\)</span>的值自然会发生变化。如果<span
+class="math inline">\(u\)</span>不显式含时，那么其全微分为 <span
+class="math display">\[\mathrm{d}u = \sum\limits_{\alpha =
+1}^{s}\left(\dfrac{\partial u}{\partial q_{\alpha}}\mathrm{d}q_{\alpha}
++ \dfrac{\partial u}{\partial p_{\alpha}}
+\mathrm{d}p_{\alpha}\right)\]</span> 将变换公式代入可得 <span
+class="math display">\[\begin{aligned}
+                \mathrm{d}u &amp; = \varepsilon\sum\limits_{\alpha =
+1}^{s}\left(\dfrac{\partial u}{\partial q_{\alpha}}\dfrac{\partial
+G}{\partial p_{\alpha}} - \dfrac{\partial u}{\partial
+p_{\alpha}}\dfrac{\partial G}{\partial q_{\alpha}} \right)\\
+                &amp; = \varepsilon [u, G]
+            \end{aligned}\]</span></p>
+<p>将Hamilton函数<span class="math inline">\(H\)</span>代入可得 <span
+class="math display">\[\begin{aligned}
+                \mathrm{d}H &amp; = \varepsilon[H, G] \\
+                &amp; = \varepsilon\dfrac{\partial G}{\partial t} \\
+            \end{aligned}\]</span> 其中，上式中得到第二行的原因为<span
+class="math inline">\([\varphi, H] = -\dfrac{\partial \varphi}{\partial
+t}\)</span>。如果<span
+class="math inline">\(G\)</span>为运动积分，那么<span
+class="math inline">\(\dfrac{\partial G}{\partial t} =
+0\)</span>，从而<span class="math inline">\(\mathrm{d}H =
+0\)</span>。</p>
+</div>
+<p>通过上面的例子可以直接得到如下推论</p>
+<div class="corollary">
+<p>如果以<span class="math inline">\(G(q,
+p)\)</span>为母函数的无限小正则变换使得Hamilton函数<span
+class="math inline">\(H\)</span>保持不变，那么<span
+class="math inline">\(G\)</span>为力学系统的运动积分。</p>
+</div>
+<h2 id="hamilton-jacobi方程-1">Hamilton-Jacobi方程</h2>
+<h3 id="hamilton主函数">Hamilton主函数</h3>
+<p>在上一节中，我们得到了这样一个结论：力学系统在一段时间内的演变可以通过初始状态进行正则变换得到。反过来，如果已知力学系统在<span
+class="math inline">\(t\)</span>时刻的状态，我们总是可以通过一个正则变换将其还原为初始状态，也就是还原为常数。<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>下面我们来寻找这种正则变换。</p>
+<div class="theorem">
+<p>如果母函数<span class="math inline">\(U = U(q, P,
+t)\)</span>满足如下的微分方程 <span class="math display">\[H\left(q_{1},
+q_{2}, \dots, q_{s}, \dfrac{\partial U}{\partial q_{1}}, \dfrac{\partial
+U}{\partial q_{2}}, \dots, \dfrac{\partial U}{\partial q_{s}}, t
+\right)+ \dfrac{\partial U}{\partial t} = 0\]</span>
+那么我们通过该母函数确定的正则变换的逆变换即可得到原本的正则变量。我们将该方程称为Hamilton-Jacobi方程，将解<span
+class="math inline">\(U = S(q, P, t)\)</span>称为Hamilton主函数。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 这里我们主要说明两个问题：</p>
+<ol type="1">
+<li><p>如何得到Hamilton-Jacobi方程</p></li>
+<li><p>为什么通过Hamilton主函数可以得到原本的正则变量</p></li>
+</ol>
+<p>对于第一个问题，首先我们希望变换后的Hamilton函数<span
+class="math inline">\(K(P, Q, t)\)</span>恒为0，这样可以得到 <span
+class="math display">\[\left\{\begin{aligned}
+            \dot{P}_{\alpha} &amp; = -\dfrac{\partial K}{\partial
+Q_{\alpha}} = 0 \\
+            \dot{Q}_{\alpha} &amp; = \dfrac{\partial K}{\partial
+P_{\alpha}} = 0 \\
+            \end{aligned}\right.\]</span>
+从而所有的正则变量都是常数。这样根据<span
+class="math inline">\(K\)</span>和<span
+class="math inline">\(H\)</span>之间的关系可以得到 <span
+class="math display">\[H(q_{1}, q_{2}, \dots, q_{s}, p_{1}, p_{2},
+\dots, p_{s}, t) + \dfrac{\partial U}{\partial t} = 0\]</span> 如果<span
+class="math inline">\(U = U(q, P, t)\)</span>，那么有 <span
+class="math display">\[p_{\alpha} = \dfrac{\partial U}{\partial
+q_{\alpha}}\]</span> 从而 <span class="math display">\[H\left(q_{1},
+q_{2}, \dots, q_{s}, \dfrac{\partial U}{\partial q_{1}}, \dfrac{\partial
+U}{\partial q_{2}}, \dots, \dfrac{\partial U}{\partial q_{s}}, t
+\right)+ \dfrac{\partial U}{\partial t} = 0\]</span></p>
+<p>对于第二个问题，假设上述方程的解为<span class="math inline">\(U =
+S(q, P, t)\)</span>，那么根据母函数的定义可得 <span
+class="math display">\[\left\{\begin{aligned}
+        p_{\alpha} &amp; = \dfrac{\partial S}{\partial q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        Q_{\alpha} &amp; = \dfrac{\partial S}{\partial P_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span> 此时，由于<span
+class="math inline">\(P_{\alpha}\)</span>和<span
+class="math inline">\(Q_{\alpha}\)</span>都是常数，因此从 <span
+class="math display">\[\dfrac{\partial S}{\partial P_{\alpha}} =
+Q_{\alpha}\]</span> 可以得到，此时<span
+class="math inline">\(S\)</span>可以表示为 <span
+class="math display">\[S = \sum\limits_{\alpha = 1}^{s}f_{\alpha}(q,
+P_{\text{无}\alpha}, t)P_{\alpha} + g_{\alpha}(q, t)\]</span>
+其中，<span
+class="math inline">\(P_{\text{无}\alpha}\)</span>表示除了<span
+class="math inline">\(P_{\alpha}\)</span>之外的所有<span
+class="math inline">\(P\)</span>。这样我们可以得到方程组 <span
+class="math display">\[f_{\alpha}(q, P_{\text{无}\alpha}, t) =
+Q_{\alpha}, \quad \alpha = 1, 2, \dots, s\]</span> 来求解出<span
+class="math inline">\(q_{\alpha}, \quad \alpha = 1, 2, \dots,
+s\)</span>。这样将<span
+class="math inline">\(q_{\alpha}\)</span>代入<span
+class="math inline">\(S\)</span>，并对<span
+class="math inline">\(q_{\alpha}\)</span>求偏导即可得到<span
+class="math inline">\(p_{\alpha}\)</span>。 ◻</p>
+</div>
+<p>注意到，在Hamilton-Jacobi方程中，有<span class="math inline">\(s +
+1\)</span>个变量（<span
+class="math inline">\(s\)</span>个广义坐标与时间），因此应该得到<span
+class="math inline">\(s + 1\)</span>个积分常数。但是如果我们将<span
+class="math inline">\(S + C\)</span>代入原方程（<span
+class="math inline">\(S\)</span>为得到的解），不难看出其依然满足原方程，从而<span
+class="math inline">\(s + 1\)</span>个积分常数中的一个以与<span
+class="math inline">\(S\)</span>加和的形式出现，这样在<span
+class="math inline">\(S\)</span>中有<span
+class="math inline">\(s\)</span>个积分常数<span
+class="math inline">\(C_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>显式出现。由于我们没有规定<span
+class="math inline">\(S\)</span>对<span
+class="math inline">\(P_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>的依赖性，因此我们可以将<span
+class="math inline">\(C_{\alpha}\)</span>取为<span
+class="math inline">\(P_{\alpha}\)</span>。</p>
+<p>对于Hamilton主函数<span
+class="math inline">\(S\)</span>，我们将其对时间求全导数可得 <span
+class="math display">\[\dfrac{\mathrm{d}S}{\mathrm{d}t} =
+\sum\limits_{\alpha = 1}^{s}\dfrac{\partial S}{\partial
+q_{\alpha}}\dot{q}_{\alpha} + \dfrac{\partial S}{\partial t}\]</span>
+由于 <span class="math display">\[\left\{\begin{aligned}
+        K - H &amp; = \dfrac{\partial U_{3}}{\partial t} \\
+        p_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial q_{\alpha}},
+\quad \alpha = 1, 2, \dots, s\\
+        Q_{\alpha} &amp; = \dfrac{\partial U_{3}}{\partial P_{\alpha}},
+\quad \alpha = 1, 2, \dots, s \\
+        \end{aligned}\right.\]</span> 因此 <span
+class="math display">\[\dfrac{\mathrm{d}S}{\mathrm{d}t} =
+\sum\limits_{\alpha = 1}^{s}p_{\alpha}\dot{q}_{\alpha} - H = L\]</span>
+这样，Hamilton主函数的时间变化率即为Lagrange函数，由此可得 <span
+class="math display">\[S = \int L\mathrm{d}t\]</span>
+可以看出，Hamilton主函数<span
+class="math inline">\(S\)</span>的量纲为"能量<span
+class="math inline">\(\times\)</span>时间"，或者记为<span
+class="math inline">\([\mathrm{ML^{2}T^{-1}}]\)</span>。</p>
+<p>由此我们可以总结出如下命题：</p>
+<div class="proposition">
+<p>使用Hamilton-Jacobi方程求解力学系统动力学问题的流程为</p>
+<ol type="1">
+<li><p>将Hamilton函数<span class="math inline">\(H(q, p,
+t)\)</span>改写为<span class="math inline">\(H\left(q_{1}, q_{2}, \dots,
+q_{s}, \dfrac{\partial U}{\partial q_{1}}, \dfrac{\partial U}{\partial
+q_{2}}, \dots, \dfrac{\partial U}{\partial q_{s}}, t
+\right)\)</span>，并由此写出Hamilton-Jacobi方程 <span
+class="math display">\[H\left(q_{1}, q_{2}, \dots, q_{s},
+\dfrac{\partial U}{\partial q_{1}}, \dfrac{\partial U}{\partial q_{2}},
+\dots, \dfrac{\partial U}{\partial q_{s}}, t \right)+ \dfrac{\partial
+U}{\partial t} = 0\]</span></p></li>
+<li><p>解出Hamilton主函数<span class="math inline">\(S(q_{1}, q_{2},
+\dots, q_{s}, C_{1}, C_{2}, \dots, C_{s})\)</span></p></li>
+<li><p>将积分常数<span class="math inline">\(C_{\alpha},\ \alpha = 1, 2,
+\dots, s\)</span>作为变换后的广义动量<span
+class="math inline">\(P_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>，并通过正则变换 <span class="math display">\[Q_{\alpha} =
+\dfrac{\partial S}{\partial P_{\alpha}}, \quad \alpha = 1, 2, \dots, s
+\\ \]</span> 可以得到<span class="math inline">\(Q_{\alpha},\ \alpha =
+1, 2, \dots, s\)</span>也为常数</p></li>
+<li><p>在此基础上求出<span class="math inline">\(q_{\alpha},\ \alpha =
+1, 2, \dots, s\)</span>，并由此求出<span
+class="math inline">\(p_{\alpha},\ \alpha = 1, 2, \dots,
+s\)</span>（可参考Hamilton-Jacobi方程的推导中的第二部分）</p></li>
+</ol>
+</div>
+<h3 id="hamilton特征函数">Hamilton特征函数</h3>
+<p>如果Hamilton函数<span
+class="math inline">\(H\)</span>不显式含时，那么可以将Hamilton-Jacobi方程中的广义坐标与时间分离。也就是说，此时我们假设解的形式为
+<span class="math display">\[S(q, P, t) = W(q, P) + f(t)\]</span>
+那么代入原方程可得 <span class="math display">\[H\left(q,
+\dfrac{\partial W}{\partial q} \right)= -f&#39;(t)\]</span>
+由于两侧的自变量不同，因此二者必须都等于一常数，从而 <span
+class="math display">\[\left\{\begin{aligned}
+            &amp; f&#39;(t) = -E \\
+            &amp; H\left(q_{1}, q_{2}, \dots, q_{s}, \dfrac{\partial
+W}{\partial q_{1}}, \dfrac{\partial W}{\partial q_{2}}, \dots,
+\dfrac{\partial W}{\partial q_{s}} \right)= E \\
+        \end{aligned}\right.\]</span> 由方程1不难得到 <span
+class="math display">\[f(t) = -Et\]</span> 同时可以得到如下定理</p>
+<div class="theorem">
+<p>如果Hamilton-Jacobi方程的解可以写为 <span class="math display">\[S(q,
+P, t) = W(q, P) + f(t)\]</span> 那么我们将 <span
+class="math display">\[H\left(q_{1}, q_{2}, \dots, q_{s},
+\dfrac{\partial W}{\partial q_{1}}, \dfrac{\partial W}{\partial q_{2}},
+\dots, \dfrac{\partial W}{\partial q_{s}} \right)= E\]</span>
+其中，<span
+class="math inline">\(E\)</span>为常数，那么我们将上式也称为Hamilton-Jacobi方程，其解<span
+class="math inline">\(H = W(q, P)\)</span>为Hamilton特征函数。</p>
+</div>
+<p>此时算上<span class="math inline">\(E\)</span>我们共有<span
+class="math inline">\(s\)</span>个积分常数，不妨将<span
+class="math inline">\(E\)</span>设置为<span
+class="math inline">\(C_{1}\)</span>。这样母函数<span
+class="math inline">\(W\)</span>可以表示为 <span
+class="math display">\[W = W(q_{1}, q_{2}, \dots, q_{s}, E, C_{2},
+\dots, C_{s})\]</span> 并且如果我们将<span
+class="math inline">\(W\)</span>作为母函数，那么会得到 <span
+class="math display">\[K = H + \dfrac{\partial W}{\partial t} = H =
+E\]</span>
+也就是变换后的Hamilton函数为常数。并且由于此时的广义动量被取为包括<span
+class="math inline">\(E\)</span>在内的<span
+class="math inline">\(s\)</span>个积分常数，因此所有变换后的广义坐标<span
+class="math inline">\(Q_{\alpha}\)</span>都是可遗坐标。</p>
+<h3 id="可分离系统">可分离系统</h3>
+<div class="definition">
+<p>如果力学系统的Hamilton-Jacobi方程可以通过分离变量的方法求解，那么我们将力学系统称为可分离系统。如果系统的所有变量均可分离，那么我们将其称为完全可分离系统。</p>
+</div>
+<p>换言之，如果Hamilton-Jacobi方程的形式为 <span
+class="math display">\[H\left[q_{\alpha}, \dfrac{\partial W}{\partial
+q_{\alpha}}, \phi\left(q_{1}, \dfrac{\partial W}{\partial q_{1}}
+\right)\right]= E\]</span> 其中<span class="math inline">\(\alpha \neq
+1\)</span>，那么我们假设解的形式为 <span class="math display">\[W =
+W&#39;(q_{\alpha}) + W_{1}(q_{1})\]</span> 从而有 <span
+class="math display">\[H\left[q_{\alpha}, \dfrac{\partial W}{\partial
+q_{\alpha}}, \phi_{1}\left(q_{1}, \dfrac{\mathrm{d}W}{\mathrm{d}q_{1}}
+\right)\right]= E\]</span> 如果我们将<span
+class="math inline">\(\phi_{1}\)</span>分离出来，并将<span
+class="math inline">\(W_{1}\)</span>的剩余部分记为<span
+class="math inline">\(\varPhi\left(q_{\alpha}, \dfrac{\partial
+W&#39;}{\partial q_{\alpha}}\right),\ \alpha \neq 1\)</span>，那么 <span
+class="math display">\[\varPhi\left(q_{\alpha}, \dfrac{\partial
+W&#39;}{\partial q_{\alpha}}\right)= \phi_{1}\left(q_{1},
+\dfrac{\mathrm{d}W}{\mathrm{d}q_{1}} \right)\]</span>
+由于两边的自变量不同，因此两边都等于一个常数，从而 <span
+class="math display">\[\left\{\begin{aligned}
+            H\left(q_{\alpha}, \dfrac{\partial W&#39;}{\partial
+q_{\alpha}}, C_{2} \right)&amp; = E \\
+            \phi_{1} \left(q_{1},
+\dfrac{\mathrm{d}W_{1}}{\mathrm{d}q_{1}} \right)&amp; = C_{2} \\
+        \end{aligned}\right.\]</span> 由此我们完成了针对变量<span
+class="math inline">\(q_{1}\)</span>的分离。类似地，我们可以得到其它变量的分离方法。因此对于完全可分离系统，Hamilton特征函数的形式为
+<span class="math display">\[W = \sum\limits_{\alpha =
+1}^{s}W_{\alpha}\left(q_{\alpha}, E, C_{2}, \dots, C_{s}
+\right)\]</span></p>
+<div class="remark">
+<p>系统是否可以分离除了取决于系统本身的特征外，还取决于所选用的广义坐标。对于给定的系统，对于一些广义坐标可能是不能分离变量的，但对于另一些广义坐标是可以分离变量的。</p>
+</div>
+<h2 id="作用量变量与角变量">作用量变量与角变量</h2>
+<p>本节主要讨论每一对共轭变量各自做周期运动的系统。此处所说的周期运动包括</p>
+<ol type="1">
+<li><p><span class="math inline">\(p_{\alpha}\)</span>和<span
+class="math inline">\(q_{\alpha}\)</span>都是时间的周期函数，并且周期相同。此时系统的相轨道是闭合曲线。</p></li>
+<li><p><span
+class="math inline">\(q_{\alpha}\)</span>不做周期变换，但其每增加<span
+class="math inline">\(q_{0}\)</span>系统的状态便重现一次。此时相轨道不是闭合曲线，但<span
+class="math inline">\(p_{\alpha}\)</span>是<span
+class="math inline">\(q_{\alpha}\)</span>的周期函数，其周期为<span
+class="math inline">\(q_{0}\)</span>。</p></li>
+</ol>
+<p>下面我们只讨论系统完全可分离，即Hamilton特征函数可以表示为 <span
+class="math display">\[W = \sum\limits_{\alpha = 1}^{s} W_{\alpha}
+\left(q_{\alpha}, E, C_{2}, \dots, C_{s} \right)\]</span>
+与之前不同的是，我们此时不将积分常数作为变换后的广义动量，而是将广义动量定义为如下的作用量
+<span class="math display">\[\begin{aligned}
+            J_{\alpha} &amp; = \oint p_{\alpha} \mathrm{d}q_{\alpha} \\
+            &amp; = \oint\dfrac{\partial W_{\alpha} \left(q_{\alpha}, E,
+C_{2}, \dots, C_{s} \right)}{\partial q_{\alpha}}
+\mathrm{d}q_{\alpha},\quad \alpha = 1, 2, \dots, s
+        \end{aligned}\]</span>
+积分上的圆圈表示对一个周期积分。由定义可得，<span
+class="math inline">\(J_{\alpha}\)</span>仅为积分常数的函数，因此<span
+class="math inline">\(J_{\alpha}\)</span>也为常数，并且我们可以用<span
+class="math inline">\(J_{\alpha}\)</span>代替<span
+class="math inline">\(s\)</span>个积分常数，从而将Hamilton特征函数记为
+<span class="math display">\[W = \sum\limits_{\alpha = 1}^{s}W_{\alpha}
+\left(q_{\alpha}, J_{1}, J_{2}, \dots, J_{s} \right)\]</span>
+此时作为广义动量的<span
+class="math inline">\(J_{\alpha}\)</span>对应的广义坐标被称为角变量，我们将其记为<span
+class="math inline">\(w_{\alpha}\)</span> <span
+class="math display">\[w_{\alpha} = \dfrac{\partial W}{\partial
+J_{\alpha}},\quad \alpha = 1, 2, \dots, s\]</span>
+由于从量纲上来看，<span class="math inline">\(W\)</span>和<span
+class="math inline">\(J_{\alpha}\)</span>的量纲都是"能量<span
+class="math inline">\(\times\)</span>时间"，或者记为<span
+class="math inline">\([\mathrm{ML^{2}T^{-1}}]\)</span>，因此角变量<span
+class="math inline">\(w_{\alpha}\)</span>的量纲为1。</p>
+<p>由于变换后的Hamilton函数为 <span class="math display">\[K = H +
+\dfrac{\partial W}{\partial t} = E\]</span>
+那么由Hamilton正则方程，角变量对时间的导数为 <span
+class="math display">\[\begin{aligned}
+            \dot{w}_{\alpha} &amp;= \dfrac{\partial K}{\partial
+J_{\alpha}} \\
+            &amp; = \dfrac{\partial E}{\partial J_{\alpha}},\quad \alpha
+= 1, 2, \dots, s
+        \end{aligned}\]</span> 这样能够得到其解为 <span
+class="math display">\[w_{\alpha} = \left(\dfrac{\partial E}{\partial
+J_{\alpha}} \right)t - w_{\alpha, 0}\]</span> 其中，<span
+class="math inline">\(w_{\alpha, 0}\)</span>为积分常数。注意到<span
+class="math inline">\(w_{\alpha}\)</span>为量纲为1的物理量，这样由上述表达式可得<span
+class="math inline">\(\left(\dfrac{\partial E}{\partial J_{\alpha}}
+\right)\)</span>的量纲必为<span
+class="math inline">\([\mathrm{T}^{-1}]\)</span>，也就是表示一种频率。如果我们计算一个周期内<span
+class="math inline">\(w_{\alpha}\)</span>的增量，那么会得到 <span
+class="math display">\[\begin{aligned}
+            \Delta w_{\alpha} &amp; = \oint \mathrm{d}w_{\alpha} \\
+            &amp; = \oint \dfrac{\partial w_{\alpha}}{\partial
+q_{\alpha}} \mathrm{d}q_{\alpha} \\
+            &amp; = \oint \dfrac{\partial^{2} W}{\partial
+q_{\alpha}\partial J_{\alpha}} \mathrm{d}q_{\alpha} \\
+            &amp; = \dfrac{\partial}{\partial J_{\alpha}} \oint
+\dfrac{\partial W}{\partial q_{\alpha}} \mathrm{d}q_{\alpha} \\
+            &amp; = \dfrac{\partial }{\partial J_{\alpha}} \oint
+p_{\alpha} \mathrm{d}q_{\alpha} \\
+            &amp; = 1
+        \end{aligned}\]</span> 由此可得，每经过<span
+class="math inline">\(q_{\alpha}\)</span>的一个周期，<span
+class="math inline">\(w_{\alpha}\)</span>增加1。由<span
+class="math inline">\(w_{\alpha}\)</span>随时间变化的关系式可得，在一个周期内其增量为
+<span class="math display">\[\Delta w_{\alpha} = \left(\dfrac{\partial
+E}{\partial J_{\alpha}} \right)\tau_{\alpha}\]</span> 这样<span
+class="math inline">\(\dfrac{\partial E}{\partial
+J_{\alpha}}\)</span>为<span
+class="math inline">\(\tau_{\alpha}\)</span>的倒数，从而我们将频率定义为
+<span class="math display">\[f_{\alpha} = \dfrac{\partial E}{\partial
+J_{\alpha}}\]</span></p>
+<div class="remark">
+<p>此时每个自由度各自做周期运动，因此可能会出现某两个（或多个）频率之比为无理数，这样其对应的周期之比也为无理数。这意味着系统的状态永远不会回到初始状态，从而其变化不是周期性的。</p>
+</div>
+<p>对于自由度为<span
+class="math inline">\(s\)</span>的完全可分离系统，由于<span
+class="math inline">\(s\)</span>个作用量变量<span
+class="math inline">\(J_{\alpha}\)</span>为常数，因此在由<span
+class="math inline">\(q\)</span>、<span
+class="math inline">\(p\)</span>作为变量的相空间中，系统的运动轨迹将被限制在相空间的<span
+class="math inline">\(s\)</span>维子空间中，或者说一个<span
+class="math inline">\(s\)</span>为环面中。在环面上可以有几何性质完全不同的环路，我们通常使用作用量变量<span
+class="math inline">\((J_{1}, J_{2}, \dots,
+J_{s})\)</span>表示这些环路，而在一给定环路上的各个点由角变量<span
+class="math inline">\((w_{1}, w_{2}, \dots, w_{s})\)</span>表示。</p>
+<p>一般地，如果所有频率相互之间的比都是无理数，那么系统就永远回不到开始状态，从而其轨迹将最终完全覆盖环面。我们将这种运动称为各态历经运动。但如果存在
+<span class="math display">\[\sum\limits_{\alpha = 1}^{s}m_{s}f_{s} =
+0\]</span> 其中，<span class="math inline">\(m_{s} \in
+\mathbb{Z}\)</span>，那么这表明存在一个频率可以表示为其他频率的整数比组合，从而轨迹将被限制到比环面低一维的子空间中（有点类似线性独立的概念）。特别地，如果上面的等式存在<span
+class="math inline">\(s -
+1\)</span>个，那么这意味着只有一个"独立"的频率，其他频率都可以表示为其整数倍，从而系统运动轨迹将被限制于一维闭合曲线。</p>
+<h2 id="浸渐不变量与hannay角">浸渐不变量与Hannay角</h2>
+<h3 id="作用量变量的浸渐不变性">作用量变量的浸渐不变性</h3>
+<p>我们先给出浸渐不变量的概念</p>
+<div class="definition">
+<p>假如在Hamilton函数中存在一个随时间变化的参数<span
+class="math inline">\(\lambda\)</span>，并且其随着时间的变化非常缓慢，也就是在系统的运动周期<span
+class="math inline">\(\tau\)</span>中，<span
+class="math inline">\(\lambda\)</span>的变化量满足 <span
+class="math display">\[\tau \dfrac{\mathrm{d}\lambda}{\mathrm{d}t } \ll
+\lambda\]</span>
+在此条件下，如果有力学量不随时间变化，那么我们将该力学量称为浸渐不变量。</p>
+</div>
+<p>由此我们可以得到如下命题</p>
+<div class="proposition">
+<p>当Hamilton函数中存在随时间缓慢变化的参数<span
+class="math inline">\(\lambda\)</span>时，作用量变量<span
+class="math inline">\(J\)</span>不随时间变化。</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em>
+为了简单起见，我们先考虑只有一个自由度的系统，其母函数为 <span
+class="math display">\[W = W(q, J, \lambda)\]</span>
+此时我们先不考虑<span
+class="math inline">\(\lambda\)</span>随时间变化的情况，并且假设此时系统为周期性变化的。这样正则变换后的Hamilton函数为
+<span class="math display">\[\begin{aligned}
+                K(w, J, \lambda) &amp; = H(q, p, \lambda) +
+\dfrac{\partial W}{\partial t} \\
+                &amp; = E(J, \lambda) \\
+            \end{aligned}\]</span> 其中，<span
+class="math inline">\(E(J,
+\lambda)\)</span>为常数。之所以此时无需考虑变量<span
+class="math inline">\(w\)</span>，是因为此时系统是周期性变化的，<span
+class="math inline">\(error\)</span>如果考虑<span
+class="math inline">\(\lambda\)</span>随时间变化的情况，那么变换后的Hamilton函数为
+<span class="math display">\[\begin{aligned}
+                K(w, J, \lambda(t)) &amp; = H(q, p, \lambda(t)) +
+\dfrac{\partial W}{\partial t} \\
+                &amp; = E(J, )
+            \end{aligned}\]</span> ◻</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>证明这一点需要用到教高级的数学知识，我们在此不加证明。<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>我们对于这一结论的正确性不再证明，而是直接使用结论<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/d9e45f82/" title="Hamilton-Jacobi方程——经典力学笔记5">https://vasily-alexievich-korolev.github.io/posts/d9e45f82/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Classical-Mechanics/" rel="tag"># Classical Mechanics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/b1c8d34f/" rel="prev" title="力学变分原理——经典力学笔记4">
+      <i class="fa fa-chevron-left"></i> 力学变分原理——经典力学笔记4
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hamilton-jacobi%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Hamilton-Jacobi方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8F%98%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">正则变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8F%98%E6%8D%A2%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">正则变换的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8D%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">母函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8p-q-t%E4%BD%9C%E4%B8%BA%E8%87%AA%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">使用\(p, Q,
+t\)作为自变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8q-p-t%E4%BD%9C%E4%B8%BA%E8%87%AA%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">使用\(q, P,
+t\)作为自变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8p-p-t%E4%BD%9C%E4%B8%BA%E8%87%AA%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">使用\(p, P,
+t\)作为自变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#possion%E6%8B%AC%E5%8F%B7%E7%9A%84%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="nav-number">1.1.3.</span> <span class="nav-text">Possion括号的不变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E5%B0%8F%E6%AD%A3%E5%88%99%E5%8F%98%E6%8D%A2"><span class="nav-number">1.1.4.</span> <span class="nav-text">无限小正则变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hamilton-jacobi%E6%96%B9%E7%A8%8B-1"><span class="nav-number">1.2.</span> <span class="nav-text">Hamilton-Jacobi方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hamilton%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hamilton主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hamilton%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">Hamilton特征函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%88%86%E7%A6%BB%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">可分离系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8F%98%E9%87%8F%E4%B8%8E%E8%A7%92%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">作用量变量与角变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B8%E6%B8%90%E4%B8%8D%E5%8F%98%E9%87%8F%E4%B8%8Ehannay%E8%A7%92"><span class="nav-number">1.4.</span> <span class="nav-text">浸渐不变量与Hannay角</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E9%87%8F%E5%8F%98%E9%87%8F%E7%9A%84%E6%B5%B8%E6%B8%90%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">作用量变量的浸渐不变性</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">95k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:16</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |    本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

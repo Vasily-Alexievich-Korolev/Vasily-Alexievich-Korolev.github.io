@@ -1,3 +1,5 @@
+https://vasily-alexievich-korolev.github.io/posts/fwm20260625/
+https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/
 https://vasily-alexievich-korolev.github.io/posts/64576629/
 https://vasily-alexievich-korolev.github.io/posts/56b63450/
 https://vasily-alexievich-korolev.github.io/posts/3fca16e6/
@@ -9,8 +11,6 @@ https://vasily-alexievich-korolev.github.io/posts/5b9f9152/
 https://vasily-alexievich-korolev.github.io/posts/d9e45f82/
 https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/
 https://vasily-alexievich-korolev.github.io/posts/4f8a2c71/
-https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/
-https://vasily-alexievich-korolev.github.io/posts/fwm20260625/
 https://vasily-alexievich-korolev.github.io/posts/623f8d06/
 https://vasily-alexievich-korolev.github.io/posts/3352eca2/
 https://vasily-alexievich-korolev.github.io/posts/b5972983/
@@ -67,3 +67,4 @@ https://vasily-alexievich-korolev.github.io/categories/Physics/Classical-Mechani
 https://vasily-alexievich-korolev.github.io/categories/Physics/Electromagnetics/
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/
 https://vasily-alexievich-korolev.github.io/categories/Marxsim/Dialectics-of-Nature/
+https://vasily-alexievich-korolev.github.io/categories/Computer-Science/Machine-Learning/

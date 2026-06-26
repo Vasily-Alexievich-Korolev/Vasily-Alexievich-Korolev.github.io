@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。">
+  <meta name="description" content="从Transformer趋势分解到VAE体制推断再到EMA监督编码器-&gt;收益预测，7次全量实验无一正收益，亏损率-77%~-100%。记录一次彻底但诚实的技术探索。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="因子化世界模型：一次彻底的失败">
+<meta property="og:title" content="因子化世界模型：三次迭代、七次实验、全部亏损">
 <meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
-<meta property="og:description" content="用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。">
+<meta property="og:description" content="从Transformer趋势分解到VAE体制推断再到EMA监督编码器-&gt;收益预测，7次全量实验无一正收益，亏损率-77%~-100%。记录一次彻底但诚实的技术探索。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T13:22:58.480Z">
-<meta property="article:modified_time" content="2026-06-25T15:30:01.452Z">
+<meta property="article:modified_time" content="2026-06-26T06:43:24.004Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Quant">
 <meta property="article:tag" content="Machine Learning">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>因子化世界模型：一次彻底的失败 | Vasily's Blog</title>
+  <title>因子化世界模型：三次迭代、七次实验、全部亏损 | Vasily's Blog</title>
   
 
 
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          因子化世界模型：一次彻底的失败
+          因子化世界模型：三次迭代、七次实验、全部亏损
         </h1>
 
         <div class="post-meta">
@@ -192,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2026-06-25 21:22:58 / 修改时间：23:30:01" itemprop="dateCreated datePublished" datetime="2026-06-25T21:22:58+08:00">2026-06-25</time>
+              <time title="创建时间：2026-06-25 21:22:58" itemprop="dateCreated datePublished" datetime="2026-06-25T21:22:58+08:00">2026-06-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-26 14:43:24" itemprop="dateModified" datetime="2026-06-26T14:43:24+08:00">2026-06-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,16 +229,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
-            <div class="post-description">用Transformer将价格序列解构为趋势Token和回归残差，试图预测BTC和山寨币的下一时刻市场状态。18个滚动窗口、4个币种、全部亏损。记录一次架构设计错误导致的系统性失败。</div>
+            <div class="post-description">从Transformer趋势分解到VAE体制推断再到EMA监督编码器->收益预测，7次全量实验无一正收益，亏损率-77%~-100%。记录一次彻底但诚实的技术探索。</div>
 
         </div>
       </header>
@@ -244,194 +250,243 @@
 
       
         <h2 id="缘起">缘起</h2>
-<p>2025年底读到一篇论文，讲的是将图像分解为"语义token"和"细节token"进行分治建模。我觉得这个思路可以迁移到金融时间序列上：</p>
-<p>价格运动可以被分解为两个物理过程——</p>
+<p>2025年底读到一篇关于因子化世界模型的论文，讲的是将图像分解为"语义token"和"细节token"进行分治建模。核心思路是：如果能把复杂系统的生成过程解耦成不同时间尺度的子过程，分别建模再组合，应该比端到端硬拟合更高效。</p>
+<p>这个思路可以迁移到金融时间序列上。价格运动可以分解为两个基本物理过程：</p>
 <ol type="1">
-<li><strong>趋势延续（Trend
-Continuation）</strong>：价格沿着已形成的趋势惯性运行，这应该是一个低频、近乎确定性的过程。</li>
-<li><strong>均值回归（Mean
-Reversion）</strong>：价格因短期过度偏离而出现向长期均值回归的倾向，这是一个高频、类似弹性恢复的过程。</li>
+<li><strong>趋势延续</strong>：价格沿着已形成的趋势惯性运行——低频、近似确定性的宏观过程。</li>
+<li><strong>均值回归</strong>：价格因短期偏离而出现向均值回归的倾向——高频、类似弹性恢复的过程。</li>
 </ol>
-<p>传统的端到端模型试图同时逼近两个不同物理过程的复合。如果能拆开分别建模再组合，理论上应该更高效。</p>
-<p>于是有了<strong>因子化世界模型（Factorized World Model,
-FWM）</strong>。</p>
-<h2 id="架构设计">架构设计</h2>
-<h3 id="状态分解">状态分解</h3>
-<p>从原始 OHLCV 数据中提取趋势状态序列和回归残差序列：</p>
-<ol type="1">
-<li><p><strong>HP滤波</strong>：用 Hodrick-Prescott
-滤波从收盘价中提取一条平滑的趋势线 <span
-class="math inline">\(\tau_t\)</span>。参数 <span
-class="math inline">\(\lambda = 5000\)</span>
-控制了趋势的光滑程度。</p></li>
-<li><p><strong>趋势Token</strong>：计算趋势线的滑动斜率，做 z-score
-标准化后离散化为 5 类
-Token——强下降、弱下降、横盘、弱上升、强上升。阈值用 <span
-class="math inline">\(\pm 0.3\sigma\)</span> 和 <span
-class="math inline">\(\pm 1.0\sigma\)</span>。</p></li>
-<li><p><strong>残差特征</strong>：定义残差 <span
-class="math inline">\(r_t = p_t - \tau_t\)</span>，提取 8
-维特征向量：标准化残差、RSI(14)、布林带 %B 位置、ATR
-比率、成交量比率、K线振幅比率、斜率 z-score、EMA20 偏离比率。</p></li>
-<li><p><strong>均值回归标签</strong>：当标准化残差超过 <span
-class="math inline">\(2\sigma\)</span> 且未来 <span
-class="math inline">\(K\)</span> 根 K
-线内价格向趋势线方向回归超过一定阈值，标记为回归触发点。注意这是一个前视标签，仅用于训练。</p></li>
-</ol>
-<h3 id="模型">模型</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: 趋势Token + 8维残差特征</span><br><span class="line">  ↓</span><br><span class="line">Token嵌入(5→d) + 残差投影(8→d) → 逐元素相加 → 可学习位置编码</span><br><span class="line">  ↓</span><br><span class="line">4层Transformer Decoder (因果掩码, d=192, 6头)</span><br><span class="line">  ↓</span><br><span class="line">趋势预测头: Linear(d, 5) → softmax → 下一时刻趋势状态分布</span><br><span class="line">回归信号头: Linear(d, 128) → GELU → Linear(128, 1) → sigmoid → MR概率</span><br></pre></td></tr></table></figure>
-<h3 id="决策映射">决策映射</h3>
-<p>将趋势概率分布与 MR 概率结合生成交易信号：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">最大概率趋势</th>
-<th style="text-align: center;">MR &lt; 30%</th>
-<th style="text-align: center;">MR &gt; 70%</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">上升</td>
-<td style="text-align: center;">做多 (+1)</td>
-<td style="text-align: center;">平仓 (0)</td>
-</tr>
-<tr>
-<td style="text-align: center;">横盘</td>
-<td style="text-align: center;">观望 (0)</td>
-<td style="text-align: center;">观望 (0)</td>
-</tr>
-<tr>
-<td style="text-align: center;">下降</td>
-<td style="text-align: center;">做空 (-1)</td>
-<td style="text-align: center;">平仓 (0)</td>
-</tr>
-</tbody>
-</table>
-<p>趋势概率分布的熵用作不确定性度量，熵过高时强制平仓。</p>
-<h2 id="实现">实现</h2>
-<p>代码约 900 行，包括：</p>
-<ul>
-<li><code>factorized_world_model.py</code> —
-核心模型：StateDecomposer、FactorizedEncoder、TemporalWorldModel（Transformer）、DecisionInterpreter</li>
-<li><code>train_factorized_world_model.py</code> — CLI
-驱动的完整流水线：数据加载 → 状态分解 → 训练 → 回测 → 报告</li>
-</ul>
-<p>训练过程中修了三个 Bug：</p>
-<ol type="1">
-<li><strong>HP滤波内存溢出</strong>：<span class="math inline">\(48,000
-\times 48,000\)</span> 的稠密矩阵需要 17GB，改用 scipy.sparse
-五对角矩阵</li>
-<li><strong>斜率z-score的O(T²)循环</strong>：<code>_compute_slope_z</code>
-对每个时间步都重算所有历史斜率，全量数据需要 <span
-class="math inline">\(\sum_{t=24}^{47999} (t-12) \approx 1.15\times
-10^9\)</span> 次
-polyfit，预计运行数小时。改为一次卷积预计算所有斜率</li>
-<li><strong>回测索引越界</strong>：最后一个 bar 没有下一个 K 线数据</li>
-</ol>
-<p>修复后全量 48,000 根 K 线的状态分解从数小时降至 19.6 秒。</p>
-<h2 id="初试单次分割的假象">初试：单次分割的假象</h2>
-<p>第一次训练用标准的 70/15/15 时序分割，结果看起来非常漂亮：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">趋势准确率: 96.0%</span><br><span class="line">Cohen&#x27;s Kappa: 0.95</span><br><span class="line">MR AUC: 0.89</span><br><span class="line"></span><br><span class="line">回测（测试期 2025.08-2026.05，BTC跌了35%）：</span><br><span class="line">  完整模型: +904%  夏普 8.26</span><br><span class="line">  趋势跟随: +4579% 夏普 12.11</span><br><span class="line">  买入持有: -35%</span><br></pre></td></tr></table></figure>
-<p>当时差点就被骗了。"夏普 12"
-在真实市场中不存在。文艺复兴大奖章基金的历史最佳也才 3-4
-的水平。这个数字完美得不像真的——因为它就是假的。</p>
-<p><strong>问题</strong>：单次分割只测了最后 15% 的数据，而那段时间 BTC
-处于单边下跌。模型只要无脑做空就能赚钱。MR 预警全程负贡献：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">趋势跟随（无MR）: +4579%</span><br><span class="line">完整模型（有MR）: +904%  ← MR信号全错了</span><br></pre></td></tr></table></figure>
-<p>在 BTC 1h 上，均值回归预警的所有触发都是错误的。</p>
-<h2 id="滚动训练真相大白">滚动训练：真相大白</h2>
-<p>构建了累积窗口的 walk-forward 训练模式，18 个窗口覆盖 2022-2026
-全年：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">窗口1: 训练 [0-10000]  测试 [10000-12000]  → -37.7%</span><br><span class="line">窗口2: 训练 [0-12000]  测试 [12000-14000]  → -15.6%</span><br><span class="line">窗口3: 训练 [0-14000]  测试 [14000-16000]  → -12.7%</span><br><span class="line">窗口4: 训练 [0-16000]  测试 [16000-18000]  → -43.9%</span><br><span class="line">...</span><br><span class="line">窗口18: 训练 [0-44000] 测试 [44000-46000] → -48.5%</span><br><span class="line">累计: -99.9%</span><br></pre></td></tr></table></figure>
-<p><strong>18 个窗口，全部亏损，无一例外。</strong></p>
-<p>这不是运气问题，这是系统性问题。在上涨的窗口、下跌的窗口、震荡的窗口——模型都在稳定亏钱。</p>
-<h2 id="换成山寨币试试">换成山寨币试试</h2>
-<p>也许只是 BTC
-太有效了？我用同样的配置测了三个波动等级不同的山寨币：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">币种</th>
-<th style="text-align: center;">等级</th>
-<th style="text-align: center;">累计收益</th>
-<th style="text-align: center;">平均夏普</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">SOLUSDT</td>
-<td style="text-align: center;">高波主流</td>
-<td style="text-align: center;">-100.0%</td>
-<td style="text-align: center;">-2.28</td>
-</tr>
-<tr>
-<td style="text-align: center;">DOGEUSDT</td>
-<td style="text-align: center;">中高波meme</td>
-<td style="text-align: center;">-100.0%</td>
-<td style="text-align: center;">-4.07</td>
-</tr>
-<tr>
-<td style="text-align: center;">ZECUSDT</td>
-<td style="text-align: center;">中波老币</td>
-<td style="text-align: center;">-100.0%</td>
-<td style="text-align: center;">-2.18</td>
-</tr>
-</tbody>
-</table>
-<p>结果完全一致。全部 -100%，无一幸免。</p>
-<h2 id="独立实验的交叉验证">独立实验的交叉验证</h2>
-<p>FWM 的失败不是孤立的。在之前的项目中：</p>
-<ul>
-<li><strong>DeepSeek-LLM 交易回测</strong>：从 1h K 线挖掘 50+
-技术指标，通过 LLM 获取交易决策。方向预测准确率 44%，接近随机。</li>
-<li><strong>XGBoost/随机森林</strong>：在 BTC 1h
-上反复尝试，无法产生稳定正收益。</li>
-<li><strong>LSTM
-集成模型</strong>：三个模型的集成，同样没有正预期。</li>
-</ul>
-<p>这些独立实验用完全不同的方法得出了一致结论：<strong>BTC 1h
-的价格变化在统计意义上接近随机游走</strong>。</p>
-<h2 id="失败的根本原因">失败的根本原因</h2>
-<p>现在复盘，有两个致命的设计错误：</p>
-<h3 id="hp-滤波的前视偏差">1. HP 滤波的前视偏差</h3>
-<p>StateDecomposer 对整个训练集做了一次性双向 HP 滤波：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trend = spsolve(A, series)  <span class="comment"># 一次性求解整个序列</span></span><br></pre></td></tr></table></figure>
-<p>这意味着训练集里时间 <span class="math inline">\(t\)</span>
-的趋势是拿 <span class="math inline">\(t\)</span>
-以后的数据算出来的。模型学到的"规律"本质上包含了未来信息，到真没见过的新数据上自然崩溃。</p>
-<p>这解释了为什么单次分割（70/15/15）的测试结果看起来那么漂亮——验证集和测试集的数据也被同样方式分解了，信息泄漏是一体的。</p>
-<h3 id="ohlcv-的单向预测信噪比太低">2. OHLCV 的单向预测信噪比太低</h3>
-<p>本质上我在做的是：用 <span class="math inline">\([t-47, t]\)</span>
-的 OHLCV 数据预测 <span class="math inline">\(t+1\)</span>
-时刻的方向。这个任务的信噪比在加密货币 1h
-级别上极低。无论是浅层模型（XGBoost）、深层模型（LSTM）、还是大型模型（Transformer/LLM），都无法从中提取出能稳定盈利的信号。</p>
+<p>于是开始了<strong>因子化世界模型（Factorized World Model,
+FWM）</strong>项目。前后迭代三个版本，七次全量实验，全部亏损，无一正收益。</p>
 <hr />
-<h2 id="教训">教训</h2>
-<h3 id="好的教训">好的教训</h3>
+<h2 id="v1hp滤波-transformer2026-06-25">V1：HP滤波 +
+Transformer（2026-06-25）</h2>
+<h3 id="架构设计">架构设计</h3>
+<p>从原始 OHLCV 中提取趋势状态序列和回归残差序列：</p>
+<ol type="1">
+<li><strong>HP滤波</strong>：<span class="math inline">\(\lambda =
+5000\)</span> 从收盘价提取平滑趋势线 <span
+class="math inline">\(\tau_t\)</span></li>
+<li><strong>趋势Token</strong>：计算趋势线滑动斜率的z-score，离散化为5类——强下降、弱下降、横盘、弱上升、强上升</li>
+<li><strong>残差特征</strong>：<span class="math inline">\(r_t = p_t -
+\tau_t\)</span>，提取8维特征向量</li>
+<li><strong>均值回归标签</strong>：残差超过<span
+class="math inline">\(2\sigma\)</span>且未来回归触发，标记为回归点</li>
+</ol>
+<p>模型是4层Transformer Decoder（因果掩码，d=192,
+6头），预测下一时刻的趋势Token分布和均值回归概率。</p>
+<h3 id="滚动训练结果">滚动训练结果</h3>
+<p>18个累积窗口的walk-forward测试，覆盖2022-2026全年：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">窗口1-18: 全部亏损</span><br><span class="line">累计: -99.9%</span><br><span class="line">换成SOL/DOGE/ZEC: 全部-100%</span><br></pre></td></tr></table></figure>
+<p>第一个版本的失败是彻底的。原因是<strong>HP滤波的前视偏差</strong>——双向滤波使用了全部数据来估计某一点的趋势，训练集里已经包含了未来信息，到真没见过的新数据上自然崩溃。</p>
+<p>延伸阅读：之前用DeepSeek-LLM做交易回测（50+技术指标，44%方向正确率）和XGBoost/随机森林的尝试，也都得到了同样的负结论。</p>
+<hr />
+<h2 id="v2vae-三种概率体制2026-06-26">V2：VAE +
+三种概率体制（2026-06-26）</h2>
+<h3 id="根本转变">根本转变</h3>
+<p>V1的核心假设是"市场每一时刻都能被确定性地分解为趋势成分+回归成分"。但事实证明，这个假设太强了。市场大部分时间处于随机游走状态。</p>
+<p>改为概率框架：市场存在三种不可观测的生成体制——<strong>趋势体制</strong>、<strong>回归体制</strong>、<strong>噪声体制</strong>。任何时刻市场仅处于其中一种体制，我们只能用概率推断：</p>
+<p><span class="math display">\[P(\text{Trend}) + P(\text{Reversion}) +
+P(\text{Noise}) = 1\]</span></p>
+<h3 id="架构">架构</h3>
+<p>采用VAE +
+Gumbel-Softmax离散潜变量框架。编码器是LSTM，输出3个类别的softmax概率。解码器由三个条件高斯生成器组成，分别对应三种体制，通过自相关系数约束（趋势正自相关、回归负自相关、噪声零自相关）让三类自动形成语义。</p>
+<h3 id="全量测试结果">全量测试结果</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指标</th>
+<th style="text-align: center;">数值</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">训练</td>
+<td style="text-align: center;">17 epoch早停</td>
+<td style="text-align: center;">快速收敛</td>
+</tr>
+<tr>
+<td style="text-align: left;">体制分布</td>
+<td style="text-align: center;">Trend 53%/Rev 44%/Noise 3%</td>
+<td style="text-align: center;">Trend/Rev几乎各半</td>
+</tr>
+<tr>
+<td style="text-align: left;">Trend自相关</td>
+<td style="text-align: center;"><strong>+0.936</strong>（目标+0.3）</td>
+<td style="text-align: center;">约束失效</td>
+</tr>
+<tr>
+<td style="text-align: left;">Reversion自相关</td>
+<td style="text-align: center;"><strong>+0.996</strong>（目标-0.3）</td>
+<td style="text-align: center;">完全错误方向</td>
+</tr>
+<tr>
+<td style="text-align: left;">预测器</td>
+<td style="text-align: center;">KL=12.9，训练不动</td>
+<td style="text-align: center;">完全没有学习</td>
+</tr>
+<tr>
+<td style="text-align: left;">回测</td>
+<td style="text-align: center;"><strong>-77.91%</strong> vs BH
++15.15%</td>
+<td style="text-align: center;">大幅亏损</td>
+</tr>
+</tbody>
+</table>
+<p>自相关约束被NLL损失压倒，三个生成器未能分化出不同动态模式。VAE实际学到的只是区分"高波动期"和"低波动期"，而非"趋势"和"回归"——这跟传统HMM的失败模式完全一样。</p>
+<hr />
+<h2 id="v3ema监督编码器2026-06-26">V3：EMA监督编码器（2026-06-26）</h2>
+<h3 id="突破性的想法">突破性的想法</h3>
+<p>前两次失败有一个共同的根因：<strong>模型分出来的状态（Trend/Rev/Noise），和我们人类理解的趋势/回归，根本不是一回事。</strong>自相关约束这种弱结构先验不足以让神经网络区分正自相关和负自相关动力学。</p>
+<p>改用EMA20/EMA50规则<strong>直接写死状态定义</strong>：</p>
 <ul>
-<li><strong>Walk-forward 测试是必需的</strong>：单次分割的夏普 12
-是假象，滚动训练的 -99.9% 是真相。</li>
-<li><strong>M
-个独立实验得到同样的负结论，这个结论值得信任</strong>：LLM、XGBoost、LSTM、Transformer
-都不行，那就是这条路行不通。</li>
-<li><strong>在开始之前先估计上限</strong>：如果 <span
-class="math inline">\(R^2\)</span> 的天花板是
-0.01，任何模型都不可能赚钱。</li>
+<li><strong>UPTREND</strong>：EMA20 &gt;
+EMA50，EMA20斜率&gt;0，价格在EMA20之上</li>
+<li><strong>DOWNTREND</strong>：EMA20 &lt;
+EMA50，EMA20斜率&lt;0，价格在EMA20之下</li>
+<li><strong>NOISE</strong>：均线缠绕、收敛、或价格无序穿越</li>
 </ul>
-<h3 id="坏的教训">坏的教训</h3>
-<p>花了整整一天，写了 900 行代码，跑了几小时的 GPU
-训练，得到了一个字：不行。</p>
-<p>但其实这个结果的价值比一次"成功的回测"更大——它排除了一个看起来很有前景的方向，让精力可以集中在真正有效的事情上。</p>
+<p>然后用LSTM从<strong>不含均线的原始特征</strong>中识别当前状态——让模型学会"看懂"EMA规则。</p>
+<h3 id="第一个真正的成功">第一个真正的成功</h3>
+<p>编码器测试集准确率：<strong>86.22%</strong>（UP=88.9%, DOWN=90.0%,
+NOISE=82.3%）</p>
+<p>这是三个版本中第一次模型真正学到了有语义的东西——它的内部隐藏状态确实编码了"什么是上涨趋势、什么是下跌趋势、什么是震荡"。而且它是从原始K线形态、波动率、成交量等底层特征中学到的——不是在计算EMA，而是在识别导致EMA交叉的价格行为模式。</p>
+<p><strong>但回测结果：-88.40%。</strong></p>
+<p>即使完美地知道当前市场处于EMA定义的什么状态，也无法用这个信息盈利。原因很简单：<strong>市场已经为公开的EMA信息定价了。</strong>当金叉确认时，趋势已经走完了一大段，剩下的空间风险回报比极差。</p>
+<h3 id="切换事件预测方向a">切换事件预测（方向A）</h3>
+<p>编码器的87%准确率是一个坚实的地基，但预测器面对的是一个残酷的数据分布：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指标</th>
+<th style="text-align: center;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">切换比例</td>
+<td style="text-align: center;">12.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;">"明天=今天"基线</td>
+<td style="text-align: center;">87.35%</td>
+</tr>
+<tr>
+<td style="text-align: left;">预测器准确率</td>
+<td style="text-align: center;">86.6%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>切换召回率</strong></td>
+<td style="text-align: center;"><strong>65.9%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>切换精确率</strong></td>
+<td style="text-align: center;"><strong>30.28%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>切换精确率30.28%揭示了根本问题：模型喊了太多次"狼来了"。70%的切换预测是假警报，每一次假警报都产生一笔亏损交易。</p>
+<h3 id="最终尝试收益方向预测">最终尝试：收益方向预测</h3>
+<p>放弃预测体制切换。冻结编码器参数，在它的隐藏向量上训练一个MLP，直接预测下一期收益方向。</p>
+<p>结果：验证准确率<strong>52.5%</strong> vs
+基线50.8%。测试集<strong>51.70%</strong> vs 基线50.45%。</p>
+<p><strong>这个数字是三个版本七次实验中"最接近成功"的一次——但它仍然不足以覆盖交易成本。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">阈值</th>
+<th style="text-align: center;">收益</th>
+<th style="text-align: center;">交易</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0.55</td>
+<td style="text-align: center;">-98.82%</td>
+<td style="text-align: center;">4279</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.60</td>
+<td style="text-align: center;">-18.72%</td>
+<td style="text-align: center;">138</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.70</td>
+<td style="text-align: center;">接近0%</td>
+<td style="text-align: center;">&lt; 50</td>
+</tr>
+</tbody>
+</table>
+<p>阈值抬到0.70后几乎不交易了，说明预测器输出集中在50-55%之间，从未达到过可以稳定交易的置信度。</p>
+<hr />
+<h2 id="三个版本的对比总结">三个版本的对比总结</h2>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 36%" />
+<col style="width: 28%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">维度</th>
+<th style="text-align: center;">V1: HP滤波+Token</th>
+<th style="text-align: center;">V2: VAE+体制</th>
+<th style="text-align: center;">V3: EMA监督</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">核心方法</td>
+<td style="text-align: center;">人工趋势分解</td>
+<td style="text-align: center;">无监督体制学习</td>
+<td style="text-align: center;">监督标签学习</td>
+</tr>
+<tr>
+<td style="text-align: left;">编码器质量</td>
+<td style="text-align: center;">数据泄露</td>
+<td style="text-align: center;">模式坍缩</td>
+<td style="text-align: center;">87%准确✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">预测器</td>
+<td style="text-align: center;">随机水平</td>
+<td style="text-align: center;">完全失败</td>
+<td style="text-align: center;">52.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;">最佳回测</td>
+<td style="text-align: center;">-99.9%</td>
+<td style="text-align: center;">-77.91%</td>
+<td style="text-align: center;">-18.72%(th=0.60)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>核心教训</strong></td>
+<td style="text-align: center;">前视偏差必死</td>
+<td style="text-align: center;">弱先验不足以区分动力学</td>
+<td style="text-align: center;">EMA知识无Alpha</td>
+</tr>
+</tbody>
+</table>
+<h2 id="终极结论">终极结论</h2>
+<p>七次全量实验（V1×18窗口 + V1山寨币×3 + V2 + V3×3模式 +
+V3收益预测），覆盖了从人工规则分解、无监督VAE推断、到EMA监督学习、直接收益预测的全部路径。结果一致：</p>
+<p><strong>BTC
+1h的纯OHLCV价格预测任务，信噪比极低，接近随机游走。</strong>
+无论使用何种架构，都无法从中提取出能稳定覆盖交易成本的预测信号。</p>
+<p>这跟之前一系列独立实验的结论完全一致： -
+DeepSeek-LLM交易回测：44%方向正确率（接近随机） -
+XGBoost/随机森林：无法稳定盈利 - LSTM集成：同样负预期</p>
+<p><strong>这个方向的投入产出比极低。</strong>
+之前验证有效的策略（低波山寨币暴跌抄底，胜率57.5%，夏普4.01）继续实盘模拟。</p>
 <h2 id="代码归档">代码归档</h2>
-<p>FWM 项目代码留在仓库中，作为一次诚实的失败记录：</p>
 <ul>
-<li><code>ml_models/factorized_world_model.py</code></li>
-<li><code>ml_models/train_factorized_world_model.py</code></li>
-<li><code>notes/factorized_world_model_TECH.md</code></li>
+<li><code>ml_models/fwm_v2.py</code> — FWM V2: VAE概率体制模型</li>
+<li><code>ml_models/fwm_v3.py</code> — FWM V3: EMA监督编码器 →
+收益预测</li>
+<li><code>notes/量化总结.md</code> — 全部实验结果汇总</li>
 </ul>
-<p>之前验证有效的策略（低波山寨币暴跌抄底，胜率 57.5%，夏普
-4.01）继续实盘模拟。</p>
 
     </div>
 
@@ -447,7 +502,7 @@ class="math inline">\(R^2\)</span> 的天花板是
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/" title="因子化世界模型：一次彻底的失败">https://vasily-alexievich-korolev.github.io/posts/fwm20260625/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/fwm20260625/" title="因子化世界模型：三次迭代、七次实验、全部亏损">https://vasily-alexievich-korolev.github.io/posts/fwm20260625/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -534,7 +589,9 @@ class="math inline">\(R^2\)</span> 的天花板是
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">状态分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%98%A0%E5%B0%84"><span class="nav-number">2.3.</span> <span class="nav-text">决策映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%AF%95%E5%8D%95%E6%AC%A1%E5%88%86%E5%89%B2%E7%9A%84%E5%81%87%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">初试：单次分割的假象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E8%AE%AD%E7%BB%83%E7%9C%9F%E7%9B%B8%E5%A4%A7%E7%99%BD"><span class="nav-number">5.</span> <span class="nav-text">滚动训练：真相大白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E6%88%90%E5%B1%B1%E5%AF%A8%E5%B8%81%E8%AF%95%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">换成山寨币试试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E5%AE%9E%E9%AA%8C%E7%9A%84%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">7.</span> <span class="nav-text">独立实验的交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0"><span class="nav-number">8.</span> <span class="nav-text">失败的根本原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hp-%E6%BB%A4%E6%B3%A2%E7%9A%84%E5%89%8D%E8%A7%86%E5%81%8F%E5%B7%AE"><span class="nav-number">8.1.</span> <span class="nav-text">1. HP 滤波的前视偏差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ohlcv-%E7%9A%84%E5%8D%95%E5%90%91%E9%A2%84%E6%B5%8B%E4%BF%A1%E5%99%AA%E6%AF%94%E5%A4%AA%E4%BD%8E"><span class="nav-number">8.2.</span> <span class="nav-text">2. OHLCV 的单向预测信噪比太低</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E8%AE%AD"><span class="nav-number">9.</span> <span class="nav-text">教训</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%BD%E7%9A%84%E6%95%99%E8%AE%AD"><span class="nav-number">9.1.</span> <span class="nav-text">好的教训</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E7%9A%84%E6%95%99%E8%AE%AD"><span class="nav-number">9.2.</span> <span class="nav-text">坏的教训</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%BD%92%E6%A1%A3"><span class="nav-number">10.</span> <span class="nav-text">代码归档</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v1hp%E6%BB%A4%E6%B3%A2-transformer2026-06-25"><span class="nav-number">2.</span> <span class="nav-text">V1：HP滤波 +
+Transformer（2026-06-25）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.1.</span> <span class="nav-text">架构设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C"><span class="nav-number">2.2.</span> <span class="nav-text">滚动训练结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2vae-%E4%B8%89%E7%A7%8D%E6%A6%82%E7%8E%87%E4%BD%93%E5%88%B62026-06-26"><span class="nav-number">3.</span> <span class="nav-text">V2：VAE +
+三种概率体制（2026-06-26）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%9C%AC%E8%BD%AC%E5%8F%98"><span class="nav-number">3.1.</span> <span class="nav-text">根本转变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%87%8F%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-number">3.3.</span> <span class="nav-text">全量测试结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v3ema%E7%9B%91%E7%9D%A3%E7%BC%96%E7%A0%81%E5%99%A82026-06-26"><span class="nav-number">4.</span> <span class="nav-text">V3：EMA监督编码器（2026-06-26）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%81%E7%A0%B4%E6%80%A7%E7%9A%84%E6%83%B3%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">突破性的想法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E7%9A%84%E6%88%90%E5%8A%9F"><span class="nav-number">4.2.</span> <span class="nav-text">第一个真正的成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E4%BA%8B%E4%BB%B6%E9%A2%84%E6%B5%8B%E6%96%B9%E5%90%91a"><span class="nav-number">4.3.</span> <span class="nav-text">切换事件预测（方向A）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%B0%9D%E8%AF%95%E6%94%B6%E7%9B%8A%E6%96%B9%E5%90%91%E9%A2%84%E6%B5%8B"><span class="nav-number">4.4.</span> <span class="nav-text">最终尝试：收益方向预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">三个版本的对比总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E6%9E%81%E7%BB%93%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">终极结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%BD%92%E6%A1%A3"><span class="nav-number">7.</span> <span class="nav-text">代码归档</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

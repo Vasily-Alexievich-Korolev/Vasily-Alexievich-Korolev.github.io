@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/turtle-investment-method/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/4f9e1b/</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -822,6 +831,41 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/%E9%BE%9F%E9%BE%9F%E6%8A%95%E8%B5%84%E6%B3%95/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/%E9%98%B2%E5%AE%88%E5%8F%8D%E5%87%BB/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/%E4%BB%B7%E5%80%BC%E6%8A%95%E8%B5%84/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/%E4%BB%93%E4%BD%8D%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/tags/%E8%82%A1%E6%81%AF%E7%AD%96%E7%95%A5/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -959,6 +1003,20 @@
   
   <url>
     <loc>https://vasily-alexievich-korolev.github.io/categories/%E7%A4%BE%E4%BC%9A%E8%A7%82%E5%AF%9F/%E6%94%BF%E6%B2%BB%E7%BB%8F%E6%B5%8E%E5%AD%A6/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/%E6%8A%95%E8%B5%84/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/categories/%E6%8A%95%E8%B5%84/%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

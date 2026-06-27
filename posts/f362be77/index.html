@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文是对于向量微积分相关内容的总结，主要包括梯度、散度、旋度、Laplace算符以及相关积分公式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-26T18:45:36.823Z">
-<meta property="article:modified_time" content="2025-03-02T14:01:14.069Z">
+<meta property="article:modified_time" content="2026-06-27T15:48:31.680Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Vector Calculus">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-02 22:01:14" itemprop="dateModified" datetime="2025-03-02T22:01:14+08:00">2025-03-02</time>
+                <time title="修改时间：2026-06-27 23:48:31" itemprop="dateModified" datetime="2026-06-27T23:48:31+08:00">2026-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -365,29 +365,23 @@ q_{n})\)</span>的全微分可写为 <span class="math display">\[
 \boldsymbol{l} = \begin{bmatrix}
 \mathrm{d} q_{1} &amp; \mathrm{d} q_{2} &amp; \dots &amp; \mathrm{d}
 q_{n}
-\end{bmatrix}^{\mathrm{T}}\)</span>视为函数在某点的变化方向。由于在某点处，函数的梯度是一定的，因此只有当<span
-class="math inline">\(\mathrm{d} \boldsymbol{l}\)</span>与<span
-class="math inline">\(\nabla
-f\)</span>的方向相同时，函数的全微分最大。由此可得，梯度<span
-class="math inline">\(\nabla f\)</span>的方向为函数<span
-class="math inline">\(f(q_{1}, q_{2}, \dots,
-q_{n})\)</span>有最大增加的方向，而梯度的大小<span
-class="math inline">\(|\nabla f|\)</span>为<span
-class="math inline">\(f(q_{1}, q_{2}, \dots,
-q_{n})\)</span>在该方向的斜率。</p>
+\end{bmatrix}^{\mathrm{T}}\)</span>视为函数在某点的变化方向。由于在某点处，函数的梯度是一定的，因此只有当$
+<span class="math inline">\(\boldsymbol{l}\)</span><span
+class="math inline">\(与\)</span>f<span
+class="math inline">\(的方向相同时，函数的全微分最大。由此可得，梯度\)</span>f<span
+class="math inline">\(的方向为函数\)</span>f(q_{1}, q_{2}, , q_{n})<span
+class="math inline">\(有最大增加的方向，而梯度的大小\)</span>|f|<span
+class="math inline">\(为\)</span>f(q_{1}, q_{2}, ,
+q_{n})$在该方向的斜率。</p>
 <p>当梯度为0时，函数可能处于极值点（极大值或极小值）、鞍点（某方向为极大值，其他方向为极小值）或肩点（上升或下降中的平坦点）。</p>
 <p>对于普通向量，我们有数乘、点乘和叉乘三种乘法。由于nabla算符类似向量，我们也可以类似地规定其与普通函数的三种作用方式：</p>
 <ol type="1">
-<li><p>作用在标量函数<span class="math inline">\(f\)</span>上：<span
-class="math inline">\(\nabla f\)</span></p></li>
-<li><p>通过点乘作用在矢量函数<span
-class="math inline">\(\boldsymbol{F}\)</span>上：<span
-class="math inline">\(\nabla \cdot \boldsymbol{F}\)</span></p></li>
-<li><p>通过叉乘作用在矢量函数<span
-class="math inline">\(\boldsymbol{F}\)</span>上：<span
-class="math inline">\(\nabla \times \boldsymbol{F}\)</span></p></li>
+<li>作用在标量函数<span class="math inline">\(f\)</span>上：$f<span
+class="math inline">\(2. 通过点乘作用在矢量函数\)</span><span
+class="math inline">\(上：\)</span><span class="math inline">\(3.
+通过叉乘作用在矢量函数\)</span><span
+class="math inline">\(上：\)</span>$其中，第二种方式得到的结果被称为散度（Divergence），第三种方式得到的结果被称为旋度（Curl）。</li>
 </ol>
-<p>其中，第二种方式得到的结果被称为散度（Divergence），第三种方式得到的结果被称为旋度（Curl）。</p>
 <h3 id="保守场中的梯度">保守场中的梯度</h3>
 <p>首先，如果在一个向量场<span
 class="math inline">\(\boldsymbol{F}\)</span>中，对于任意的环路<span

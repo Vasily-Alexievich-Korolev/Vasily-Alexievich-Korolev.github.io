@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文主要介绍了理论力学中有关Lagrange动力学的相关内容，包括Lagrange方程的推导、广义动量积分与广义能量积分，以及讨论了广义能量积分的含义。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-01T16:41:49.101Z">
-<meta property="article:modified_time" content="2025-06-01T17:08:58.574Z">
+<meta property="article:modified_time" content="2026-06-27T15:48:31.690Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Classical Mechanics">
@@ -192,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-06-02 00:41:49 / 修改时间：01:08:58" itemprop="dateCreated datePublished" datetime="2025-06-02T00:41:49+08:00">2025-06-02</time>
+              <time title="创建时间：2025-06-02 00:41:49" itemprop="dateCreated datePublished" datetime="2025-06-02T00:41:49+08:00">2025-06-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-27 23:48:31" itemprop="dateModified" datetime="2026-06-27T23:48:31+08:00">2026-06-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -257,12 +263,12 @@ s\)</span>，那么有</p>
 \alpha = 1, 2, \dots, s\)</span>之间满足如下两个关系 <span
 class="math display">\[
 \left\{\begin{aligned}
-&amp; \dfrac{\partial \dot{\boldsymbol{r}}_{i}}{\partial
-\dot{q}_{\alpha}} = \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+&amp; \dfrac{\partial \dot{$\boldsymbol{r}$}_{i}}{\partial
+\dot{q}_{\alpha}} = \dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
 q_{\alpha}} \\
 &amp; \dfrac{\partial}{\partial q_{\alpha}} \left( \dfrac{\mathrm{d}
-\boldsymbol{r}_{i}}{\mathrm{d} t} \right) = \dfrac{\mathrm{d}
-}{\mathrm{d} t} \left( \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+$\boldsymbol{r}$_{i}}{\mathrm{d} t} \right) = \dfrac{\mathrm{d}
+}{\mathrm{d} t} \left( \dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
 q_{\alpha}} \right)  \\
 \end{aligned}\right.
 \]</span></p>
@@ -334,22 +340,22 @@ Q_{\alpha},\quad \alpha = 1, 2, \dots, s
 <p>证明：</p>
 <p>d'Alembert原理的表达式为 <span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} \left( \boldsymbol{F}_{i} -
-m_{i}\ddot{\boldsymbol{r}}_{i} \right) \cdot \delta
-\boldsymbol{r}_{i}  = \sum\limits_{i = 1}^{n}\left( \boldsymbol{F}_{i}
-\cdot\delta \boldsymbol{r}_{i} - m_{i}\ddot{\boldsymbol{r}}_{i}\right) =
-0
+\sum\limits_{i = 1}^{n} \left( $\boldsymbol{F}$_{i} -
+m_{i}\ddot{$\boldsymbol{r}$}_{i} \right) \cdot \delta
+$\boldsymbol{r}$_{i}  = \sum\limits_{i = 1}^{n}\left(
+$\boldsymbol{F}$_{i} \cdot\delta $\boldsymbol{r}$_{i} -
+m_{i}\ddot{$\boldsymbol{r}$}_{i}\right) = 0
 \end{aligned}
 \]</span> 我们将上式拆分为两部分计算。首先计算第一部分 <span
 class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \delta
-\boldsymbol{r}_{i} &amp; = \sum\limits_{i = 1}^{n}\left(
-\boldsymbol{F}_{i} \cdot \sum\limits_{\alpha}\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \delta q_{\alpha}\right) \\
+\sum\limits_{i = 1}^{n}$\boldsymbol{F}$_{i} \cdot \delta
+$\boldsymbol{r}$_{i} &amp; = \sum\limits_{i = 1}^{n}\left(
+$\boldsymbol{F}$_{i} \cdot \sum\limits_{\alpha}\dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \delta q_{\alpha}\right) \\
 &amp; = \sum\limits_{\alpha = 1}^{s}\left( \sum\limits_{i =
-1}^{n}\boldsymbol{F}_{i} \cdot\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}}\right) \delta q_{\alpha} \\
+1}^{n}$\boldsymbol{F}$_{i} \cdot\dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}}\right) \delta q_{\alpha} \\
 &amp; = \sum\limits_{\alpha = 1}^{s}Q_{\alpha}\delta q_{\alpha}
 \end{aligned}
 \]</span> 其中<span class="math inline">\(\displaystyle Q_{\alpha} =
@@ -359,55 +365,55 @@ q_{\alpha}}\)</span>为广义力。第二部分为</p>
 <p><span class="math display">\[
 \begin{aligned}
 - \sum\limits_{i = 1}^{n} m_{i}\ddot{r}_{i} \cdot \delta
-\boldsymbol{r}_{i} &amp; = -\sum\limits_{i = 1}^{n} \left(
-m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
-\sum\limits_{\alpha}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial
+$\boldsymbol{r}$_{i} &amp; = -\sum\limits_{i = 1}^{n} \left(
+m_{i}\ddot{$\boldsymbol{r}$}_{i} \cdot
+\sum\limits_{\alpha}^{s}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
 q_{\alpha}} \delta q_{\alpha} \right) \\
 &amp; = -\sum\limits_{\alpha = 1}^{s} \left( \sum\limits_{i = 1}^{n}
-m_{i}\ddot{\boldsymbol{r}}_{i} \cdot\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) \delta q_{\alpha}
+m_{i}\ddot{$\boldsymbol{r}$}_{i} \cdot\dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \right) \delta q_{\alpha}
 \end{aligned}
 \]</span> 针对括号中的部分，我们有 <span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
+\sum\limits_{i = 1}^{n} m_{i}\ddot{$\boldsymbol{r}$}_{i}
+\cdot\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}} &amp; =
 \sum\limits_{i = 1}^{n}m_{i}\dfrac{\mathrm{d}
-\dot{\boldsymbol{r}}_{i}}{\mathrm{d} t} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \\
+\dot{$\boldsymbol{r}$}_{i}}{\mathrm{d} t} \cdot \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \\
 &amp; = \sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t}
-\left( \dot{\boldsymbol{r}}_{i} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) - \sum\limits_{i =
-1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot \dfrac{\mathrm{d}}{\mathrm{d}
-t} \left( \dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}
-\right)
+\left( \dot{$\boldsymbol{r}$}_{i} \cdot \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \right) - \sum\limits_{i =
+1}^{n}m_{i}\dot{$\boldsymbol{r}$_{i}} \cdot
+\dfrac{\mathrm{d}}{\mathrm{d} t} \left(
+\dfrac{\partial$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \right)
 \end{aligned}
 \]</span> 将Lagrange关系带入上式可得 <span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
+\sum\limits_{i = 1}^{n} m_{i}\ddot{$\boldsymbol{r}$}_{i}
+\cdot\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}} &amp; =
 \sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t} \left(
-\dot{\boldsymbol{r}}_{i} \cdot \dfrac{\partial
-\dot{\boldsymbol{r}_{i}}}{\partial \dot{q_{\alpha}}} \right) -
-\sum\limits_{i = 1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot
+\dot{$\boldsymbol{r}$}_{i} \cdot \dfrac{\partial
+\dot{$\boldsymbol{r}$_{i}}}{\partial \dot{q_{\alpha}}} \right) -
+\sum\limits_{i = 1}^{n}m_{i}\dot{$\boldsymbol{r}$_{i}} \cdot
 \dfrac{\partial}{\partial q_{\alpha}} \left( \dfrac{\mathrm{d}
-\boldsymbol{r}_{i}}{\mathrm{d} t} \right) \\
+$\boldsymbol{r}$_{i}}{\mathrm{d} t} \right) \\
 &amp; = \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial}{\partial
 \dot{q}_{\alpha}}\left( \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i}^{2}  \right) - \dfrac{\partial}{\partial
+\dot{$\boldsymbol{r}$}_{i}^{2}  \right) - \dfrac{\partial}{\partial
 q_{\alpha}} \left( \sum\limits_{i = 1}^{n}\dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i}^{2} \right)
+\dot{$\boldsymbol{r}$}_{i}^{2} \right)
 \end{aligned}
 \]</span> 注意到动能表达式为<span class="math inline">\(\displaystyle T
 = \sum\limits_{i =
 1}^{n}\dfrac{1}{2}m_{i}\dot{\boldsymbol{r}}_{i}^{2}\)</span>，因此 <span
 class="math display">\[
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} =
+\sum\limits_{i = 1}^{n} m_{i}\ddot{$\boldsymbol{r}$}_{i}
+\cdot\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}} =
 \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
 \dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}}
 \]</span> 这样第二部分最终可以表示为 <span class="math display">\[
--\sum\limits_{i = 1}^{n}m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
-\delta\boldsymbol{r}_{i} = - \left( \sum\limits_{\alpha =
+-\sum\limits_{i = 1}^{n}m_{i}\ddot{$\boldsymbol{r}$}_{i} \cdot
+\delta$\boldsymbol{r}$_{i} = - \left( \sum\limits_{\alpha =
 1}^{s}\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
 \dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}} \right)
 \delta q_{\alpha}
@@ -583,21 +589,23 @@ H = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial T}{\partial
 class="math inline">\(\boldsymbol{r}_{i} =
 \boldsymbol{r}_{i}(q)\)</span>，那么速度可以表示为 <span
 class="math display">\[
-  \dot{\boldsymbol{r}}_{i} = \sum\limits_{\alpha = 1}^{s}\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \dot{q}_{\alpha}
+  \dot{$\boldsymbol{r}$}_{i} = \sum\limits_{\alpha =
+1}^{s}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}}
+\dot{q}_{\alpha}
   \]</span> 从而 <span class="math display">\[
   \begin{aligned}
   T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+\dot{$\boldsymbol{r}$}_{i} \cdot \dot{$\boldsymbol{r}$}_{i} \\
   &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\sum\limits_{\alpha =
-1}^{s} \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+1}^{s} \dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
 q_{\alpha}}\dot{q}_{\alpha} \cdot \sum\limits_{\beta =
-1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}}
+1}^{s}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\beta}}
 \dot{q}_{\beta} \\
   &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2} m_{i}\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta}
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
+\dot{q}_{\beta}
   \end{aligned}
   \]</span>
 此时不难看出，动能为广义速度的二次齐次多项式，因此由齐次函数的Euler定理可得
@@ -619,46 +627,46 @@ class="math inline">\(H\)</span>即为机械能。</p></li>
 <li><p>如果坐标显式含时，即<span
 class="math inline">\(\boldsymbol{r}_{i} = \boldsymbol{r}_{i}(q,
 t)\)</span>，那么速度可以表示为 <span class="math display">\[
-  \dot{\boldsymbol{r}}_{i} = \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\alpha =
-1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}}
+  \dot{$\boldsymbol{r}$}_{i} = \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial t} + \sum\limits_{\alpha =
+1}^{s}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}}
 \dot{q}_{\alpha}
   \]</span> 因此动能表达式变为 <span class="math display">\[
   \begin{aligned}
   T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+\dot{$\boldsymbol{r}$}_{i} \cdot \dot{$\boldsymbol{r}$}_{i} \\
   &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i} \left(
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\alpha =
-1}^{s} \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial t} + \sum\limits_{\alpha
+= 1}^{s} \dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
 q_{\alpha}}\dot{q}_{\alpha} \right) \cdot \left( \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial t} +\sum\limits_{\beta =
-1}^{s}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}}
+$\boldsymbol{r}$_{i}}{\partial t} +\sum\limits_{\beta =
+1}^{s}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\beta}}
 \dot{q}_{\beta} \right) \\
   &amp; = \sum\limits_{i = 1}^{n} \left\{ \dfrac{1}{2}m_{i}\left(
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \right)^{2} +
+\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial t} \right)^{2} +
 \sum\limits_{\alpha = 1}^{s}m_{i}\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial t} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
+$\boldsymbol{r}$_{i}}{\partial t} \cdot \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
 +  \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
-m_{i}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
-\dot{q}_{\beta} \right\}
+m_{i}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \cdot
+\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial q_{\beta}}
+\dot{q}_{\alpha} \dot{q}_{\beta} \right\}
   \end{aligned}
   \]</span>
 上式中包含三个部分，分别为广义速度的零次、一次和二次的齐次多项式，我们分别将其记为
 <span class="math display">\[
   \left\{\begin{aligned}
   T_{0} &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\left(
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \right)^{2} \\
+\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial t} \right)^{2} \\
   T_{1} &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
-1}^{s}m_{i}\dfrac{\partial \boldsymbol{r}_{i}}{\partial t} \cdot
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
-\\
+1}^{s}m_{i}\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial t} \cdot
+\dfrac{\partial $\boldsymbol{r}$_{i}}{\partial
+q_{\alpha}}\dot{q}_{\alpha} \\
   T_{2} &amp; = \sum\limits_{i = 1}^{n}\sum\limits_{\alpha =
 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2} m_{i}\dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta}
-\\
+$\boldsymbol{r}$_{i}}{\partial q_{\alpha}} \cdot \dfrac{\partial
+$\boldsymbol{r}$_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
+\dot{q}_{\beta} \\
   \end{aligned}\right.
   \]</span> 这样广义动能可以表示为 <span class="math display">\[
   T = T_{0} + T_{1} + T_{2}
@@ -686,9 +694,9 @@ m_{i}\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
 <p>我们先直接给出Noether定理</p>
 <blockquote>
 <p>定理：</p>
-<p>对于任何一种在坐标连续变化下，系统的Hamilton量 <span
+<p>对于任何一种在坐标连续变化下，系统的Hamilton量<span
 class="math inline">\(\displaystyle S = \int_{t_{1}}^{t_{2}}L(q(t),
-\dot{q}(t), t)\mathrm{d} t\)</span> 的不变性都有相应的运动积分。</p>
+\dot{q}(t), t)\mathrm{d} t\)</span>的不变性都有相应的运动积分。</p>
 </blockquote>
 
     </div>
@@ -730,8 +738,8 @@ class="math inline">\(\displaystyle S = \int_{t_{1}}^{t_{2}}L(q(t),
       <i class="fa fa-chevron-left"></i> d'Alembert原理——经典力学笔记1
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/a48aba4a/" rel="next" title="重返祖国：二战和冷战时期流离失所的苏联人">
-      重返祖国：二战和冷战时期流离失所的苏联人 <i class="fa fa-chevron-right"></i>
+    <a href="/posts/f3c76234/" rel="next" title="1940年卡廷大屠杀：一段罪案史">
+      1940年卡廷大屠杀：一段罪案史 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

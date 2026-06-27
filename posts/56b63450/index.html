@@ -28,12 +28,20 @@
 <meta property="og:site_name" content="Vasily&#39;s Blog">
 <meta property="og:description" content="本文介绍了交流电的基本理论，包括RLC电路、复阻抗、谐振、三相交流电等。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-1.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-3.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-4.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-5.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-6.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-7.png">
+<meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-8.png">
 <meta property="article:published_time" content="2026-06-25T15:22:43.946Z">
-<meta property="article:modified_time" content="2026-06-27T14:52:00.658Z">
+<meta property="article:modified_time" content="2026-06-27T15:48:31.701Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vasily-alexievich-korolev.github.io/images/em/7-1.png">
 
 <link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/56b63450/">
 
@@ -200,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 22:52:00" itemprop="dateModified" datetime="2026-06-27T22:52:00+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-27 23:48:31" itemprop="dateModified" datetime="2026-06-27T23:48:31+08:00">2026-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,7 +237,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.9k</span>
+              <span>6.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -250,6 +258,7 @@
 
       
         <h1 id="交流电">交流电</h1>
+<p>{1}{7.jpg}</p>
 <h2 id="交流电概述">交流电概述</h2>
 <p>在电路中，如果电源的电动势<span
 class="math inline">\(e(t)\)</span>随时间周期性变化，那么各段电路中电压<span
@@ -259,7 +268,7 @@ class="math inline">\(i(t)\)</span>都将随时间做周期性变化，这种电
 <p>如果电源的电动势<span
 class="math inline">\(e(t)\)</span>为正弦函数或余弦函数，那么我们将这种交流电称为简谐交流电。由于</p>
 <p>（1）任何非简谐交流电都可分解为一系列不同频率的简谐成分叠加（也就是Fourier变换）</p>
-<p>（2）不同频率的简谐成分在线性电路中彼此独立，互不干扰。</p>
+<p>（2）不同频率的简谐成分在线性电路（线性电路是指完全由线性元件、独立源或线性受控源构成的电路。如果表征元件特性的代数关系是一个线性关系，则该元件为线性元件。）中彼此独立，互不干扰。</p>
 <p>因此对简谐交流电的研究是一切交流电问题的基础。下面我们来研究简谐交流电。</p>
 <h3 id="描述简谐交流电的特征量">描述简谐交流电的特征量</h3>
 <p>和机械简谐振动相同，与简谐交流电有关的变量可写为正弦或余弦函数的形式，下面我们用余弦函数的形式表达：</p>
@@ -291,8 +300,8 @@ class="math inline">\(I_{0}\)</span>。它们代表了瞬时值随时间变化�
 class="math inline">\(\dfrac{1}{\sqrt{2}}\)</span>。平时所说的“220V电压”，指的是电压有效值为220V，其峰值约为311V。</p>
 <h4 id="相位">相位</h4>
 <p>式中的<span class="math inline">\(\omega t + \varphi_x (x = e, u,
-i)\)</span> 被称为相位，其中 <span class="math inline">\(\varphi_x (x =
-e, u, i)\)</span> 被称为初相位</p>
+i)\)</span>被称为相位，其中<span class="math inline">\(\varphi_x (x = e,
+u, i)\)</span>被称为初相位</p>
 <h2 id="交流电路中的元件">交流电路中的元件</h2>
 <h3 id="概述">概述</h3>
 <p>交流电路比直流电路复杂的原因为</p>
@@ -301,7 +310,7 @@ e, u, i)\)</span> 被称为初相位</p>
 class="math inline">\(Z\)</span>表示 <span class="math display">\[
 Z = \dfrac{U_{0}}{I_{0}} = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}}
 \]</span> 另一个是电压与电流相位之差<span
-class="math inline">\(\varphi\)</span> <span class="math display">\[
+class="math inline">\(\varphi\)</span><span class="math display">\[
 \varphi = \varphi_{u} - \varphi_{i}
 \]</span></p>
 <h3 id="交流电路中的电阻元件">交流电路中的电阻元件</h3>
@@ -354,8 +363,7 @@ Z_{C} = \dfrac{1}{\omega C} = \dfrac{1}{2\pi fC} \quad \quad \varphi =
 \]</span> 这说明，对于电容来说：</p>
 <p>（1）容抗与频率成反比，频率越高，容抗越小。这使得电容有“通高频，阻低频”的特点。</p>
 <p>（2）电容上电压的相位落后电流的相位<span
-class="math inline">\(\dfrac{\pi}{2}\)</span></p>
-<p>需要注意的是，交流电并没有通过电容器内部，而是在交变电动势<span
+class="math inline">\(\dfrac{\pi}{2}\)</span>需要注意的是，交流电并没有通过电容器内部，而是在交变电动势<span
 class="math inline">\(e(t)\)</span>的作用下不停充放电。在外部观察电容器，只要一端有电流流入，而另一端有电流流出，那么电流的连续性就似乎仍然保持。</p>
 <h3 id="交流电路的电感元件">交流电路的电感元件</h3>
 <p>下面我们推导电感元件中电压<span
@@ -389,11 +397,12 @@ Z_{L} = \omega L = 2\pi Lf \quad \varphi = \dfrac{\pi}{2}
 \]</span> 这说明，对于电感来说：</p>
 <p>（1）阻抗与频率成正比，频率越高，阻抗越大。这使得电感有“通低频，阻高频”的特点。</p>
 <p>（2）电容上电压的相位超过电流的相位<span
-class="math inline">\(\dfrac{\pi}{2}\)</span></p>
-<h3 id="总结">总结</h3>
+class="math inline">\(\dfrac{\pi}{2}\)</span>### 总结</p>
 <p>在交流电路中，与Ohms定律类似，电压、电流的峰值（或有效值）之间仍然满足简单的比例关系。但是，由于相位差的存在，电压、电流的瞬时值之间一般并不具有简单的比例关系。</p>
 <h2 id="元件的串联和并联矢量图解法">元件的串联和并联（矢量图解法）</h2>
 <h3 id="用矢量图解法计算串并联电路">用矢量图解法计算串、并联电路</h3>
+<p><img src="/images/em/7-1.png" /></p>
+<p><strong>阻抗的串并联</strong></p>
 <p>上图为两个元件的串、并联电路。和直流电路中电阻的串、并联一样，交流电压、电流在任何时刻均满足：</p>
 <p>（1）串联电路中，有 <span class="math display">\[
 u(t) = \sum\limits_{j = 1}^{n} u_{j}(t)\quad i(t) = i_{1}(t) = i_{2}(t)
@@ -420,7 +429,8 @@ class="math inline">\(I_{j}\)</span>）之间有相位差，那么合成的总�
 <h3
 id="用矢量图解法计算同频简谐量的叠加">用矢量图解法计算同频简谐量的叠加</h3>
 <p>如前文所述，在解决交流电路的串、并联问题时，我们总是遇到同频简谐量（如交流电压或电源）的叠加问题。这类问题可表述如下：</p>
-<p>假设有两个同频简谐量 <span class="math display">\[
+<p>假设有两个同频简谐量（不难推广到多于两个的情况） <span
+class="math display">\[
 a_{1}(t) = A_{1}\cos \left(  \omega t + \varphi_{1} \right) , \quad
 a_{2}(t) = A_{2}\cos \left(  \omega t + \varphi_{2} \right)
 \]</span> 求 <span class="math display">\[
@@ -441,13 +451,12 @@ class="math inline">\(A_{2}\)</span>，而辐角分别为<span
 class="math inline">\(\varphi_{1}\)</span>和<span
 class="math inline">\(\varphi_{2}\)</span>。</p>
 <p>（2）用矢量加法求出矢量 <span class="math display">\[
-\boldsymbol{A} = \boldsymbol{A}_{1} + \boldsymbol{A}_{2}
+$\boldsymbol{A}$ = $\boldsymbol{A}$_{1} + $\boldsymbol{A}$_{2}
 \]</span> 此时<span
 class="math inline">\(\boldsymbol{A}\)</span>的长度为<span
 class="math inline">\(A\)</span>，而辐角为<span
-class="math inline">\(\varphi\)</span></p>
-<h3 id="串联电路">串联电路</h3>
-<h4 id="rc串联"><span class="math inline">\(RC\)</span>串联</h4>
+class="math inline">\(\varphi\)</span>### 串联电路</p>
+<p>####<span class="math inline">\(RC\)</span>串联</p>
 <p>在串联电路中，通过各元件的电流<span
 class="math inline">\(i(t)\)</span>是相同的，因此我们用水平矢量<span
 class="math inline">\(\boldsymbol{I}\)</span>代表它。由于电阻元件上<span
@@ -456,6 +465,8 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电容元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位落后<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此可以做出如下图所示的矢量图。</p>
+<p><img src="/images/em/7-3.png" /></p>
+<p><strong><span class="math inline">\(RC\)</span>串联</strong></p>
 <p>不难看出，总电压峰值为 <span class="math display">\[
 U = \sqrt{U_{R}^{2} + U_{C}^{2}}
 \]</span> 由于交变电压的有效值与峰值成正比，因此总电压有效值<span
@@ -494,14 +505,16 @@ Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} = \sqrt{R^{2} +
 class="math inline">\(U_{\mathrm{eff}}\)</span>不等于分电压有效值<span
 class="math inline">\(U_{R,\mathrm{eff}}\)</span>、<span
 class="math inline">\(U_{C,\mathrm{eff}}\)</span>之和。同时，分电压有效值之比等于元件阻抗之比，这与直流串联电路的分压规律一致。</p>
-<h4 id="rl串联"><span class="math inline">\(RL\)</span>串联</h4>
-在串联电路中，通过各元件的电流<span
+<p>####<span class="math inline">\(RL\)</span>串联</p>
+<p>在串联电路中，通过各元件的电流<span
 class="math inline">\(i(t)\)</span>是相同的。由于电阻元件上<span
 class="math inline">\(u_{R}(t)\)</span>与<span
 class="math inline">\(i_{R}(t)\)</span>相位一致，而电感元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位提前<span
-class="math inline">\(\dfrac{\pi}{2}\)</span>，因此
+class="math inline">\(\dfrac{\pi}{2}\)</span>，因此</p>
+<p><img src="/images/em/7-4.png" /></p>
+<p><strong><span class="math inline">\(RL\)</span>串联电路</strong></p>
 <p>总电压峰值为 <span class="math display">\[
 U = \sqrt{U_{R}^{2} + U_{L}^{2}}
 \]</span> 由于交变电压的有效值与峰值成正比，因此总电压有效值<span
@@ -536,7 +549,7 @@ Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} = \sqrt{R^{2} +
 \left(  \omega L \right) ^{2}}
 \]</span></p>
 <h3 id="并联电路">并联电路</h3>
-<h4 id="rc并联"><span class="math inline">\(RC\)</span>并联</h4>
+<p>####<span class="math inline">\(RC\)</span>并联</p>
 <p>在并联电路中，各元件两端的电压<span
 class="math inline">\(u(t)\)</span>是相同的，因此我们用水平矢量<span
 class="math inline">\(\boldsymbol{U}\)</span>代表它。由于电阻元件上<span
@@ -545,6 +558,8 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电容元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位落后<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此可以做出如下图所示的矢量图。</p>
+<p><img src="/images/em/7-5.png" /></p>
+<p><strong><span class="math inline">\(RC\)</span>并联</strong></p>
 <p>不难看出，总电流峰值为 <span class="math display">\[
 I = \sqrt{I_{R}^{2} + I_{C}^{2}}
 \]</span> 由于交变电压的有效值与峰值成正比，因此总电流有效值<span
@@ -552,7 +567,13 @@ class="math inline">\(I_{\mathrm{eff}}\)</span>满足 <span
 class="math display">\[
 I_{\mathrm{eff}} =  \sqrt{I_{R,\mathrm{eff}}^{2} +
 I_{C,\mathrm{eff}}^{2}}
-\]</span> 相位差为 <span class="math display">\[
+\]</span>
+相位差为（这里之所以要加负号，是因为对总电压和总电流而言，相位差<span
+class="math inline">\(\varphi = \varphi_{u} - \varphi_{i} &lt;
+0\)</span>，而由于此时<span class="math inline">\(\lvert \varphi \rvert
+= \arctan
+\dfrac{I_{C}}{I_{R}}\)</span>，因此要加上负号，使得相位差为负值） <span
+class="math display">\[
 \varphi = -\arctan \dfrac{I_{C}}{I_{R}}
 \]</span></p>
 <p>我们知道，电阻与电容的阻抗分别为 <span class="math display">\[
@@ -582,7 +603,7 @@ Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} =
 class="math inline">\(I_{\mathrm{eff}}\)</span>不等于分电流有效值<span
 class="math inline">\(I_{R,\mathrm{eff}}\)</span>、<span
 class="math inline">\(I_{C,\mathrm{eff}}\)</span>之和。同时，分电流有效值与元件阻抗成反比，这与直流并联电路的分压规律一致。</p>
-<h4 id="rl并联"><span class="math inline">\(RL\)</span>并联</h4>
+<p>####<span class="math inline">\(RL\)</span>并联</p>
 <p>在并联电路中，各元件两端的电压<span
 class="math inline">\(u(t)\)</span>相同。由于电阻元件上<span
 class="math inline">\(u_{R}(t)\)</span>与<span
@@ -590,6 +611,8 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电感元件上<span
 class="math inline">\(u_{L}(t)\)</span>比<span
 class="math inline">\(i_{L}(t)\)</span>相位提前<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此</p>
+<p><img src="/images/em/7-6.png" /></p>
+<p><strong><span class="math inline">\(RL\)</span>并联</strong></p>
 <p>总电流峰值为 <span class="math display">\[
 I = \sqrt{I_{R}^{2} + I_{L}^{2}}
 \]</span> 由于交变电压的有效值与峰值成正比，因此总电流有效值<span
@@ -675,7 +698,7 @@ class="math display">\[
 \tilde{Z}_{L} = \mathrm{i}  \omega L
 \]</span></p>
 <h3 id="串并联电路的复数解法">串、并联电路的复数解法</h3>
-<h4 id="串联电路-1">串联电路</h4>
+<h4 id="串联电路">串联电路</h4>
 <p>串联电路上总电压的瞬时值等于各段分电压瞬时值之和 <span
 class="math display">\[
 u(t) = \sum\limits_{j = 1}^{n} u_{j}(t)
@@ -768,8 +791,9 @@ P(t) = \dfrac{1}{2}U_{0}I_{0} \cos \varphi + \dfrac{1}{2} U_{0}I_{0}\cos
 \left(  2\omega t + \varphi \right)
 \]</span> 由此可见，瞬时功率包含两部分：与时间无关的常量<span
 class="math inline">\(\dfrac{1}{2}U_{0}I_{0} \cos
-\varphi\)</span>，以及以二倍频率周期性变化的$ U_{0}I_{0}( 2t + ) $</p>
-<p>通常来说，我们更倾向于使用在一个周期<span
+\varphi\)</span>，以及以二倍频率周期性变化的<span
+class="math inline">\(\dfrac{1}{2} U_{0}I_{0}\cos \left(  2\omega t +
+\varphi \right)\)</span>通常来说，我们更倾向于使用在一个周期<span
 class="math inline">\(T\)</span>内的平均功率<span
 class="math inline">\(\bar{P}\)</span>，即 <span class="math display">\[
 \bar{P} = \dfrac{1}{T}\int_{0}^{T}P(t) \mathrm{d}  t
@@ -780,7 +804,7 @@ class="math display">\[
 \]</span></p>
 <h4 id="各元件的平均功率">各元件的平均功率</h4>
 <p>对于电阻、电容和电感元件而言，其平均功率分别为</p>
-<p>（1）电阻元件：<span class="math inline">\(\varphi = 0\)</span> <span
+<p>（1）电阻元件：<span class="math inline">\(\varphi = 0\)</span><span
 class="math display">\[
 \bar{P} = \dfrac{1}{2}U_{0}I_{0}
 \]</span> 注意，这里之所以Joule定律不同（有系数<span
@@ -793,11 +817,11 @@ class="math inline">\(\dfrac{1}{\sqrt{2}}I_{0}\)</span>的直流电效果相当�
 \bar{P} = U_{\mathrm{eff}}I_{\mathrm{eff}}
 \]</span></p>
 <p>（2）电容元件：<span class="math inline">\(\varphi =
--\dfrac{\pi}{2}\)</span> <span class="math display">\[
+-\dfrac{\pi}{2}\)</span><span class="math display">\[
 \bar{P} = 0
 \]</span></p>
 <p>（3）电感元件：<span class="math inline">\(\varphi =
-\dfrac{\pi}{2}\)</span> <span class="math display">\[
+\dfrac{\pi}{2}\)</span><span class="math display">\[
 \bar{P} = 0
 \]</span></p>
 <p>电容与电感的<span class="math inline">\(\bar{P} =
@@ -821,6 +845,8 @@ class="math inline">\(\boldsymbol{I}_{\mathrm{v}}\)</span>。显然，这两个�
 <span class="math display">\[
 I_{\mathrm{p}} = I\cos \varphi,\quad I_{\mathrm{v}} = I \sin \varphi
 \]</span></p>
+<p><img src="/images/em/7-7.png" /></p>
+<p><strong>有功电流与无功电流</strong></p>
 <p>这就意味着，简谐电流<span
 class="math inline">\(i(t)\)</span>可以看做是以上两个电流的叠加。这样一来，电路的平均功率可写为
 <span class="math display">\[
@@ -846,10 +872,12 @@ S = U_{\mathrm{eff}}I_{\mathrm{eff}}
 <p>此外，我们将无功功率定义为 <span class="math display">\[
 P_{\mathrm{rea}} = U_{\mathrm{eff}}I_{\mathrm{eff,v}}
 \]</span></p>
-有功功率<span
+<p>有功功率<span
 class="math inline">\(P_{\mathrm{act}}\)</span>、无功功率<span
 class="math inline">\(P_{\mathrm{rea}}\)</span>和表观功率<span
-class="math inline">\(S\)</span>的关系可用的“功率三角形”表示。
+class="math inline">\(S\)</span>的关系可用的“功率三角形”表示。</p>
+<p><img src="/images/em/7-8.png" /></p>
+<p><strong>功率三角形</strong></p>
 <h3 id="有功电阻和电抗">有功电阻和电抗</h3>
 <p>对于一个电路的复阻抗 <span class="math display">\[
 \tilde{Z} = r + \mathrm{i}  x
@@ -862,8 +890,7 @@ class="math display">\[
 \]</span> 其有功电阻<span class="math inline">\(r\)</span>和电抗<span
 class="math inline">\(x\)</span>分别为 <span class="math display">\[
 r = R,\quad x = -\dfrac{1}{\omega C}
-\]</span></p>
-<p><span class="math inline">\(RL\)</span>串联电路的复阻抗为 <span
+\]</span><span class="math inline">\(RL\)</span>串联电路的复阻抗为 <span
 class="math display">\[
 \tilde{Z} = R + \mathrm{i}  \omega L
 \]</span> 其有功电阻<span class="math inline">\(r\)</span>和电抗<span
@@ -1013,7 +1040,7 @@ class="math display">\[
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5"><span class="nav-number">1.</span> <span class="nav-text">交流电</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">交流电概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E4%BA%A4%E6%B5%81%E7%94%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">各种形式的交流电</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E7%AE%80%E8%B0%90%E4%BA%A4%E6%B5%81%E7%94%B5%E7%9A%84%E7%89%B9%E5%BE%81%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">描述简谐交流电的特征量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E7%8E%87"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">频率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B3%B0%E5%80%BC%E5%92%8C%E6%9C%89%E6%95%88%E5%80%BC"><span class="nav-number">1.1.3.</span> <span class="nav-text">峰值和有效值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E4%BD%8D"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">相位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">交流电路中的元件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%94%B5%E9%98%BB%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">交流电路中的电阻元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%94%B5%E5%AE%B9%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">交流电路中的电容元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84%E7%94%B5%E6%84%9F%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.4.</span> <span class="nav-text">交流电路的电感元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%E7%9A%84%E4%B8%B2%E8%81%94%E5%92%8C%E5%B9%B6%E8%81%94%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">元件的串联和并联（矢量图解法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95%E8%AE%A1%E7%AE%97%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">用矢量图解法计算串、并联电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95%E8%AE%A1%E7%AE%97%E5%90%8C%E9%A2%91%E7%AE%80%E8%B0%90%E9%87%8F%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="nav-number">1.3.2.</span> <span class="nav-text">用矢量图解法计算同频简谐量的叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.3.</span> <span class="nav-text">串联电路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rc%E4%B8%B2%E8%81%94"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">\(RC\)串联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rl%E4%B8%B2%E8%81%94"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">\(RL\)串联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.4.</span> <span class="nav-text">并联电路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rc%E5%B9%B6%E8%81%94"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">\(RC\)并联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rl%E5%B9%B6%E8%81%94"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">\(RL\)并联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%9A%84%E5%BA%94%E7%94%A8%E6%97%81%E8%B7%AF%E7%9B%B8%E7%A7%BB%E6%BB%A4%E6%B3%A2"><span class="nav-number">1.3.5.</span> <span class="nav-text">串并联电路的应用（旁路、相移、滤波）*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84%E5%A4%8D%E6%95%B0%E8%A7%A3%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">交流电路的复数解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%A4%8D%E6%95%B0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%90%8C%E9%A2%91%E7%AE%80%E8%B0%90%E9%87%8F%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="nav-number">1.4.1.</span> <span class="nav-text">用复数法计算同频简谐量的叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E7%94%B5%E5%8E%8B%E5%A4%8D%E7%94%B5%E6%B5%81%E5%92%8C%E5%A4%8D%E9%98%BB%E6%8A%97%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.4.2.</span> <span class="nav-text">复电压、复电流和复阻抗的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%9A%84%E5%A4%8D%E6%95%B0%E8%A7%A3%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">串、并联电路的复数解法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF-1"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">串联电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF-1"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">并联电路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%AF%BC%E7%BA%B3"><span class="nav-number">1.4.4.</span> <span class="nav-text">复导纳*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E5%8F%8A%E5%85%B6%E5%A4%8D%E6%95%B0%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">交流电路的Kirchhoff方程组及其复数形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%AD%A3%E8%B4%9F%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">Kirchhoff方程组的正负问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%AC%A6%E5%8F%B7%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">Kirchhoff方程组的符号问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E7%94%B5%E6%BA%90%E5%AE%9A%E7%90%86%E5%92%8Cy-bigtriangleup%E9%98%BB%E6%8A%97%E4%BB%A3%E6%8D%A2%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.6.</span> <span class="nav-text">等效电源定理和Y-\(\bigtriangleup\)阻抗代换公式*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E4%BA%92%E6%84%9F%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.7.</span> <span class="nav-text">有互感的电路计算*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E7%9A%84%E5%8A%9F%E7%8E%87"><span class="nav-number">1.5.</span> <span class="nav-text">交流电的功率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9E%AC%E6%97%B6%E5%8A%9F%E7%8E%87%E4%B8%8E%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87%E6%9C%89%E6%95%88%E5%80%BC%E5%92%8C%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">瞬时功率与平均功率有效值和功率因数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E5%85%83%E4%BB%B6%E7%9A%84%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">各元件的平均功率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%81%8D%E6%83%85%E5%86%B5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">普遍情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%8A%9F%E7%94%B5%E6%B5%81%E4%B8%8E%E6%97%A0%E5%8A%9F%E7%94%B5%E6%B5%81%E6%8F%90%E9%AB%98%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">有功电流与无功电流提高功率因数的第一个作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%9C%A8%E5%8A%9F%E7%8E%87%E4%B8%8E%E6%97%A0%E5%8A%9F%E5%8A%9F%E7%8E%87%E6%8F%90%E9%AB%98%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">视在功率与无功功率提高功率因数的第二个作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%8A%9F%E7%94%B5%E9%98%BB%E5%92%8C%E7%94%B5%E6%8A%97"><span class="nav-number">1.5.4.</span> <span class="nav-text">有功电阻和电抗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AF%BC%E4%B8%8E%E7%94%B5%E7%BA%B3"><span class="nav-number">1.5.5.</span> <span class="nav-text">电导与电纳*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%81%E8%B4%A8%E5%9B%A0%E6%95%B0q%E5%80%BC%E6%8D%9F%E8%80%97%E8%A7%92delta%E5%92%8C%E8%80%97%E6%95%A3%E5%9B%A0%E6%95%B0tan-delta"><span class="nav-number">1.5.6.</span> <span class="nav-text">品质因数（\(Q\)值）、损耗角（\(\delta\)）和耗散因数（\(\tan \delta\)）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%81%E8%B4%A8%E5%9B%A0%E6%95%B0q%E5%80%BC"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">品质因数（\(Q\)值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E8%80%97%E8%A7%92delta%E5%92%8C%E8%80%97%E6%95%A3%E5%9B%A0%E6%95%B0tan-delta"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">损耗角（\(\delta\)）和耗散因数（\(\tan \delta\)）</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5"><span class="nav-number">1.</span> <span class="nav-text">交流电</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">交流电概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%BD%A2%E5%BC%8F%E7%9A%84%E4%BA%A4%E6%B5%81%E7%94%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">各种形式的交流电</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E7%AE%80%E8%B0%90%E4%BA%A4%E6%B5%81%E7%94%B5%E7%9A%84%E7%89%B9%E5%BE%81%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">描述简谐交流电的特征量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E7%8E%87"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">频率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B3%B0%E5%80%BC%E5%92%8C%E6%9C%89%E6%95%88%E5%80%BC"><span class="nav-number">1.1.3.</span> <span class="nav-text">峰值和有效值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E4%BD%8D"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">相位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">交流电路中的元件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%94%B5%E9%98%BB%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">交流电路中的电阻元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%94%B5%E5%AE%B9%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">交流电路中的电容元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84%E7%94%B5%E6%84%9F%E5%85%83%E4%BB%B6"><span class="nav-number">1.2.4.</span> <span class="nav-text">交流电路的电感元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%E7%9A%84%E4%B8%B2%E8%81%94%E5%92%8C%E5%B9%B6%E8%81%94%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">元件的串联和并联（矢量图解法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95%E8%AE%A1%E7%AE%97%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">用矢量图解法计算串、并联电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E8%A7%A3%E6%B3%95%E8%AE%A1%E7%AE%97%E5%90%8C%E9%A2%91%E7%AE%80%E8%B0%90%E9%87%8F%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="nav-number">1.3.2.</span> <span class="nav-text">用矢量图解法计算同频简谐量的叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.3.3.</span> <span class="nav-text">并联电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%9A%84%E5%BA%94%E7%94%A8%E6%97%81%E8%B7%AF%E7%9B%B8%E7%A7%BB%E6%BB%A4%E6%B3%A2"><span class="nav-number">1.3.4.</span> <span class="nav-text">串并联电路的应用（旁路、相移、滤波）*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84%E5%A4%8D%E6%95%B0%E8%A7%A3%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">交流电路的复数解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%A4%8D%E6%95%B0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%90%8C%E9%A2%91%E7%AE%80%E8%B0%90%E9%87%8F%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="nav-number">1.4.1.</span> <span class="nav-text">用复数法计算同频简谐量的叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E7%94%B5%E5%8E%8B%E5%A4%8D%E7%94%B5%E6%B5%81%E5%92%8C%E5%A4%8D%E9%98%BB%E6%8A%97%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.4.2.</span> <span class="nav-text">复电压、复电流和复阻抗的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%9A%84%E5%A4%8D%E6%95%B0%E8%A7%A3%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">串、并联电路的复数解法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">串联电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF-1"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">并联电路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%AF%BC%E7%BA%B3"><span class="nav-number">1.4.4.</span> <span class="nav-text">复导纳*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E8%B7%AF%E7%9A%84kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E5%8F%8A%E5%85%B6%E5%A4%8D%E6%95%B0%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">交流电路的Kirchhoff方程组及其复数形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%AD%A3%E8%B4%9F%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">Kirchhoff方程组的正负问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kirchhoff%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%AC%A6%E5%8F%B7%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">Kirchhoff方程组的符号问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E7%94%B5%E6%BA%90%E5%AE%9A%E7%90%86%E5%92%8Cy-bigtriangleup%E9%98%BB%E6%8A%97%E4%BB%A3%E6%8D%A2%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.6.</span> <span class="nav-text">等效电源定理和Y-\(\bigtriangleup\)阻抗代换公式*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E4%BA%92%E6%84%9F%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.7.</span> <span class="nav-text">有互感的电路计算*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%B5%81%E7%94%B5%E7%9A%84%E5%8A%9F%E7%8E%87"><span class="nav-number">1.5.</span> <span class="nav-text">交流电的功率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9E%AC%E6%97%B6%E5%8A%9F%E7%8E%87%E4%B8%8E%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87%E6%9C%89%E6%95%88%E5%80%BC%E5%92%8C%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">瞬时功率与平均功率有效值和功率因数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E5%85%83%E4%BB%B6%E7%9A%84%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">各元件的平均功率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%81%8D%E6%83%85%E5%86%B5"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">普遍情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%8A%9F%E7%94%B5%E6%B5%81%E4%B8%8E%E6%97%A0%E5%8A%9F%E7%94%B5%E6%B5%81%E6%8F%90%E9%AB%98%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">有功电流与无功电流提高功率因数的第一个作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%9C%A8%E5%8A%9F%E7%8E%87%E4%B8%8E%E6%97%A0%E5%8A%9F%E5%8A%9F%E7%8E%87%E6%8F%90%E9%AB%98%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">视在功率与无功功率提高功率因数的第二个作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%8A%9F%E7%94%B5%E9%98%BB%E5%92%8C%E7%94%B5%E6%8A%97"><span class="nav-number">1.5.4.</span> <span class="nav-text">有功电阻和电抗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AF%BC%E4%B8%8E%E7%94%B5%E7%BA%B3"><span class="nav-number">1.5.5.</span> <span class="nav-text">电导与电纳*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%81%E8%B4%A8%E5%9B%A0%E6%95%B0q%E5%80%BC%E6%8D%9F%E8%80%97%E8%A7%92delta%E5%92%8C%E8%80%97%E6%95%A3%E5%9B%A0%E6%95%B0tan-delta"><span class="nav-number">1.5.6.</span> <span class="nav-text">品质因数（\(Q\)值）、损耗角（\(\delta\)）和耗散因数（\(\tan \delta\)）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%81%E8%B4%A8%E5%9B%A0%E6%95%B0q%E5%80%BC"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">品质因数（\(Q\)值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E8%80%97%E8%A7%92delta%E5%92%8C%E8%80%97%E6%95%A3%E5%9B%A0%E6%95%B0tan-delta"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">损耗角（\(\delta\)）和耗散因数（\(\tan \delta\)）</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

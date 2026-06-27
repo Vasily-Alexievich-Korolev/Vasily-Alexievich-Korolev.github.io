@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/posts/728848b4/%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-04-08T10:32:04.614Z">
-<meta property="article:modified_time" content="2024-04-08T10:35:01.611Z">
+<meta property="article:modified_time" content="2026-06-27T15:48:31.683Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Quantum Chemistry">
 <meta property="article:tag" content="Example">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-04-08 18:32:04 / 修改时间：18:35:01" itemprop="dateCreated datePublished" datetime="2024-04-08T18:32:04+08:00">2024-04-08</time>
+              <time title="创建时间：2024-04-08 18:32:04" itemprop="dateCreated datePublished" datetime="2024-04-08T18:32:04+08:00">2024-04-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-27 23:48:31" itemprop="dateModified" datetime="2026-06-27T23:48:31+08:00">2026-06-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,39 +257,30 @@
 id="一定分子构型下的自洽场计算过程">一定分子构型下的自洽场计算过程</h1>
 <p>在分子结构一定时，自洽场分子轨道的计算过程如下：</p>
 <ol type="1">
-<li><p>选择一组基函数<span
-class="math inline">\(\chi_{s}\)</span></p></li>
-<li><p>预估<span
-class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
-class="math inline">\(S_{rs}\)</span>和双电子积分<span
-class="math inline">\((rs|tu)\)</span></p></li>
-<li><p>使用重叠积分<span
-class="math inline">\(S_{rs}\)</span>和正交化计算矩阵<span
-class="math inline">\(A\)</span>的元素，得到正交基函数</p></li>
+<li><p>选择一组基函数$<em>{s}<span class="math inline">\(2.
+预估\)</span>H</em>{rs}^{}<span
+class="math inline">\(、\)</span>S_{rs}<span
+class="math inline">\(和双电子积分\)</span>(rs|tu)<span
+class="math inline">\(3. 使用重叠积分\)</span>S_{rs}<span
+class="math inline">\(和正交化计算矩阵\)</span>A$的元素，得到正交基函数</p></li>
 <li><p>初猜<span class="math inline">\(\phi =
 \sum\limits_{s}c_{si}\chi_{s}\)</span>中<span
-class="math inline">\(c_{ci}\)</span>，并计算密度矩阵<span
-class="math inline">\(P\)</span></p></li>
-<li><p>使用<span class="math inline">\(F_{rs} = H_{rs}^{\mathrm{core}} +
-\sum\limits_{t = 1}^{b}\sum\limits_{u = 1}^{b}P_{tu}[(rs|tu) -
-\dfrac{1}{2}(ru|ts)]\)</span>，并结合之前得到的密度矩阵<span
-class="math inline">\(P\)</span>，计算<span
-class="math inline">\(F_{rs}\)</span>、<span
-class="math inline">\((rs|tu)\)</span>和<span
-class="math inline">\(H_{rs}^{\mathrm{core}}\)</span></p></li>
-<li><p>计算<span class="math inline">\(F&#39; =
-A^{\dagger}FA\)</span></p></li>
-<li><p>利用对角化计算<span
-class="math inline">\(F&#39;\)</span>对应的<span
-class="math inline">\(C&#39;\)</span>和<span
-class="math inline">\(\varepsilon\)</span></p></li>
-<li><p>计算<span class="math inline">\(C = AC&#39;\)</span></p></li>
-<li><p>计算新的密度矩阵<span class="math inline">\(P^{*} =
-2CC^{\dagger}\)</span></p></li>
-<li><p>检查新的密度矩阵<span
-class="math inline">\(P^{*}\)</span>与原先的密度矩阵<span
-class="math inline">\(P\)</span>的差别。如果二者较为接近，那么停止计算；如果二者相差较大，那么返回第5步，使用<span
-class="math inline">\(P^{*}\)</span>重新计算，直至计算完成。</p></li>
+class="math inline">\(c_{ci}\)</span>，并计算密度矩阵$P<span
+class="math inline">\(5. 使用\)</span>F_{rs} = H_{rs}^{} + <em>{t =
+1}^{b}</em>{u = 1}<sup>{b}P_{tu}[(rs|tu) - (ru|ts)]<span
+class="math inline">\(，并结合之前得到的密度矩阵\)</span>P<span
+class="math inline">\(，计算\)</span>F_{rs}<span
+class="math inline">\(、\)</span>(rs|tu)<span
+class="math inline">\(和\)</span>H_{rs}</sup>{}<span
+class="math inline">\(6. 计算\)</span>F' = A^{}FA<span
+class="math inline">\(7. 利用对角化计算\)</span>F'<span
+class="math inline">\(对应的\)</span>C'<span
+class="math inline">\(和\)</span><span class="math inline">\(8.
+计算\)</span>C = AC'<span class="math inline">\(9.
+计算新的密度矩阵\)</span>P<sup>{<em>} = 2CC<sup>{}<span
+class="math inline">\(10. 检查新的密度矩阵\)</span>P</sup>{</em>}<span
+class="math inline">\(与原先的密度矩阵\)</span>P<span
+class="math inline">\(的差别。如果二者较为接近，那么停止计算；如果二者相差较大，那么返回第5步，使用\)</span>P</sup>{*}$重新计算，直至计算完成。</p></li>
 </ol>
 <h1 id="使用scf计算he原子能量">使用SCF计算He原子能量</h1>
 <h2 id="初始化波函数">初始化波函数</h2>
@@ -315,7 +312,7 @@ r} \\
 ## 计算<span
 class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
 class="math inline">\(S_{rs}\)</span>以及<span
-class="math inline">\((rs|tu)\)</span> 接下来计算<span
+class="math inline">\((rs|tu)\)</span>接下来计算<span
 class="math inline">\(H_{rs}^{\mathrm{core}}\)</span>、<span
 class="math inline">\(S_{rs}\)</span>以及双电子积分<span
 class="math inline">\((rs|tu)\)</span>。首先计算重叠积分<span
@@ -358,7 +355,7 @@ class="math inline">\(H_{11}^{\mathrm{core}}\)</span>、<span
 class="math inline">\(H_{12}^{\mathrm{core}}\)</span>、<span
 class="math inline">\(H_{21}^{\mathrm{core}}\)</span>、<span
 class="math inline">\(H_{22}^{\mathrm{core}}\)</span>。首先计算<span
-class="math inline">\(H_{11}^{\mathrm{core}}\)</span> <span
+class="math inline">\(H_{11}^{\mathrm{core}}\)</span><span
 class="math display">\[
 \begin{aligned}
 H_{11}^{\mathrm{core}} = \langle \chi_{1} | \hat{H}^{\mathrm{core}} |
@@ -420,7 +417,7 @@ class="math display">\[
 &amp; (11|22) = (22|11)\\
 \end{aligned}
 \]</span> 我们来一个个进行计算。首先计算<span
-class="math inline">\((11|11)\)</span> <span class="math display">\[
+class="math inline">\((11|11)\)</span><span class="math display">\[
 \begin{aligned}
 (11|11) &amp; = \dfrac{\zeta_{1}^{6}}{\pi^{2}}\iint
 \dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{1}r_{2}}}{r_{12}}\mathrm{d}
@@ -503,9 +500,8 @@ r_{2} - \int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-4\zeta_{1}r_{2}}(1 +
 &amp; = \dfrac{5\zeta_{1}}{8} = 0.9062\\
 \end{aligned}
 \]</span> 同理，<span class="math inline">\((22|22) =
-\dfrac{5\zeta_{2}}{8} = 1.8188\)</span></p>
-<p>下面计算<span class="math inline">\((11|22)\)</span> <span
-class="math display">\[
+\dfrac{5\zeta_{2}}{8} = 1.8188\)</span>下面计算<span
+class="math inline">\((11|22)\)</span><span class="math display">\[
 \begin{aligned}
 (11|22) &amp; = \dfrac{\zeta_{1}^{3}\zeta_{2}^{3}}{\pi^{2}}\iint
 \dfrac{\mathrm{e}^{-2\zeta_{1}r_{1}}\mathrm{e}^{-2\zeta_{2}r_{2}}}{r_{12}}\mathrm{d}
@@ -551,7 +547,7 @@ r_{2} - \int_{0}^{\infty}\dfrac{r_{2}\mathrm{e}^{-2(\zeta_{1} +
 \zeta_{2})^{4}} = 1.1826 \\
 \end{aligned}
 \]</span></p>
-<p>下面计算<span class="math inline">\((11|12)\)</span> <span
+<p>下面计算<span class="math inline">\((11|12)\)</span><span
 class="math display">\[
 \begin{aligned}
 (11|12) &amp; =
@@ -622,7 +618,7 @@ r_{1} + \int_{r_{2}}^{\infty}r_{1}\mathrm{e}^{-2\zeta_{1}r_{1}}
 \zeta_{1})^{2}} + \dfrac{9\zeta_{2} + \zeta_{1}}{2\zeta_{2}^{2}} \right]
 = 1.2980
 \]</span></p>
-<p>下面计算<span class="math inline">\((12|12)\)</span> <span
+<p>下面计算<span class="math inline">\((12|12)\)</span><span
 class="math display">\[
 \begin{aligned}
 (12|12) &amp; = \dfrac{\zeta_{1}^{3}\zeta^{3}}{\pi^{2}} \iint
@@ -677,8 +673,7 @@ r_{2}(\zeta_{1} + \zeta_{2}))}{(\zeta_{1} + \zeta_{2})^{2}} \right] \\
 \end{aligned}
 \]</span></p>
 <p>总结一下，我们现在已经得到了如下的积分结果：</p>
-<ol type="1">
-<li><p><span class="math inline">\(S_{rs}\)</span> <span
+<p>1.<span class="math inline">\(S_{rs}\)</span><span
 class="math display">\[
 \left \{
 \begin{aligned}
@@ -686,8 +681,8 @@ class="math display">\[
 &amp; S_{12} = S_{21} = 0.8366 \\
 \end{aligned}
 \right.
-\]</span></p></li>
-<li><p><span class="math inline">\(H_{rs}^{\mathrm{core}}\)</span> <span
+\]</span></p>
+<p>2.<span class="math inline">\(H_{rs}^{\mathrm{core}}\)</span><span
 class="math display">\[
 \left \{
 \begin{aligned}
@@ -696,8 +691,8 @@ class="math display">\[
 &amp; H_{22}^{\mathrm{core}} = -1.5860\\
 \end{aligned}
 \right.
-\]</span></p></li>
-<li><p><span class="math inline">\((rs|tu)\)</span> <span
+\]</span></p>
+<p>3.<span class="math inline">\((rs|tu)\)</span><span
 class="math display">\[
 \left \{
 \begin{aligned}
@@ -709,8 +704,7 @@ class="math display">\[
 &amp; (12|12) = (12|21) = (21|12) = (21|21) = 0.9536 \\
 \end{aligned}
 \right.
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h2 id="给定初猜波函数">给定初猜波函数</h2>
 <p>由于我们此时有两个基函数，因此初猜波函数应当为此二者的线性组合 <span
 class="math display">\[
@@ -778,10 +772,11 @@ P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.070\\
 \end{aligned}
 \right.
 \]</span></p>
-<h2 id="计算系数矩阵c和轨道能矩阵varepsilon">计算系数矩阵<span
+<h2
+id="计算系数矩阵c和轨道能矩阵varepsilon我们现在得到了给定基函数下的fock矩阵">计算系数矩阵<span
 class="math inline">\(C\)</span>和轨道能矩阵<span
-class="math inline">\(\varepsilon\)</span></h2>
-<p>我们现在得到了给定基函数下的Fock矩阵 <span class="math display">\[
+class="math inline">\(\varepsilon\)</span>我们现在得到了给定基函数下的Fock矩阵</h2>
+<p><span class="math display">\[
 F = \begin{bmatrix}
 -0.813 &amp; -0.892 \\
 -0.892 &amp; -0.070 \\
@@ -855,7 +850,7 @@ class="math inline">\(\chi_{i}&#39; =
 \sum\limits_{j}a_{ij}\chi_{j}\)</span>，纯粹就是为了这里推导方便。如果矩阵<span
 class="math inline">\(A\)</span>在矩阵<span
 class="math inline">\(C&#39;\)</span>或者<span
-class="math inline">\(C\)</span>右侧，那么会得到类似 <span
+class="math inline">\(C\)</span>右侧，那么会得到类似<span
 class="math inline">\(FC&#39;A^{-1} =
 SC&#39;A^{-1}\varepsilon\)</span>的结果。此时<span
 class="math inline">\(A\)</span>并没有直接和<span
@@ -901,7 +896,7 @@ class="math inline">\(A\)</span>的方法。</p>
 S^{-\frac{1}{2}}\)</span>。为了构建这一矩阵，我们需要先将<span
 class="math inline">\(S\)</span>对角化，然后将每个本征值倒数的平方根组成矩阵<span
 class="math inline">\(\Lambda^{-\frac{1}{2}}\)</span>，最后通过“逆对角化”得到<span
-class="math inline">\(S^{-\frac{1}{2}}\)</span> <span
+class="math inline">\(S^{-\frac{1}{2}}\)</span><span
 class="math display">\[
 U\Lambda^{-\frac{1}{2}}U^{\dagger} = S^{-\frac{1}{2}}
 \]</span> 不难证明<span class="math inline">\(ASA^{-1} =
@@ -931,14 +926,14 @@ class="math inline">\(C&#39;\)</span>。</p>
 <p>对于小体系，由于 <span class="math display">\[
 FC = SC\varepsilon
 \]</span> 因此有 <span class="math display">\[
-F\boldsymbol{c}_{i} = \varepsilon_{i}S\boldsymbol{c}_{i}
+F$\boldsymbol{c}$_{i} = \varepsilon_{i}S$\boldsymbol{c}$_{i}
 \]</span> 假设<span class="math inline">\(F\)</span>中每个行向量为<span
 class="math inline">\(\boldsymbol{f}^{\mathrm{T}}\)</span>，<span
 class="math inline">\(S\)</span>中每个行向量为<span
 class="math inline">\(\boldsymbol{s}^{\mathrm{T}}\)</span>，那么有 <span
 class="math display">\[
-\boldsymbol{f}^{\mathrm{T}}\boldsymbol{c}_{i} =
-\varepsilon_{i}\boldsymbol{s}^{\mathrm{T}}\boldsymbol{c}_{i}
+$\boldsymbol{f}$^{\mathrm{T}}$\boldsymbol{c}$_{i} =
+\varepsilon_{i}$\boldsymbol{s}$^{\mathrm{T}}$\boldsymbol{c}$_{i}
 \]</span> 因此可以通过求<span class="math inline">\(\det(F -
 \varepsilon_{i}S) = 0\)</span>来得到可能的所有<span
 class="math inline">\(\varepsilon_{i}\)</span>，从而由<span
@@ -1015,10 +1010,10 @@ P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.125\\
 \right.
 \]</span></p>
 <h2
-id="第二次计算系数矩阵c和轨道能矩阵varepsilon">第二次计算系数矩阵<span
+id="第二次计算系数矩阵c和轨道能矩阵varepsilon求解行列式方程">第二次计算系数矩阵<span
 class="math inline">\(C\)</span>和轨道能矩阵<span
-class="math inline">\(\varepsilon\)</span></h2>
-<p>求解行列式方程 <span class="math display">\[
+class="math inline">\(\varepsilon\)</span>求解行列式方程</h2>
+<p><span class="math display">\[
 \begin{vmatrix}
 -0.877-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
 -0.940-0.8366\varepsilon_{i} &amp; -0.125-\varepsilon_{i} \\
@@ -1082,10 +1077,10 @@ P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.124\\
 \right.
 \]</span></p>
 <h2
-id="第三次计算系数矩阵c和轨道能矩阵varepsilon">第三次计算系数矩阵<span
+id="第三次计算系数矩阵c和轨道能矩阵varepsilon求解行列式方程">第三次计算系数矩阵<span
 class="math inline">\(C\)</span>和轨道能矩阵<span
-class="math inline">\(\varepsilon\)</span></h2>
-<p>求解行列式方程 <span class="math display">\[
+class="math inline">\(\varepsilon\)</span>求解行列式方程</h2>
+<p><span class="math display">\[
 \begin{vmatrix}
 -0.880-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
 -0.940-0.8366\varepsilon_{i} &amp; -0.124-\varepsilon_{i} \\
@@ -1149,10 +1144,10 @@ P_{22}[(22|22) - \dfrac{1}{2}(22|22)] = -0.124\\
 \right.
 \]</span></p>
 <h2
-id="第四次计算系数矩阵c和轨道能矩阵varepsilon">第四次计算系数矩阵<span
+id="第四次计算系数矩阵c和轨道能矩阵varepsilon求解行列式方程">第四次计算系数矩阵<span
 class="math inline">\(C\)</span>和轨道能矩阵<span
-class="math inline">\(\varepsilon\)</span></h2>
-<p>求解行列式方程 <span class="math display">\[
+class="math inline">\(\varepsilon\)</span>求解行列式方程</h2>
+<p><span class="math display">\[
 \begin{vmatrix}
 -0.881-\varepsilon_{i} &amp; -0.940-0.8366\varepsilon_{i}\\
 -0.940-0.8366\varepsilon_{i} &amp; -0.124-\varepsilon_{i} \\
@@ -1318,7 +1313,7 @@ Chemistry[M].First edition.John Wiley &amp; Sons, Inc.,1944:369-371.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E5%AE%9A%E5%88%86%E5%AD%90%E6%9E%84%E5%9E%8B%E4%B8%8B%E7%9A%84%E8%87%AA%E6%B4%BD%E5%9C%BA%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">一定分子构型下的自洽场计算过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8scf%E8%AE%A1%E7%AE%97he%E5%8E%9F%E5%AD%90%E8%83%BD%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">使用SCF计算He原子能量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">初始化波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E5%AE%9A%E5%88%9D%E7%8C%9C%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">给定初猜波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.3.</span> <span class="nav-text">计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.4.</span> <span class="nav-text">计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.5.</span> <span class="nav-text">计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.6.</span> <span class="nav-text">第二次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.7.</span> <span class="nav-text">第二次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.8.</span> <span class="nav-text">第二次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.9.</span> <span class="nav-text">第三次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.10.</span> <span class="nav-text">第三次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.11.</span> <span class="nav-text">第三次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.12.</span> <span class="nav-text">第四次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.13.</span> <span class="nav-text">第四次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon"><span class="nav-number">2.14.</span> <span class="nav-text">第四次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.15.</span> <span class="nav-text">第五次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">2.16.</span> <span class="nav-text">能量计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E5%AE%9A%E5%88%86%E5%AD%90%E6%9E%84%E5%9E%8B%E4%B8%8B%E7%9A%84%E8%87%AA%E6%B4%BD%E5%9C%BA%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">一定分子构型下的自洽场计算过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8scf%E8%AE%A1%E7%AE%97he%E5%8E%9F%E5%AD%90%E8%83%BD%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">使用SCF计算He原子能量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">初始化波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E5%AE%9A%E5%88%9D%E7%8C%9C%E6%B3%A2%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">给定初猜波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.3.</span> <span class="nav-text">计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.4.</span> <span class="nav-text">计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon%E6%88%91%E4%BB%AC%E7%8E%B0%E5%9C%A8%E5%BE%97%E5%88%B0%E4%BA%86%E7%BB%99%E5%AE%9A%E5%9F%BA%E5%87%BD%E6%95%B0%E4%B8%8B%E7%9A%84fock%E7%9F%A9%E9%98%B5"><span class="nav-number">2.5.</span> <span class="nav-text">计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)我们现在得到了给定基函数下的Fock矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.6.</span> <span class="nav-text">第二次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.7.</span> <span class="nav-text">第二次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon%E6%B1%82%E8%A7%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E6%96%B9%E7%A8%8B"><span class="nav-number">2.8.</span> <span class="nav-text">第二次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)求解行列式方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.9.</span> <span class="nav-text">第三次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.10.</span> <span class="nav-text">第三次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon%E6%B1%82%E8%A7%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E6%96%B9%E7%A8%8B"><span class="nav-number">2.11.</span> <span class="nav-text">第三次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)求解行列式方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.12.</span> <span class="nav-text">第四次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97fock%E7%9F%A9%E9%98%B5%E5%85%83"><span class="nav-number">2.13.</span> <span class="nav-text">第四次计算Fock矩阵元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AE%A1%E7%AE%97%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5c%E5%92%8C%E8%BD%A8%E9%81%93%E8%83%BD%E7%9F%A9%E9%98%B5varepsilon%E6%B1%82%E8%A7%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E6%96%B9%E7%A8%8B"><span class="nav-number">2.14.</span> <span class="nav-text">第四次计算系数矩阵\(C\)和轨道能矩阵\(\varepsilon\)求解行列式方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AC%A1%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">2.15.</span> <span class="nav-text">第五次计算密度矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">2.16.</span> <span class="nav-text">能量计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

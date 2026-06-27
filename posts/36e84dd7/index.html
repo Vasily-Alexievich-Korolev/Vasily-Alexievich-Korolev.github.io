@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文是Stein所著&quot;Real Analysis&quot;第一章的&quot;Exercise&quot;部分，读者可以用以对照思考。由于笔者并非数学专业出身，因此一些证明过程不一定对，敬请读者批评指正。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-17T12:22:07.884Z">
-<meta property="article:modified_time" content="2024-03-18T16:50:05.378Z">
+<meta property="article:modified_time" content="2026-06-27T15:48:31.678Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Real Analysis">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-19 00:50:05" itemprop="dateModified" datetime="2024-03-19T00:50:05+08:00">2024-03-19</time>
+                <time title="修改时间：2026-06-27 23:48:31" itemprop="dateModified" datetime="2026-06-27T23:48:31+08:00">2026-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,9 +273,9 @@ class="math inline">\(k\)</span>，使得<span class="math inline">\(|x -
 y|&gt; \dfrac{1}{3^{k}}\)</span>。这样，长度为<span
 class="math inline">\(\dfrac{1}{3^{k}}\)</span>的间隔中的点<span
 class="math inline">\(z\)</span>满足<span class="math inline">\(z \notin
-C\)</span>，且<span class="math inline">\(x &lt; z &lt; y\)</span></p>
-<p>（2）由于在Cantor集构造的过程中，每个满足<span
-class="math inline">\(x \in [0, 1]\)</span>的点都在某个长度为<span
+C\)</span>，且<span class="math inline">\(x &lt; z &lt; y\)</span>&gt;
+（2）由于在Cantor集构造的过程中，每个满足<span class="math inline">\(x
+\in [0, 1]\)</span>的点都在某个长度为<span
 class="math inline">\(\dfrac{1}{3^{k}}\)</span>的区间中，因此对于任意的<span
 class="math inline">\(x \in C\)</span>，总是存在某个区间的端点<span
 class="math inline">\(y_{k} \in I_{k}\)</span>，使得<span
@@ -343,42 +343,17 @@ y = \sum\limits_{k = 1}^{\infty}c_{k}2^{-k},\quad c_{k} = 0, 1
 class="math inline">\(c_{k}\)</span>乘2，即可得到一个属于<span
 class="math inline">\(C\)</span>的三进制数。这样我们就说明了，<span
 class="math inline">\(\forall y \in [0, 1]\)</span>，<span
-class="math inline">\(\exists x \in C\)</span>，<span
-class="math inline">\(F(x) = y\)</span></p>
+class="math inline">\(\exists x \in C\)</span>，$F(x) = y<span
+class="math inline">\(3. **常数分割出的Cantor集**。考虑单位区间[0,
+1]，假设\)</span>(0, 1)<span
+class="math inline">\(。按照构造Cantor集的方式构造集合，只不过将构造Cantor集时的\)</span><span
+class="math inline">\(换为\)</span><span
+class="math inline">\(。将最终得到的集合记为\)</span>C_{}<span
+class="math inline">\(（1）证明：\)</span>C_{}<span
+class="math inline">\(的补集\)</span>C_{}^{c}$为总长度为1的开区间的并集</p>
 </blockquote>
-<ol start="3" type="1">
-<li><p><strong>常数分割出的Cantor集</strong>。考虑单位区间[0,
-1]，假设<span class="math inline">\(\xi\in(0,
-1)\)</span>。按照构造Cantor集的方式构造集合，只不过将构造Cantor集时的<span
-class="math inline">\(\dfrac{1}{3}\)</span>换为<span
-class="math inline">\(\xi\)</span>。将最终得到的集合记为<span
-class="math inline">\(C_{\xi}\)</span></p>
-<p>（1）证明：<span class="math inline">\(C_{\xi}\)</span>的补集<span
-class="math inline">\(C_{\xi}^{c}\)</span>为总长度为1的开区间的并集</p>
-<p>（2）证明：<span class="math inline">\(m_{*}(C_{\xi}) =
-0\)</span></p></li>
-</ol>
+<pre><code>（2）证明：$m_&#123;*&#125;(C_&#123;\xi&#125;) = 0$&gt;（1）仿照第二题的方式，我们可以证明，对$\forall x, y \in C_&#123;\xi&#125;$，$\exists k$，使得$|x - y| &gt; \dfrac&#123;1&#125;&#123;(1-\xi)^&#123;k&#125;&#125;$。由于第$k$次去掉的区间长为$\dfrac&#123;1&#125;&#123;(1 - \xi)^&#123;k&#125;&#125;$，因此$\exists z$，使得$x &lt; z &lt; y$。因此$C_&#123;\xi&#125;$中每个元素不与其他元素相连。对于$x \in C_&#123;\xi&#125;$，我们假设$E_&#123;x&#125; = \&#123;x\&#125;$，此时$C_&#123;\xi&#125; = \bigcup\limits_&#123;x\in C_&#123;\xi&#125;&#125;E_&#123;x&#125;$。由于$E_&#123;x&#125;$彼此不相交，并且$m_&#123;*&#125;(E_&#123;x&#125;) = 0$，因此$m_&#123;*&#125;(C_&#123;\xi&#125;) = 0$，从而$m_&#123;*&#125;(C_&#123;\xi&#125;^&#123;c&#125;) = 1$。参照Cantor集的构造方式，不难得出$C_&#123;\xi&#125;^&#123;c&#125;$为开区间的并集。</code></pre>
 <blockquote>
-<p>（1）仿照第二题的方式，我们可以证明，对<span
-class="math inline">\(\forall x, y \in C_{\xi}\)</span>，<span
-class="math inline">\(\exists k\)</span>，使得<span
-class="math inline">\(|x - y| &gt;
-\dfrac{1}{(1-\xi)^{k}}\)</span>。由于第<span
-class="math inline">\(k\)</span>次去掉的区间长为<span
-class="math inline">\(\dfrac{1}{(1 - \xi)^{k}}\)</span>，因此<span
-class="math inline">\(\exists z\)</span>，使得<span
-class="math inline">\(x &lt; z &lt; y\)</span>。因此<span
-class="math inline">\(C_{\xi}\)</span>中每个元素不与其他元素相连。对于<span
-class="math inline">\(x \in C_{\xi}\)</span>，我们假设<span
-class="math inline">\(E_{x} = \{x\}\)</span>，此时<span
-class="math inline">\(C_{\xi} = \bigcup\limits_{x\in
-C_{\xi}}E_{x}\)</span>。由于<span
-class="math inline">\(E_{x}\)</span>彼此不相交，并且<span
-class="math inline">\(m_{*}(E_{x}) = 0\)</span>，因此<span
-class="math inline">\(m_{*}(C_{\xi}) = 0\)</span>，从而<span
-class="math inline">\(m_{*}(C_{\xi}^{c}) =
-1\)</span>。参照Cantor集的构造方式，不难得出<span
-class="math inline">\(C_{\xi}^{c}\)</span>为开区间的并集。</p>
 <p>（2）见（1）的证明过程</p>
 </blockquote>
 <ol start="4" type="1">
@@ -392,8 +367,7 @@ class="math display">\[l_{1} + 2l_{2} + 4l_{3} + \dots + 2^{k - 1}l_{k}
 <p>（1）当<span class="math inline">\(l_{k}\)</span>足够小时，<span
 class="math inline">\(\sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k} &lt;
 1\)</span>。在这种情况下，说明<span class="math inline">\(m(\hat{C})
-&gt; 0\)</span></p>
-<p>（2）说明如果<span
+&gt; 0\)</span>（2）说明如果<span
 class="math inline">\(x\in\hat{C}\)</span>，那么存在一个数列<span
 class="math inline">\(\{x_{n}\}_{n = 1}^{\infty}\)</span>，其中<span
 class="math inline">\(x_{n}\notin\hat{C}\)</span>，但<span
@@ -401,8 +375,7 @@ class="math inline">\(x_{n}\rightarrow x\)</span>，且<span
 class="math inline">\(x_{n} \in I_{n}\)</span>，其中<span
 class="math inline">\(I_{n}\)</span>为<span
 class="math inline">\(\hat{C}^{c}\)</span>中的子区间，并且<span
-class="math inline">\(|I_{n}|\rightarrow 0\)</span></p>
-<p>（3）证明<span
+class="math inline">\(|I_{n}|\rightarrow 0\)</span>（3）证明<span
 class="math inline">\(\hat{C}\)</span>为完美集，并且不包含开区间</p>
 <p>（4）说明<span
 class="math inline">\(\hat{C}\)</span>为不可数集</p></li>
@@ -413,8 +386,8 @@ class="math inline">\(\hat{C}^{c}\)</span>为不相交集，因此<span
 class="math inline">\(m(\hat{C}) + m(\hat{C}^{c}) =
 1\)</span>。又因为<span class="math inline">\(m(\hat{C}^{c}) =
 \sum\limits_{k = 1}^{\infty}2^{k - 1}l_{k} &lt; 1\)</span>，因此<span
-class="math inline">\(m(\hat{C}) &gt; 0\)</span></p>
-<p>（2）我们取<span class="math inline">\(x_{n}\)</span>为离<span
+class="math inline">\(m(\hat{C}) &gt; 0\)</span>&gt; （2）我们取<span
+class="math inline">\(x_{n}\)</span>为离<span
 class="math inline">\(x\)</span>最近的<span
 class="math inline">\(I_{n}\)</span>的中点，即<span
 class="math inline">\(|x - x_{n}| &lt; l_{n - 1}\)</span>，<span
@@ -424,8 +397,8 @@ class="math inline">\(\exists N\in N^{*}\)</span>，当<span
 class="math inline">\(n &gt; N\)</span>时，有<span
 class="math inline">\(|x - x_{n}|&lt; l_{n - 1} &lt;
 \epsilon\)</span>，即<span
-class="math inline">\(\lim\limits_{n\to\infty}x_{n} =x\)</span></p>
-<p>（3）仿照第一题可得，进行<span
+class="math inline">\(\lim\limits_{n\to\infty}x_{n} =x\)</span>&gt;
+（3）仿照第一题可得，进行<span
 class="math inline">\(N\)</span>次去除后，<span
 class="math inline">\(\hat{C}\)</span>中每个区间的长度为<span
 class="math inline">\(\dfrac{1 - \sum\limits_{k = 1}^{N}2^{k -
@@ -465,8 +438,7 @@ E)&lt;\dfrac{1}{n}\}\]</span></p>
 <p>（1）说明：如果<span
 class="math inline">\(E\)</span>为紧集，那么<span
 class="math inline">\(m(E) =
-\lim\limits_{n\to\infty}m(O_{n})\)</span></p>
-<p>（2）说明：当<span
+\lim\limits_{n\to\infty}m(O_{n})\)</span>（2）说明：当<span
 class="math inline">\(E\)</span>为闭集并且无界时（或者<span
 class="math inline">\(E\)</span>为开集并且有界时），结论（1）不成立</p></li>
 </ol>
@@ -480,17 +452,16 @@ class="math inline">\(O_{n}\)</span>可测</p>
 class="math inline">\(E\)</span>，假如<span
 class="math inline">\(x\notin E\)</span>，那么<span
 class="math inline">\(\exists y \in E\)</span>，使得<span
-class="math inline">\(d(x, E) = d(x, y)\)</span></p>
-<p>我们可以将<span class="math inline">\(E\)</span>写为<span
-class="math inline">\(E = \bigcap\limits_{n =
-1}^{\infty}O_{n}\)</span>。对于<span class="math inline">\(\forall x \in
-\bigcap\limits_{n = 1}^{\infty}O_{n}\)</span>，假如<span
-class="math inline">\(x \notin E\)</span>，那么<span
-class="math inline">\(d(x, E) &gt; 0\)</span>。此时<span
-class="math inline">\(\exists n\)</span>，满足<span
-class="math inline">\(d(x, E) &gt; \dfrac{1}{n}\)</span>。这与<span
-class="math inline">\(x \in \bigcap\limits_{n =
-1}^{\infty}O_{n}\)</span>的假设相矛盾。因此<span
+class="math inline">\(d(x, E) = d(x, y)\)</span>&gt; 我们可以将<span
+class="math inline">\(E\)</span>写为<span class="math inline">\(E =
+\bigcap\limits_{n = 1}^{\infty}O_{n}\)</span>。对于<span
+class="math inline">\(\forall x \in \bigcap\limits_{n =
+1}^{\infty}O_{n}\)</span>，假如<span class="math inline">\(x \notin
+E\)</span>，那么<span class="math inline">\(d(x, E) &gt;
+0\)</span>。此时<span class="math inline">\(\exists
+n\)</span>，满足<span class="math inline">\(d(x, E) &gt;
+\dfrac{1}{n}\)</span>。这与<span class="math inline">\(x \in
+\bigcap\limits_{n = 1}^{\infty}O_{n}\)</span>的假设相矛盾。因此<span
 class="math inline">\(\forall x \in \bigcap\limits_{n =
 1}^{\infty}O_{n}\)</span>，都满足<span class="math inline">\(x \in
 E\)</span>。由<span
@@ -499,8 +470,7 @@ class="math inline">\(O_{n}\searrow E\)</span>。同时由于<span
 class="math inline">\(E\)</span>为紧集，因此<span
 class="math inline">\(m(E) &lt;
 \infty\)</span>，从而由推论3.3可以得到<span class="math inline">\(m(E) =
-\lim\limits_{n\to\infty}m(O_{n})\)</span></p>
-<p>（推论3.3：假设<span
+\lim\limits_{n\to\infty}m(O_{n})\)</span>&gt; （推论3.3：假设<span
 class="math inline">\(E_{k}\subset\mathbb{R}^{d}\)</span>（<span
 class="math inline">\(k = 1, 2,\dots\)</span>），如果<span
 class="math inline">\(E_{k}\searrow E\)</span>，并且<span
@@ -521,10 +491,8 @@ class="math display">\[\delta E =
 E\}\]</span>证明：当<span class="math inline">\(E\)</span>可测时，<span
 class="math inline">\(\delta E\)</span>可测，并且<span
 class="math inline">\(m(\delta E) = \prod\limits_{i =
-1}^{d}\delta_{i}m(E)\)</span></li>
-</ol>
-<blockquote>
-<p>由于<span class="math inline">\(E\)</span>可测，因此存在开集<span
+1}^{d}\delta_{i}m(E)\)</span>&gt;由于<span
+class="math inline">\(E\)</span>可测，因此存在开集<span
 class="math inline">\(O\)</span>，使得<span
 class="math inline">\(E\subset O\)</span>并且<span
 class="math inline">\(m_{*}(O-E) &lt; \epsilon\)</span>。对于集合<span
@@ -539,8 +507,8 @@ class="math inline">\(m_{*}(\delta O - \delta E) &lt; \prod_{i =
 1}^{d}\epsilon\)</span>。因此，<span class="math inline">\(\delta
 E\)</span>也是可测集。同理，我们可以说明<span
 class="math inline">\(m(\delta E) = \prod\limits_{i =
-1}^{d}\delta_{i}m(E)\)</span>。</p>
-</blockquote>
+1}^{d}\delta_{i}m(E)\)</span>。</li>
+</ol>
 
     </div>
 

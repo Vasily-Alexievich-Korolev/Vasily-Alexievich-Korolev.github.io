@@ -23,13 +23,13 @@
 
   <meta name="description" content="本文介绍了恒定电流的基本规律，包括电流密度、欧姆定律、基尔霍夫定律等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="恒定电流">
+<meta property="og:title" content="恒定电流——电动力学笔记3">
 <meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/525defbd/">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
 <meta property="og:description" content="本文介绍了恒定电流的基本规律，包括电流密度、欧姆定律、基尔霍夫定律等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T15:22:43.860Z">
-<meta property="article:modified_time" content="2026-06-25T15:22:43.861Z">
+<meta property="article:modified_time" content="2026-06-27T14:31:02.723Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>恒定电流 | Vasily's Blog</title>
+  <title>恒定电流——电动力学笔记3 | Vasily's Blog</title>
   
 
 
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          恒定电流
+          恒定电流——电动力学笔记3
         </h1>
 
         <div class="post-meta">
@@ -195,6 +195,13 @@
 
               <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-27 22:31:02" itemprop="dateModified" datetime="2026-06-27T22:31:02+08:00">2026-06-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -282,7 +289,7 @@ I = \iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
 <p>电流的连续方程的本质是电荷守恒定律。假设在导体内部取一任意闭合曲面<span
 class="math inline">\(S\)</span>，那么由电荷守恒可得，在一段时间内电荷的净流出量必然等于面内电荷量的净变化，即
 <span class="math display">\[\begin{equation}
-\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+\oiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
 -\dfrac{\mathrm{d}  q}{\mathrm{d}  t}
 \end{equation}\]</span>
 上式表明，电流线是终止于或产生于电荷积累或消失的位置。譬如，假设<span
@@ -291,7 +298,7 @@ class="math inline">\(\mathrm{d}  q &gt;
 <p>恒定电流要求电流场不随时间变化，这就要求电荷的分布不随时间变化，因而此时的电场为静电场。由此可得，在恒定条件下，对任意闭合曲面<span
 class="math inline">\(S\)</span>，面内的电荷量净变化应为0，即 <span
 class="math display">\[\begin{equation}
-\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\oiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = 0
 \end{equation}\]</span> 上式即为电流的恒定条件。</p>
 <p>由一束电流线围成的管状区域被称为电流管。显然，通过电流管任意截面的电流线数目相同，这表明电流管内各截面的电流均相等。可以证明，对于通常的电路而言，导线本身就是一个电流管。因此在没有分支的电路中，通过各截面的电流必定相等。此外，电流的恒定条件表明，电路必须是闭合的。</p>
 <h3 id="ohms定律电阻电阻率">Ohms定律、电阻、电阻率</h3>
@@ -576,14 +583,14 @@ R = r
 <p>下面我们来讨论静电场在恒定电路中的作用。</p>
 <p>在恒定电路中只有静电力作用的地方，由式（5）和式（13）可得 <span
 class="math display">\[
-\varoiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
-\varoiint_{S} \sigma \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\oiint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = \oiint_{S}
+\sigma \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
 \]</span> 假如此时导体的电荷密度<span
 class="math inline">\(\sigma\)</span>均匀分布，那么可得 <span
 class="math display">\[\begin{equation}
-\varoiint_{S} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\oiint_{S} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} = 0
 \end{equation}\]</span> 结合Gauss定律<span
-class="math inline">\(\displaystyle\varoiint_{S} \boldsymbol{E}
+class="math inline">\(\displaystyle\oiint_{S} \boldsymbol{E}
 \cdot  \mathrm{d}  \boldsymbol{S}=\sum\limits_{i = 1}^{n}
 \dfrac{q_{i}}{\varepsilon_{0}}\)</span>以及闭合面<span
 class="math inline">\(S\)</span>的任意性可得，在恒定电流的条件下，均匀导体内部没有净电荷。此时，电荷只分布在导体的非均匀处或分界面上。</p>
@@ -849,7 +856,7 @@ class="math inline">\(I_{\mathrm{s}}\)</span>。</p>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/525defbd/" title="恒定电流">https://vasily-alexievich-korolev.github.io/posts/525defbd/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/525defbd/" title="恒定电流——电动力学笔记3">https://vasily-alexievich-korolev.github.io/posts/525defbd/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -870,12 +877,12 @@ class="math inline">\(I_{\mathrm{s}}\)</span>。</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/53cc9fd7/" rel="prev" title="静电场中的导体与电介质">
-      <i class="fa fa-chevron-left"></i> 静电场中的导体与电介质
+    <a href="/posts/53cc9fd7/" rel="prev" title="静电场中的导体与电介质——电动力学笔记2">
+      <i class="fa fa-chevron-left"></i> 静电场中的导体与电介质——电动力学笔记2
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/2f05d78c/" rel="next" title="恒定磁场">
-      恒定磁场 <i class="fa fa-chevron-right"></i>
+    <a href="/posts/2f05d78c/" rel="next" title="恒定磁场——电动力学笔记4">
+      恒定磁场——电动力学笔记4 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1110,6 +1117,7 @@ setInterval("createtime()",250);
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/esint'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -1117,6 +1125,7 @@ setInterval("createtime()",250);
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['esint']},
         tags: 'ams'
       },
       options: {

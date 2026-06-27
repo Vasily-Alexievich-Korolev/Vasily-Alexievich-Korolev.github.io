@@ -23,13 +23,13 @@
 
   <meta name="description" content="本文介绍了磁介质的磁化理论，包括磁化强度、磁场强度、边界条件等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="磁介质">
+<meta property="og:title" content="磁介质——电动力学笔记6">
 <meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
 <meta property="og:description" content="本文介绍了磁介质的磁化理论，包括磁化强度、磁场强度、边界条件等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T15:22:43.923Z">
-<meta property="article:modified_time" content="2026-06-25T15:22:43.924Z">
+<meta property="article:modified_time" content="2026-06-27T14:31:02.727Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>磁介质 | Vasily's Blog</title>
+  <title>磁介质——电动力学笔记6 | Vasily's Blog</title>
   
 
 
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          磁介质
+          磁介质——电动力学笔记6
         </h1>
 
         <div class="post-meta">
@@ -195,6 +195,13 @@
 
               <time title="创建时间：2026-06-25 23:22:43" itemprop="dateCreated datePublished" datetime="2026-06-25T23:22:43+08:00">2026-06-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-27 22:31:02" itemprop="dateModified" datetime="2026-06-27T22:31:02+08:00">2026-06-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -268,7 +275,7 @@ class="math display">\[\begin{equation}
 <p>正如电介质中极化强度<span
 class="math inline">\(\boldsymbol{P}\)</span>与极化电荷之间关系为 <span
 class="math display">\[
-\varoiint_{S} \boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} =
+\oiint_{S} \boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} =
 -\sum\limits_{\mbox{内部}}q&#39;
 \]</span> 磁介质中磁化强度
 与磁化电流之间也有一定的关系。下面我们来推导这种关系。</p>
@@ -396,11 +403,11 @@ id="磁场强度矢量有磁介质时的ampere环路定理与gauss定理">磁场
 class="math inline">\(\boldsymbol{D} = \varepsilon_{0}\boldsymbol{E} +
 \boldsymbol{P}\)</span>，并将电场强度通量的Gauss定理由 <span
 class="math display">\[
-\varoiint_{S}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} =
+\oiint_{S}\boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{S} =
 \dfrac{1}{\varepsilon_{0}}\sum\limits_{\mbox{内部}}\left(  q_{0} +
 q&#39; \right)
 \]</span> 替换为 <span class="math display">\[
-\varoiint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+\oiint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
 \sum\limits_{\mbox{内部}} q_{0}
 \]</span> 这样做的优点是从Gauss定理的表达式中消去了极化电荷<span
 class="math inline">\(q&#39;\)</span>，只需计算自由电荷<span
@@ -435,7 +442,7 @@ class="math inline">\(\displaystyle\oint_{L} \boldsymbol{B} \cdot
 \sum\limits_{L\mbox{内}}I_{0}\)</span>等价</p>
 <p>此外，由于磁感应强度 所满足的“Gauss定理” <span
 class="math display">\[\begin{equation}
-\varoiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\oiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
 \end{equation}\]</span>
 是由Biot-Savart定律导出的，因此对导线中的传导电流和介质中的磁化电流均适用。</p>
 <p>这样，我们就得到了有关磁场的两个普遍公式：</p>
@@ -444,7 +451,7 @@ class="math display">\[\begin{equation}
 \sum\limits_{L\mbox{内}}I_{0}
 \]</span></p>
 <p>（2）磁感应强度 的“Gauss定理” <span class="math display">\[
-\varoiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
+\oiint_{S}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S} = 0
 \]</span></p>
 <h2 id="等效的磁荷观点">等效的磁荷观点*</h2>
 <p>待补充</p>
@@ -705,7 +712,7 @@ S\)</span>两侧不同介质中，磁感应强度分别为<span
 class="math inline">\(\boldsymbol{B}_{1}\)</span>和<span
 class="math inline">\(\boldsymbol{B}_{2}\)</span>，那么通过闭合面的磁感应强度通量为
 <span class="math display">\[
-\varoiint \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} =
+\oiint \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} =
 \iint_{\mbox{底面1}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} +
 \iint_{\mbox{底面2}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} +
 \iint_{\mbox{侧面}}\boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{l} = 0
@@ -880,7 +887,7 @@ W_{\mathrm{m}} = \dfrac{1}{2} \mu\mu_{0} \iiint_{V}
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/" title="磁介质">https://vasily-alexievich-korolev.github.io/posts/3fca16e6/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/3fca16e6/" title="磁介质——电动力学笔记6">https://vasily-alexievich-korolev.github.io/posts/3fca16e6/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -901,12 +908,12 @@ W_{\mathrm{m}} = \dfrac{1}{2} \mu\mu_{0} \iiint_{V}
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/30110ae4/" rel="prev" title="电磁感应与暂态过程">
-      <i class="fa fa-chevron-left"></i> 电磁感应与暂态过程
+    <a href="/posts/30110ae4/" rel="prev" title="电磁感应与暂态过程——电动力学笔记5">
+      <i class="fa fa-chevron-left"></i> 电磁感应与暂态过程——电动力学笔记5
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/56b63450/" rel="next" title="交流电">
-      交流电 <i class="fa fa-chevron-right"></i>
+    <a href="/posts/56b63450/" rel="next" title="交流电——电动力学笔记7">
+      交流电——电动力学笔记7 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1141,6 +1148,7 @@ setInterval("createtime()",250);
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/esint'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -1148,6 +1156,7 @@ setInterval("createtime()",250);
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['esint']},
         tags: 'ams'
       },
       options: {

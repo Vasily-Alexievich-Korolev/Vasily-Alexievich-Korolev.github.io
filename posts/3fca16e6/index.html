@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/6-9.png">
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/6-10.png">
 <meta property="article:published_time" content="2026-06-25T15:22:43.923Z">
-<meta property="article:modified_time" content="2026-06-27T15:56:06.860Z">
+<meta property="article:modified_time" content="2026-06-27T16:03:44.907Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -211,7 +211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 23:56:06" itemprop="dateModified" datetime="2026-06-27T23:56:06+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-28 00:03:44" itemprop="dateModified" datetime="2026-06-28T00:03:44+08:00">2026-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -312,11 +312,10 @@ class="math inline">\(L\)</span>，以此来考察有无分子电流通过它。
 <p>我们在此只考虑第三种分子环流。对于这一种，<span
 class="math inline">\(L\)</span>实际上从分子环流中间穿过。此时，我们在边界线<span
 class="math inline">\(L\)</span>上取一线元<span
-class="math inline">\(\mathrm{d}  l\)</span>，并以其所穿过的分子环流<span
-class="math inline">\(\boldsymbol{a}\)</span>为底面做一柱体，体积为<span
+class="math inline">\(\mathrm{d}  l\)</span>，并以其所穿过的分子环流为底面做一柱体，体积为<span
 class="math display">\[
 V = a\ \mathrm{d}  l \cos \theta =\boldsymbol{a}\cdot
-\mathrm{d}$\boldsymbol{l}\]</span>$</p>
+\mathrm{d}\boldsymbol{l}\]</span></p>
 <p>假设分子环流的浓度为<span
 class="math inline">\(n\)</span>。由于只要分子环流的中心在柱体内，那么线元<span
 class="math inline">\(\mathrm{d}  \boldsymbol{l}\)</span>就会穿过此分子环流，因此线元穿过的分子环流量为<span
@@ -395,10 +394,10 @@ class="math display">\[\boldsymbol{B}&#39;&#39; =
 class="math inline">\(\cos \beta_{1} \to 1\)</span>、<span
 class="math inline">\(\cos \beta_{2} \to -1\)</span>。由此可得 <span
 class="math display">\[\boldsymbol{B}&#39; =
-\mu_{0}$\boldsymbol{M}\]</span>$ 从而 <span
+\mu_{0}\boldsymbol{M}\]</span> 从而 <span
 class="math display">\[\boldsymbol{B}=\boldsymbol{B}_{0}
 +\boldsymbol{B}&#39; =\boldsymbol{B}_{0} +
-\mu_{0}$\boldsymbol{M}\]</span>$</p>
+\mu_{0}\boldsymbol{M}\]</span></p>
 <h4 id="很薄的磁介质片">很薄的磁介质片</h4>
 <p>此时<span class="math inline">\(\dfrac{l}{d} \to 0\)</span>，因此
 <span class="math display">\[\boldsymbol{B}&#39; \approx 0
@@ -436,12 +435,14 @@ class="math display">\[
 class="math inline">\(I&#39;\)</span>，我们引入磁场强度矢量<span
 class="math inline">\(\boldsymbol{H}\)</span> ，其定义为 <span
 class="math display">\[\boldsymbol{H}= \dfrac{\boldsymbol{B}}{\mu_{0}}
--$\boldsymbol{M}\]</span>$ 由于磁化电流<span
-class="math inline">\(I&#39;\)</span>与磁化强度 之间关系为 <span
+-\boldsymbol{M}\]</span> 由于磁化电流<span
+class="math inline">\(I&#39;\)</span>与磁化强度<span
+class="math inline">\(\boldsymbol{M}\)</span> 之间关系为 <span
 class="math display">\[
 \oint_{L}\boldsymbol{M}\cdot \mathrm{d}\boldsymbol{l}=
 \sum\limits_{L\text{内}} I&#39;
-\]</span> 因此可以得到磁场强度 满足的Ampere环路定理 <span
+\]</span> 因此可以得到磁场强度<span
+class="math inline">\(\boldsymbol{H}\)</span> 满足的Ampere环路定理 <span
 class="math display">\[
 \oint_{L}\boldsymbol{H}\cdot \mathrm{d}\boldsymbol{l}=
 \sum\limits_{L\text{内}}I_{0}
@@ -454,17 +455,20 @@ class="math display">\[\boldsymbol{H}= \dfrac{\boldsymbol{B}}{\mu_{0}}
 class="math inline">\(\displaystyle\oint_{L} \boldsymbol{B} \cdot
 \mathrm{d}  \boldsymbol{l} = \mu_{0}
 \sum\limits_{L\text{内}}I_{0}\)</span>等价</p>
-<p>此外，由于磁感应强度 所满足的“Gauss定理” <span
+<p>此外，由于磁感应强度<span
+class="math inline">\(\boldsymbol{B}\)</span> 所满足的“Gauss定理” <span
 class="math display">\[
 \iint_{S}\boldsymbol{B}\cdot \mathrm{d}\boldsymbol{S}= 0
 \]</span>
 是由Biot-Savart定律导出的，因此对导线中的传导电流和介质中的磁化电流均适用。</p>
 <p>这样，我们就得到了有关磁场的两个普遍公式：</p>
-<p>（1）磁场强度 的Ampere环路定理 <span class="math display">\[
+<p>（1）磁场强度<span class="math inline">\(\boldsymbol{H}\)</span>
+的Ampere环路定理 <span class="math display">\[
 \oint_{L}\boldsymbol{H}\cdot \mathrm{d}\boldsymbol{l}=
 \sum\limits_{L\text{内}}I_{0}
 \]</span></p>
-<p>（2）磁感应强度 的“Gauss定理” <span class="math display">\[
+<p>（2）磁感应强度<span class="math inline">\(\boldsymbol{B}\)</span>
+的“Gauss定理” <span class="math display">\[
 \iint_{S}\boldsymbol{B}\cdot \mathrm{d}\boldsymbol{S}= 0
 \]</span></p>
 <h2 id="等效的磁荷观点">等效的磁荷观点*</h2>
@@ -493,9 +497,10 @@ class="math display">\[
 \varepsilon = 1 + \chi_{\mathrm{e}}
 \]</span></p>
 <p>在磁荷观点中，描述磁化状态的量为磁极化强度矢量<span
-class="math inline">\(\boldsymbol{J}\)</span>，其与磁化强度矢量
-之间的关系为 <span class="math display">\[\boldsymbol{J}=
-\mu_{0}$\boldsymbol{M}\]</span>$</p>
+class="math inline">\(\boldsymbol{J}\)</span>，其与磁化强度矢量<span
+class="math inline">\(\boldsymbol{M}\)</span> 之间的关系为 <span
+class="math display">\[\boldsymbol{J}=
+\mu_{0}\boldsymbol{M}\]</span></p>
 <p>对于磁介质，我们可以仿照电介质中的情况，定义磁化率<span
 class="math inline">\(\chi_{\mathrm{m}}\)</span>和磁导率<span
 class="math inline">\(\mu\)</span><span class="math display">\[
@@ -508,7 +513,7 @@ class="math inline">\(\mu\)</span><span class="math display">\[
 \right.
 \]</span> 由于 <span class="math display">\[\boldsymbol{B}=
 \mu_{0}\left(\boldsymbol{H}+\boldsymbol{M}\right)  =
-\mu_{0}\boldsymbol{H}+$\boldsymbol{J}\]</span>$ 因此，<span
+\mu_{0}\boldsymbol{H}+\boldsymbol{J}\]</span> 因此，<span
 class="math inline">\(\mu\)</span>与<span
 class="math inline">\(\chi_{\mathrm{m}}\)</span>之间的关系为 <span
 class="math display">\[
@@ -545,11 +550,12 @@ r^{2}\)</span>，因此磁矩<span
 class="math inline">\(\boldsymbol{m}\)</span>与角速度<span
 class="math inline">\(\boldsymbol{\omega}\)</span>之间关系为 <span
 class="math display">\[\boldsymbol{m}=
--\dfrac{er^{2}}{2}$\boldsymbol{\omega}\]</span>$
+-\dfrac{er^{2}}{2}\boldsymbol{\omega}\]</span>
 在原子或分子内一般不止有一个电子，整个分子的磁矩<span
 class="math inline">\(\boldsymbol{m}_{\mathrm{mol}}\)</span>是其中各个电子轨道磁矩与自旋磁矩的矢量和（忽略原子核磁矩）。如果分子中各电子磁矩完全抵消，那么该分子没有固有磁矩；反之，如果分子中各电子磁矩没有完全抵消，那么该分子有固有磁矩。</p>
-<p>对于顺磁性物质，其分子具有固有磁矩。无外磁场时，由于分子热运动的存在，各分子磁矩的取向无规律，因而磁化强度
-等于
+<p>对于顺磁性物质，其分子具有固有磁矩。无外磁场时，由于分子热运动的存在，各分子磁矩的取向无规律，因而磁化强度<span
+class="math inline">\(\boldsymbol{M}\)</span> 等于<span
+class="math inline">\(\boldsymbol{0}\)</span>
 ，介质处于未磁化状态。在有外磁场时，每个分子磁矩受到一个力矩，其效果为使磁矩与外磁场方向相同，这便是顺磁效应的来源。显然，随着温度的升高，分子热运动加强，顺磁效应会逐渐减弱。</p>
 <p>下面考虑抗磁效应。假设一个电子以角速度<span
 class="math inline">\(\omega_{0}\)</span>、半径<span
@@ -561,7 +567,8 @@ m_{\mathrm{e}}r\omega_{0}^{2} = \dfrac{1}{4\pi
 \]</span> 由此解得 <span class="math display">\[
 \omega_{0} = \sqrt{\dfrac{Ze^{2}}{4\pi \varepsilon_{0} mr^{3}}}
 \]</span></p>
-<p>在加上外磁场 后，电子将受到Lorentz力作用。首先考虑<span
+<p>在加上外磁场<span class="math inline">\(\boldsymbol{B}\)</span>
+后，电子将受到Lorentz力作用。首先考虑<span
 class="math inline">\(\boldsymbol{\omega} //
 \boldsymbol{B}\)</span>的情况。此时电子受到的Lorentz力指向中心。假设轨道的半径<span
 class="math inline">\(r\)</span>不变，则角速度将变为<span
@@ -589,12 +596,14 @@ class="math inline">\(\omega = \omega_{0} - \Delta
 \Delta \omega = \dfrac{eB}{2m_{\mathrm{e}}}
 \]</span></p>
 <p>综上，我们可以看出，<span class="math inline">\(\Delta
-\boldsymbol{\omega}\)</span>的方向与外磁场 相同。由磁矩 与角速度<span
+\boldsymbol{\omega}\)</span>的方向与外磁场<span
+class="math inline">\(\boldsymbol{B}\)</span> 相同。由磁矩<span
+class="math inline">\(\boldsymbol{m}\)</span> 与角速度<span
 class="math inline">\(\boldsymbol{\omega}\)</span>可得，磁矩的改变量<span
 class="math inline">\(\Delta \boldsymbol{m}\)</span>为 <span
 class="math display">\[
 \Delta\boldsymbol{m}= -\dfrac{er^{2}}{2}\Delta\boldsymbol{\omega}_{0} =
--\dfrac{e^{2}r^{2}}{4m_{\mathrm{e}}}$\boldsymbol{B}\]</span>$</p>
+-\dfrac{e^{2}r^{2}}{4m_{\mathrm{e}}}\boldsymbol{B}\]</span></p>
 <p>理论上可以证明，当<span
 class="math inline">\(\boldsymbol{\omega}_{0}\)</span>与<span
 class="math inline">\(\boldsymbol{B}\)</span>成任何角度时，<span
@@ -870,8 +879,7 @@ class="math display">\[
 class="math inline">\(W_{\mathrm{e}} =
 \dfrac{1}{2}CU^{2}\)</span>导出了电场的能量密度公式 <span
 class="math display">\[
-w_{\mathrm{e}} =
-\dfrac{1}{2}\boldsymbol{D}\cdot$\boldsymbol{E}\]</span>$
+w_{\mathrm{e}} = \dfrac{1}{2}\boldsymbol{D}\cdot\boldsymbol{E}\]</span>
 由于按照磁场的近距作用的观点，磁能也定域在磁场中，因此下面我们从电感储能公式<span
 class="math inline">\(W_{\mathrm{m}} =
 \dfrac{1}{2}LI^{2}\)</span>推导磁场的能量密度公式。为了方便计算，我们通过螺绕环这一特例推导。</p>
@@ -886,7 +894,7 @@ W_{\mathrm{m}} = \dfrac{1}{2}BHV =
 \dfrac{1}{2}\boldsymbol{B}\cdot\boldsymbol{H}V
 \]</span> 由此可得单位体积内的磁能为 <span class="math display">\[
 w_{\mathrm{m}} = \dfrac{W_{\mathrm{m}}}{V} =
-\dfrac{1}{2}\boldsymbol{B}\cdot$\boldsymbol{H}\]</span>$</p>
+\dfrac{1}{2}\boldsymbol{B}\cdot\boldsymbol{H}\]</span></p>
 <p>对于任意磁场，总磁能<span
 class="math inline">\(W_{\mathrm{m}}\)</span>为 <span
 class="math display">\[

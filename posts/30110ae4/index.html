@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/5-11.png">
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/5-12.png">
 <meta property="article:published_time" content="2026-06-25T15:22:43.901Z">
-<meta property="article:modified_time" content="2026-06-27T15:52:02.490Z">
+<meta property="article:modified_time" content="2026-06-27T16:09:08.237Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -213,7 +213,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 23:52:02" itemprop="dateModified" datetime="2026-06-27T23:52:02+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-28 00:09:08" itemprop="dateModified" datetime="2026-06-28T00:09:08+08:00">2026-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -294,7 +294,8 @@ class="math display">\[
 \mathscr{E} = -N\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
 \]</span></p>
 <p>下面讨论感应电动势正负的问题。由于 <span class="math display">\[
-\varPhi_{B} = \iint_{S} \boldsymbol{B}\cdot \mathrm{d}  \boldsymbol{S}
+\varPhi_{B} = \iint_{S} \boldsymbol{B}$\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 因此只要选定了面元<span
 class="math inline">\(\mathrm{d}  \boldsymbol{S}\)</span>的法方向，那么磁通量_B
 的正负就能够确定。在此基础上，由于 <span class="math display">\[
@@ -347,13 +348,13 @@ class="math display">\[
 \boldsymbol{K} = \dfrac{\boldsymbol{F}}{-e} = \boldsymbol{v} \times
 \boldsymbol{B}
 \]</span> 于是动生电动势为 <span class="math display">\[
-\mathscr{E} = \int_{-}^{+} \boldsymbol{K} \cdot
+\mathscr{E} = \int_{-}^{+} \boldsymbol{K} $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{l} = Blv
 \]</span></p>
 <p>对于一般的导体而言，其内部电子的Lorentz力方向不一定与导线方向重合，并且也不一定在闭合回路中。此时的动生电动势可表示为
 <span class="math display">\[
 \mathscr{E} = \int_{L} \left(  \boldsymbol{v} \times \boldsymbol{B}
-\right)  \cdot \mathrm{d}  \boldsymbol{l}
+\right)  $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l}
 \]</span></p>
 <p>注意，此处并不与前文所说的Lorentz力不做功矛盾。由于此时电子不仅有与导体一起运动的速度<span
 class="math inline">\(\boldsymbol{u}\)</span>，还有在导体内部定向运动的速度<span
@@ -379,14 +380,14 @@ class="math inline">\(\theta\)</span>，那么<span
 class="math inline">\(AB\)</span>边中产生的感应电动势为 <span
 class="math display">\[
 \mathscr{E}_{AB} = \int_{A}^{B}\left(  \boldsymbol{v} \times
-\boldsymbol{B} \right)  \cdot \mathrm{d}  \boldsymbol{l} = Blv\cos
-\theta
+\boldsymbol{B} \right)  $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+Blv\cos \theta
 \]</span> 同理，<span
 class="math inline">\(CD\)</span>边中产生的感应电动势为 <span
 class="math display">\[
 \mathscr{E}_{CD} = \int_{C}^{D}\left(  \boldsymbol{v} \times
-\boldsymbol{B} \right)  \cdot \mathrm{d}  \boldsymbol{l} = Blv\cos
-\theta
+\boldsymbol{B} \right)  $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+Blv\cos \theta
 \]</span></p>
 <p>由于这两个电动势的方向相同，因此整个回路中的感应电动势为 <span
 class="math display">\[
@@ -407,14 +408,14 @@ class="math display">\[
 <h3 id="感生电动势涡旋电场">感生电动势、涡旋电场</h3>
 <p>Maxwell在分析了一些电磁感应现象后，认为即使不存在导体回路，变化的磁场周围也会激发出一种电场。这种电场被称为感应电场，或者涡旋电场。这种电场与静电场的不同之处在于，一方面其不是由电荷所激发出的场，而是由变化的磁场所激发；另一方面，描述涡旋电场的电场线是闭合的，即
 <span class="math display">\[
-\oint \boldsymbol{E}_{\mathrm{v}} \cdot \mathrm{d}  \boldsymbol{l} \neq
-0
+\oint \boldsymbol{E}_{\mathrm{v}} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{l} \neq 0
 \]</span> 这使得其不是保守场。</p>
 <p>产生感生电动势的非静电力<span
 class="math inline">\(\boldsymbol{K}\)</span>正是上述的涡旋电场<span
 class="math inline">\(\boldsymbol{E}_{\mathrm{v}}\)</span>，这样就有
 <span class="math display">\[
-\mathscr{E} = \oint \boldsymbol{E}_{\text{v}} \cdot
+\mathscr{E} = \oint \boldsymbol{E}_{\text{v}} $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{l} = -\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}
 \]</span></p>
 <p>在一般的情形下，空间的总电场<span
@@ -424,27 +425,24 @@ class="math inline">\(\boldsymbol{E}_{\mathrm{v}}\)</span>的叠加，即
 <span class="math display">\[
 \boldsymbol{E} = \boldsymbol{E}_{\mathrm{s}} +
 \boldsymbol{E}_{\mathrm{v}}
-\]</span> 由于<span class="math inline">\(\oint
-\boldsymbol{E}_{\mathrm{s}} \cdot \mathrm{d}  \boldsymbol{l} =
-0\)</span>，因此感生电动势也可写为 <span class="math display">\[
-\mathscr{E} = \oint \left(  \boldsymbol{E}_{\mathrm{s}} +
-\boldsymbol{E}_{\mathrm{v}} \right)  \cdot \mathrm{d}  \boldsymbol{l} =
-\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l}
-\]</span> 另一方面，由Faraday电磁感应定律可得 <span
+\]</span> 由于$<em>{} <span
+class="math inline">\(\boldsymbol{j}\)</span>ot = 0<span
+class="math inline">\(，因此感生电动势也可写为\)</span>$ = ( </em>{} +
+<em>{} ) <span class="math inline">\(\boldsymbol{j}\)</span>ot = <span
+class="math inline">\(\boldsymbol{j}\)</span>ot <span
 class="math display">\[
-\mathscr{E} = -\dfrac{\mathrm{d} }{\mathrm{d}  t} \iint_{S}
-\boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S}
-\]</span>
-当环路不变动时，可以将对时间的求导与积分运算的顺序调整，这样可得 <span
+另一方面，由Faraday电磁感应定律可得
+\]</span> = - </em>{S} <span
+class="math inline">\(\boldsymbol{j}\)</span>ot <span
 class="math display">\[
-\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = -\iint_{S}
-\dfrac{\partial \boldsymbol{B}}{\partial t} \cdot
-\mathrm{d}  \boldsymbol{S}
-\]</span> 上式是电磁学基本方程之一。</p>
+当环路不变动时，可以将对时间的求导与积分运算的顺序调整，这样可得
+\]</span> <span class="math inline">\(\boldsymbol{j}\)</span>ot = -_{S}
+<span class="math inline">\(\boldsymbol{j}\)</span>ot $$
+上式是电磁学基本方程之一。</p>
 <p>在恒定的条件下，一切物理量不随时间变化，此时<span
 class="math inline">\(\dfrac{\partial \boldsymbol{B}}{\partial t} =
 0\)</span>，上式即变为 <span class="math display">\[
-\oint \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\oint \boldsymbol{E} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} = 0
 \]</span>
 这便是静电场环路定理。由此可见，前文所述电磁学基本方程是静电场环路定理在非恒定条件下的推广。</p>
 <p>最后应当指出，将感应电动势分为动生电动势与感生电动势只有相对的意义。随着参考系的变化，线圈中可能为感生电动势，也可能是动生电动势。</p>
@@ -483,8 +481,9 @@ class="math inline">\(\boldsymbol{B}\)</span>变化曲线可得，在<span
 class="math inline">\(t = 0\)</span>时<span class="math inline">\(B =
 0\)</span>，即<span class="math inline">\(\varPhi =
 0\)</span>。对上式两边积分有 <span class="math display">\[
-mv = \dfrac{e}{2\pi R} \iint_{S} \boldsymbol{B} \cdot
-\mathrm{d}  \boldsymbol{S} = \dfrac{e}{2\pi R} \cdot \pi R^{2} \Bar{B}
+mv = \dfrac{e}{2\pi R} \iint_{S} \boldsymbol{B} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = \dfrac{e}{2\pi R} $\boldsymbol{j}$ot \pi
+R^{2} \Bar{B}
 \]</span> 这样可以得到 <span class="math display">\[
 B_{R} = \dfrac{1}{2} \Bar{B}
 \]</span> 这表明，只需要让轨道上的磁感应强度<span
@@ -1021,13 +1020,13 @@ x = Ae^{\gamma_{1} t} + Be^{\gamma_{2} t}
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">442k</span>
+    <span title="站点总字数">443k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">24:33</span>
+    <span title="站点阅读时长">24:35</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
     <span id="timeDate">载入天数...</span>

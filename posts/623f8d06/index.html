@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文主要介绍了理论力学中有关Lagrange动力学的相关内容，包括Lagrange方程的推导、广义动量积分与广义能量积分，以及讨论了广义能量积分的含义。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-01T16:41:49.101Z">
-<meta property="article:modified_time" content="2026-06-27T15:56:06.812Z">
+<meta property="article:modified_time" content="2026-06-27T16:09:08.215Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Classical Mechanics">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 23:56:06" itemprop="dateModified" datetime="2026-06-27T23:56:06+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-28 00:09:08" itemprop="dateModified" datetime="2026-06-28T00:09:08+08:00">2026-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -341,62 +341,64 @@ Q_{\alpha},\quad \alpha = 1, 2, \dots, s
 <p>d'Alembert原理的表达式为 <span class="math display">\[
 \begin{aligned}
 \sum\limits_{i = 1}^{n} \left(\boldsymbol{F}_{i} -
-m_{i}\ddot{\boldsymbol{r}}_{i} \right) \cdot \delta\boldsymbol{r}_{i}  =
-\sum\limits_{i = 1}^{n}\left(\boldsymbol{F}_{i}
-\cdot\delta\boldsymbol{r}_{i} - m_{i}\ddot{\boldsymbol{r}}_{i}\right) =
-0
+m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i} \right) $\boldsymbol{j}$ot
+\delta\boldsymbol{r}_{i}  = \sum\limits_{i =
+1}^{n}\left(\boldsymbol{F}_{i}
+$\boldsymbol{j}$ot\delta\boldsymbol{r}_{i} -
+m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}\right) = 0
 \end{aligned}
 \]</span> 我们将上式拆分为两部分计算。首先计算第一部分 <span
 class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \delta\boldsymbol{r}_{i}
-&amp; = \sum\limits_{i = 1}^{n}\left(\boldsymbol{F}_{i} \cdot
+\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} $\boldsymbol{j}$ot
+\delta\boldsymbol{r}_{i} &amp; = \sum\limits_{i =
+1}^{n}\left(\boldsymbol{F}_{i} $\boldsymbol{j}$ot
 \sum\limits_{\alpha}\dfrac{\partial\boldsymbol{r}_{i}}{\partial
 q_{\alpha}} \delta q_{\alpha}\right) \\
 &amp; = \sum\limits_{\alpha = 1}^{s}\left( \sum\limits_{i =
 1}^{n}\boldsymbol{F}_{i}
-\cdot\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}\right)
-\delta q_{\alpha} \\
+$\boldsymbol{j}$ot\dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\right) \delta q_{\alpha} \\
 &amp; = \sum\limits_{\alpha = 1}^{s}Q_{\alpha}\delta q_{\alpha}
 \end{aligned}
-\]</span> 其中<span class="math inline">\(\displaystyle Q_{\alpha} =
-\sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot \dfrac{\partial
-\boldsymbol{r}_{i}}{\partial
-q_{\alpha}}\)</span>为广义力。第二部分为</p>
+\]</span> 其中$Q_{} = <em>{i = 1}^{n}</em>{i} <span
+class="math inline">\(\boldsymbol{j}\)</span>ot
+$为广义力。第二部分为</p>
 <p><span class="math display">\[
 \begin{aligned}
-- \sum\limits_{i = 1}^{n} m_{i}\ddot{r}_{i} \cdot
+- \sum\limits_{i = 1}^{n} m_{i}\mathrm{d}ot{r}_{i} $\boldsymbol{j}$ot
 \delta\boldsymbol{r}_{i} &amp; = -\sum\limits_{i = 1}^{n} \left(
-m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
+m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot
 \sum\limits_{\alpha}^{s}\dfrac{\partial\boldsymbol{r}_{i}}{\partial
 q_{\alpha}} \delta q_{\alpha} \right) \\
 &amp; = -\sum\limits_{\alpha = 1}^{s} \left( \sum\limits_{i = 1}^{n}
-m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right)
-\delta q_{\alpha}
+m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot\dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \right) \delta q_{\alpha}
 \end{aligned}
 \]</span> 针对括号中的部分，我们有 <span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
-\sum\limits_{i = 1}^{n}m_{i}\dfrac{\mathrm{d}
-\dot{\boldsymbol{r}}_{i}}{\mathrm{d} t} \cdot
+\sum\limits_{i = 1}^{n} m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot\dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}} &amp; = \sum\limits_{i = 1}^{n}m_{i}\dfrac{\mathrm{d}
+\dot{\boldsymbol{r}}_{i}}{\mathrm{d} t} $\boldsymbol{j}$ot
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \\
 &amp; = \sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t}
-\left( \dot{\boldsymbol{r}}_{i} \cdot
+\left( \dot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right) -
-\sum\limits_{i = 1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot
+\sum\limits_{i = 1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} $\boldsymbol{j}$ot
 \dfrac{\mathrm{d}}{\mathrm{d} t} \left(
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \right)
 \end{aligned}
 \]</span> 将Lagrange关系带入上式可得 <span class="math display">\[
 \begin{aligned}
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} &amp; =
-\sum\limits_{i = 1}^{n} m_{i} \dfrac{\mathrm{d}}{\mathrm{d} t} \left(
-\dot{\boldsymbol{r}}_{i} \cdot \dfrac{\partial
-\dot{\boldsymbol{r}_{i}}}{\partial \dot{q_{\alpha}}} \right) -
-\sum\limits_{i = 1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} \cdot
+\sum\limits_{i = 1}^{n} m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot\dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}} &amp; = \sum\limits_{i = 1}^{n} m_{i}
+\dfrac{\mathrm{d}}{\mathrm{d} t} \left( \dot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot \dfrac{\partial \dot{\boldsymbol{r}_{i}}}{\partial
+\dot{q_{\alpha}}} \right) - \sum\limits_{i =
+1}^{n}m_{i}\dot{\boldsymbol{r}_{i}} $\boldsymbol{j}$ot
 \dfrac{\partial}{\partial q_{\alpha}} \left(
 \dfrac{\mathrm{d}\boldsymbol{r}_{i}}{\mathrm{d} t} \right) \\
 &amp; = \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial}{\partial
@@ -409,16 +411,16 @@ q_{\alpha}} \left( \sum\limits_{i = 1}^{n}\dfrac{1}{2} m_{i}
 = \sum\limits_{i =
 1}^{n}\dfrac{1}{2}m_{i}\dot{\boldsymbol{r}}_{i}^{2}\)</span>，因此 <span
 class="math display">\[
-\sum\limits_{i = 1}^{n} m_{i}\ddot{\boldsymbol{r}}_{i}
-\cdot\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} =
-\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
-\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}}
+\sum\limits_{i = 1}^{n} m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot\dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}} = \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial
+T}{\partial \dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}}
 \]</span> 这样第二部分最终可以表示为 <span class="math display">\[
--\sum\limits_{i = 1}^{n}m_{i}\ddot{\boldsymbol{r}}_{i} \cdot
-\delta\boldsymbol{r}_{i} = - \left( \sum\limits_{\alpha =
-1}^{s}\dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
-\dot{q}_{\alpha}} - \dfrac{\partial T}{\partial q_{\alpha}} \right)
-\delta q_{\alpha}
+-\sum\limits_{i = 1}^{n}m_{i}\mathrm{d}ot{\boldsymbol{r}}_{i}
+$\boldsymbol{j}$ot \delta\boldsymbol{r}_{i} = - \left(
+\sum\limits_{\alpha = 1}^{s}\dfrac{\mathrm{d}}{\mathrm{d} t}
+\dfrac{\partial T}{\partial \dot{q}_{\alpha}} - \dfrac{\partial
+T}{\partial q_{\alpha}} \right) \delta q_{\alpha}
 \]</span> 将第一部分与第二部分结合可得 <span class="math display">\[
 \sum\limits_{\alpha = 1}^{s}\left( Q_{\alpha} -
 \dfrac{\mathrm{d}}{\mathrm{d} t} \dfrac{\partial T}{\partial
@@ -445,8 +447,9 @@ x_{i}}, \dfrac{\partial V}{\partial y_{i}}, \dfrac{\partial V}{\partial
 z_{i}} \right)
 \]</span> 这样广义力表达式为 <span class="math display">\[
 \begin{aligned}
-Q_{\alpha} &amp; = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i} \cdot
-\dfrac{\partial \boldsymbol{r}_{i}}{\partial q_{\alpha}} \\
+Q_{\alpha} &amp; = \sum\limits_{i = 1}^{n}\boldsymbol{F}_{i}
+$\boldsymbol{j}$ot \dfrac{\partial \boldsymbol{r}_{i}}{\partial
+q_{\alpha}} \\
 &amp; = -\sum\limits_{i = 1}^{n} \left( \dfrac{\partial V}{\partial
 x_{i}} \dfrac{\partial x_{i}}{\partial q_{\alpha}} + \dfrac{\partial
 V}{\partial y_{i}}\dfrac{\partial y_{i}}{\partial q_{\alpha}} +
@@ -597,17 +600,17 @@ class="math display">\[
   \]</span> 从而 <span class="math display">\[
   \begin{aligned}
   T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+\dot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot \dot{\boldsymbol{r}}_{i} \\
   &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\sum\limits_{\alpha =
 1}^{s} \dfrac{\partial\boldsymbol{r}_{i}}{\partial
-q_{\alpha}}\dot{q}_{\alpha} \cdot \sum\limits_{\beta =
+q_{\alpha}}\dot{q}_{\alpha} $\boldsymbol{j}$ot \sum\limits_{\beta =
 1}^{s}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\beta}}
 \dot{q}_{\beta} \\
   &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
-m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
-\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
-\dot{q}_{\beta}
+m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}
+$\boldsymbol{j}$ot \dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta}
   \end{aligned}
   \]</span>
 此时不难看出，动能为广义速度的二次齐次多项式，因此由齐次函数的Euler定理可得
@@ -636,23 +639,24 @@ t} + \sum\limits_{\alpha =
   \]</span> 因此动能表达式变为 <span class="math display">\[
   \begin{aligned}
   T &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2} m_{i}
-\dot{\boldsymbol{r}}_{i} \cdot \dot{\boldsymbol{r}}_{i} \\
+\dot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot \dot{\boldsymbol{r}}_{i} \\
   &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i} \left(
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial t} + \sum\limits_{\alpha =
 1}^{s} \dfrac{\partial\boldsymbol{r}_{i}}{\partial
-q_{\alpha}}\dot{q}_{\alpha} \right) \cdot \left(
+q_{\alpha}}\dot{q}_{\alpha} \right) $\boldsymbol{j}$ot \left(
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial t} +\sum\limits_{\beta =
 1}^{s}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\beta}}
 \dot{q}_{\beta} \right) \\
   &amp; = \sum\limits_{i = 1}^{n} \left\{ \dfrac{1}{2}m_{i}\left(
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial t} \right)^{2} +
 \sum\limits_{\alpha =
-1}^{s}m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial t} \cdot
-\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
-+  \sum\limits_{\alpha = 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
-m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
-\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
-\dot{q}_{\beta} \right\}
+1}^{s}m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial t}
+$\boldsymbol{j}$ot \dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\dot{q}_{\alpha} +  \sum\limits_{\alpha =
+1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
+m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}
+$\boldsymbol{j}$ot \dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta} \right\}
   \end{aligned}
   \]</span>
 上式中包含三个部分，分别为广义速度的零次、一次和二次的齐次多项式，我们分别将其记为
@@ -661,14 +665,14 @@ m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
   T_{0} &amp; = \sum\limits_{i = 1}^{n} \dfrac{1}{2}m_{i}\left(
 \dfrac{\partial\boldsymbol{r}_{i}}{\partial t} \right)^{2} \\
   T_{1} &amp; = \sum\limits_{i = 1}^{n} \sum\limits_{\alpha =
-1}^{s}m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial t} \cdot
-\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}\dot{q}_{\alpha}
-\\
+1}^{s}m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial t}
+$\boldsymbol{j}$ot \dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\alpha}}\dot{q}_{\alpha} \\
   T_{2} &amp; = \sum\limits_{i = 1}^{n}\sum\limits_{\alpha =
 1}^{s}\sum\limits_{\beta = 1}^{s} \dfrac{1}{2}
-m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}} \cdot
-\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\beta}} \dot{q}_{\alpha}
-\dot{q}_{\beta} \\
+m_{i}\dfrac{\partial\boldsymbol{r}_{i}}{\partial q_{\alpha}}
+$\boldsymbol{j}$ot \dfrac{\partial\boldsymbol{r}_{i}}{\partial
+q_{\beta}} \dot{q}_{\alpha} \dot{q}_{\beta} \\
   \end{aligned}\right.
   \]</span> 这样广义动能可以表示为 <span class="math display">\[
   T = T_{0} + T_{1} + T_{2}
@@ -871,13 +875,13 @@ class="math inline">\(\displaystyle S = \int_{t_{1}}^{t_{2}}L(q(t),
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">442k</span>
+    <span title="站点总字数">443k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">24:33</span>
+    <span title="站点阅读时长">24:35</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
     <span id="timeDate">载入天数...</span>

@@ -2,78 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/56b63450/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/3fca16e6/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/5b9f9152/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/c8ff117d/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/9de67d0e/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/f362be77/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/4a17b156/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/64576629/</loc>
     
     <lastmod>2026-06-27</lastmod>
@@ -83,52 +11,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/4f8a2c71/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/623f8d06/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/3352eca2/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/728848b4/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/ad7882da/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/edb6a73/</loc>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/3fca16e6/</loc>
     
     <lastmod>2026-06-27</lastmod>
     
@@ -164,6 +47,168 @@
   </url>
   
   <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/53cc9fd7/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/5b9f9152/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/4f8a2c71/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/lipkan20260627/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/fwm20260625/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/623f8d06/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/3352eca2/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/9de67d0e/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/c7bffa72/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/728848b4/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/f362be77/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/36e84dd7/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/edb6a73/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/56b63450/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/c8ff117d/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/4a17b156/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://vasily-alexievich-korolev.github.io/posts/ad7882da/</loc>
+    
+    <lastmod>2026-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/b5972983/</loc>
     
     <lastmod>2026-06-27</lastmod>
@@ -191,15 +236,6 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/lipkan20260627/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/4f9e1b/</loc>
     
     <lastmod>2026-06-27</lastmod>
@@ -209,43 +245,7 @@
   </url>
   
   <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/plkrr20260625/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/fwm20260625/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/c7bffa72/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://vasily-alexievich-korolev.github.io/posts/d305f066/</loc>
-    
-    <lastmod>2026-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://vasily-alexievich-korolev.github.io/posts/36e84dd7/</loc>
     
     <lastmod>2026-06-27</lastmod>
     

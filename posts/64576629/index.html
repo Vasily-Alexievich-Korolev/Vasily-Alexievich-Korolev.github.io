@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/8-1.png">
 <meta property="og:image" content="https://vasily-alexievich-korolev.github.io/images/em/8-2.png">
 <meta property="article:published_time" content="2026-06-25T15:22:43.959Z">
-<meta property="article:modified_time" content="2026-06-27T15:56:06.863Z">
+<meta property="article:modified_time" content="2026-06-27T16:09:08.240Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -203,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 23:56:06" itemprop="dateModified" datetime="2026-06-27T23:56:06+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-28 00:09:08" itemprop="dateModified" datetime="2026-06-28T00:09:08+08:00">2026-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -257,24 +257,29 @@
 <h3 id="位移电流">位移电流</h3>
 <p>到Maxwell的时代，关于电磁场的基本规律可概括如下</p>
 <p>（1）电场的Gauss定理 <span class="math display">\[
-\iint_{S}\boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = q_{0}
+\iint_{S}\boldsymbol{D} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+q_{0}
 \]</span></p>
 <p>（2）静电场的环路定理 <span class="math display">\[
-\oint_{L} \boldsymbol{E} \cdot \mathrm{d}  \boldsymbol{l} = 0
+\oint_{L} \boldsymbol{E} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+0
 \]</span></p>
 <p>（3）磁场的“Gauss定理” <span class="math display">\[
-\iint_{S} \boldsymbol{B} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\iint_{S} \boldsymbol{B} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+0
 \]</span></p>
 <p>（4）Ampere环路定理 <span class="math display">\[
-\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = I_{0}
+\oint_{L} \boldsymbol{H} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+I_{0}
 \]</span></p>
 <p>（5）Faraday电磁感应定律 <span class="math display">\[
 \mathscr{E} = -\dfrac{\mathrm{d}  \varphi}{\mathrm{d}  t}
 \]</span></p>
 <p>下面我们来讨论这样一个问题：已知在恒定条件下，无论载流回路周围是真空还是有磁介质，Ampere环路定理均可写为
 <span class="math display">\[
-\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = \iint_{S}
-\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} = I_{0}
+\oint_{L} \boldsymbol{H} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+\iint_{S} \boldsymbol{j}_{0} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = I_{0}
 \]</span> 其中，<span
 class="math inline">\(I_{0}\)</span>是穿过以闭合回路<span
 class="math inline">\(L\)</span>为边界的任意曲面<span
@@ -285,10 +290,12 @@ class="math inline">\(S\)</span>，通过曲面的传导电流都应当相同。
 class="math inline">\(S_{1}\)</span>和<span
 class="math inline">\(S_{2}\)</span>，那么应当有 <span
 class="math display">\[
-\iint_{S_{1}}\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} =
-\iint_{S_{2}} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
+\iint_{S_{1}}\boldsymbol{j}_{0} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = \iint_{S_{2}} \boldsymbol{j}
+$\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S}
 \]</span> 即 <span class="math display">\[
-\iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} = 0
+\iint_{S} \boldsymbol{j} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+0
 \]</span> 其中，<span class="math inline">\(S\)</span>是由<span
 class="math inline">\(S_{1}\)</span>与<span
 class="math inline">\(S_{2}\)</span>组成的闭合曲面。</p>
@@ -296,32 +303,35 @@ class="math inline">\(S_{2}\)</span>组成的闭合曲面。</p>
 class="math inline">\(S_{1}\)</span>与导线相交，而<span
 class="math inline">\(S_{2}\)</span>穿过电容器两极板之间，那么显然有
 <span class="math display">\[
-\iint_{S_{1}}\boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} \neq
-0,\quad \iint_{S_{2}} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
-0
+\iint_{S_{1}}\boldsymbol{j}_{0} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} \neq 0,\quad \iint_{S_{2}} \boldsymbol{j}
+$\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} = 0
 \]</span> 这样就有 <span class="math display">\[
-\iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} \neq 0
+\iint_{S} \boldsymbol{j} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S}
+\neq 0
 \]</span></p>
 <p><img src="/images/em/8-1.png" /></p>
 <p><strong>非恒定情况下Ampere环路定理遇到的矛盾</strong></p>
 <p>其实在上面的讨论中，不仅暴露了矛盾，而且提供了解决问题的线索。在非恒定条件下，有电流的连续原理有
 <span class="math display">\[
-\iint_{S} \boldsymbol{j}_{0} \cdot \mathrm{d}  \boldsymbol{S} =
--\dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t}
+\iint_{S} \boldsymbol{j}_{0} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = -\dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t}
 \]</span> 其中，<span class="math inline">\(q_{0}\)</span>是积累在<span
 class="math inline">\(S\)</span>面的自由电荷。另一方面，按照Gauss定理
 <span class="math display">\[
-\iint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = q_{0}
+\iint_{S} \boldsymbol{D} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+q_{0}
 \]</span> 从而可以得到 <span class="math display">\[
 \dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t} =
-\dfrac{\mathrm{d}  }{\mathrm{d}  t} \iint_{S} \boldsymbol{D} \cdot
-\mathrm{d}  \boldsymbol{S}
+\dfrac{\mathrm{d}  }{\mathrm{d}  t} \iint_{S} \boldsymbol{D}
+$\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S}
 \]</span> 即 <span class="math display">\[
 \dfrac{\mathrm{d}  q_{0}}{\mathrm{d}  t} = \iint_{S} \dfrac{\partial
-\boldsymbol{D}}{\partial t} \cdot \mathrm{d}  \boldsymbol{S}
+\boldsymbol{D}}{\partial t} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 这样就能得到 <span class="math display">\[
 \iint_{S} \left(  \boldsymbol{j}_{0} + \dfrac{\partial
-\boldsymbol{D}}{\partial \boldsymbol{t}} \right)  \cdot
+\boldsymbol{D}}{\partial \boldsymbol{t}} \right)  $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{S} = 0
 \]</span> 这说明，只要边界<span
 class="math inline">\(L\)</span>相同，那么<span
@@ -330,17 +340,19 @@ class="math inline">\(\boldsymbol{j}_{0} + \dfrac{\partial
 \boldsymbol{t}}\)</span>这个量是永远连续的，其在以<span
 class="math inline">\(L\)</span>为边界的任何曲面上的积分均为定值。</p>
 <p>设通过某一曲面的电位移通量为 <span class="math display">\[
-\varPhi_{D} = \iint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S}
+\varPhi_{D} = \iint_{S} \boldsymbol{D} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 那么有 <span class="math display">\[
 \dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} = \iint_{S}
-\dfrac{\partial \boldsymbol{D}}{\partial t} \cdot
+\dfrac{\partial \boldsymbol{D}}{\partial t} $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{S}
 \]</span> Maxwell将<span
 class="math inline">\(\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}\)</span>称为位移电流，而称<span
 class="math inline">\(\dfrac{\partial \boldsymbol{D}}{\partial
 t}\)</span>为位移电流密度。同时，将传导电流 <span
 class="math display">\[
-I_{0} = \iint_{S} \boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S}
+I_{0} = \iint_{S} \boldsymbol{j} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span>
 与位移电流合在一起称为全电流。由此可以得出：全电流在非恒定情况下依然连续。</p>
 <p>上述结论可以通过电容器的例子直观说明。如图所示，在一个极板表面内、外各取一面<span
@@ -353,7 +365,7 @@ class="math inline">\(D_{\mathrm{inner}}\)</span>与位移电流可以忽略
 class="math inline">\(S_{1}\)</span>与<span
 class="math inline">\(S_{2}\)</span>组成闭合曲面，那么由Gauss定理有
 <span class="math display">\[
-\iint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} =
+\iint_{S} \boldsymbol{D} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
 D_{\mathrm{outer}}S - D_{\mathrm{inner}}S = \sum q_{0}
 \]</span> 即 <span class="math display">\[
 D_{\mathrm{outer}} = D_{\mathrm{innter}} + \sigma_{\mathrm{e}0}
@@ -410,28 +422,30 @@ class="math inline">\(I_{0}\)</span>被间隙中的位移电流<span
 class="math inline">\(\dfrac{\mathrm{d}  \varPhi}{\mathrm{d}  t}\)</span>接替下去，二者在一起保持着连续性。</p>
 <p>现在我们回到开始时的那个问题：如何将Ampere环路定理推广到非恒定情况？显然，由于全电流的连续性，因此在非恒定条件下应当用全电流代替传导电流，即
 <span class="math display">\[
-\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = I_{0} +
-\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}
+\oint_{L} \boldsymbol{H} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+I_{0} + \dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}
 \]</span> 以上便是Maxwell的位移电流假说（1861-1862年）。</p>
 <p>在电介质中，位移电流为 <span class="math display">\[
 \dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} =
 \varepsilon_{0}\iint_{S}\dfrac{\partial \boldsymbol{E}}{\partial t}
-\cdot \mathrm{d}  \boldsymbol{S} + \iint_{S}\dfrac{\partial
-\boldsymbol{P}}{\partial t} \cdot \mathrm{d}  \boldsymbol{S}
+$\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} + \iint_{S}\dfrac{\partial
+\boldsymbol{P}}{\partial t} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 我们分别看上式右端两项的物理意义。先看第二项。由第二章可得
 <span class="math display">\[
-\iint_{S}\boldsymbol{P} \cdot \mathrm{d}  \boldsymbol{S} = -q&#39;
+\iint_{S}\boldsymbol{P} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+-q&#39;
 \]</span> 取对于时间的导数可得 <span class="math display">\[
-\iint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} \cdot
+\iint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{S} = -\dfrac{\mathrm{d}  q&#39;}{\mathrm{d}  t}
 \]</span> 由于极化电荷的连续方程为 <span class="math display">\[
-\iint_{S}\boldsymbol{j} \cdot \mathrm{d}  \boldsymbol{S} =
+\iint_{S}\boldsymbol{j} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
 -\dfrac{\mathrm{d}  q&#39;}{\mathrm{d}  t}
 \]</span> 其中，<span
 class="math inline">\(\boldsymbol{j}_{P}\)</span>为极化电流密度。由此可见
 <span class="math display">\[
-\iint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} \cdot
-\mathrm{d}  \boldsymbol{S} = \iint_{S}\boldsymbol{j} \cdot
+\iint_{S}\dfrac{\partial \boldsymbol{P}}{\partial t} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = \iint_{S}\boldsymbol{j} $\boldsymbol{j}$ot
 \mathrm{d}  \boldsymbol{S}
 \]</span> 这表明，右端第二项表示由极化电荷运动所引起的电流。</p>
 <p>然后看右边第一项，其与电场的时间变化率<span
@@ -442,27 +456,30 @@ t}\)</span>相联系。在真空中，<span class="math inline">\(\boldsymbol{P}
 class="math display">\[
 \dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t} =
 \varepsilon_{0}\iint_{S}\dfrac{\partial \boldsymbol{E}}{\partial t}
-\cdot \mathrm{d}  \boldsymbol{S}
+$\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S}
 \]</span>
 由此可见，右边第一项是位移电流的基本组成部分。因此，我们可以看出，位移电流的本质并非“电荷流动”，而是变化的电场。</p>
-<p>Ampere环路定理<span class="math inline">\(\displaystyle \oint_{L}
-\boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} =
-I_{0}\)</span>的实质在于说明传导电流是激发涡旋磁场的源泉，而位移电流假说<span
-class="math inline">\(\displaystyle \oint_{L} \boldsymbol{H} \cdot
-\mathrm{d}  \boldsymbol{l} = I_{0} +
-\dfrac{\mathrm{d}  \varPhi_{D}}{\mathrm{d}  t}\)</span>实质上意味着Maxwell认为变化着的电场激发涡旋磁场，这是在Ampere环路定理上的进步。</p>
+<p>Ampere环路定理$<em>{L} <span
+class="math inline">\(\boldsymbol{j}\)</span>ot = I</em>{0}<span
+class="math inline">\(的实质在于说明传导电流是激发涡旋磁场的源泉，而位移电流假说\)</span><em>{L}
+<span class="math inline">\(\boldsymbol{j}\)</span>ot = I</em>{0} +
+$实质上意味着Maxwell认为变化着的电场激发涡旋磁场，这是在Ampere环路定理上的进步。</p>
 <h3 id="maxwell方程组">Maxwell方程组</h3>
 <p>将上述结果综合起来，就得到了在普遍情况下，电磁场必须满足的方程组
 <span class="math display">\[\begin{align}
 \left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
 \begin{aligned}
-&amp; \iint_{S}$\boldsymbol{D}$\cdot \mathrm{d}$\boldsymbol{S}$= q_{0}\\
-&amp; \oint_{L}$\boldsymbol{E}$\cdot \mathrm{d}$\boldsymbol{l}$= -\iint
-\dfrac{\partial$\boldsymbol{B}$}{\partial t} \cdot
+&amp; \iint_{S}$\boldsymbol{D}$$\boldsymbol{j}$ot
+\mathrm{d}$\boldsymbol{S}$= q_{0}\\
+&amp; \oint_{L}$\boldsymbol{E}$$\boldsymbol{j}$ot
+\mathrm{d}$\boldsymbol{l}$= -\iint
+\dfrac{\partial$\boldsymbol{B}$}{\partial t} $\boldsymbol{j}$ot
 \mathrm{d}$\boldsymbol{S}$\quad\\
-&amp; \iint_{S}$\boldsymbol{B}$\cdot \mathrm{d}$\boldsymbol{S}$= 0 \\
-&amp; \oint_{L}$\boldsymbol{H}$\cdot \mathrm{d}$\boldsymbol{l}$=I_{0} +
-\iint \dfrac{\partial$\boldsymbol{D}$}{\partial t} \cdot
+&amp; \iint_{S}$\boldsymbol{B}$$\boldsymbol{j}$ot
+\mathrm{d}$\boldsymbol{S}$= 0 \\
+&amp; \oint_{L}$\boldsymbol{H}$$\boldsymbol{j}$ot
+\mathrm{d}$\boldsymbol{l}$=I_{0} + \iint
+\dfrac{\partial$\boldsymbol{D}$}{\partial t} $\boldsymbol{j}$ot
 \mathrm{d}$\boldsymbol{S}$\\
 \end{aligned}
 \right.
@@ -470,28 +487,30 @@ class="math inline">\(\displaystyle \oint_{L} \boldsymbol{H} \cdot
 <p>利用矢量分析中的Gauss定理与Stokes定理，可以由Maxwell方程组的积分形式推导出其微分形式。首先推导Gauss定理的微分形式，假定自由电荷的体密度为<span
 class="math inline">\(\rho_{\mathrm{e}0}\)</span>，那么Gauss定理可写为
 <span class="math display">\[
-\iint_{S} \boldsymbol{D} \cdot \mathrm{d}  \boldsymbol{S} = \iiint_{V}
-\rho_{\mathrm{e}0} \mathrm{d}  V
+\iint_{S} \boldsymbol{D} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{S} =
+\iiint_{V} \rho_{\mathrm{e}0} \mathrm{d}  V
 \]</span> 利用矢量分析中的Gauss定理可将左边的面积分变为体积分，因此可得
 <span class="math display">\[
-\iiint_{V} \nabla \cdot \boldsymbol{D}\mathrm{d}  V = \iiint_{V}
-\rho_{\mathrm{e}0} \mathrm{d}  V
+\iiint_{V} \nabla $\boldsymbol{j}$ot \boldsymbol{D}\mathrm{d}  V =
+\iiint_{V} \rho_{\mathrm{e}0} \mathrm{d}  V
 \]</span> 因为上式对于任何体积<span
 class="math inline">\(V\)</span>均成立，因此可得 <span
 class="math display">\[
-\nabla \cdot \boldsymbol{D} = \rho_{\mathrm{e}0}
+\nabla $\boldsymbol{j}$ot \boldsymbol{D} = \rho_{\mathrm{e}0}
 \]</span> 这就是Gauss定理的微分形式</p>
 <p>其次推导Maxwell位移电流假说的微分形式。假定传导电流密度为<span
 class="math inline">\(\boldsymbol{j}_{0}\)</span>，那么有 <span
 class="math display">\[
-\oint_{L} \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{l} = \iint_{S}
-\left(  \boldsymbol{j}_{0} + \dfrac{\partial \boldsymbol{D}}{\partial t}
-\right)  \cdot \mathrm{d}  \boldsymbol{S}
+\oint_{L} \boldsymbol{H} $\boldsymbol{j}$ot \mathrm{d}  \boldsymbol{l} =
+\iint_{S} \left(  \boldsymbol{j}_{0} + \dfrac{\partial
+\boldsymbol{D}}{\partial t} \right)  $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 利用矢量分析中的Stokes定量将左边的线积分化为面积分，因此有
 <span class="math display">\[
-\iint_{S} \nabla \times \boldsymbol{H} \cdot \mathrm{d}  \boldsymbol{S}
-= \iint_{S} \left(  \boldsymbol{j}_{0} + \dfrac{\partial
-\boldsymbol{D}}{\partial t} \right)  \cdot \mathrm{d}  \boldsymbol{S}
+\iint_{S} \nabla \times \boldsymbol{H} $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S} = \iint_{S} \left(  \boldsymbol{j}_{0} +
+\dfrac{\partial \boldsymbol{D}}{\partial t} \right)  $\boldsymbol{j}$ot
+\mathrm{d}  \boldsymbol{S}
 \]</span> 由于上式对于任意曲面成立，因此可得 <span
 class="math display">\[
 \nabla \times \boldsymbol{H} = \boldsymbol{j}_{0} + \dfrac{\partial
@@ -501,10 +520,10 @@ class="math display">\[
 class="math display">\[\begin{align}
 \left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
 \begin{aligned}
-&amp; \nabla \cdot$\boldsymbol{D}$= \rho_{\mathrm{e}0}\\
+&amp; \nabla $\boldsymbol{j}$ot$\boldsymbol{D}$= \rho_{\mathrm{e}0}\\
 &amp; \nabla \times$\boldsymbol{E}$=
 -\dfrac{\partial$\boldsymbol{B}$}{\partial t}\\
-&amp; \nabla \cdot$\boldsymbol{B}$= 0\\
+&amp; \nabla $\boldsymbol{j}$ot$\boldsymbol{B}$= 0\\
 &amp; \nabla \times$\boldsymbol{H}$=$\boldsymbol{j}$_{0} +
 \dfrac{\partial$\boldsymbol{D}$}{\partial t}\\
 \end{aligned}
@@ -539,11 +558,11 @@ class="math inline">\(\boldsymbol{K}\)</span>，那么Ohms定律应当写成
 <span class="math display">\[\begin{align}
 \left\{     %在equation环境下使用，用\left\{命令添加左大括号，用\right.以打点.结束
 \begin{aligned}
-&amp; \nabla \cdot$\boldsymbol{E}$=
+&amp; \nabla $\boldsymbol{j}$ot$\boldsymbol{E}$=
 \dfrac{\rho_{\mathrm{e}}}{\varepsilon_{0}}\\
 &amp; \nabla \times$\boldsymbol{E}$=
 -\dfrac{\partial$\boldsymbol{B}$}{\partial t}\\
-&amp; \nabla \cdot$\boldsymbol{B}$= 0\\
+&amp; \nabla $\boldsymbol{j}$ot$\boldsymbol{B}$= 0\\
 &amp; \nabla \times$\boldsymbol{B}$=
 \varepsilon_{0}\mu_{0}\dfrac{\partial$\boldsymbol{E}$}{\partial t} +
 \mu_{0}$\boldsymbol{j}$_{0}\\
@@ -567,20 +586,16 @@ class="math inline">\(\boldsymbol{j}\)</span>做如下分解：</p>
 \end{aligned}
 \right.
 \end{align}\]</span> 此时，<span
-class="math inline">\(\rho_{\mathrm{e}0}\)</span>是自由电荷密度，<span
-class="math inline">\(\rho_{\mathrm{e}}&#39; = -\nabla \cdot
-\boldsymbol{P}\)</span>是极化电荷密度，<span
-class="math inline">\(\boldsymbol{j}_{0}\)</span>是传导电流密度，<span
-class="math inline">\(\boldsymbol{j}&#39;\)</span>是诱导电流密度。其中，诱导电流密度<span
-class="math inline">\(\boldsymbol{j}&#39;\)</span>又可分为极化电流密度<span
-class="math inline">\(\boldsymbol{j}_{P} = \dfrac{\partial
-\boldsymbol{P}}{\partial t}\)</span>和磁化电流密度<span
-class="math inline">\(\boldsymbol{j}_{M} = \nabla \times
-\boldsymbol{M}\)</span>两部分。这样，在引入<span
-class="math inline">\(\boldsymbol{D} = \boldsymbol{P} +
-\varepsilon_{0}\boldsymbol{E}\)</span>和<span
-class="math inline">\(\boldsymbol{H} = \dfrac{\boldsymbol{B}}{\mu_{0}} -
-\boldsymbol{M}\)</span>后，即可得到宏观形式Maxwell方程组。</p>
+class="math inline">\(\rho_{\mathrm{e}0}\)</span>是自由电荷密度，$<em>{}'
+= -<span class="math inline">\(\boldsymbol{j}\)</span>ot <span
+class="math inline">\(是极化电荷密度，\)</span></em>{0}<span
+class="math inline">\(是传导电流密度，\)</span>'<span
+class="math inline">\(是诱导电流密度。其中，诱导电流密度\)</span>'<span
+class="math inline">\(又可分为极化电流密度\)</span><em>{P} = <span
+class="math inline">\(和磁化电流密度\)</span></em>{M} = <span
+class="math inline">\(两部分。这样，在引入\)</span> = + _{0}<span
+class="math inline">\(和\)</span> = -
+$后，即可得到宏观形式Maxwell方程组。</p>
 
     </div>
 
@@ -752,13 +767,13 @@ class="math inline">\(\boldsymbol{H} = \dfrac{\boldsymbol{B}}{\mu_{0}} -
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">442k</span>
+    <span title="站点总字数">443k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">24:33</span>
+    <span title="站点阅读时长">24:35</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
     <span id="timeDate">载入天数...</span>

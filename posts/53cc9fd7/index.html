@@ -1127,7 +1127,6 @@ setInterval("createtime()",250);
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
-          load: ['[tex]/esint'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -1135,7 +1134,6 @@ setInterval("createtime()",250);
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['esint']},
         tags: 'ams'
       },
       options: {

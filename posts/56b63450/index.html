@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文介绍了交流电的基本理论，包括RLC电路、复阻抗、谐振、三相交流电等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T15:22:43.946Z">
-<meta property="article:modified_time" content="2026-06-27T14:35:18.695Z">
+<meta property="article:modified_time" content="2026-06-27T14:52:00.658Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Electromagnetics">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-27 22:35:18" itemprop="dateModified" datetime="2026-06-27T22:35:18+08:00">2026-06-27</time>
+                <time title="修改时间：2026-06-27 22:52:00" itemprop="dateModified" datetime="2026-06-27T22:52:00+08:00">2026-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,14 +229,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>6.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>24 分钟</span>
+              <span>23 分钟</span>
             </span>
             <div class="post-description">本文介绍了交流电的基本理论，包括RLC电路、复阻抗、谐振、三相交流电等。</div>
 
@@ -266,11 +266,11 @@ class="math inline">\(e(t)\)</span>为正弦函数或余弦函数，那么我们
 <p><span class="math display">\[
 \left \{
 \begin{aligned}
-&amp; \mbox{交变电动势}\  e(t) = \mathscr{E}_{0} \cos\left(  \omega t +
+&amp; \text{交变电动势}\  e(t) = \mathscr{E}_{0} \cos\left(  \omega t +
 \varphi_{e} \right)  \\
-&amp; \mbox{交变电压}\  u(t) = U_{0} \cos\left(  \omega t + \varphi_{u}
+&amp; \text{交变电压}\  u(t) = U_{0} \cos\left(  \omega t + \varphi_{u}
 \right)  \\
-&amp; \mbox{交变电流}\  i(t) = I_{0} \cos\left(  \omega t + \varphi_{i}
+&amp; \text{交变电流}\  i(t) = I_{0} \cos\left(  \omega t + \varphi_{i}
 \right)  \\
 \end{aligned}
 \right.
@@ -279,9 +279,9 @@ class="math inline">\(e(t)\)</span>为正弦函数或余弦函数，那么我们
 <h4 id="频率">频率</h4>
 <p>频率<span class="math inline">\(f\)</span>与角频率<span
 class="math inline">\(\omega\)</span>之间的关系为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 f = \dfrac{\omega}{2\pi}
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="峰值和有效值">峰值和有效值</h3>
 <p>显然，简谐交流电的电动势、电压与电流的峰值分别为<span
 class="math inline">\(\mathscr{E}_{0}\)</span>、<span
@@ -298,14 +298,12 @@ e, u, i)\)</span> 被称为初相位</p>
 <p>交流电路比直流电路复杂的原因为</p>
 <p>（1）除电源外，在直流电路中只有电阻一种元件，而在交流电路中有电阻、电容和电感三种元件。这三种元件的性能又有明显差别，如电容和电感处处表现出相反的性质，而电阻介于二者之间。</p>
 <p>（2）在交流电路中，电压、电流之间关系变得更加复杂，不仅有量值大小的关系，还有相位关系。因此，在交流电路表示某元件上电压与电流关系时，需要两个量。一个是二者峰值之比，我们将其称为元件的阻抗，用<span
-class="math inline">\(Z\)</span>表示 <span
-class="math display">\[\begin{equation}
+class="math inline">\(Z\)</span>表示 <span class="math display">\[
 Z = \dfrac{U_{0}}{I_{0}} = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}}
-\end{equation}\]</span> 另一个是电压与电流相位之差<span
-class="math inline">\(\varphi\)</span> <span
-class="math display">\[\begin{equation}
+\]</span> 另一个是电压与电流相位之差<span
+class="math inline">\(\varphi\)</span> <span class="math display">\[
 \varphi = \varphi_{u} - \varphi_{i}
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="交流电路中的电阻元件">交流电路中的电阻元件</h3>
 <p>Ohms定律仍然适用于交流电路中的电阻元件，即瞬时电压与瞬时电流之间仍然是一个简单的比例关系。假设
 <span class="math display">\[
@@ -314,9 +312,9 @@ u(t) = U_{0} \cos \omega t
 i(t) = \dfrac{u(t)}{R} = I_{0}\cos \omega t
 \]</span> 由此可见，对于电阻，其交流阻抗<span
 class="math inline">\(Z_{R}\)</span>就是它的电阻R
-，同时电压与电流相位一致即 <span class="math display">\[\begin{equation}
+，同时电压与电流相位一致即 <span class="math display">\[
 Z_{R} = R,\quad \varphi = 0
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="交流电路中的电容元件">交流电路中的电容元件</h3>
 <p>我们知道，恒定的直流电不能通过电容器。同时，实验表明在电压一定的条件下，交流电频率越高，其越容易“通过”电容。下面我们推导电容器上电压与电流的关系。</p>
 <p>首先讨论电路中电流<span
@@ -325,9 +323,9 @@ class="math inline">\(q(t)\)</span>的关系。当电流为<span
 class="math inline">\(i(t)\)</span>时，在时间间隔<span
 class="math inline">\(\mathrm{d}  t\)</span>内极板上电荷量增加<span
 class="math inline">\(\mathrm{d}  q\)</span>，这样就有 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 i(t) = \dfrac{\mathrm{d}  q}{\mathrm{d}  t}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>假设电荷量<span class="math inline">\(q(t)\)</span>、电流<span
 class="math inline">\(i(t)\)</span>与电压<span
 class="math inline">\(u(t)\)</span>均为时间的余弦函数，并假定<span
@@ -350,10 +348,10 @@ class="math inline">\(u(t)\)</span>与电荷量<span
 class="math inline">\(q(t)\)</span>成正比，因此有 <span
 class="math display">\[
 u(t) = \dfrac{Q_{0}}{C} \cos \omega t
-\]</span> 由此不难得到 <span class="math display">\[\begin{equation}
+\]</span> 由此不难得到 <span class="math display">\[
 Z_{C} = \dfrac{1}{\omega C} = \dfrac{1}{2\pi fC} \quad \quad \varphi =
 -\dfrac{\pi}{2}
-\end{equation}\]</span> 这说明，对于电容来说：</p>
+\]</span> 这说明，对于电容来说：</p>
 <p>（1）容抗与频率成反比，频率越高，容抗越小。这使得电容有“通高频，阻低频”的特点。</p>
 <p>（2）电容上电压的相位落后电流的相位<span
 class="math inline">\(\dfrac{\pi}{2}\)</span></p>
@@ -367,9 +365,9 @@ class="math inline">\(i(t)\)</span>之间的关系。当有交变电流通过电
 e_{L} = -L\dfrac{\mathrm{d}  i}{\mathrm{d}  t}
 \]</span>
 这表明，电动势的“方向”与电流是相反的。我们通常所指的电压，实际上为“电势降落”。这样，如果我们选择回路的绕行方向与电流的方向一致，那么在电感元件上的电势降落满足
-<span class="math display">\[\begin{equation}
+<span class="math display">\[
 u = -e_{L} = L\dfrac{\mathrm{d}  i}{\mathrm{d}  t}
-\end{equation}\]</span> 假设通过电容的电流<span
+\]</span> 假设通过电容的电流<span
 class="math inline">\(i(t)\)</span>与电容两端电压<span
 class="math inline">\(u(t)\)</span>均为时间的余弦函数，并选择<span
 class="math inline">\(i(t)\)</span>的初相位<span
@@ -386,9 +384,9 @@ class="math inline">\(i(t)\)</span>之间关系可得 <span
 class="math display">\[
 u(t) = L\dfrac{\mathrm{d}  i}{\mathrm{d}  t} = \omega LI_{0}\cos
 \left(  \omega t+\dfrac{\pi}{2} \right)
-\]</span> 由此可得 <span class="math display">\[\begin{equation}
+\]</span> 由此可得 <span class="math display">\[
 Z_{L} = \omega L = 2\pi Lf \quad \varphi = \dfrac{\pi}{2}
-\end{equation}\]</span> 这说明，对于电感来说：</p>
+\]</span> 这说明，对于电感来说：</p>
 <p>（1）阻抗与频率成正比，频率越高，阻抗越大。这使得电感有“通低频，阻高频”的特点。</p>
 <p>（2）电容上电压的相位超过电流的相位<span
 class="math inline">\(\dfrac{\pi}{2}\)</span></p>
@@ -397,14 +395,14 @@ class="math inline">\(\dfrac{\pi}{2}\)</span></p>
 <h2 id="元件的串联和并联矢量图解法">元件的串联和并联（矢量图解法）</h2>
 <h3 id="用矢量图解法计算串并联电路">用矢量图解法计算串、并联电路</h3>
 <p>上图为两个元件的串、并联电路。和直流电路中电阻的串、并联一样，交流电压、电流在任何时刻均满足：</p>
-<p>（1）串联电路中，有 <span class="math display">\[\begin{equation}
+<p>（1）串联电路中，有 <span class="math display">\[
 u(t) = \sum\limits_{j = 1}^{n} u_{j}(t)\quad i(t) = i_{1}(t) = i_{2}(t)
 = ...
-\end{equation}\]</span></p>
-<p>（2）并联电路中，有 <span class="math display">\[\begin{equation}
+\]</span></p>
+<p>（2）并联电路中，有 <span class="math display">\[
 i(t) = \sum\limits_{j = 1}^{n} i_{j}(t)\quad u(t) = u_{1}(t) = u_{2}(t)
 = ...
-\end{equation}\]</span></p>
+\]</span></p>
 <p>如果我们用交流电压表与交流电流表分别测量串、并联电路中的总电压<span
 class="math inline">\(U\)</span>、总电流I 和各元件上的分电压<span
 class="math inline">\(U_{j}\)</span>、分电流<span
@@ -458,44 +456,40 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电容元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位落后<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此可以做出如下图所示的矢量图。</p>
-<p>不难看出，总电压峰值为 <span class="math display">\[\begin{equation}
+<p>不难看出，总电压峰值为 <span class="math display">\[
 U = \sqrt{U_{R}^{2} + U_{C}^{2}}
-\end{equation}\]</span>
-由于交变电压的有效值与峰值成正比，因此总电压有效值<span
+\]</span> 由于交变电压的有效值与峰值成正比，因此总电压有效值<span
 class="math inline">\(U_{\mathrm{eff}}\)</span>满足 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 U_{\mathrm{eff}} =  \sqrt{U_{R,\mathrm{eff}}^{2} +
 U_{C,\mathrm{eff}}^{2}}
-\end{equation}\]</span> 相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 相位差为 <span class="math display">\[
 \varphi = -\arctan \dfrac{U_{C}}{U_{R}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>在上一节中，我们知道了电阻与电容的阻抗分别为 <span
 class="math display">\[
 Z_{R} = R,\quad Z_{C} = \dfrac{1}{\omega C}
 \]</span> 假设此时电流<span
 class="math inline">\(i(t)\)</span>的有效值为<span
 class="math inline">\(I_{\mathrm{eff}}\)</span>，则 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 U_{R,\mathrm{eff}} = I_{\mathrm{eff}}Z_{R} = I_{\mathrm{eff}}R,\quad
 U_{C,\mathrm{eff}} = I_{\mathrm{eff}}Z_{C} =
 \dfrac{I_{\mathrm{eff}}}{\omega C}
-\end{equation}\]</span> 故电阻上电压有效值与电容上电压有效值之比为 <span
-class="math display">\[\begin{equation}
+\]</span> 故电阻上电压有效值与电容上电压有效值之比为 <span
+class="math display">\[
 \dfrac{U_{C,\mathrm{eff}}}{U_{R,\mathrm{eff}}} = \dfrac{1}{\omega C R}
-\end{equation}\]</span> 带入可得总电压有效值为 <span
-class="math display">\[\begin{equation}
+\]</span> 带入可得总电压有效值为 <span class="math display">\[
 U_{\mathrm{eff}} =I_{\mathrm{eff}} \sqrt{R^{2} +
 \left(  \dfrac{1}{\omega C} \right) ^{2}}
-\end{equation}\]</span> 而相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 而相位差为 <span class="math display">\[
 \varphi = -\arctan \dfrac{1}{\omega CR}
-\end{equation}\]</span> 同时还可求得<span
+\]</span> 同时还可求得<span
 class="math inline">\(RC\)</span>串联电路的总阻抗为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} = \sqrt{R^{2} +
 \left(  \dfrac{1}{\omega C}\right) ^{2}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>这表明，总电压有效值<span
 class="math inline">\(U_{\mathrm{eff}}\)</span>不等于分电压有效值<span
 class="math inline">\(U_{R,\mathrm{eff}}\)</span>、<span
@@ -508,43 +502,39 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电感元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位提前<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此
-<p>总电压峰值为 <span class="math display">\[\begin{equation}
+<p>总电压峰值为 <span class="math display">\[
 U = \sqrt{U_{R}^{2} + U_{L}^{2}}
-\end{equation}\]</span>
-由于交变电压的有效值与峰值成正比，因此总电压有效值<span
+\]</span> 由于交变电压的有效值与峰值成正比，因此总电压有效值<span
 class="math inline">\(U_{\mathrm{eff}}\)</span>满足 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 U_{\mathrm{eff}} =  \sqrt{U_{R,\mathrm{eff}}^{2} +
 U_{L,\mathrm{eff}}^{2}}
-\end{equation}\]</span> 相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 相位差为 <span class="math display">\[
 \varphi = \arctan \dfrac{U_{L}}{U_{R}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>在上一节中，我们知道了电阻与电感的阻抗分别为 <span
 class="math display">\[
 Z_{R} = R,\quad Z_{L} = \omega L
 \]</span> 假设此时电流<span
 class="math inline">\(i(t)\)</span>的有效值为<span
 class="math inline">\(I_{\mathrm{eff}}\)</span>，则 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 U_{R,\mathrm{eff}} = I_{\mathrm{eff}}Z_{R} = I_{\mathrm{eff}}R,\quad
 U_{L,\mathrm{eff}} = I_{\mathrm{eff}}Z_{L} = I_{\mathrm{eff}}\omega L
-\end{equation}\]</span> 故电阻上电压有效值与电感上电压有效值之比为 <span
-class="math display">\[\begin{equation}
+\]</span> 故电阻上电压有效值与电感上电压有效值之比为 <span
+class="math display">\[
 \dfrac{U_{L,\mathrm{eff}}}{U_{R,\mathrm{eff}}} = \dfrac{\omega L}{R}
-\end{equation}\]</span> 带入可得总电压有效值为 <span
-class="math display">\[\begin{equation}
+\]</span> 带入可得总电压有效值为 <span class="math display">\[
 U_{\mathrm{eff}} =I_{\mathrm{eff}} \sqrt{R^{2} + \left(  \omega L
 \right) ^{2}}
-\end{equation}\]</span> 而相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 而相位差为 <span class="math display">\[
 \varphi = \arctan \dfrac{\omega L}{R}
-\end{equation}\]</span> 同时还可求得<span
+\]</span> 同时还可求得<span
 class="math inline">\(RC\)</span>串联电路的总阻抗为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} = \sqrt{R^{2} +
 \left(  \omega L \right) ^{2}}
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="并联电路">并联电路</h3>
 <h4 id="rc并联"><span class="math inline">\(RC\)</span>并联</h4>
 <p>在并联电路中，各元件两端的电压<span
@@ -555,44 +545,39 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电容元件上<span
 class="math inline">\(u_{C}(t)\)</span>比<span
 class="math inline">\(i_{C}(t)\)</span>相位落后<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此可以做出如下图所示的矢量图。</p>
-<p>不难看出，总电流峰值为 <span class="math display">\[\begin{equation}
+<p>不难看出，总电流峰值为 <span class="math display">\[
 I = \sqrt{I_{R}^{2} + I_{C}^{2}}
-\end{equation}\]</span>
-由于交变电压的有效值与峰值成正比，因此总电流有效值<span
+\]</span> 由于交变电压的有效值与峰值成正比，因此总电流有效值<span
 class="math inline">\(I_{\mathrm{eff}}\)</span>满足 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 I_{\mathrm{eff}} =  \sqrt{I_{R,\mathrm{eff}}^{2} +
 I_{C,\mathrm{eff}}^{2}}
-\end{equation}\]</span> 相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 相位差为 <span class="math display">\[
 \varphi = -\arctan \dfrac{I_{C}}{I_{R}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>我们知道，电阻与电容的阻抗分别为 <span class="math display">\[
 Z_{R} = R,\quad Z_{C} = \dfrac{1}{\omega C}
 \]</span> 假设此时电压<span
 class="math inline">\(u(t)\)</span>的有效值为<span
 class="math inline">\(U_{\mathrm{eff}}\)</span>，则 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 I_{R,\mathrm{eff}} = \dfrac{U_{\mathrm{eff}}}{Z_{R}} =
 \dfrac{U_{\mathrm{eff}}}{R},\quad I_{C,\mathrm{eff}} =
 \dfrac{U_{\mathrm{eff}}}{Z_{C}} = \omega CU_{\mathrm{eff}}
-\end{equation}\]</span>
-故通过电阻的电流有效值与通过电容的电流有效值之比为 <span
-class="math display">\[\begin{equation}
+\]</span> 故通过电阻的电流有效值与通过电容的电流有效值之比为 <span
+class="math display">\[
 \dfrac{I_{C,\mathrm{eff}}}{I_{R,\mathrm{eff}}} = \omega CR
-\end{equation}\]</span> 带入可得总电流有效值为 <span
-class="math display">\[\begin{equation}
+\]</span> 带入可得总电流有效值为 <span class="math display">\[
 I_{\mathrm{eff}} =U_{\mathrm{eff}} \sqrt{\dfrac{1}{R^{2}} +
 \left(  \omega C \right) ^{2}}
-\end{equation}\]</span> 而相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 而相位差为 <span class="math display">\[
 \varphi = -\arctan \omega CR
-\end{equation}\]</span> 同时还可求得<span
+\]</span> 同时还可求得<span
 class="math inline">\(RC\)</span>并联电路的总阻抗为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} =
 \dfrac{1}{\sqrt{\dfrac{1}{R^{2}} + \left(  \omega C \right) ^{2}}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>这表明，总电流有效值<span
 class="math inline">\(I_{\mathrm{eff}}\)</span>不等于分电流有效值<span
 class="math inline">\(I_{R,\mathrm{eff}}\)</span>、<span
@@ -605,45 +590,40 @@ class="math inline">\(i_{R}(t)\)</span>相位一致，而电感元件上<span
 class="math inline">\(u_{L}(t)\)</span>比<span
 class="math inline">\(i_{L}(t)\)</span>相位提前<span
 class="math inline">\(\dfrac{\pi}{2}\)</span>，因此</p>
-<p>总电流峰值为 <span class="math display">\[\begin{equation}
+<p>总电流峰值为 <span class="math display">\[
 I = \sqrt{I_{R}^{2} + I_{L}^{2}}
-\end{equation}\]</span>
-由于交变电压的有效值与峰值成正比，因此总电流有效值<span
+\]</span> 由于交变电压的有效值与峰值成正比，因此总电流有效值<span
 class="math inline">\(I_{\mathrm{eff}}\)</span>满足 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 I_{\mathrm{eff}} =  \sqrt{I_{R,\mathrm{eff}}^{2} +
 I_{L,\mathrm{eff}}^{2}}
-\end{equation}\]</span> 相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 相位差为 <span class="math display">\[
 \varphi = \arctan \dfrac{I_{L}}{I_{R}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>我们知道，电阻与电感的阻抗分别为 <span class="math display">\[
 Z_{R} = R,\quad Z_{L} = \omega L
 \]</span> 假设此时电压<span
 class="math inline">\(u(t)\)</span>的有效值为<span
 class="math inline">\(U_{\mathrm{eff}}\)</span>，则 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 I_{R,\mathrm{eff}} = \dfrac{U_{\mathrm{eff}}}{Z_{R}} =
 \dfrac{U_{\mathrm{eff}}}{R},\quad I_{L,\mathrm{eff}} =
 \dfrac{U_{\mathrm{eff}}}{Z_{L}} = \dfrac{U_{\mathrm{eff}}}{\omega L}
-\end{equation}\]</span>
-故通过电阻的电流有效值与通过电容的电流有效值之比为 <span
-class="math display">\[\begin{equation}
+\]</span> 故通过电阻的电流有效值与通过电容的电流有效值之比为 <span
+class="math display">\[
 \dfrac{I_{L,\mathrm{eff}}}{I_{R,\mathrm{eff}}} = \dfrac{R}{\omega L}
-\end{equation}\]</span> 带入可得总电流有效值为 <span
-class="math display">\[\begin{equation}
+\]</span> 带入可得总电流有效值为 <span class="math display">\[
 I_{\mathrm{eff}} =U_{\mathrm{eff}} \sqrt{\dfrac{1}{R^{2}} +
 \dfrac{1}{\left(  \omega L \right) ^{2}}}
-\end{equation}\]</span> 而相位差为 <span
-class="math display">\[\begin{equation}
+\]</span> 而相位差为 <span class="math display">\[
 \varphi = \arctan \dfrac{R}{\omega L}
-\end{equation}\]</span> 同时还可求得<span
+\]</span> 同时还可求得<span
 class="math inline">\(RC\)</span>并联电路的总阻抗为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 Z = \dfrac{U_{\mathrm{eff}}}{I_{\mathrm{eff}}} =
 \dfrac{1}{\sqrt{\dfrac{1}{R^{2}} + \dfrac{1}{\left(  \omega L \right)
 ^{2}}}}
-\end{equation}\]</span></p>
+\]</span></p>
 <h3
 id="串并联电路的应用旁路相移滤波">串并联电路的应用（旁路、相移、滤波）*</h3>
 <p>待补充</p>
@@ -672,61 +652,61 @@ class="math inline">\(a(t)\)</span>的相位。</p>
 \]</span> 同一段电路上的复电压<span
 class="math inline">\(\tilde{U}\)</span>与复电流<span
 class="math inline">\(\tilde{I}\)</span>的比值为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \dfrac{\tilde{U}}{\tilde{I}} = Ze^{\mathrm{i}  \varphi}
-\end{equation}\]</span>
+\]</span>
 也是一个复数，其模为这段电路的阻抗，而辐角为相位差。我们将这个复数称为复阻抗，记为<span
 class="math inline">\(\tilde{Z}\)</span>，即 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \tilde{Z} = Ze^{\mathrm{i}  \varphi}
-\end{equation}\]</span>
+\]</span>
 由于上述复数完全概括了这段电路分身的两方面基本性质，也就是阻抗和相位差，因此通过某段电路的复阻抗可完全了解此段电路的性质。此外，将复阻抗带入到式（4.2）之中可得
-<span class="math display">\[\begin{equation}
+<span class="math display">\[
 \tilde{Z} = \dfrac{\tilde{U}}{\tilde{I}}
-\end{equation}\]</span> 这与直流电路中的Ohms定律有着相同的形式。</p>
+\]</span> 这与直流电路中的Ohms定律有着相同的形式。</p>
 <p>结合前面我们对于电阻、电容和电感的分析，不难求出三者的复阻抗。</p>
-<p>（1）电阻复阻抗 <span class="math display">\[\begin{equation}
+<p>（1）电阻复阻抗 <span class="math display">\[
 \tilde{Z}_{R} = R
-\end{equation}\]</span></p>
-<p>（2）电容复阻抗 <span class="math display">\[\begin{equation}
+\]</span></p>
+<p>（2）电容复阻抗 <span class="math display">\[
 \tilde{Z}_{C} = \dfrac{-\mathrm{i} }{\omega C}
-\end{equation}\]</span></p>
-<p>（3）电感复阻抗 <span class="math display">\[\begin{equation}
+\]</span></p>
+<p>（3）电感复阻抗 <span class="math display">\[
 \tilde{Z}_{L} = \mathrm{i}  \omega L
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="串并联电路的复数解法">串、并联电路的复数解法</h3>
 <h4 id="串联电路-1">串联电路</h4>
 <p>串联电路上总电压的瞬时值等于各段分电压瞬时值之和 <span
 class="math display">\[
 u(t) = \sum\limits_{j = 1}^{n} u_{j}(t)
-\]</span> 由变换法则可得 <span class="math display">\[\begin{equation}
+\]</span> 由变换法则可得 <span class="math display">\[
 \tilde{U} = \sum\limits_{j = 1}^{n} \tilde{U}_{j}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>假设各段的复阻抗为<span
 class="math inline">\(\tilde{Z}_{j}\)</span>，整段的复阻抗为<span
 class="math inline">\(\tilde{Z}\)</span>。那么根据复数形式的Ohms定律有
 <span class="math display">\[
 \tilde{U}_{j} = \tilde{I}\tilde{Z}_{j} \quad \tilde{U} = \tilde{I}
 \tilde{Z}
-\]</span> 带入上式可得 <span class="math display">\[\begin{equation}
+\]</span> 带入上式可得 <span class="math display">\[
 \tilde{Z} = \sum\limits_{j = 1}^{n} \tilde{Z}_{j}
-\end{equation}\]</span></p>
+\]</span></p>
 <h4 id="并联电路-1">并联电路</h4>
 <p>并联电路上总电流的瞬时值等于各段分电流瞬时值之和 <span
 class="math display">\[
 i(t) = \sum\limits_{j = 1}^{n} i_{j}(t)
-\]</span> 由变换法则可得 <span class="math display">\[\begin{equation}
+\]</span> 由变换法则可得 <span class="math display">\[
 \tilde{I} = \sum\limits_{j = 1}^{n} \tilde{I}_{j}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>假设各段的复阻抗为<span
 class="math inline">\(\tilde{Z}_{j}\)</span>，整段的复阻抗为<span
 class="math inline">\(\tilde{Z}\)</span>。那么根据复数形式的Ohms定律有
 <span class="math display">\[
 \tilde{U} = \tilde{I}_{j}\tilde{Z}_{j} \quad \tilde{U} = \tilde{I}
 \tilde{Z}
-\]</span> 带入上式可得 <span class="math display">\[\begin{equation}
+\]</span> 带入上式可得 <span class="math display">\[
 \dfrac{1}{\tilde{Z}} = \sum\limits_{j = 1}^{n} \dfrac{1}{\tilde{Z}_{j}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>上面两种情况表明，交流电路复阻抗的串、并联公式与直流电路电阻的串、并联公式在形式上完全相同。</p>
 <h3 id="复导纳">复导纳*</h3>
 <p>待补充</p>
@@ -734,13 +714,13 @@ class="math inline">\(\tilde{Z}\)</span>。那么根据复数形式的Ohms定律
 id="交流电路的kirchhoff方程组及其复数形式">交流电路的Kirchhoff方程组及其复数形式</h3>
 <p>对于电压、电流的瞬时值来说，交流电路的Kirchhoff方程组和直流电路的Kirchhoff方程组差不多</p>
 <p>（1）对于电路的任意一个节点，瞬时电流的代数和为0，即 <span
-class="math display">\[\begin{equation}
-\sum\limits_{\mbox{流出}}i(t) - \sum\limits_{\mbox{流入}}i(t) = 0
-\end{equation}\]</span></p>
+class="math display">\[
+\sum\limits_{\text{流出}}i(t) - \sum\limits_{\text{流入}}i(t) = 0
+\]</span></p>
 <p>（2）沿任意一个闭合回路，瞬时电压降的代数和为0，即 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \sum\limits_{L} u(t) = 0
-\end{equation}\]</span></p>
+\]</span></p>
 <p>和直流电路的Kirchhoff定律相同，这里也存在着正负号的问题。现规定如下：</p>
 <h4 id="kirchhoff方程组的正负问题">Kirchhoff方程组的正负问题</h4>
 <p>（1）在每段支路上先给定一标定方向。如果计算结果<span
@@ -757,15 +737,13 @@ class="math inline">\(e(t)\)</span>表示电源的极性与标定的一致，反
 <p>（1）在Kirchhoff第一方程组之中，流入某节点的电流前为负号，流出某节点的电流前为正号</p>
 <p>（2）Kirchhoff第二方程组之中，若回路的绕行方向与电流的标定方向相同，那么带正号，反之带负号。对电源而言，如果回路的绕行方向与电源的极性一致，那么前面带负号，反之带正号。</p>
 <p>对于简谐交流电路，我们可以直接将直流Kirchhoff方程组之中的量替换为对应的复数量，这样就得到了复数形式的Kirchhoff方程组</p>
-<p>（1）Kirchhoff第一方程组 <span
-class="math display">\[\begin{equation}
-\sum\limits_{\mbox{流出}}\tilde{I} - \sum\limits_{\mbox{流入}}\tilde{I}
+<p>（1）Kirchhoff第一方程组 <span class="math display">\[
+\sum\limits_{\text{流出}}\tilde{I} - \sum\limits_{\text{流入}}\tilde{I}
 = 0
-\end{equation}\]</span></p>
-<p>（2）Kirchhoff第二方程组 <span
-class="math display">\[\begin{equation}
+\]</span></p>
+<p>（2）Kirchhoff第二方程组 <span class="math display">\[
 \sum\limits_{L} \tilde{U} = 0
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="等效电源定理和y-bigtriangleup阻抗代换公式">等效电源定理和Y-<span
 class="math inline">\(\bigtriangleup\)</span>阻抗代换公式*</h3>
 <p>待补充</p>
@@ -785,56 +763,52 @@ i(t) = I_{0}\cos \omega t,\quad u(t) = U_{0} \cos \left(  \omega t +
 \varphi \right)
 \]</span> 则瞬时功率等于 <span class="math display">\[
 P(t) = U_{0}I_{0}\cos \omega t \cos \left(  \omega t + \varphi \right)
-\]</span> 即 <span class="math display">\[\begin{equation}
+\]</span> 即 <span class="math display">\[
 P(t) = \dfrac{1}{2}U_{0}I_{0} \cos \varphi + \dfrac{1}{2} U_{0}I_{0}\cos
 \left(  2\omega t + \varphi \right)
-\end{equation}\]</span>
-由此可见，瞬时功率包含两部分：与时间无关的常量<span
+\]</span> 由此可见，瞬时功率包含两部分：与时间无关的常量<span
 class="math inline">\(\dfrac{1}{2}U_{0}I_{0} \cos
 \varphi\)</span>，以及以二倍频率周期性变化的$ U_{0}I_{0}( 2t + ) $</p>
 <p>通常来说，我们更倾向于使用在一个周期<span
 class="math inline">\(T\)</span>内的平均功率<span
-class="math inline">\(\bar{P}\)</span>，即 <span
-class="math display">\[\begin{equation}
+class="math inline">\(\bar{P}\)</span>，即 <span class="math display">\[
 \bar{P} = \dfrac{1}{T}\int_{0}^{T}P(t) \mathrm{d}  t
-\end{equation}\]</span> 将瞬时功率<span
+\]</span> 将瞬时功率<span
 class="math inline">\(P(t)\)</span>的表达式带入可得 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \bar{P} = \dfrac{1}{2}U_{0}I_{0} \cos \varphi
-\end{equation}\]</span></p>
+\]</span></p>
 <h4 id="各元件的平均功率">各元件的平均功率</h4>
 <p>对于电阻、电容和电感元件而言，其平均功率分别为</p>
 <p>（1）电阻元件：<span class="math inline">\(\varphi = 0\)</span> <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \bar{P} = \dfrac{1}{2}U_{0}I_{0}
-\end{equation}\]</span> 注意，这里之所以Joule定律不同（有系数<span
+\]</span> 注意，这里之所以Joule定律不同（有系数<span
 class="math inline">\(\dfrac{1}{2}\)</span>），是因为在简谐交流电路中瞬时功率<span
 class="math inline">\(P(t)\)</span>时大时小，因此平均起来会有系数<span
 class="math inline">\(\dfrac{1}{2}\)</span>。此时，交变电压与交变电流与<span
 class="math inline">\(\dfrac{1}{\sqrt{2}}U_{0}\)</span>、<span
 class="math inline">\(\dfrac{1}{\sqrt{2}}I_{0}\)</span>的直流电效果相当，这就是我们前面所说的“有效值”。</p>
-<p>如果将电阻的平均功率用有效值表示，那么 <span
-class="math display">\[\begin{equation}
+<p>如果将电阻的平均功率用有效值表示，那么 <span class="math display">\[
 \bar{P} = U_{\mathrm{eff}}I_{\mathrm{eff}}
-\end{equation}\]</span></p>
+\]</span></p>
 <p>（2）电容元件：<span class="math inline">\(\varphi =
--\dfrac{\pi}{2}\)</span> <span class="math display">\[\begin{equation}
+-\dfrac{\pi}{2}\)</span> <span class="math display">\[
 \bar{P} = 0
-\end{equation}\]</span></p>
+\]</span></p>
 <p>（3）电感元件：<span class="math inline">\(\varphi =
-\dfrac{\pi}{2}\)</span> <span class="math display">\[\begin{equation}
+\dfrac{\pi}{2}\)</span> <span class="math display">\[
 \bar{P} = 0
-\end{equation}\]</span></p>
+\]</span></p>
 <p>电容与电感的<span class="math inline">\(\bar{P} =
 0\)</span>表示，在纯电容或纯电感元件中，能量的转化过程是完全可逆的。</p>
 <h4 id="普遍情况">普遍情况</h4>
 <p>对于任意一个与外界有两个连接点的电流（二端网络），其两端的相位差满足
 <span class="math display">\[
 \varphi \in [-\dfrac{\pi}{2},\dfrac{\pi}{2}]
-\]</span> 这样，平均功率就表示为 <span
-class="math display">\[\begin{equation}
+\]</span> 这样，平均功率就表示为 <span class="math display">\[
 \bar{P} = U_{\mathrm{eff}}I_{\mathrm{eff}}\cos \varphi
-\end{equation}\]</span> 此时，我们将<span class="math inline">\(\cos
+\]</span> 此时，我们将<span class="math inline">\(\cos
 \varphi\)</span>称为二端网络的功率因数。</p>
 <h3
 id="有功电流与无功电流提高功率因数的第一个作用">有功电流与无功电流提高功率因数的第一个作用</h3>
@@ -844,9 +818,9 @@ class="math inline">\(\boldsymbol{I}\)</span>分解为平行于电压矢量<span
 class="math inline">\(\boldsymbol{U}\)</span>的<span
 class="math inline">\(\boldsymbol{I}_{\mathrm{p}}\)</span>和与其垂直的<span
 class="math inline">\(\boldsymbol{I}_{\mathrm{v}}\)</span>。显然，这两个向量的模分别为
-<span class="math display">\[\begin{equation}
+<span class="math display">\[
 I_{\mathrm{p}} = I\cos \varphi,\quad I_{\mathrm{v}} = I \sin \varphi
-\end{equation}\]</span></p>
+\]</span></p>
 <p>这就意味着，简谐电流<span
 class="math inline">\(i(t)\)</span>可以看做是以上两个电流的叠加。这样一来，电路的平均功率可写为
 <span class="math display">\[
@@ -863,18 +837,15 @@ class="math inline">\(\cos \varphi\)</span>。</p>
 <h3
 id="视在功率与无功功率提高功率因数的第二个作用">视在功率与无功功率提高功率因数的第二个作用</h3>
 <p>电器设备的视在功率（或称为表观功率）<span
-class="math inline">\(S\)</span>被定义为 <span
-class="math display">\[\begin{equation}
+class="math inline">\(S\)</span>被定义为 <span class="math display">\[
 S = U_{\mathrm{eff}}I_{\mathrm{eff}}
-\end{equation}\]</span> 这样，电气设备的实际功率可表示为 <span
-class="math display">\[\begin{equation}
+\]</span> 这样，电气设备的实际功率可表示为 <span class="math display">\[
 \bar{P} = S \cos \varphi
-\end{equation}\]</span>
+\]</span>
 由此不难看出，提高功率因数有助于充分发挥现有电器设备的潜能。</p>
-<p>此外，我们将无功功率定义为 <span
-class="math display">\[\begin{equation}
+<p>此外，我们将无功功率定义为 <span class="math display">\[
 P_{\mathrm{rea}} = U_{\mathrm{eff}}I_{\mathrm{eff,v}}
-\end{equation}\]</span></p>
+\]</span></p>
 有功功率<span
 class="math inline">\(P_{\mathrm{act}}\)</span>、无功功率<span
 class="math inline">\(P_{\mathrm{rea}}\)</span>和表观功率<span
@@ -908,13 +879,11 @@ class="math display">\[
 \sin \varphi
 \]</span> 所以 <span class="math display">\[
 r = Z\cos \varphi,\quad x = Z\sin \varphi
-\]</span> 因此，有功功率可表示为 <span
-class="math display">\[\begin{equation}
+\]</span> 因此，有功功率可表示为 <span class="math display">\[
 P_{\mathrm{act}} = I^{2}r
-\end{equation}\]</span> 同时，无功功率可表示为 <span
-class="math display">\[\begin{equation}
+\]</span> 同时，无功功率可表示为 <span class="math display">\[
 P_{\mathrm{rea}} = I^{2}x
-\end{equation}\]</span></p>
+\]</span></p>
 <h3 id="电导与电纳">电导与电纳*</h3>
 <p>待补充</p>
 <h3 id="品质因数q值损耗角delta和耗散因数tan-delta">品质因数（<span
@@ -925,27 +894,24 @@ class="math inline">\(\tan \delta\)</span>）</h3>
 <h4 id="品质因数q值">品质因数（<span
 class="math inline">\(Q\)</span>值）</h4>
 <p>一个电抗元件的品质因数（简称为Q 值）的定义为 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 Q = \dfrac{P_{\mathrm{rea}}}{P_{\mathrm{act}}}
-\end{equation}\]</span> 因此不难得到 <span
-class="math display">\[\begin{equation}
+\]</span> 因此不难得到 <span class="math display">\[
 Q = \dfrac{x}{r}
-\end{equation}\]</span> 由Q 值的定义不难看出，Q 值越高，损耗越小。</p>
+\]</span> 由Q 值的定义不难看出，Q 值越高，损耗越小。</p>
 <h4 id="损耗角delta和耗散因数tan-delta">损耗角（<span
 class="math inline">\(\delta\)</span>）和耗散因数（<span
 class="math inline">\(\tan \delta\)</span>）</h4>
 <p>我们将相位角的余角定义为损耗角<span
-class="math inline">\(\delta\)</span>，即 <span
-class="math display">\[\begin{equation}
+class="math inline">\(\delta\)</span>，即 <span class="math display">\[
 \delta = \dfrac{\pi}{2} - \varphi
-\end{equation}\]</span> 结合功率三角形，不难看出 <span
-class="math display">\[\begin{equation}
+\]</span> 结合功率三角形，不难看出 <span class="math display">\[
 \tan \delta = \dfrac{P_{\mathrm{act}}}{P_{\mathrm{rea}}} = \dfrac{r}{x}
-\end{equation}\]</span> 其中，<span class="math inline">\(\tan
+\]</span> 其中，<span class="math inline">\(\tan
 \delta\)</span>被称为耗散因数。由此可以看出 <span
-class="math display">\[\begin{equation}
+class="math display">\[
 \tan \delta = \dfrac{1}{Q}
-\end{equation}\]</span></p>
+\]</span></p>
 
     </div>
 
@@ -1117,13 +1083,13 @@ class="math display">\[\begin{equation}
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">444k</span>
+    <span title="站点总字数">443k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">24:39</span>
+    <span title="站点阅读时长">24:35</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
     <span id="timeDate">载入天数...</span>

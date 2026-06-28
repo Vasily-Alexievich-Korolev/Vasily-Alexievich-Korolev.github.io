@@ -1,3 +1,4 @@
+https://vasily-alexievich-korolev.github.io/posts/turtle-investment-method/
 https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/
 https://vasily-alexievich-korolev.github.io/posts/64576629/
 https://vasily-alexievich-korolev.github.io/posts/3fca16e6/
@@ -28,7 +29,6 @@ https://vasily-alexievich-korolev.github.io/posts/b1c8d34f/
 https://vasily-alexievich-korolev.github.io/posts/4f9e1b/
 https://vasily-alexievich-korolev.github.io/posts/d305f066/
 https://vasily-alexievich-korolev.github.io/posts/a50f3fa0/
-https://vasily-alexievich-korolev.github.io/posts/turtle-investment-method/
 https://vasily-alexievich-korolev.github.io/posts/de7a2c/
 https://vasily-alexievich-korolev.github.io/posts/a48aba4a/
 https://vasily-alexievich-korolev.github.io/posts/3f878404/

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/title_icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/title_icon_16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google7721dc649cb8b12c">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文深入剖析 Remote-SSH 远程架构的三次演进，记录三轮尝试的失败与成功，给出无需 root、无需升级系统、只需一次手工作业的修复方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VS Code Remote-SSH 老服务器兼容：完整踩坑记录与技术方案">
+<meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/">
+<meta property="og:site_name" content="Vasily&#39;s Blog">
+<meta property="og:description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文深入剖析 Remote-SSH 远程架构的三次演进，记录三轮尝试的失败与成功，给出无需 root、无需升级系统、只需一次手工作业的修复方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-28T18:03:20.206Z">
+<meta property="article:author" content="Vasily Alexievich Korolev">
+<meta property="article:tag" content="VS Code">
+<meta property="article:tag" content="Remote-SSH">
+<meta property="article:tag" content="CentOS">
+<meta property="article:tag" content="glibc">
+<meta property="article:tag" content="故障排查">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VS Code Remote-SSH 老服务器兼容：完整踩坑记录与技术方案 | Vasily's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="Vasily's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vasily's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个记录学习经历的站点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vasily Alexievich Korolev">
+      <meta itemprop="description" content="Break the barrier of knowledge">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vasily's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VS Code Remote-SSH 老服务器兼容：完整踩坑记录与技术方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-06-29 00:00:00 / 修改时间：02:03:20" itemprop="dateCreated datePublished" datetime="2026-06-29T00:00:00+08:00">2026-06-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Science/" itemprop="url" rel="index"><span itemprop="name">Computer Science</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Science/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc >= 2.28 而反复崩溃重试。本文深入剖析 Remote-SSH 远程架构的三次演进，记录三轮尝试的失败与成功，给出无需 root、无需升级系统、只需一次手工作业的修复方案。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="vs-code-remote-ssh-老服务器兼容完整踩坑记录与技术方案">VS Code
+Remote-SSH 老服务器兼容：完整踩坑记录与技术方案</h1>
+<h2 id="问题">问题</h2>
+<p>VS Code 从 1.86 开始，远程 vscode-server 中的 Node.js 要求
+<strong>glibc &gt;= 2.28</strong>。CentOS 7 默认 glibc
+2.17，低于此要求。现象：</p>
+<ol type="1">
+<li>SSH 隧道能通，<code>code-&lt;commit&gt;</code> CLI binary
+可能启动成功</li>
+<li>server 进程（<code>code-server</code> +
+<code>node</code>）启动即崩溃</li>
+<li>VS Code 认为"server 未安装"，联网下载 → 服务器不能上网 → 404</li>
+<li>无限循环重试，自动删除并重建 server 目录</li>
+</ol>
+<p>目标是<strong>不降级 VS Code</strong>，在 glibc 2.17 的老服务器上跑通
+Remote-SSH。</p>
+<span id="more"></span>
+<h2 id="remote-ssh-远程架构的演进">Remote-SSH 远程架构的演进</h2>
+<p>要理解修复思路，必须先搞清楚 vscode-server 在远程的目录结构。</p>
+<h3 id="经典旧架构vs-code-1.86">经典旧架构（VS Code &lt; 1.86）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~/.vscode-server/</span><br><span class="line">├── bin/&lt;commit-hash&gt;/</span><br><span class="line">│   ├── node                ← ELF 64-bit</span><br><span class="line">│   ├── out/server-main.js</span><br><span class="line">│   └── extensions/</span><br><span class="line">└── code-&lt;commit&gt;            ← CLI binary（启动器）</span><br></pre></td></tr></table></figure>
+<p><strong>启动链路：</strong> VS Code 客户端 → SSH 隧道 → CLI binary
+启动 → 调用 <code>bin/&lt;commit&gt;/bin/code-server</code> shell 脚本 →
+脚本调用 <code>node out/server-main.js</code>。</p>
+<p>关键发现：旧版 <code>bin/code-server</code> 是一个 <strong>shell
+脚本</strong>（约 249 字节），不涉及 glibc，只是调用 node：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env sh</span></span><br><span class="line">ROOT=<span class="string">&quot;<span class="subst">$(dirname <span class="string">&quot;<span class="subst">$(dirname <span class="string">&quot;<span class="subst">$(readlink -f <span class="string">&quot;<span class="variable">$0</span>&quot;</span>)</span>&quot;</span>)</span>&quot;</span>)</span>&quot;</span></span><br><span class="line"><span class="string">&quot;<span class="variable">$ROOT</span>/node&quot;</span> <span class="variable">$&#123;INSPECT:-&#125;</span> <span class="string">&quot;<span class="variable">$ROOT</span>/out/server-main.js&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>glibc 负担完全在 <code>node</code> 这个 ELF 二进制上。</p>
+<h3 id="新-cli-架构vs-code-1.861.98过渡期">新 CLI 架构（VS Code
+1.86~1.98，过渡期）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">~/.vscode-server/</span><br><span class="line">├── cli/</span><br><span class="line">│   └── servers/</span><br><span class="line">│       └── Stable-&lt;commit&gt;/</span><br><span class="line">│           └── server/</span><br><span class="line">│               ├── bin/code-server    ← 仍是 shell 脚本</span><br><span class="line">│               ├── node</span><br><span class="line">│               └── out/</span><br><span class="line">└── code-&lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>server 从 <code>bin/&lt;commit&gt;/</code> 移到了
+<code>cli/servers/Stable-&lt;commit&gt;/server/</code>，内部结构大体相同。</p>
+<h3 id="全新架构vs-code-1.126当前版本">全新架构（VS Code
+1.126，当前版本）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">~/.vscode-server/</span><br><span class="line">├── cli/</span><br><span class="line">│   └── servers/</span><br><span class="line">│       └── Stable-&lt;commit&gt;/</span><br><span class="line">│           └── server/</span><br><span class="line">│               ├── bin/</span><br><span class="line">│               │   ├── code-server/  ← **变成目录**（内含 ELF 二进制）！</span><br><span class="line">│               │   └── ...</span><br><span class="line">│               ├── node              ← 96MB ELF，可能是目录</span><br><span class="line">│               └── out/</span><br><span class="line">└── code-&lt;commit&gt;                      ← 32MB 静态链接 ELF</span><br></pre></td></tr></table></figure>
+<p><strong>关键变化：</strong> <code>bin/code-server</code> 从 shell
+脚本变成了<strong>自包含 ELF 二进制</strong>，同样需要 glibc
+2.28+。这是新版 VS Code
+在旧服务器上完全不能用的根本原因——<strong>两个地方都卡
+glibc</strong>。</p>
+<h3 id="各版本修复需求">各版本修复需求</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>VS Code 版本</th>
+<th>需要修 node</th>
+<th>需要修 code-server</th>
+<th>server 路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 1.86</td>
+<td>✅</td>
+<td>❌ (shell 脚本)</td>
+<td><code>bin/&lt;commit&gt;/</code></td>
+</tr>
+<tr>
+<td>1.86~1.98</td>
+<td>✅</td>
+<td>❌ (shell 脚本)</td>
+<td><code>cli/servers/Stable-/server/</code></td>
+</tr>
+<tr>
+<td>1.99~1.110</td>
+<td>✅</td>
+<td>❌?</td>
+<td><code>cli/servers/Stable-/server/</code></td>
+</tr>
+<tr>
+<td><strong>1.126+</strong></td>
+<td>✅ (注意可能是目录)</td>
+<td><strong>✅ (变成了 ELF 目录)</strong></td>
+<td><code>cli/servers/Stable-/server/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三轮尝试">三轮尝试</h2>
+<h3 id="第一轮替换-cli-binary-伪装旧-server-目录">❌ 第一轮：替换 CLI
+binary + 伪装旧 server 目录</h3>
+<p>直接把旧版 server 目录 <code>cp -r</code> 改名成新版 commit
+hash，再用旧版 CLI binary 覆盖新版。</p>
+<p><strong>结果：</strong> VS Code 连上了，server 进程启动成功，但立刻报
+<code>Client refused: version mismatch</code>。旧 server 的 JS
+代码报告的是旧版本号（1.98.2），VS Code 1.126 客户端不认。</p>
+<h3 id="第二轮下载新版-server-替换-js-代码">❌ 第二轮：下载新版 server
+替换 JS 代码</h3>
+<p>在本机下载新版 server，scp 传上去，用新版
+<code>out/</code>、<code>package.json</code>、<code>product.json</code>
+覆盖旧目录。</p>
+<p><strong>结果：</strong> 仍然连不上。新版 server 的
+<code>bin/code-server</code> 变成了 ELF 目录，在 glibc 2.17
+上启动即崩溃。VS Code 进入无限重试循环。</p>
+<h3 id="第三轮旧版-code-server-新版-js混合部署">✅ 第三轮：旧版
+code-server + 新版 JS，混合部署</h3>
+<p><strong>核心洞察：</strong> <code>bin/code-server</code> 在 1.98 中是
+shell 脚本，在 1.126 中是 ELF 目录。用旧版的 shell
+脚本覆盖新版目录，就可以绕过 ELF binary 的 glibc
+需求。同理，<code>node</code> 也用旧版的。</p>
+<p><strong>操作步骤：</strong></p>
+<p>在服务器上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 从旧版重建新版目录</span></span><br><span class="line"><span class="built_in">cp</span> -r ~/.vscode-server/cli/servers/Stable-&lt;old-commit&gt; \</span><br><span class="line">      ~/.vscode-server/cli/servers/Stable-&lt;new-commit&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 确认旧版 code-server 是 shell 脚本</span></span><br><span class="line">file ~/.vscode-server/cli/servers/Stable-&lt;new-commit&gt;/server/bin/code-server</span><br><span class="line"><span class="comment"># 输出应为: &quot;a /usr/bin/env sh script, ASCII text executable&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 确认 node 能跑</span></span><br><span class="line">~/.vscode-server/cli/servers/Stable-&lt;new-commit&gt;/server/node --version</span><br><span class="line"><span class="comment"># 输出: v20.18.2</span></span><br></pre></td></tr></table></figure>
+<p>在本机 scp 新版 JS 代码覆盖：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp <span class="literal">-J</span> jump<span class="literal">-user</span>@jump<span class="literal">-host</span> <span class="literal">-r</span> C:\path\to\vscode<span class="literal">-server-linux-x64</span>\out user@target:~/.../server/</span><br><span class="line">scp <span class="literal">-J</span> jump<span class="literal">-user</span>@jump<span class="literal">-host</span> C:\path\to\vscode<span class="literal">-server-linux-x64</span>\package.json user@target:~/.../server/</span><br><span class="line">scp <span class="literal">-J</span> jump<span class="literal">-user</span>@jump<span class="literal">-host</span> C:\path\to\vscode<span class="literal">-server-linux-x64</span>\product.json user@target:~/.../server/</span><br></pre></td></tr></table></figure>
+<p><strong>关键细节：</strong> 旧版 <code>bin/code-server</code> 和旧版
+<code>node</code> 的执行权限在新版目录中可能没有保留，务必补上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ~/.vscode-server/cli/servers/Stable-&lt;new-commit&gt;/server/node</span><br><span class="line"><span class="built_in">chmod</span> +x ~/.vscode-server/cli/servers/Stable-&lt;new-commit&gt;/server/bin/code-server</span><br></pre></td></tr></table></figure>
+<p><strong>最终文件结构：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server/</span><br><span class="line">├── bin/</span><br><span class="line">│   └── code-server          ← 旧版 shell 脚本（不是目录！）</span><br><span class="line">├── extensions/              ← 新版（scp 覆盖）</span><br><span class="line">├── node                     ← 旧版 v20.18.2</span><br><span class="line">├── node_modules/            ← 新版</span><br><span class="line">├── out/                     ← 新版 JS 代码</span><br><span class="line">├── package.json             ← 新版</span><br><span class="line">└── product.json             ← 新版</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="vs-code-的无限重试机制最坑的地方">VS Code
+的无限重试机制（最坑的地方）</h2>
+<p>每次连接失败后，日志显示 VS Code 在反复循环：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[server] Installing and setting up...</span><br><span class="line">[server] Error installing server: ... 404 Not Found</span><br><span class="line">[server] Checking ... log.txt and pid.txt ...</span><br><span class="line">[server] Installing and setting up...</span><br></pre></td></tr></table></figure>
+<p>同时服务器上 <code>cli/servers/</code> 目录里的
+<code>Stable-&lt;commit&gt;</code>
+被<strong>自动删除并重建</strong>为空的 <code>.staging</code> 目录。</p>
+<p><strong>根本原因：</strong> VS Code 检测到 server
+进程启动失败后触发自动修复机制：</p>
+<ol type="1">
+<li>CLI binary 上报「server 在端口 X 上监听」（实际是通信端口，不是真
+server）</li>
+<li>exec server 发现真正的 VS Code Server 没有启动</li>
+<li>触发 server 安装流程 → 联网下载 → 404 → 重试</li>
+</ol>
+<p><strong>解决方法：必须完全关闭 VS Code 窗口。</strong>
+只断开远程连接不够——后台 exec server 仍在持续重试。正确流程：</p>
+<ol type="1">
+<li>关掉整个 VS Code（File → Exit）</li>
+<li>在服务器上重建 server 目录</li>
+<li>清理锁文件：<code>rm -f ~/.vscode-server/.cli.*.lock</code></li>
+<li>重启 VS Code</li>
+<li>立即连接</li>
+</ol>
+<hr />
+<h2 id="关键决策点">关键决策点</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>方案</th>
+<th>需要旧 server</th>
+<th>需要本机上网</th>
+<th>需要 root</th>
+<th>一次施工管多久</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>旧 binary 替换法（本文）</strong></td>
+<td>✅</td>
+<td>✅（只需一次）</td>
+<td>❌</td>
+<td>直到 VS Code 更新</td>
+</tr>
+<tr>
+<td>patchelf 方案</td>
+<td>❌</td>
+<td>✅（只需一次）</td>
+<td>❌</td>
+<td>直到 VS Code 更新</td>
+</tr>
+<tr>
+<td>升级服务器 glibc</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>永久的</td>
+</tr>
+<tr>
+<td>降级 VS Code</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>直到你受不了旧版</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>有旧版 server 残留</strong> → 用本文的方案，最简单</li>
+<li><strong>没有任何旧版 server</strong> → 考虑 patchelf 方案</li>
+<li><strong>能 root 且不怕风险</strong> → 升级 glibc，一劳永逸</li>
+</ul>
+<p>只要 VS Code 1.126 的 protocol 不变，这条链路就一直有效。VS Code
+更新后 commit hash 会变——那时需要重新下载新版 server、重新 scp、重新替换
+binary。</p>
+<hr />
+<h2 id="附录完整诊断命令速查">附录：完整诊断命令速查</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有 server 目录</span></span><br><span class="line"><span class="built_in">ls</span> -la ~/.vscode-server/cli/servers/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 node 能否运行</span></span><br><span class="line">~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/node --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 code-server 类型（文件 vs 目录/ELF）</span></span><br><span class="line">file ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/bin/code-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 server 日志</span></span><br><span class="line"><span class="built_in">cat</span> ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/log.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理锁文件</span></span><br><span class="line"><span class="built_in">rm</span> -f ~/.vscode-server/.cli.*.lock</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有 CLI binary 版本</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> ~/.vscode-server/code-*; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="string">&quot;=== <span class="variable">$f</span> ===&quot;</span> &amp;&amp; <span class="variable">$f</span> --version 2&gt;&amp;1; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vasily Alexievich Korolev
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/" title="VS Code Remote-SSH 老服务器兼容：完整踩坑记录与技术方案">https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VS-Code/" rel="tag"># VS Code</a>
+              <a href="/tags/Remote-SSH/" rel="tag"># Remote-SSH</a>
+              <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+              <a href="/tags/glibc/" rel="tag"># glibc</a>
+              <a href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" rel="tag"># 故障排查</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/lipkan20260627/" rel="prev" title="LipKAN：用 Lipschitz 可控的 KAN 拟合分子势能面">
+      <i class="fa fa-chevron-left"></i> LipKAN：用 Lipschitz 可控的 KAN 拟合分子势能面
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vs-code-remote-ssh-%E8%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%BC%E5%AE%B9%E5%AE%8C%E6%95%B4%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E4%B8%8E%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">VS Code
+Remote-SSH 老服务器兼容：完整踩坑记录与技术方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remote-ssh-%E8%BF%9C%E7%A8%8B%E6%9E%B6%E6%9E%84%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.2.</span> <span class="nav-text">Remote-SSH 远程架构的演进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E6%97%A7%E6%9E%B6%E6%9E%84vs-code-1.86"><span class="nav-number">1.2.1.</span> <span class="nav-text">经典旧架构（VS Code &lt; 1.86）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0-cli-%E6%9E%B6%E6%9E%84vs-code-1.861.98%E8%BF%87%E6%B8%A1%E6%9C%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">新 CLI 架构（VS Code
+1.86~1.98，过渡期）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E6%9E%B6%E6%9E%84vs-code-1.126%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.3.</span> <span class="nav-text">全新架构（VS Code
+1.126，当前版本）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%89%88%E6%9C%AC%E4%BF%AE%E5%A4%8D%E9%9C%80%E6%B1%82"><span class="nav-number">1.2.4.</span> <span class="nav-text">各版本修复需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%BD%AE%E5%B0%9D%E8%AF%95"><span class="nav-number">1.3.</span> <span class="nav-text">三轮尝试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%BD%AE%E6%9B%BF%E6%8D%A2-cli-binary-%E4%BC%AA%E8%A3%85%E6%97%A7-server-%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">❌ 第一轮：替换 CLI
+binary + 伪装旧 server 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E4%B8%8B%E8%BD%BD%E6%96%B0%E7%89%88-server-%E6%9B%BF%E6%8D%A2-js-%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.2.</span> <span class="nav-text">❌ 第二轮：下载新版 server
+替换 JS 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%BD%AE%E6%97%A7%E7%89%88-code-server-%E6%96%B0%E7%89%88-js%E6%B7%B7%E5%90%88%E9%83%A8%E7%BD%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">✅ 第三轮：旧版
+code-server + 新版 JS，混合部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vs-code-%E7%9A%84%E6%97%A0%E9%99%90%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%E6%9C%80%E5%9D%91%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="nav-number">1.4.</span> <span class="nav-text">VS Code
+的无限重试机制（最坑的地方）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%86%B3%E7%AD%96%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">关键决策点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95%E5%AE%8C%E6%95%B4%E8%AF%8A%E6%96%AD%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="nav-number">1.6.</span> <span class="nav-text">附录：完整诊断命令速查</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vasily Alexievich Korolev</p>
+  <div class="site-description" itemprop="description">Break the barrier of knowledge</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:vasily_alex_koro@outlook.com" title="E-Mail → mailto:vasily_alex_koro@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  &copy; 2024-2026
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vasily Alexievich Korolev</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">444k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">24:41</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+  </div>
+
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/11/2024 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = " |  本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

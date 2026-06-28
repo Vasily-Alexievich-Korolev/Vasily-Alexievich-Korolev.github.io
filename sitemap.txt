@@ -1,3 +1,4 @@
+https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/
 https://vasily-alexievich-korolev.github.io/posts/64576629/
 https://vasily-alexievich-korolev.github.io/posts/3fca16e6/
 https://vasily-alexievich-korolev.github.io/posts/30110ae4/
@@ -92,6 +93,11 @@ https://vasily-alexievich-korolev.github.io/tags/Electromagnetics/
 https://vasily-alexievich-korolev.github.io/tags/Test/
 https://vasily-alexievich-korolev.github.io/tags/Marxism/
 https://vasily-alexievich-korolev.github.io/tags/Article/
+https://vasily-alexievich-korolev.github.io/tags/VS-Code/
+https://vasily-alexievich-korolev.github.io/tags/Remote-SSH/
+https://vasily-alexievich-korolev.github.io/tags/CentOS/
+https://vasily-alexievich-korolev.github.io/tags/glibc/
+https://vasily-alexievich-korolev.github.io/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/
 https://vasily-alexievich-korolev.github.io/categories/Computer-Science/
 https://vasily-alexievich-korolev.github.io/categories/Mathematics/Vector-Calculus/

@@ -29,7 +29,7 @@
 <meta property="og:description" content="本文主要介绍了理论力学中有关Hamilton力学的相关内容，包括Hamilton正则方程的推导、相空间与Liouville定理、位力定理以及Possion括号。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-25T15:12:30.139Z">
-<meta property="article:modified_time" content="2026-06-27T16:09:08.228Z">
+<meta property="article:modified_time" content="2026-06-29T09:00:47.431Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Classical Mechanics">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-06-28 00:09:08" itemprop="dateModified" datetime="2026-06-28T00:09:08+08:00">2026-06-28</time>
+                <time title="修改时间：2026-06-29 17:00:47" itemprop="dateModified" datetime="2026-06-29T17:00:47+08:00">2026-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,23 +307,22 @@ p_{\alpha}}\)</span>，因此我们需要将这种与具体形式相关的形式
 <p>如果我们认为<span class="math inline">\(p_{\alpha}\)</span>和<span
 class="math inline">\(q_{\alpha}\)</span>相互无关，那么上式右侧的表达式可以分别表示为
 <span class="math display">\[\left\{\begin{aligned}
-            \sum\limits_{\beta = 1}^{s} p_{\beta}\dfrac{\partial
+\sum\limits_{\beta = 1}^{s} p_{\beta}\dfrac{\partial
 \dot{q}_{\beta}}{\partial q_{\alpha}} &amp; =\sum\limits_{\beta = 1}^{s}
 \dfrac{\partial}{\partial q_{\alpha}} \left(p_{\beta}\dot{q}_{\beta}
 \right)\\
-            \sum\limits_{\beta = 1}^{s} p_{\beta}\dfrac{\partial
+\sum\limits_{\beta = 1}^{s} p_{\beta}\dfrac{\partial
 \dot{q}_{\beta}}{\partial p_{\alpha}} &amp; = \sum\limits_{\beta =
 1}^{s} \dfrac{\partial}{\partial p_{\alpha}}
 \left(p_{\beta}\dot{q}_{\beta} \right)- \dot{q}_{\alpha}\\
         \end{aligned}\right.,\quad \alpha = 1,2, \dots, s\]</span>
 这样原方程组变为 <span class="math display">\[\left\{\begin{aligned}
-            \dfrac{\partial}{\partial q_{\alpha}}
-\left(\sum\limits_{\beta = 1}^{s} p_{\beta}\dot{q}_{\beta} - \bar{L}
-\right)&amp; = -\dot{p}_{\alpha} \\
-            \dfrac{\partial}{\partial p_{\alpha}}
+\dfrac{\partial}{\partial q_{\alpha}} \left(\sum\limits_{\beta = 1}^{s}
+p_{\beta}\dot{q}_{\beta} - \bar{L} \right)&amp; = -\dot{p}_{\alpha} \\
+\dfrac{\partial}{\partial p_{\alpha}}
 \left(\sum\limits_{\beta}^{s}p_{\beta}\dot{q}_{\beta} - \bar{L}
 \right)&amp; = \dot{q}_{\alpha} \\
-        \end{aligned}\right.\]</span>
+\end{aligned}\right.\]</span>
 我们在前面已经将上式中括号内部分定义为广义能量函数，我们将其称为Hamilton函数，这样可得
 <span class="math display">\[\left\{\begin{aligned}
             \dfrac{\partial H}{\partial q_{\alpha}} &amp; =
@@ -487,13 +486,13 @@ class="math inline">\(\dfrac{\mathrm{d}\rho}{\mathrm{d}t} =
 \mathrm{d}V
             \end{aligned}\]</span> 如果我们假设体积元表面积为<span
 class="math inline">\(\mathrm{d}S\)</span>，那么代表点离开体积元的速率为
-<span class="math display">\[-r = \oint_{S} \rho \boldsymbol{v}
-$\boldsymbol{j}$ot \mathrm{d}\boldsymbol{S}\]</span> 其中，<span
+<span class="math display">\[-r = \oint_{S} \rho \boldsymbol{v} \cdot
+\mathrm{d}\boldsymbol{S}\]</span> 其中，<span
 class="math inline">\(\boldsymbol{v} = \boldsymbol{v}(\dot{q},
 \dot{p})\)</span>。由散度定理可得 <span
 class="math display">\[\begin{aligned}
-                \oint_{S} \rho\boldsymbol{v}$\boldsymbol{j}$ot
-\mathrm{d}\boldsymbol{S}&amp; = \int_{V} \nabla $\boldsymbol{j}$ot
+                \oint_{S} \rho\boldsymbol{v}\cdot
+\mathrm{d}\boldsymbol{S}&amp; = \int_{V} \nabla \cdot
 \left(\rho\boldsymbol{v}\right)\mathrm{d}V \\
                 &amp; = \int_{V}\left[\sum\limits_{\alpha = 1}^{s}
 \left(\dfrac{\partial \rho}{\partial q_{\alpha}}\dot{q}_{\alpha} +
@@ -536,27 +535,25 @@ class="math display">\[\dfrac{\mathrm{d}\rho}{\mathrm{d}t} = 0\]</span>
 <div class="theorem">
 <p>系统动能的平均值与系统中每个质点所受力以及位矢的关系为 <span
 class="math display">\[\langle T \rangle= -\dfrac{1}{2}
-\bigg\langle\sum\limits_{i = 1}^{n} \boldsymbol{F}_{i}
-$\boldsymbol{j}$ot \boldsymbol{r}_{i} \bigg\rangle\]</span></p>
+\bigg\langle\sum\limits_{i = 1}^{n} \boldsymbol{F}_{i} \cdot
+\boldsymbol{r}_{i} \bigg\rangle\]</span></p>
 </div>
 <div class="proof">
 <p><em>Proof.</em> 我们先来定义一个物理量 <span class="math display">\[S
-= \sum\limits_{i = 1}^{n} \boldsymbol{r}_{i} $\boldsymbol{j}$ot
+= \sum\limits_{i = 1}^{n} \boldsymbol{r}_{i} \cdot
 \boldsymbol{p}_{i}\]</span> 其中，<span
 class="math inline">\(\boldsymbol{p}_{i} =
 m_{i}\dot{\boldsymbol{r}}_{i}\)</span>。因此<span
 class="math inline">\(S\)</span>的时间变化率为 <span
 class="math display">\[\begin{aligned}
                 \dfrac{\mathrm{d}S}{\mathrm{d}t} &amp; = \sum\limits_{i
-= 1}^{n} \left(\dot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot
-\boldsymbol{p}_{i} + \boldsymbol{r}_{i} $\boldsymbol{j}$ot
-\dot{\boldsymbol{p}}_{i} \right)\\
+= 1}^{n} \left(\dot{\boldsymbol{r}}_{i} \cdot \boldsymbol{p}_{i} +
+\boldsymbol{r}_{i} \cdot \dot{\boldsymbol{p}}_{i} \right)\\
                 &amp; = \sum\limits_{i = 1}^{n}
-\left(\dot{\boldsymbol{r}}_{i} $\boldsymbol{j}$ot
-m_{i}\dot{\boldsymbol{r}}_{i} + \boldsymbol{r}_{i} $\boldsymbol{j}$ot
-\boldsymbol{F}_{i} \right)\\
+\left(\dot{\boldsymbol{r}}_{i} \cdot m_{i}\dot{\boldsymbol{r}}_{i} +
+\boldsymbol{r}_{i} \cdot \boldsymbol{F}_{i} \right)\\
                 &amp; = 2T + \sum\limits_{i = 1}^{n} \boldsymbol{r}_{i}
-$\boldsymbol{j}$ot \boldsymbol{F}_{i}
+\cdot \boldsymbol{F}_{i}
             \end{aligned}\]</span>
 假设系统的运动是周期性的，那么对于周期<span class="math inline">\(T =
 \tau\)</span>，有<span class="math inline">\(S(\tau) =
@@ -570,22 +567,21 @@ class="math display">\[\begin{aligned}
                 &amp; = 0
             \end{aligned}\]</span> 由此可得 <span
 class="math display">\[\langle 2T \rangle+ \left\langle \sum\limits_{i =
-1}^{n} \boldsymbol{r}_{i} $\boldsymbol{j}$ot \boldsymbol{F}_{i}
-\right\rangle = 0\]</span> 也就是 <span class="math display">\[\langle T
-\rangle= -\dfrac{1}{2} \left\langle \sum\limits_{i = 1}^{n}
-\boldsymbol{r}_{i} $\boldsymbol{j}$ot \boldsymbol{F}_{i}
-\right\rangle\]</span> ◻</p>
+1}^{n} \boldsymbol{r}_{i} \cdot \boldsymbol{F}_{i} \right\rangle =
+0\]</span> 也就是 <span class="math display">\[\langle T \rangle=
+-\dfrac{1}{2} \left\langle \sum\limits_{i = 1}^{n} \boldsymbol{r}_{i}
+\cdot \boldsymbol{F}_{i} \right\rangle\]</span> ◻</p>
 </div>
-<p>之所以我们将这个定理称为位力定理，是因为Clausius将$<em>{i} <span
-class="math inline">\(\boldsymbol{j}\)</span>ot
-</em>{i}$称为virial，中文将其翻译为位力。</p>
+<p>之所以我们将这个定理称为位力定理，是因为Clausius将<span
+class="math inline">\(\boldsymbol{r}_{i} \cdot
+\boldsymbol{F}_{i}\)</span>称为virial，中文将其翻译为位力。</p>
 <p>如果作用力是保守力，那么我们有如下推论</p>
 <div class="corollary">
 <p>如果作用于质点<span class="math inline">\(i\)</span>上的力<span
 class="math inline">\(\boldsymbol{F}_{i}\)</span>均为保守力，那么 <span
 class="math display">\[\langle T \rangle= \dfrac{1}{2}\left\langle
-\sum\limits_{i = 1}^{n} \boldsymbol{r}_{i} $\boldsymbol{j}$ot \nabla_{i}
-V \right\rangle\]</span></p>
+\sum\limits_{i = 1}^{n} \boldsymbol{r}_{i} \cdot \nabla_{i} V
+\right\rangle\]</span></p>
 </div>
 <h2 id="possion括号">Possion括号</h2>
 <h3 id="力学量的时间变化率">力学量的时间变化率</h3>

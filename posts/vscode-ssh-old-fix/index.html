@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"vasily-alexievich-korolev.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文记录 c14-1 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 c35-1 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pty">
+  <meta name="description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文记录 node-a 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 node-b 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VS Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局">
+<meta property="og:title" content="VS Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局">
 <meta property="og:url" content="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/">
 <meta property="og:site_name" content="Vasily&#39;s Blog">
-<meta property="og:description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文记录 c14-1 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 c35-1 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pty">
+<meta property="og:description" content="当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc &gt;&#x3D; 2.28 而反复崩溃重试。本文记录 node-a 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 node-b 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-29T03:44:22.968Z">
+<meta property="article:modified_time" content="2026-06-29T04:12:50.528Z">
 <meta property="article:author" content="Vasily Alexievich Korolev">
 <meta property="article:tag" content="VS Code">
 <meta property="article:tag" content="Remote-SSH">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>VS Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局 | Vasily's Blog</title>
+  <title>VS Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局 | Vasily's Blog</title>
   
 
 
@@ -82,8 +82,8 @@
   </style>
 </noscript>
 
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="Vasily's Blog" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="Vasily's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -186,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          VS Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局
+          VS Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2026-06-29 00:00:00 / 修改时间：11:44:22" itemprop="dateCreated datePublished" datetime="2026-06-29T00:00:00+08:00">2026-06-29</time>
+              <time title="创建时间：2026-06-29 00:00:00 / 修改时间：12:12:50" itemprop="dateCreated datePublished" datetime="2026-06-29T00:00:00+08:00">2026-06-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +235,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>10 分钟</span>
             </span>
-            <div class="post-description">当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc >= 2.28 而反复崩溃重试。本文记录 c14-1 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 c35-1 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pty 原生模块 ABI 不兼容这一不可逾越的障碍。</div>
+            <div class="post-description">当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc >= 2.28 而反复崩溃重试。本文记录 node-a 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 node-b 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pty 原生模块 ABI 不兼容这一不可逾越的障碍。</div>
 
         </div>
       </header>
@@ -246,8 +246,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="vs-code-remote-ssh-老服务器兼容c14-1-成功与-c35-1-终端困局">VS
-Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局</h1>
+        <h1 id="vs-code-remote-ssh-老服务器兼容node-a-成功与-node-b-终端困局">VS
+Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局</h1>
 <h2 id="问题">问题</h2>
 <p>VS Code 从 1.86 开始，远程 vscode-server 中的 Node.js 要求
 <strong>glibc &gt;= 2.28</strong>。CentOS 7 默认 glibc
@@ -389,32 +389,32 @@ server）</li>
 <li>立即连接</li>
 </ol>
 <hr />
-<h2 id="c35-1-实战文件编辑成功终端困局">c35-1
+<h2 id="node-b-实战文件编辑成功终端困局">node-b
 实战：文件编辑成功，终端困局</h2>
 <h3 id="背景">背景</h3>
-<p>c14-1 修复成功后，用完全相同的混合 server 目录部署到 c35-1。c35-1
+<p>node-a 修复成功后，用完全相同的混合 server 目录部署到 node-b。node-b
 是<strong>全新服务器</strong>，之前没用 VS Code 连过，所以需要从头创建
 server 目录。</p>
 <p>SSH 配置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host DICP-C35-1</span><br><span class="line">    HostName c35-1</span><br><span class="line">    User chenziang</span><br><span class="line">    ProxyJump DICP-0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host remote-server</span><br><span class="line">    HostName node-b</span><br><span class="line">    User user</span><br><span class="line">    ProxyJump jump-host</span><br></pre></td></tr></table></figure>
 <h3 id="第一步上传-server-目录成功">第一步：上传 server
 目录（成功）</h3>
 <p>把已在本地准备好的 <code>vscode-server-linux-x64/</code>（含旧版 node
 v20.18.2 + 旧版 <code>bin/code-server</code> shell 脚本 + 新版
-<code>out/</code>）直接 scp 到 c35-1：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp <span class="literal">-J</span> DICP<span class="literal">-0</span> <span class="literal">-r</span> D:\vscode_server\vscode<span class="literal">-server-linux-x64</span> chenziang@c35<span class="literal">-1</span>:~/.vscode<span class="literal">-server</span>/<span class="built_in">cli</span>/servers/Stable<span class="literal">-7e7950</span>.../server</span><br></pre></td></tr></table></figure>
+<code>out/</code>）直接 scp 到 node-b：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp <span class="literal">-J</span> jump<span class="literal">-host</span> <span class="literal">-r</span> /path/to/vscode<span class="literal">-server-linux-x64</span> user@node<span class="literal">-b</span>:~/.vscode<span class="literal">-server</span>/<span class="built_in">cli</span>/servers/Stable-&lt;commit&gt;/server</span><br></pre></td></tr></table></figure>
 <p>注意事项：</p>
 <ul>
-<li><p>c35-1 没有旧版 VS Code 连过，<code>Stable-&lt;commit&gt;</code>
+<li><p>node-b 没有旧版 VS Code 连过，<code>Stable-&lt;commit&gt;</code>
 目录需先手工创建</p></li>
 <li><p>scp
 的目录层级问题：源目录本身会作为子目录传过去，需上移一层</p></li>
 </ul>
 <h3 id="第二步修复-cli-binaryglibcxx-检查">第二步：修复 CLI
 binary（GLIBCXX 检查）</h3>
-<p>c35-1 在旧版 CLI binary 上没有 GLIBCXX 兼容性问题。将旧版 CLI
+<p>node-b 在旧版 CLI binary 上没有 GLIBCXX 兼容性问题。将旧版 CLI
 binary（v1.98.2）复制为新版路径：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /share1/chenziang/extensions/.vscode-server/code-ddc367ed... \</span><br><span class="line">   ~/.vscode-server/code-7e7950df89...</span><br><span class="line"><span class="built_in">chmod</span> +x ~/.vscode-server/code-7e7950df89...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /backup/path/.vscode-server/code-ddc367ed... \</span><br><span class="line">   ~/.vscode-server/code-7e7950df89...</span><br><span class="line"><span class="built_in">chmod</span> +x ~/.vscode-server/code-7e7950df89...</span><br></pre></td></tr></table></figure>
 <p>VS Code
 连接成功，<strong>文件编辑功能完好</strong>。可以正常浏览文件、编辑代码。</p>
 <h3
@@ -486,8 +486,8 @@ node（v20）+ 其余全部新版（最关键的诊断）</h4>
 <thead>
 <tr>
 <th>功能</th>
-<th>c14-1</th>
-<th>c35-1</th>
+<th>node-a</th>
+<th>node-b</th>
 </tr>
 </thead>
 <tbody>
@@ -529,7 +529,7 @@ node（v20）+ 其余全部新版（最关键的诊断）</h4>
 </tbody>
 </table>
 <blockquote>
-<p>c14-1 的终端能在旧版 node 下工作纯属巧合——可能因为其中间版本的
+<p>node-a 的终端能在旧版 node 下工作纯属巧合——可能因为其中间版本的
 vscode-server 留有兼容旧 ABI 的 pty.node 版本，或 kernel/devpts
 配置不同。具体原因未深究。</p>
 </blockquote>
@@ -537,10 +537,10 @@ vscode-server 留有兼容旧 ABI 的 pty.node 版本，或 kernel/devpts
 <p>当终端无法工作时，有两种替代方案：</p>
 <p><strong>方案 A：外置终端</strong> 在 VS Code 外打开 PowerShell 通过
 SSH 直连，VS Code 内正常编辑文件：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-J</span> DICP<span class="literal">-0</span> chenziang@c35<span class="literal">-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-J</span> jump<span class="literal">-host</span> user@node<span class="literal">-b</span></span><br></pre></td></tr></table></figure>
 <p>两个窗口并排使用，日常编辑不受影响。</p>
 <p><strong>方案 B：VS Code 1.98 便携版</strong> 1. 下载 VS Code 1.98.x
-便携版 2. 用旧版连 c35-1 → 服务器自动下载匹配的 CLI binary + server 3.
+便携版 2. 用旧版连 node-b → 服务器自动下载匹配的 CLI binary + server 3.
 新旧两个 VS Code 互不冲突 4. 日常用 1.126 编辑，需要终端时用 1.98
 连接</p>
 <table style="width:100%;">
@@ -613,7 +613,7 @@ scp、重新替换 binary。</p>
 <hr />
 <h2 id="附录完整诊断命令速查">附录：完整诊断命令速查</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有 server 目录</span></span><br><span class="line"><span class="built_in">ls</span> -la ~/.vscode-server/cli/servers/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 node 能否运行</span></span><br><span class="line">~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/node --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 code-server 类型（文件 vs 目录/ELF）</span></span><br><span class="line">file ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/bin/code-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 server 日志</span></span><br><span class="line"><span class="built_in">cat</span> ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/log.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理锁文件</span></span><br><span class="line"><span class="built_in">rm</span> -f ~/.vscode-server/.cli.*.lock</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有 CLI binary 版本</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> ~/.vscode-server/code-*; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="string">&quot;=== <span class="variable">$f</span> ===&quot;</span> &amp;&amp; <span class="variable">$f</span> --version 2&gt;&amp;1; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h3 id="c35-1-终端诊断">c35-1 终端诊断</h3>
+<h3 id="node-b-终端诊断">node-b 终端诊断</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查 pty.node 是否存在及 ABI</span></span><br><span class="line">file ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/node_modules/node-pty/prebuilds/linux-x64/pty.node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 server-main.js 中 ptyHost 的加载报错</span></span><br><span class="line"><span class="built_in">cat</span> ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/log.txt | grep -i <span class="string">&quot;pty\|native module\|uncaught&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查旧版 node 的 N-API 版本</span></span><br><span class="line">~/.vscode-server/node --version</span><br><span class="line">~/.vscode-server/node -e <span class="string">&quot;console.log(process.versions.modules)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查新版 node 的 N-API 版本（如果已下载）</span></span><br><span class="line">./original_new_node_v2 -e <span class="string">&quot;console.log(process.versions.modules)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 patchelf（注意大文件 segfault）</span></span><br><span class="line">patchelf --set-interpreter ./glibc228/lib/ld-linux-x86-64.so.2 ./original_new_node_v2</span><br><span class="line"></span><br><span class="line"><span class="comment"># pty.node 原生模块位置</span></span><br><span class="line"><span class="built_in">ls</span> -la ~/.vscode-server/cli/servers/Stable-&lt;commit&gt;/server/node_modules/node-pty/prebuilds/linux-x64/</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -630,7 +630,7 @@ scp、重新替换 binary。</p>
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/" title="VS Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局">https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/</a>
+    <a href="https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/" title="VS Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局">https://vasily-alexievich-korolev.github.io/posts/vscode-ssh-old-fix/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -716,14 +716,14 @@ scp、重新替换 binary。</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vs-code-remote-ssh-%E8%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%BC%E5%AE%B9c14-1-%E6%88%90%E5%8A%9F%E4%B8%8E-c35-1-%E7%BB%88%E7%AB%AF%E5%9B%B0%E5%B1%80"><span class="nav-number">1.</span> <span class="nav-text">VS
-Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remote-ssh-%E8%BF%9C%E7%A8%8B%E6%9E%B6%E6%9E%84%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.2.</span> <span class="nav-text">Remote-SSH 远程架构的演进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E6%97%A7%E6%9E%B6%E6%9E%84vs-code-1.86"><span class="nav-number">1.2.1.</span> <span class="nav-text">经典旧架构（VS Code &lt; 1.86）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0-cli-%E6%9E%B6%E6%9E%84vs-code-1.861.98%E8%BF%87%E6%B8%A1%E6%9C%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">新 CLI 架构（VS Code
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vs-code-remote-ssh-%E8%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%BC%E5%AE%B9node-a-%E6%88%90%E5%8A%9F%E4%B8%8E-node-b-%E7%BB%88%E7%AB%AF%E5%9B%B0%E5%B1%80"><span class="nav-number">1.</span> <span class="nav-text">VS
+Code Remote-SSH 老服务器兼容：node-a 成功与 node-b 终端困局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remote-ssh-%E8%BF%9C%E7%A8%8B%E6%9E%B6%E6%9E%84%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.2.</span> <span class="nav-text">Remote-SSH 远程架构的演进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E6%97%A7%E6%9E%B6%E6%9E%84vs-code-1.86"><span class="nav-number">1.2.1.</span> <span class="nav-text">经典旧架构（VS Code &lt; 1.86）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0-cli-%E6%9E%B6%E6%9E%84vs-code-1.861.98%E8%BF%87%E6%B8%A1%E6%9C%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">新 CLI 架构（VS Code
 1.86~1.98，过渡期）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E6%9E%B6%E6%9E%84vs-code-1.126%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.3.</span> <span class="nav-text">全新架构（VS Code
 1.126，当前版本）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%89%88%E6%9C%AC%E4%BF%AE%E5%A4%8D%E9%9C%80%E6%B1%82"><span class="nav-number">1.2.4.</span> <span class="nav-text">各版本修复需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%BD%AE%E5%B0%9D%E8%AF%95"><span class="nav-number">1.3.</span> <span class="nav-text">三轮尝试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%BD%AE%E6%9B%BF%E6%8D%A2-cli-binary-%E4%BC%AA%E8%A3%85%E6%97%A7-server-%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">❌ 第一轮：替换 CLI
 binary + 伪装旧 server 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E4%B8%8B%E8%BD%BD%E6%96%B0%E7%89%88-server-%E6%9B%BF%E6%8D%A2-js-%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.2.</span> <span class="nav-text">❌ 第二轮：下载新版 server
 替换 JS 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%BD%AE%E6%97%A7%E7%89%88-code-server-%E6%96%B0%E7%89%88-js%E6%B7%B7%E5%90%88%E9%83%A8%E7%BD%B2"><span class="nav-number">1.3.3.</span> <span class="nav-text">✅ 第三轮：旧版
 code-server + 新版 JS，混合部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vs-code-%E7%9A%84%E6%97%A0%E9%99%90%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%E6%9C%80%E5%9D%91%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="nav-number">1.4.</span> <span class="nav-text">VS Code
-的无限重试机制（最坑的地方）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c35-1-%E5%AE%9E%E6%88%98%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E6%88%90%E5%8A%9F%E7%BB%88%E7%AB%AF%E5%9B%B0%E5%B1%80"><span class="nav-number">1.5.</span> <span class="nav-text">c35-1
+的无限重试机制（最坑的地方）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-b-%E5%AE%9E%E6%88%98%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E6%88%90%E5%8A%9F%E7%BB%88%E7%AB%AF%E5%9B%B0%E5%B1%80"><span class="nav-number">1.5.</span> <span class="nav-text">node-b
 实战：文件编辑成功，终端困局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.5.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E4%B8%8A%E4%BC%A0-server-%E7%9B%AE%E5%BD%95%E6%88%90%E5%8A%9F"><span class="nav-number">1.5.2.</span> <span class="nav-text">第一步：上传 server
 目录（成功）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E4%BF%AE%E5%A4%8D-cli-binaryglibcxx-%E6%A3%80%E6%9F%A5"><span class="nav-number">1.5.3.</span> <span class="nav-text">第二步：修复 CLI
 binary（GLIBCXX 检查）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E7%BB%88%E7%AB%AF%E4%BF%AE%E5%A4%8D%E5%B0%9D%E8%AF%95%E5%85%A8%E7%BA%BF%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.5.4.</span> <span class="nav-text">第三步：终端修复尝试（全线失败）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-a%E6%97%A7%E7%89%88-node-%E6%97%A7%E7%89%88-cli-binary%E7%BA%AF%E6%9B%BF%E6%8D%A2"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">方案 A：旧版 node + 旧版
@@ -732,7 +732,7 @@ node（v24）+ 自备 glibc 2.28 + patchelf</span></a></li><li class="nav-item n
 process.execPath 包装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-dpatchelf---set-interpreter-wrapper-%E4%BC%A0---library-path"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">方案
 D：patchelf --set-interpreter + wrapper 传
 --library-path</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-e%E6%97%A7%E7%89%88-nodev20-%E5%85%B6%E4%BD%99%E5%85%A8%E9%83%A8%E6%96%B0%E7%89%88%E6%9C%80%E5%85%B3%E9%94%AE%E7%9A%84%E8%AF%8A%E6%96%AD"><span class="nav-number">1.5.4.5.</span> <span class="nav-text">方案 E：旧版
-node（v20）+ 其余全部新版（最关键的诊断）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%BB%88%E6%9E%81%E6%A0%B9%E5%9B%A0"><span class="nav-number">1.5.5.</span> <span class="nav-text">终端失败的终极根因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">1.5.6.</span> <span class="nav-text">双服务器对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A1%8C%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%96%B9%E6%A1%88"><span class="nav-number">1.5.7.</span> <span class="nav-text">可行的工作区方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95%E5%AE%8C%E6%95%B4%E8%AF%8A%E6%96%AD%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="nav-number">1.6.</span> <span class="nav-text">附录：完整诊断命令速查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c35-1-%E7%BB%88%E7%AB%AF%E8%AF%8A%E6%96%AD"><span class="nav-number">1.6.1.</span> <span class="nav-text">c35-1 终端诊断</span></a></li></ol></li></ol></li></ol></div>
+node（v20）+ 其余全部新版（最关键的诊断）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%BB%88%E6%9E%81%E6%A0%B9%E5%9B%A0"><span class="nav-number">1.5.5.</span> <span class="nav-text">终端失败的终极根因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">1.5.6.</span> <span class="nav-text">双服务器对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A1%8C%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%96%B9%E6%A1%88"><span class="nav-number">1.5.7.</span> <span class="nav-text">可行的工作区方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95%E5%AE%8C%E6%95%B4%E8%AF%8A%E6%96%AD%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="nav-number">1.6.</span> <span class="nav-text">附录：完整诊断命令速查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node-b-%E7%BB%88%E7%AB%AF%E8%AF%8A%E6%96%AD"><span class="nav-number">1.6.1.</span> <span class="nav-text">node-b 终端诊断</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

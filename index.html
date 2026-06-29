@@ -76,8 +76,8 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="Vasily's Blog" type="application/atom+xml">
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="Vasily's Blog" type="application/atom+xml">
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -180,7 +180,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/vscode-ssh-old-fix/" class="post-title-link" itemprop="url">VS Code Remote-SSH 老服务器兼容：完整踩坑记录与技术方案</a>
+            <a href="/posts/vscode-ssh-old-fix/" class="post-title-link" itemprop="url">VS Code Remote-SSH 老服务器兼容：c14-1 成功与 c35-1 终端困局</a>
         </h2>
 
         <div class="post-meta">
@@ -191,7 +191,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2026-06-29 00:00:00 / 修改时间：02:03:20" itemprop="dateCreated datePublished" datetime="2026-06-29T00:00:00+08:00">2026-06-29</time>
+              <time title="创建时间：2026-06-29 00:00:00 / 修改时间：11:44:22" itemprop="dateCreated datePublished" datetime="2026-06-29T00:00:00+08:00">2026-06-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,14 +213,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -232,7 +232,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc >= 2.28 而反复崩溃重试。本文深入剖析 Remote-SSH 远程架构的三次演进，记录三轮尝试的失败与成功，给出无需 root、无需升级系统、只需一次手工作业的修复方案。</p>
+          <p>当 VS Code 1.126 遇到 CentOS 7（glibc 2.17），Remote-SSH 因为远程 vscode-server 的 Node.js 需要 glibc >= 2.28 而反复崩溃重试。本文记录 c14-1 服务器上的成功方案（旧版 binary + 新版 JS 混合部署），以及 c35-1 服务器上终端修复的完整失败探索——五种方案、五个根因分析，揭示 node-pty 原生模块 ABI 不兼容这一不可逾越的障碍。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/vscode-ssh-old-fix/">
@@ -1265,13 +1265,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">444k</span>
+    <span title="站点总字数">446k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">24:41</span>
+    <span title="站点阅读时长">24:45</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
     <span id="timeDate">载入天数...</span>
